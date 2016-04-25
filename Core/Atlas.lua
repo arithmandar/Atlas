@@ -4,7 +4,7 @@
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
 	Copyright 2010 - Lothaer <lothayer@gmail.com>, Atlas Team
-	Copyright 2011 ~ 2015 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
+	Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 
 	This file is part of Atlas.
 
@@ -568,24 +568,17 @@ function AtlasMaps_NPC_Text_OnUpdate(self)
 	if (not GameTooltip:IsShown()) then
 		local ejbossname, description, _, rootSectionID = EJ_GetEncounterInfo(self:GetID());
 		if (ejbossname) then
+			local showtip;
 			if ( ( IsAddOnLoaded("AtlasLoot") and (strAtlasLootVersion <= "v7.07.03")) ) then -- temporary arrangement as some players are still using old version of AtlasLoot due to Atlas integration has not yet been added to AtlasLoot v8.00.00
 				if (AtlasLootItemsFrame:IsShown()) then
-					-- do nothing
+					showtip = false;
 				else
-					GameTooltip:SetOwner(self, "ANCHOR_CURSOR");
-					GameTooltip:SetBackdropColor(0, 0, 0, 1 * AtlasOptions["AtlasAlpha"]);
-					GameTooltip:SetText(ejbossname, 1, 1, 1, nil, 1);
-					GameTooltip:AddLine(description, nil, nil, nil, 1);
-					if (EncounterJournal_CheckForOverview(rootSectionID)) then
-						local _, overviewDescription = EJ_GetSectionInfo(rootSectionID);
-						GameTooltip:AddLine("\n"..OVERVIEW.."\n", 1, 1, 1, 1)
-						GameTooltip:AddLine(overviewDescription, nil, nil, nil, 1);
-					end
-					GameTooltip:SetScale(AtlasOptions["AtlasBossDescScale"] * AtlasOptions["AtlasScale"]);
-					GameTooltip:Show();
-
+					showtip = true;
 				end
 			else
+				showtip = true;
+			end
+			if (showtip) then
 				GameTooltip:SetOwner(self, "ANCHOR_CURSOR");
 				GameTooltip:SetBackdropColor(0, 0, 0, 1 * AtlasOptions["AtlasAlpha"]);
 				GameTooltip:SetText(ejbossname, 1, 1, 1, nil, 1);

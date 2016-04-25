@@ -4,7 +4,7 @@
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
 	Copyright 2010 - Lothaer <lothayer@gmail.com>, Atlas Team
-	Copyright 2011 ~ 2015 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
+	Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 
 	This file is part of Atlas.
 
@@ -806,6 +806,28 @@ Syntax:
 		{ 1, 1138, 413, 207 }; -- Rocketspark and Borka
 		{ 2, 1163, 257, 417 }; -- Nitrogg Thundertower
 		{ 3, 1133, 159, 417 }; -- Skylord Tovra
+	};
+	HellfireA = {
+		{ 1, 1425, 155, 255}; -- Iron Reaver
+	};
+	HellfireB = {
+		{ 2, 1372, 142, 184 };	-- Gorefiend
+		{ 3, 1396, 239, 334 };	-- Kilrogg Deadeye
+		{ 4, 1432, 319, 428 };	-- Hellfire High Council
+	};
+	HellfireC = {
+		{ 5, 1392, 279, 247 }; -- Kormrok
+	};
+	HellfireD = { 
+		{ 6, 1438, 290, 265 }; -- Archimonde
+	};
+	HellfireE = {
+		{ 6, 1433, 103, 196 };	-- Shadow-Lord Iskar
+		{ 7, 1391, 138, 51 };	-- Fel Lord Zakuun
+		{ 8, 1447, 355, 132 };	-- Xhul'horac
+		{ 9, 1427, 259, 350 };	-- Socrethar the Eternal
+		{ 10, 1394, 124, 345 };	-- Tyrant Velhari
+--		{ 12, 1395, nil, nil };	-- Mannoroth
 	};
 	HighmaulA = {
 		{ 1, 1128, 347, 430 }; -- Kargath Bladefist
