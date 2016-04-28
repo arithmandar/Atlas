@@ -564,11 +564,27 @@ end
 function AtlasMaps_NPC_Text_OnUpdate(self)
 	local strAtlasLootVersion;
 	strAtlasLootVersion = GetAddOnMetadata("AtlasLoot", "Version");
+	local ejbid = self:GetID();
 
 	if (not GameTooltip:IsShown()) then
-		local ejbossname, description, _, rootSectionID = EJ_GetEncounterInfo(self:GetID());
+		local showtip = true;
+		local ejbossname, description, _, rootSectionID;
+		local tip_title;
+		-- for non boss entry, we define the id to be larger than 10000
+		-- in this situation, the AtlasMaps_NPC_DB table entry will have 5th entity
+		if (ejbid < 10000) then 
+			ejbossname, description, _, rootSectionID = EJ_GetEncounterInfo(ejbid); 
+		else
+			local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+			for k, v in pairs(AtlasMaps[zoneID]) do
+				if (v[2] == ejbid) then
+					tip_title = v[1];
+				end
+			end
+			
+		end
 		if (ejbossname) then
-			local showtip;
+			tip_title = ejbossname;
 			if ( ( IsAddOnLoaded("AtlasLoot") and (strAtlasLootVersion <= "v7.07.03")) ) then -- temporary arrangement as some players are still using old version of AtlasLoot due to Atlas integration has not yet been added to AtlasLoot v8.00.00
 				if (AtlasLootItemsFrame:IsShown()) then
 					showtip = false;
@@ -578,19 +594,19 @@ function AtlasMaps_NPC_Text_OnUpdate(self)
 			else
 				showtip = true;
 			end
-			if (showtip) then
-				GameTooltip:SetOwner(self, "ANCHOR_CURSOR");
-				GameTooltip:SetBackdropColor(0, 0, 0, 1 * AtlasOptions["AtlasAlpha"]);
-				GameTooltip:SetText(ejbossname, 1, 1, 1, nil, 1);
-				GameTooltip:AddLine(description, nil, nil, nil, 1);
-				if (EncounterJournal_CheckForOverview(rootSectionID)) then
-					local _, overviewDescription = EJ_GetSectionInfo(rootSectionID);
-					GameTooltip:AddLine("\n"..OVERVIEW.."\n", 1, 1, 1, 1)
-					GameTooltip:AddLine(overviewDescription, nil, nil, nil, 1);
-				end
-				GameTooltip:SetScale(AtlasOptions["AtlasBossDescScale"] * AtlasOptions["AtlasScale"]);
-				GameTooltip:Show();
+		end
+		if (showtip and tip_title) then
+			GameTooltip:SetOwner(self, "ANCHOR_CURSOR");
+			GameTooltip:SetBackdropColor(0, 0, 0, 1 * AtlasOptions["AtlasAlpha"]);
+			GameTooltip:SetText(tip_title, 1, 1, 1, nil, 1);
+			if (description) then GameTooltip:AddLine(description, nil, nil, nil, 1); end
+			if (ejbossname and EncounterJournal_CheckForOverview(rootSectionID)) then
+				local _, overviewDescription = EJ_GetSectionInfo(rootSectionID);
+				GameTooltip:AddLine("\n"..OVERVIEW, 1, 1, 1, 1)
+				GameTooltip:AddLine(overviewDescription, nil, nil, nil, 1);
 			end
+			GameTooltip:SetScale(AtlasOptions["AtlasBossDescScale"] * AtlasOptions["AtlasScale"]);
+			GameTooltip:Show();
 		end
 	else
 		GameTooltip:Hide();
@@ -762,15 +778,19 @@ function Atlas_MapRefresh()
 			AtlasMap_NPC_Text_Frame_Num = 1;
 			while (NPC_Table[AtlasMap_NPC_Text_Frame_Num]) do
 				local AtlasMap_NPC_Text_Frame = _G["AtlasMapNPCTextFrame"..AtlasMap_NPC_Text_Frame_Num];
+				local info_id 	= NPC_Table[AtlasMap_NPC_Text_Frame_Num][1];
+				local info_str 	= NPC_Table[AtlasMap_NPC_Text_Frame_Num][2];
+				local info_x 	= NPC_Table[AtlasMap_NPC_Text_Frame_Num][3];
+				local info_y 	= NPC_Table[AtlasMap_NPC_Text_Frame_Num][4];
 				if (not AtlasMap_NPC_Text_Frame) then
 					AtlasMap_NPC_Text_Frame = CreateFrame("Frame", "AtlasMapNPCTextFrame"..AtlasMap_NPC_Text_Frame_Num, AtlasFrame);
 				else
 					AtlasMap_NPC_Text_Frame:Show();
 				end
-				AtlasMap_NPC_Text_Frame:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", 20 + NPC_Table[AtlasMap_NPC_Text_Frame_Num][3], -80 - NPC_Table[AtlasMap_NPC_Text_Frame_Num][4]);
-				AtlasMap_NPC_Text_Frame:SetWidth(15);
-				AtlasMap_NPC_Text_Frame:SetHeight(15);
-				AtlasMap_NPC_Text_Frame:SetID(NPC_Table[AtlasMap_NPC_Text_Frame_Num][2]);
+				AtlasMap_NPC_Text_Frame:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 20, -info_y - 80 );
+				AtlasMap_NPC_Text_Frame:SetWidth(12);
+				AtlasMap_NPC_Text_Frame:SetHeight(12);
+				AtlasMap_NPC_Text_Frame:SetID(info_str);
 				AtlasMap_NPC_Text_Frame:SetScript("OnEnter", AtlasMaps_NPC_Text_OnUpdate);
 				AtlasMap_NPC_Text_Frame:SetScript("OnLeave", AtlasMaps_NPC_Text_OnLeave);
 
@@ -778,7 +798,7 @@ function Atlas_MapRefresh()
 				AtlasMap_NPC_Text:SetPoint("CENTER", AtlasMap_NPC_Text_Frame, "CENTER", 0, 0);
 				-- Disable the set text unless one day we want the text to be added dynamatically
 				-- Or, enable it for debugging purpose
-				--AtlasMap_NPC_Text:SetText(NPC_Table[AtlasMap_NPC_Text_Frame_Num][1]);
+				--AtlasMap_NPC_Text:SetText(info_id);
 
 				AtlasMap_NPC_Text_Frame_Num = AtlasMap_NPC_Text_Frame_Num + 1;
 			end
@@ -1243,16 +1263,15 @@ function AtlasEntryTemplate_OnUpdate(self)
 	end
 end
 
-
--- In Development, this could be fun
 --[[
+-- In Development, this could be fun
 function AtlasSetEJBackground(instanceID)
 	AtlasEJBackground = CreateFrame("Frame", "AtlasEJBackground", AtlasFrame);	
 	if (instanceID) then
 		AtlasEJBackground:ClearAllPoints();
-		AtlasEJBackground:SetWidth(512);
-		AtlasEJBackground:SetHeight(512);
-		AtlasEJBackground:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", 534, -178);
+		AtlasEJBackground:SetWidth(340);
+		AtlasEJBackground:SetHeight(365);
+		AtlasEJBackground:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", 539, -182);
 		local t = AtlasEJBackground:CreateTexture(nil,"BACKGROUND");
 		local name, description, bgImage, buttonImage, loreImage, dungeonAreaMapID, link = EJ_GetInstanceInfo(instanceID)
 		t:SetTexture(bgImage);
@@ -1260,7 +1279,8 @@ function AtlasSetEJBackground(instanceID)
 		AtlasEJBackground.texture = t;
 		AtlasEJBackground:Show()
 	else
-		--AtlasEJBackground:Hide()
+		AtlasEJBackground:ClearAllPoints();
+		AtlasEJBackground:Hide()
 	end
 end
 ]]

@@ -8,16 +8,29 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.32.02 (Apr. 28, 2016)
+------------------------
+- Added Supreme Lord Kazzak NPC info
+- Enhance NPC text displaying codes to support non-boss description to be shown 
+  in tooltip
+- Added maps' additional tooltips: 
+    - Dungeon entrance maps
+    - Draenor maps
+    - Pandaria maps
+
+  
 v1.32.01 (Apr. 25, 2016)
 ------------------------
 - Added Hellfire NPC data
 
+
 v1.32.00 (Jul. 13, 2015)
 ------------------------
 - TOC update to support WoW 6.2
-    - Move out Draenor maps to individual mape module
-    - Remove plugins and modules from the main repository as they have been in individual repositories
-    - Added Hellfire Citadel map data
+- Move out Draenor maps to individual mape module
+- Remove plugins and modules from the main repository as they have been in 
+  individual repositories
+- Added Hellfire Citadel map data
 
 
 v1.31.01 (Mar. 01, 2015)
