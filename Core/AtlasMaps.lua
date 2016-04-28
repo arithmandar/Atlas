@@ -129,7 +129,7 @@ Syntax:
 		PlayerLimit = "5";
 		Acronym = AL["Auch"];
 		Module = "Atlas_BurningCrusade";
-		{ BLUE.." A) "..BZ["Auchenai Crypts"] };
+		{ BLUE.." A) "..BZ["Auchenai Crypts"], 10001 };
 		{ BLUE.." B) "..BZ["Mana-Tombs"], 10002 };
 		{ BLUE.." C) "..BZ["Sethekk Halls"], 10003 };
 		{ BLUE.." D) "..BZ["Shadow Labyrinth"], 10004 };
