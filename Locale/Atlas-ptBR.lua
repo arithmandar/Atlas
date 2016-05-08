@@ -92,8 +92,6 @@ if AL then
 	--AL["ATLAS_OPTIONS_CTRL"] = "Hold down Control for tooltips";
 	--AL["ATLAS_OPTIONS_CTRL_TIP"] = "Enable to show tooltips text while hold down control key and mouse over the map info. Useful when the text is too long to be displayed in the window.";
 
-	AL["ATLAS_BUTTON_TOOLTIP_TITLE"] = "Atlas";
-	--AL["ATLAS_BUTTON_TOOLTIP_HINT"] = "Left-click to open Atlas.\nMiddle-click for Atlas options.\nRight-click and drag to move this button.";
 	--AL["ATLAS_LDB_HINT"] = "Left-Click to open Atlas.\nRight-Click for Atlas options.";
 
 	--AL["ATLAS_OPTIONS_CATDD"] = "Sort Instance Maps by:";

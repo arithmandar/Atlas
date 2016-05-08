@@ -97,8 +97,6 @@ if AL then
 	AL["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "依据副本建议的最低进入等级、以及玩家现今等级的差异，将副本列表以难易度色彩显示。";
 
 	AL["ATLAS_BUTTON_CLOSE"] = "关闭";
-	AL["ATLAS_BUTTON_TOOLTIP_TITLE"] = "Atlas";
-	AL["ATLAS_BUTTON_TOOLTIP_HINT"] = "单击打开 Atlas。\n中键单击打开 Atlas 选项。\n右击可移动这个按钮。";
 	AL["ATLAS_LDB_HINT"] = "单击打开 Atlas。\n右击打开 Atlas 选项。";
 	AL["ATLAS_MINIMAPLDB_HINT"] = "单击打开 Atlas。\n右击打开 Atlas 选项。\n单击並拖拉可移动这个按钮。";
 

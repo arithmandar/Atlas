@@ -98,8 +98,6 @@ if AL then
 	AL["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "Based on the dungeon's recommended minimul level and player's level, to show the dungeon with difficulty colors.";
 
 	AL["ATLAS_BUTTON_CLOSE"] = "Close";
-	AL["ATLAS_BUTTON_TOOLTIP_TITLE"] = "Atlas";
-	AL["ATLAS_BUTTON_TOOLTIP_HINT"] = "Left-click to open Atlas.\nMiddle-click for Atlas options.\nRight-click and drag to move this button.";
 	AL["ATLAS_LDB_HINT"] = "Left-Click to open Atlas.\nRight-Click for Atlas options.";
 	AL["ATLAS_MINIMAPLDB_HINT"] = "Left-Click to open Atlas.\nRight-Click for Atlas options.\nLeft-click and drag to move this button.";
 

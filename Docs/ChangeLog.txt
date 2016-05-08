@@ -8,6 +8,12 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.32.03 (May 9, 2016)
+------------------------
+- Updated Serpentshrine Cavern map to add elevator point
+- Enhanced the way to show the non-boss info
+
+
 v1.32.02 (Apr. 28, 2016)
 ------------------------
 - Added Supreme Lord Kazzak NPC info

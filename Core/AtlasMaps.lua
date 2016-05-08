@@ -1185,6 +1185,7 @@ Syntax:
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..AL["Colon"]..ALIL["Cenarion Expedition"] };
 		{ BLUE.." A) "..AL["Entrance"] };
+		{ BLUE.." B) "..AL["Elevator"] };
 		{ WHIT.." 1) "..Atlas_GetBossName("Hydross the Unstable") };
 		{ WHIT.." 2) "..Atlas_GetBossName("The Lurker Below") };
 		{ WHIT.." 3) "..Atlas_GetBossName("Leotheras the Blind") };
