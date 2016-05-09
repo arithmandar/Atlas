@@ -579,7 +579,10 @@ function AtlasMaps_NPC_Text_OnUpdate(self)
 			for k, v in pairs(AtlasMaps[zoneID]) do
 				if (v[2] == ejbid) then
 					tip_title = v[1];
-					tip_title = strsub(tip_title, strfind(tip_title, ")")+2);
+					local n = strfind(tip_title, ")");
+					if (n) then
+						tip_title = strsub(tip_title, n+2);
+					end
 				end
 			end
 			
