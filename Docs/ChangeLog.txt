@@ -8,9 +8,11 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
-v1.32.04 (May X, 2016)
+v1.32.04 (May 11, 2016)
 ------------------------
 - Enhanced codes to prevent from non-boss info showing unexpectedly
+- Moved modules' map db info from core Atlas to corresponding module for better maintenance
+
 
 v1.32.03 (May 9, 2016)
 ------------------------

@@ -170,18 +170,21 @@ local function Process_Deprecated()
 	-- For example, name it as 2.09 instead of 2.9
 	local Deprecated_List = {
 		-- Most recent (working) versions of known modules at time of release
-		{ "Atlas_Scenarios", 		"1.31.00" },
-		{ "Atlas_MistsofPandaria",	"1.31.00" },
-		{ "Atlas_Cataclysm", 		"1.31.00" },
-		{ "Atlas_WrathoftheLichKing", 	"1.31.00" },
-		{ "Atlas_BurningCrusade", 	"1.31.00" },
-		{ "Atlas_ClassicWoW", 		"1.31.00" },
-		{ "Atlas_Battlegrounds", 	"1.31.00" },
-		{ "Atlas_DungeonLocs", 		"1.31.00" },
-		{ "Atlas_OutdoorRaids", 	"1.31.00" },
-		{ "Atlas_Transportation", 	"1.31.00" },
-		{ "AtlasQuest", 		"4.9.0" }, 	-- updated Oct. 25, 2014
-		{ "AtlasLoot", 			"7.07.03" }, 	-- updated Jul. 19, 2014 -- this version is still with WoW 5.4.x
+		{ "Atlas_WorldofDraenor", 	"1.32.01" }, -- temporary keep this entry as we need to notify people who have not yet removed the old version's folder
+		{ "Atlas_WorldlordsofDraenor", 	"1.32.01" },
+		{ "Atlas_MistsofPandaria",	"1.32.01" },
+		{ "Atlas_Cataclysm", 		"1.32.01" },
+		{ "Atlas_WrathoftheLichKing", 	"1.32.01" },
+		{ "Atlas_BurningCrusade", 	"1.32.01" },
+		{ "Atlas_ClassicWoW", 		"1.32.01" },
+		{ "Atlas_Battlegrounds", 	"1.32.00" },
+		{ "Atlas_DungeonLocs", 		"1.32.00" },
+		{ "Atlas_OutdoorRaids", 	"1.32.01" },
+		{ "Atlas_Transportation", 	"1.32.00" },
+		{ "Atlas_Scenarios", 		"1.32.00" },
+		{ "AtlasQuest", 		"4.9.6" }, 	-- updated Feb. 16, 2016
+		-- remove AtlasLoot as it did not rely on Atlas since its v8 release
+--		{ "AtlasLoot", 			"7.07.03" }, 	-- updated Jul. 19, 2014 -- this version is still with WoW 5.4.x
 		{ "Atlas_Arena", 		"1.5.05" }, 	-- updated Oct. 15, 2014
 		{ "Atlas_WorldEvents", 		"3.09" }, 	-- updated Oct. 28, 2014
 		--{ "AtlasMajorCities", 	"v1.5.3" }, 	-- updated November 15, 2010; -- comment out because this plugin is no longer maintained
@@ -579,9 +582,9 @@ function AtlasMaps_NPC_Text_OnUpdate(self)
 			for k, v in pairs(AtlasMaps[zoneID]) do
 				if (v[2] == ejbid) then
 					tip_title = v[1];
-					local n = strfind(tip_title, ")");
-					if (n) then
-						tip_title = strsub(tip_title, n+2);
+					local _, endpos = strfind(tip_title, ") ");
+					if (endpos) then
+						tip_title = strsub(tip_title, endpos+1);
 					end
 				end
 			end
@@ -791,7 +794,7 @@ function Atlas_MapRefresh()
 				else
 					AtlasMap_NPC_Text_Frame:Show();
 				end
-				AtlasMap_NPC_Text_Frame:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 20, -info_y - 80 );
+				AtlasMap_NPC_Text_Frame:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 15, -info_y - 80 );
 				AtlasMap_NPC_Text_Frame:SetWidth(12);
 				AtlasMap_NPC_Text_Frame:SetHeight(12);
 				AtlasMap_NPC_Text_Frame:SetID(info_str);
