@@ -170,18 +170,22 @@ local function Process_Deprecated()
 	-- For example, name it as 2.09 instead of 2.9
 	local Deprecated_List = {
 		-- Most recent (working) versions of known modules at time of release
-		{ "Atlas_WorldofDraenor", 	"1.32.01" }, -- temporary keep this entry as we need to notify people who have not yet removed the old version's folder
-		{ "Atlas_WorldlordsofDraenor", 	"1.32.01" },
+		-- Atlas Modules
+		{ "Atlas_WorldofDraenor", 	"1.32.02" }, -- temporary keep this entry as we need to notify people who have not yet removed the old version's folder
+		{ "Atlas_WorldlordsofDraenor", 	"1.32.02" }, -- temporary keep this entry as we need to notify people who have not yet removed the old version's folder
+		{ "Atlas_WarlordsofDraenor", 	"1.32.02" }, -- This is the correct module name
 		{ "Atlas_MistsofPandaria",	"1.32.01" },
 		{ "Atlas_Cataclysm", 		"1.32.01" },
 		{ "Atlas_WrathoftheLichKing", 	"1.32.01" },
-		{ "Atlas_BurningCrusade", 	"1.32.01" },
+		{ "Atlas_BurningCrusade", 	"1.32.02" },
 		{ "Atlas_ClassicWoW", 		"1.32.01" },
+		-- Atlas Plugins
 		{ "Atlas_Battlegrounds", 	"1.32.00" },
 		{ "Atlas_DungeonLocs", 		"1.32.00" },
 		{ "Atlas_OutdoorRaids", 	"1.32.01" },
 		{ "Atlas_Transportation", 	"1.32.00" },
 		{ "Atlas_Scenarios", 		"1.32.00" },
+		-- 3rd parties plugins
 		{ "AtlasQuest", 		"4.9.6" }, 	-- updated Feb. 16, 2016
 		-- remove AtlasLoot as it did not rely on Atlas since its v8 release
 --		{ "AtlasLoot", 			"7.07.03" }, 	-- updated Jul. 19, 2014 -- this version is still with WoW 5.4.x
@@ -1091,6 +1095,16 @@ end
 function Atlas_AutoSelect()
 	local currentZone = Atlas_GetFixedZoneText();
 	local currentSubZone = GetSubZoneText();
+--[[
+	local factionGroup = UnitFactionGroup("player");
+	if ( factionGroup and factionGroup ~= "Neutral" ) then
+		if ( factionGroup == "Alliance" ) then
+			
+		elseif ( factionGroup == "Horde" ) then
+			
+		end
+	end
+]]
 	debug("Using auto-select to open the best map.");
 
 	-- Check if the current zone is defined in AssocDefaults table

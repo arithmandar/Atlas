@@ -3141,7 +3141,7 @@ Syntax:
 		DungeonHeroicID = "845";
 		Acronym = AL["Auch"]; -- taken from BC
 		JournalInstanceID = "547";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"], 10001 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Vigilant Kaathar", 1185) };
 		{ WHIT.." 2) "..Atlas_GetBossName("Soulbinder Nyami", 1186) };
@@ -3159,7 +3159,7 @@ Syntax:
 		Acronym = AL["BRF"];
 		PlayerLimit = "10-30";
 		JournalInstanceID = "457";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"], 10001 };
 		{ BLUE.." B-C) "..AL["Connection"], 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Gruul", 1161).." ("..AL["Upper"]..")" };
@@ -3189,7 +3189,7 @@ Syntax:
 		Acronym = AL["BRF"];
 		PlayerLimit = "10-30";
 		JournalInstanceID = "457";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." C) "..AL["Connection"], 10001 };
 		{ WHIT.." 4) "..Atlas_GetBossName("Flamebender Ka'graz", 1123) };
 		{ WHIT..INDENT..Atlas_GetBossName("Aknor Steelbringer", 1123, 2) };
@@ -3210,7 +3210,7 @@ Syntax:
 		DungeonHeroicID = "859";
 		Acronym = AL["BSM"];
 		JournalInstanceID = "385";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"], 10001 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Magmolatus", 893) };
 		{ WHIT..INDENT..Atlas_GetBossName("Forgemaster Gog'duh", 893, 1) };
@@ -3226,7 +3226,7 @@ Syntax:
 		DungeonHeroicID = "866";
 		Acronym = AL["EB"];
 		JournalInstanceID = "556";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"], 10001 };
 		{ BLUE.." B) "..AL["Connection"].. " ("..AL["Portal"]..")", 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Witherbark", 1214) };
@@ -3244,7 +3244,7 @@ Syntax:
 		DungeonHeroicID = "866";
 		Acronym = AL["EB"];
 		JournalInstanceID = "556";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." B) "..AL["Connection"].. " ("..AL["Portal"]..")", 10001 };
 		{ WHIT.." 5) "..Atlas_GetBossName("Yalnu", 1210) };
 	};
@@ -3255,7 +3255,7 @@ Syntax:
 		DungeonHeroicID = "858";
 		Acronym = AL["GD"];
 		JournalInstanceID = "536";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"], 10001 };
 		{ BLUE.." B) "..AL["Train Ride"].." ("..AL["Event"]..")", 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Rocketspark and Borka", 1138) };
@@ -3273,7 +3273,7 @@ Syntax:
 		Acronym = AL["HC"];
 		PlayerLimit = "10-30";
 		JournalInstanceID = "669";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"], 10001 };
 		{ BLUE.." B) "..AL["Connection"], 10002 };
 --		{ WHIT..Atlas_GetBossName("Hellfire Assault", 1426) };
@@ -3289,7 +3289,7 @@ Syntax:
 		Acronym = AL["HC"];
 		PlayerLimit = "10-30";
 		JournalInstanceID = "669";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." B/C) "..AL["Connection"], 10001 };
 		{ WHIT.." 2) "..Atlas_GetBossName("Gorefiend", 1372) };				-- 2
 		{ WHIT.." 3) "..Atlas_GetBossName("Kilrogg Deadeye", 1396) };			-- 3
@@ -3306,7 +3306,7 @@ Syntax:
 		Acronym = AL["HC"];
 		PlayerLimit = "10-30";
 		JournalInstanceID = "669";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." C) "..AL["Connection"], 10001 };
 		{ WHIT.." 5) "..Atlas_GetBossName("Kormrok", 1392) };				-- 5
 	};
@@ -3318,7 +3318,7 @@ Syntax:
 		Acronym = AL["HC"];
 		PlayerLimit = "10-30";
 		JournalInstanceID = "669";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." D) "..AL["Connection"], 10001 };
 		{ WHIT.." 6) "..Atlas_GetBossName("Archimonde", 1438) };			-- 6 
 	};
@@ -3330,7 +3330,7 @@ Syntax:
 		Acronym = AL["HC"];
 		PlayerLimit = "10-30";
 		JournalInstanceID = "669";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." B/C) "..AL["Connection"], 10001 };
 		{ WHIT.." 6) "..Atlas_GetBossName("Shadow-Lord Iskar", 1433) };			-- 6
 		{ WHIT..INDENT..Atlas_GetBossName("Fel Raven", 1433, 2) };
@@ -3351,7 +3351,7 @@ Syntax:
 		Acronym = AL["HM"];
 		PlayerLimit = "10-30";
 		JournalInstanceID = "477";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"].." ("..AL["Lower"]..")", 10001 };
 		{ BLUE.." B) "..AL["Connection"].. " ("..AL["Portal"]..")", 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Kargath Bladefist", 1128) };
@@ -3368,7 +3368,7 @@ Syntax:
 		Acronym = AL["HM"];
 		PlayerLimit = "10-30";
 		JournalInstanceID = "477";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." B-D) "..AL["Connection"], 10001 };
 		{ WHIT.." 5) "..Atlas_GetBossName("Twin Ogron", 1148) };
 		{ WHIT..INDENT..Atlas_GetBossName("Phemos", 1148, 2) };
@@ -3383,7 +3383,7 @@ Syntax:
 		DungeonHeroicID = "857";
 		Acronym = AL["ID"];
 		JournalInstanceID = "558";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"], 10001 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Fleshrender Nok'gar", 1235) };
 		{ WHIT..INDENT..Atlas_GetBossName("Dreadfang", 1235, 2) };
@@ -3403,7 +3403,7 @@ Syntax:
 		DungeonHeroicID = "784";
 		Acronym = AL["SBG"];
 		JournalInstanceID = "537";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"], 10001 };
 		{ BLUE.." B) "..AL["Connection"].. " ("..AL["Portal"]..")", 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Sadana Bloodfury", 1139) };
@@ -3420,7 +3420,7 @@ Syntax:
 		DungeonHeroicID = "780";
 		Acronym = AL["SR"];
 		JournalInstanceID = "476";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"], 10001 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Ranjit", 965) };
 		{ WHIT.." 2) "..Atlas_GetBossName("Araknath", 966) };
@@ -3438,7 +3438,7 @@ Syntax:
 		DungeonHeroicID = "860";
 		Acronym = AL["UBRS"];
 		JournalInstanceID = "559";
-		Module = "Atlas_WorldlordsofDraenor";
+		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..AL["Entrance"], 10001 };
 		{ BLUE.." B-C) "..AL["Connection"], 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Orebender Gor'ashan", 1226) };

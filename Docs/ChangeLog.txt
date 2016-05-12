@@ -8,6 +8,11 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.32.05 (May 12, 2016)
+------------------------
+- Fixed the wrong module name of Warlords of Draenor
+
+
 v1.32.04 (May 11, 2016)
 ------------------------
 - Enhanced codes to prevent from non-boss info showing unexpectedly
