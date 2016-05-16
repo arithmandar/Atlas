@@ -349,7 +349,7 @@
 					</OnLeave>
 				</Scripts>
 			</CheckButton>
-			<Button name="$ParentDropDownCats" inherits="UIDropDownMenuTemplate">
+			<Button name="$ParentDropDownCats" inherits="Lib_UIDropDownMenuTemplate">
 				<Layers>
 					<Layer level="BACKGROUND">
 						<FontString name="$parentLabel" inherits="GameFontNormalSmall" text="ATLAS_OPTIONS_CATDD">

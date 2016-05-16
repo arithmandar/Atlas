@@ -227,20 +227,20 @@ function AtlasOptionsFrameDropDownCats_Initialize()
 			text = Atlas_DropDownLayouts_Order[i];
 			func = AtlasOptionsFrameDropDownCats_OnClick;
 		};
-		UIDropDownMenu_AddButton(info);
+		Lib_UIDropDownMenu_AddButton(info);
 	end
 end
 
 function AtlasOptionsFrameDropDownCats_OnShow()
-	UIDropDownMenu_Initialize(AtlasOptionsFrameDropDownCats, AtlasOptionsFrameDropDownCats_Initialize);
-	UIDropDownMenu_SetSelectedID(AtlasOptionsFrameDropDownCats, AtlasOptions.AtlasSortBy);
-	UIDropDownMenu_SetWidth(AtlasOptionsFrameDropDownCats, 160);
+	Lib_UIDropDownMenu_Initialize(AtlasOptionsFrameDropDownCats, AtlasOptionsFrameDropDownCats_Initialize);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasOptionsFrameDropDownCats, AtlasOptions.AtlasSortBy);
+	Lib_UIDropDownMenu_SetWidth(AtlasOptionsFrameDropDownCats, 160);
 end
 
 
 function AtlasOptionsFrameDropDownCats_OnClick(self)
 	local thisID = self:GetID();
-	UIDropDownMenu_SetSelectedID(AtlasOptionsFrameDropDownCats, thisID);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasOptionsFrameDropDownCats, thisID);
 	AtlasOptions.AtlasSortBy = thisID;
 	Reset_Dropdowns();
 end

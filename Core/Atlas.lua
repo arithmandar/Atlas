@@ -909,7 +909,7 @@ function Atlas_Refresh()
 			AtlasSwitchButton:SetText(ATLAS_INSTANCE_BUTTON);
 		end
 		AtlasSwitchButton:Show();
-		UIDropDownMenu_Initialize(AtlasSwitchDD, AtlasSwitchDD_OnLoad);
+		Lib_UIDropDownMenu_Initialize(AtlasSwitchDD, AtlasSwitchDD_OnLoad);
 	else
 		AtlasSwitchButton:Hide();
 	end
@@ -940,7 +940,7 @@ function AtlasSwitchDD_OnLoad()
 			text = AtlasMaps[v].ZoneName[1];
 			func = AtlasSwitchDD_OnClick;
 		};
-		UIDropDownMenu_AddButton(info);
+		Lib_UIDropDownMenu_AddButton(info);
 	end
 end
 
@@ -979,29 +979,29 @@ function AtlasFrameDropDownType_Initialize()
 			text = subcatOrder[i];
 			func = AtlasFrameDropDownType_OnClick;
 		};
-		UIDropDownMenu_AddButton(info);
+		Lib_UIDropDownMenu_AddButton(info);
 	end
 	for i = 1, getn(Atlas_MapTypes), 1 do
 		info = {
 			text = Atlas_MapTypes[i];
 			func = AtlasFrameDropDownType_OnClick;
 		};
-		UIDropDownMenu_AddButton(info);
+		Lib_UIDropDownMenu_AddButton(info);
 	end
 end
 
 -- Called whenever the map type dropdown menu is shown
 function AtlasFrameDropDownType_OnShow()
-	UIDropDownMenu_Initialize(AtlasFrameDropDownType, AtlasFrameDropDownType_Initialize);
-	UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, AtlasOptions.AtlasType);
-	UIDropDownMenu_SetWidth(AtlasFrameDropDownType, 190);
+	Lib_UIDropDownMenu_Initialize(AtlasFrameDropDownType, AtlasFrameDropDownType_Initialize);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, AtlasOptions.AtlasType);
+	Lib_UIDropDownMenu_SetWidth(AtlasFrameDropDownType, 190);
 end
 
 -- Called whenever an item in the map type dropdown menu is clicked
 -- Sets the main dropdown menu contents to reflect the category of map selected
 function AtlasFrameDropDownType_OnClick(self)
 	local thisID = self:GetID();
-	UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, thisID);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, thisID);
 	AtlasOptions.AtlasType = thisID;
 	AtlasOptions.AtlasZone = 1;
 	AtlasFrameDropDown_OnShow();
@@ -1057,23 +1057,23 @@ function AtlasFrameDropDown_Initialize()
 			text = colortag..AtlasMaps[v].ZoneName[1];
 			func = AtlasFrameDropDown_OnClick;
 		};
-		UIDropDownMenu_AddButton(info);
+		Lib_UIDropDownMenu_AddButton(info);
 	end
 
 end
 
 -- Called whenever the main dropdown menu is shown
 function AtlasFrameDropDown_OnShow()
-	UIDropDownMenu_Initialize(AtlasFrameDropDown, AtlasFrameDropDown_Initialize);
-	UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, AtlasOptions.AtlasZone);
-	UIDropDownMenu_SetWidth(AtlasFrameDropDown, 190);
+	Lib_UIDropDownMenu_Initialize(AtlasFrameDropDown, AtlasFrameDropDown_Initialize);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, AtlasOptions.AtlasZone);
+	Lib_UIDropDownMenu_SetWidth(AtlasFrameDropDown, 190);
 end
 
 -- Called whenever an item in the main dropdown menu is clicked
 -- Sets the newly selected map as current and refreshes the frame
 function AtlasFrameDropDown_OnClick(self)
 	local i = self:GetID();
-	UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, i);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, i);
 	AtlasOptions.AtlasZone = i;
 	Atlas_Refresh();
 end

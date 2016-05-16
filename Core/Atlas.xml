@@ -122,7 +122,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="AtlasFrameDropDownType" inherits="UIDropDownMenuTemplate">
+			<Button name="AtlasFrameDropDownType" inherits="Lib_UIDropDownMenuTemplate">
 				<Layers>
 					<Layer level="BACKGROUND">
 						<FontString name="$parentLabel" inherits="GameFontNormalSmall" text="ATLAS_STRING_SELECT_CAT">
@@ -144,7 +144,7 @@
 					</Anchor>
 				</Anchors>
 			</Button>
-			<Button name="AtlasFrameDropDown" inherits="UIDropDownMenuTemplate">
+			<Button name="AtlasFrameDropDown" inherits="Lib_UIDropDownMenuTemplate">
 				<Layers>
 					<Layer level="BACKGROUND">
 						<FontString name="$parentLabel" inherits="GameFontNormalSmall" text="ATLAS_STRING_SELECT_MAP">
@@ -188,7 +188,7 @@
 					</OnEnterPressed>
 				</Scripts>
 			</EditBox>
-			<Frame name="AtlasSwitchDD" inherits="UIDropDownMenuTemplate" />
+			<Frame name="AtlasSwitchDD" inherits="Lib_UIDropDownMenuTemplate" />
   			<Button name="AtlasSwitchButton" inherits="UIPanelButtonTemplate" parent="AtlasSearchEditBox">
 				<Size>
 					<AbsDimension x="80" y="24"/>

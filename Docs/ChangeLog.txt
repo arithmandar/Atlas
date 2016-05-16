@@ -8,6 +8,11 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.32.06 (May 16, 2016)
+------------------------
+- Added modded NoTaint_UIDropDownMenu1.1 to resolve dropdown menu taint issue
+
+
 v1.32.05 (May 12, 2016)
 ------------------------
 - Fixed the wrong module name of Warlords of Draenor
