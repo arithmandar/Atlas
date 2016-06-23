@@ -10,7 +10,7 @@
 ## Title-ptBR: @localization(locale="ptBR", key="Title", namespace="ToC")@
 ## Title-ruRU: @localization(locale="ruRU", key="Title", namespace="ToC")@
 ## Title-zhCN: @localization(locale="zhCN", key="Title", namespace="ToC")@ |cFF0099FF[主程式]|r
-## Title-zhTW: |r|cFF0099FF[地圖]|r @localization(locale="zhTW", key="Title", namespace="ToC")@ |cFF0099FF[主程式]|r
+## Title-zhTW: |r|cFF0099FF[地圖]|r@localization(locale="zhTW", key="Title", namespace="ToC")@ |cFF0099FF[主程式]|r
 ## Notes: @localization(locale="enUS", key="Description", namespace="ToC")@
 ## Notes-deDE: @localization(locale="deDE", key="Description", namespace="ToC")@
 ## Notes-esES: @localization(locale="esES", key="Description", namespace="ToC")@
@@ -45,9 +45,6 @@
 ## X-OptionsFrame: AtlasOptionsFrame
 ## SavedVariables: AtlasOptions, AtlasDB
 
-Libs\NoTaint_UIDropDownMenu\UIDropDownMenuTemplates.xml
-Libs\NoTaint_UIDropDownMenu\EasyMenu.lua
-Libs\NoTaint_UIDropDownMenu\UIDropDownMenu.lua
 Libs\Libs.xml
 Locale\Locales.xml
 Core\Atlas.xml
