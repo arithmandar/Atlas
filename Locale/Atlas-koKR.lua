@@ -1,4 +1,5 @@
-﻿--[[
+﻿-- $Id$
+--[[
 
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
@@ -24,33 +25,25 @@
 --]]
 
 local AceLocale = LibStub:GetLibrary("AceLocale-3.0");
-local L = AceLocale:NewLocale("Atlas", "frFR", false);
--- Localize file must set above to false, for example:
--- local AL = AceLocale:NewLocale("Atlas", "frFR", false);
+local L = AceLocale:NewLocale("Atlas", "koKR", false);
 
--- Atlas French Localization
--- Sur un travail de Wysiwyg, Khiria, Trasher entre 2007 et 2014
--- Many thanks to all contributors!
--- $Date$
--- $Revision$
-
-if ( GetLocale() == "frFR" ) then
+-- Atlas Spanish Localization
+if ( GetLocale() == "koKR" ) then
 -- Define the leading strings to be ignored while sorting
 -- Ex: The Stockade
 AtlasSortIgnore = {
-	"le (.+)", 
-	"la (.+)", 
-	"les (.+)"
+	--"the (.+)",
 };
 
 -- Syntax: ["real_zone_name"] = "localized map zone name"
 AtlasZoneSubstitutions = {
-	["Le temple d'Atal'Hakkar"] = "Le temple d'Atal'Hakkar";
-	["Ahn'Qiraj"] = "Temple d'Ahn'Qiraj";
+--	["Ahn'Qiraj"] = "Templo de Ahn'Qiraj";
+--	["The Temple of Atal'Hakkar"] = "El Templo de Atal'Hakkar";
+--	["Throne of Tides"] = "Fauce Abisal: Trono de las Mareas";
 };
 end
 
 
 if L then
---@localization(locale="frFR", format="lua_additive_table")@
+--@localization(locale="koKR", format="lua_additive_table")@
 end

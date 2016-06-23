@@ -28,6 +28,10 @@ local _G = getfenv(0);
 local pairs = _G.pairs;
 local math = _G.math;
 local table = _G.table;
+local string = _G.string
+local select = _G.select
+local type = _G.type
+
 
 local AL = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0");
@@ -230,7 +234,9 @@ local function Process_Deprecated()
 		LibDialog:Register("ATLAS_OLD_MODULES", {
 			text = ATLAS_DEP_MSG1.."\n"..ATLAS_DEP_MSG2.."\n"..ATLAS_DEP_MSG3.."\n|cff6666ff"..textList.."|r",
 			buttons = {
-				text = ATLAS_DEP_OK,
+				{
+					text = ATLAS_DEP_OK,
+				},
 			},
 			show_while_dead = false,
 			hide_on_escape = true,
@@ -369,7 +375,9 @@ local function Atlas_Check_Modules()
 		LibDialog:Register("DetectMissing", {
 			text = AL["ATLAS_MISSING_MODULE"].."\n|cff6666ff"..textList.."|r\n\n"..AL["ATLAS_INFO_12200"],
 			buttons = {
-				text = ATLAS_DEP_OK,
+				{
+					text = ATLAS_DEP_OK,
+				},
 			},
 			show_while_dead = false,
 			hide_on_escape = true,

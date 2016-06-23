@@ -8,6 +8,16 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.32.07 (Jun. 23, 2016)
+------------------------
+- Dialog button fixed
+- Localization files now use CurseForge's keyword subsitution
+  (Translators, please use CurseForge's Localization page to update translation from now on.)
+  (URL: http://wow.curseforge.com/addons/atlas/localization/)
+- Added itIT and koKR (mostly placeholder)
+- Enable no-lib package on CurseForge
+
+
 v1.32.06 (May 16, 2016)
 ------------------------
 - Added modded NoTaint_UIDropDownMenu1.1 to resolve dropdown menu taint issue
