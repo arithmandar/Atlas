@@ -175,9 +175,9 @@ local function Process_Deprecated()
 	local Deprecated_List = {
 		-- Most recent (working) versions of known modules at time of release
 		-- Atlas Modules
-		{ "Atlas_WorldofDraenor", 	"1.32.02" }, -- temporary keep this entry as we need to notify people who have not yet removed the old version's folder
-		{ "Atlas_WorldlordsofDraenor", 	"1.32.02" }, -- temporary keep this entry as we need to notify people who have not yet removed the old version's folder
-		{ "Atlas_WarlordsofDraenor", 	"1.32.02" }, -- This is the correct module name
+		{ "Atlas_WorldofDraenor", 	"1.32.05" }, -- temporary keep this entry as we need to notify people who have not yet removed the old version's folder
+		{ "Atlas_WorldlordsofDraenor", 	"1.32.05" }, -- temporary keep this entry as we need to notify people who have not yet removed the old version's folder
+		{ "Atlas_WarlordsofDraenor", 	"1.32.05" }, -- This is the correct module name
 		{ "Atlas_MistsofPandaria",	"1.32.01" },
 		{ "Atlas_Cataclysm", 		"1.32.01" },
 		{ "Atlas_WrathoftheLichKing", 	"1.32.01" },
@@ -220,17 +220,7 @@ local function Process_Deprecated()
 			textList = textList.."\n"..v..", "..GetAddOnMetadata(v, "Version");
 			DisableAddOn(v);
 		end
---[[
-		StaticPopupDialogs["ATLAS_OLD_MODULES"] = {
-			preferredIndex = 4;
-			text = ATLAS_DEP_MSG1.."\n"..ATLAS_DEP_MSG2.."\n"..ATLAS_DEP_MSG3.."\n|cff6666ff"..textList.."|r";
-			button1 = ATLAS_DEP_OK,
-			timeout = 0,
-			exclusive = 1,
-			whileDead = 1,
-		}
-		StaticPopup_Show("ATLAS_OLD_MODULES")
-]]
+
 		LibDialog:Register("ATLAS_OLD_MODULES", {
 			text = ATLAS_DEP_MSG1.."\n"..ATLAS_DEP_MSG2.."\n"..ATLAS_DEP_MSG3.."\n|cff6666ff"..textList.."|r",
 			buttons = {
@@ -345,16 +335,18 @@ local function Atlas_Check_Modules()
 		return;
 	end
 	local Module_List = {
-		"Atlas_Scenarios",
-		"Atlas_MistsofPandaria",
-		"Atlas_Cataclysm",
-		"Atlas_WrathoftheLichKing",
-		"Atlas_BurningCrusade",
 		"Atlas_ClassicWoW",
+		"Atlas_BurningCrusade",
+		"Atlas_WrathoftheLichKing",
+		"Atlas_Cataclysm",
+		"Atlas_MistsofPandaria",
+		"Atlas_WarlordsofDraenor",
+		--"Atlas_Legion",
 		"Atlas_Battlegrounds",
 		"Atlas_DungeonLocs",
 		"Atlas_OutdoorRaids",
 		"Atlas_Transportation",
+		"Atlas_Scenarios",
 	};
 
 	-- Check for outdated modules, build a list of them, then disable them and tell the player
@@ -471,6 +463,7 @@ function Atlas_Init()
 	LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Atlas", {
 		type = "launcher",
 		text = "Atlas",
+		label = "Atlas",
 		OnClick = function(self, button)
 			if button == "LeftButton" then
 				Atlas_Toggle();

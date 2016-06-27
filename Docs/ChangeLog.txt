@@ -8,6 +8,16 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.32.08 (Jun. 27, 2016)
+------------------------
+- Translation update:
+  - Spanish (maqjav)
+  - Simplified Chinese (ananhaid)
+  - German (pas06)
+- Added Atlas_WarlordsofDraenor to module list
+- Lib-BabbleSubZone update (6.2-release3, 7.0.3.22045)
+
+
 v1.32.07 (Jun. 23, 2016)
 ------------------------
 - Dialog button fixed

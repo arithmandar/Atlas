@@ -113,6 +113,7 @@ if L then
 	L["ATLAS_DDL_CONTINENT_DEEPHOLM"] = "Deepholm Instances";
 	L["ATLAS_DDL_CONTINENT_PANDARIA"] = "Pandaria Instances";
 	L["ATLAS_DDL_CONTINENT_DRAENOR"] = "Draenor Instances";
+	L["ATLAS_DDL_CONTINENT_BROKENISLES"] = "Broken Isles Instances";
 	L["ATLAS_DDL_LEVEL"] = "Level";		-- Sort Instance Maps by: Level
 	L["ATLAS_DDL_LEVEL_UNDER45"] = "Instances Under Level 45";
 	L["ATLAS_DDL_LEVEL_45TO60"] = "Instances Level 45-60";
@@ -122,6 +123,8 @@ if L then
 	L["ATLAS_DDL_LEVEL_85TO90"] = "Instances Level 85-90";
 	L["ATLAS_DDL_LEVEL_90TO100"] = "Instances Level 90-100";
 	L["ATLAS_DDL_LEVEL_100PLUS"] = "Instances Level 100+";
+	L["ATLAS_DDL_LEVEL_100TO110"] = "Instances Level 100-110";
+	L["ATLAS_DDL_LEVEL_110PLUS"] = "Instances Level 110+";
 	L["ATLAS_DDL_PARTYSIZE"] = "Party Size";	-- Sort Instance Maps by: Party Size
 	L["ATLAS_DDL_PARTYSIZE_5_AE"] = "Instances for 5 Players A-E";
 	L["ATLAS_DDL_PARTYSIZE_5_FS"] = "Instances for 5 Players F-S";
@@ -138,6 +141,7 @@ if L then
 	L["ATLAS_DDL_EXPANSION_CATA"] = "Cataclysm Instances";
 	L["ATLAS_DDL_EXPANSION_MOP"] = "Mists of Pandaria Instances";
 	L["ATLAS_DDL_EXPANSION_WOD"] = "Warlords of Draenor Instances";
+	L["ATLAS_DDL_EXPANSION_LEGION"] = "Legion Instances";
 	L["ATLAS_DDL_TYPE"] = "Type";			-- -- Sort Instance Maps by: Map Type
 	L["ATLAS_DDL_TYPE_INSTANCE_AB"] = "Instances A-B";
 	L["ATLAS_DDL_TYPE_INSTANCE_CF"] = "Instances C-F";
