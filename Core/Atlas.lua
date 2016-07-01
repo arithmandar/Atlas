@@ -119,7 +119,6 @@ end
 
 Atlas_MapTypes = {};
 function Atlas_RegisterPlugin(name, myCategory, myData)
-	--table.insert(ATLAS_PLUGINS, name);
 	ATLAS_PLUGINS[name] = {};
 	local i = getn(Atlas_MapTypes) + 1;
 	Atlas_MapTypes[i] = GREN..myCategory; -- Plugin category name to be added with green color, and then added to array
@@ -131,7 +130,10 @@ function Atlas_RegisterPlugin(name, myCategory, myData)
 	
 	table.insert(ATLAS_PLUGIN_DATA, myData);
 	
-	if (ATLAS_OLD_TYPE and ATLAS_OLD_TYPE <= getn(AtlasMaps)) then
+	local catName = Atlas_DropDownLayouts_Order[AtlasOptions.AtlasSortBy];
+	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
+--	if (ATLAS_OLD_TYPE and ATLAS_OLD_TYPE <= getn(AtlasMaps)) then
+	if ( ATLAS_OLD_TYPE and ATLAS_OLD_TYPE <= getn(subcatOrder) + getn(Atlas_MapTypes) ) then
 		AtlasOptions.AtlasType = ATLAS_OLD_TYPE;
 		AtlasOptions.AtlasZone = ATLAS_OLD_ZONE;
 	end

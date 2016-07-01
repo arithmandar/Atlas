@@ -9,8 +9,8 @@
 ## Title-koKR: @localization(locale="koKR", key="Title", namespace="ToC")@
 ## Title-ptBR: @localization(locale="ptBR", key="Title", namespace="ToC")@
 ## Title-ruRU: @localization(locale="ruRU", key="Title", namespace="ToC")@
-## Title-zhCN: @localization(locale="zhCN", key="Title", namespace="ToC")@ |cFF0099FF[主程式]|r
-## Title-zhTW: |r|cFF0099FF[地圖]|r@localization(locale="zhTW", key="Title", namespace="ToC")@ |cFF0099FF[主程式]|r
+## Title-zhCN: @localization(locale="zhCN", key="Title", namespace="ToC")@
+## Title-zhTW: @localization(locale="zhTW", key="Title", namespace="ToC")@
 ## Notes: @localization(locale="enUS", key="Description", namespace="ToC")@
 ## Notes-deDE: @localization(locale="deDE", key="Description", namespace="ToC")@
 ## Notes-esES: @localization(locale="esES", key="Description", namespace="ToC")@
@@ -20,8 +20,8 @@
 ## Notes-koKR: @localization(locale="koKR", key="Description", namespace="ToC")@
 ## Notes-ptBR: @localization(locale="ptBR", key="Description", namespace="ToC")@
 ## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
-## Notes-zhCN: |cff00CC33@localization(locale="zhCN", key="Description", namespace="ToC")@|r
-## Notes-zhTW: |cff00CC33@localization(locale="zhTW", key="Description", namespace="ToC")@|r
+## Notes-zhCN: @localization(locale="zhCN", key="Description", namespace="ToC")@
+## Notes-zhTW: @localization(locale="zhTW", key="Description", namespace="ToC")@
 #@end-non-debug@
 #@debug@
 ## Title: Atlas
@@ -31,7 +31,7 @@
 ## Notes-zhTW: Atlas 地圖集主程式
 #@end-debug@
 ## Author: arith, Dynaletik, dubcat, Resike
-## Version: 1.32.08
+## Version: 1.32.09
 ## OptionalDeps: Ace3, LibBabble-Boss-3.0, LibBabble-SubZone-3.0, LibDataBroker-1.1, LibAboutPanel, CallbackHandler-1.0, LibDBIcon-1.0, LibDialog-1.0
 ## X-Category: Map
 ## X-Credits: Dan Gilbert, Lothaer
@@ -40,7 +40,7 @@
 ## X-Email: atlas.addon@gmail.com
 ## X-Feedback: http://www.atlasmod.com/phpBB3/
 ## X-License: GPLv2
-## X-Localizations: enUS, deDE, esES, esMX, frFR, ruRU, zhTW, zhCN
+## X-Localizations: enUS, deDE, esES, esMX, frFR, ruRU, zhTW, zhCN, ptBR
 ## X-Website: http://www.atlasmod.com
 ## X-OptionsFrame: AtlasOptionsFrame
 ## SavedVariables: AtlasOptions, AtlasDB

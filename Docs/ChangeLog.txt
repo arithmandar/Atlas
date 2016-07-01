@@ -8,6 +8,15 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.32.09 (Jul. 01, 2016)
+------------------------
+- Map selection will now also remember the last choice from plugins after reload or logout
+- LibBabble-SubZone update (6.2-release5, 7.0.3.22090)
+- Translation update:
+  - Simplified Chinese (ananhaid)
+  - German (pas06)
+
+
 v1.32.08 (Jun. 27, 2016)
 ------------------------
 - Translation update:
