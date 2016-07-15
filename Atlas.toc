@@ -31,8 +31,8 @@
 ## Notes-zhTW: Atlas 地圖集主程式
 #@end-debug@
 ## Author: arith, Dynaletik, dubcat, Resike
-## Version: 1.32.09
-## OptionalDeps: Ace3, LibBabble-Boss-3.0, LibBabble-SubZone-3.0, LibDataBroker-1.1, LibAboutPanel, CallbackHandler-1.0, LibDBIcon-1.0, LibDialog-1.0
+## Version: 1.32.10
+## OptionalDeps: Ace3, LibBabble-Boss-3.0, LibBabble-SubZone-3.0, LibBabble-Faction-3.0, LibDataBroker-1.1, LibAboutPanel, CallbackHandler-1.0, LibDBIcon-1.0, LibDialog-1.0
 ## X-Category: Map
 ## X-Credits: Dan Gilbert, Lothaer
 ## X-Date: @project-date-iso@

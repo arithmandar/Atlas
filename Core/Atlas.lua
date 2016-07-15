@@ -177,9 +177,7 @@ local function Process_Deprecated()
 	local Deprecated_List = {
 		-- Most recent (working) versions of known modules at time of release
 		-- Atlas Modules
-		{ "Atlas_WorldofDraenor", 	"1.32.05" }, -- temporary keep this entry as we need to notify people who have not yet removed the old version's folder
-		{ "Atlas_WorldlordsofDraenor", 	"1.32.05" }, -- temporary keep this entry as we need to notify people who have not yet removed the old version's folder
-		{ "Atlas_WarlordsofDraenor", 	"1.32.05" }, -- This is the correct module name
+		{ "Atlas_WarlordsofDraenor", 	"1.32.06" },
 		{ "Atlas_MistsofPandaria",	"1.32.01" },
 		{ "Atlas_Cataclysm", 		"1.32.01" },
 		{ "Atlas_WrathoftheLichKing", 	"1.32.01" },
@@ -192,7 +190,7 @@ local function Process_Deprecated()
 		{ "Atlas_Transportation", 	"1.32.00" },
 		{ "Atlas_Scenarios", 		"1.32.00" },
 		-- 3rd parties plugins
-		{ "AtlasQuest", 		"4.9.6" }, 	-- updated Feb. 16, 2016
+		{ "AtlasQuest", 		"4.9.7" }, 	-- updated May 15, 2016
 		-- remove AtlasLoot as it did not rely on Atlas since its v8 release
 --		{ "AtlasLoot", 			"7.07.03" }, 	-- updated Jul. 19, 2014 -- this version is still with WoW 5.4.x
 		{ "Atlas_Arena", 		"1.5.05" }, 	-- updated Oct. 15, 2014
@@ -774,6 +772,7 @@ function Atlas_MapRefresh()
 		local enabled = GetAddOnEnableState(nil, base.Module)
 		if (enabled == 0) or (not loadable) then
 			AtlasMap:SetTexture(0, 0, 0);
+			--AtlasMap:SetColorTexture(0, 0, 0, 0.9); -- Legion changes: texture:SetTexture(r, g, b, a) changes into texture:SetColorTexture(r, g, b, a)
 			AtlasMap_Text:SetText(AL["MapsNotFound"].."\n\n"..AL["PossibleMissingModule"].."\n|cff6666ff"..base.Module);
 			if (not AtlasMap_Text:IsShown()) then
 				AtlasMap_Text:Show();
@@ -932,7 +931,7 @@ function AtlasSwitchButton_OnClick()
 		AtlasSwitchDD_Set(1);
 	else
 		-- More than one link, so it's dropdown menu time
-		ToggleDropDownMenu(1, nil, AtlasSwitchDD, "AtlasSwitchButton", 0, 0);
+		Lib_ToggleDropDownMenu(1, nil, AtlasSwitchDD, "AtlasSwitchButton", 0, 0);
 	end
 end
 

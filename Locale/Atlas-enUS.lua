@@ -183,7 +183,19 @@ if L then
 	L["Midsummer Festival"] = "Midsummer Festival";
 
 	--Misc strings
-	L["Colon"] = ": "; -- The colon symbol to be used in string, ex: "Zone: Firelands
+		--Symbols
+		L["Colon"] = ": "; -- The colon symbol to be used in string, ex: "Zone: Firelands
+		L["Semicolon"] = "; ";
+		L["L-Parenthesis"] = " (";
+		L["R-Parenthesis"] = ") ";
+		L["Comma"] = ", ";
+		L["Period"] = ". ";
+		L["Hyphen"] = " - ";
+		L["Slash"] = " / ";
+		L["L-SBracket"] = "[";
+		L["R-SBracket"] = "]";
+		L["L-DQuote"] = "\"";
+		L["R-DQuote"] = "\"";
 	L["Adult"] = "Adult";
 	L["AKA"] = "AKA"; -- As Known As
 	L["Arcane Container"] = "Arcane Container";
@@ -401,6 +413,10 @@ if L then
 	L["MapD"] = " [D]";
 	L["MapE"] = " [E]";
 	L["MapF"] = " [F]";
+	L["MapG"] = " [G]";
+	L["MapH"] = " [H]";
+	L["MapI"] = " [I]";
+	L["MapJ"] = " [J]";
 
 --************************************************
 -- Instance Entrance Maps

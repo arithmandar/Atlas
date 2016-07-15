@@ -8,6 +8,18 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.32.10 (Jul. 15, 2016)
+------------------------
+- Added LibBabble-Faction lib to replace the faction looking-up with AtlasIngameLocales's GetFactionInfoByID
+  The faction section in AtlasIngameLocales will be removed in later release
+- Re-ordered Hellfire Citadel map series. 
+  - Archimonde is now in the last map
+  - Added Mannoroth and Hellfire Assault
+- Added symbols' definition so that localization is more flexible when presenting symbols (punctuations) in other languages
+- Bug fix: map series button is now working again
+  (Lib_ToggleDropDownMenu should be used after introducing NoTaint_UIDropDownMenu)
+
+
 v1.32.09 (Jul. 01, 2016)
 ------------------------
 - Map selection will now also remember the last choice from plugins after reload or logout

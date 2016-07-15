@@ -37,6 +37,11 @@ Atlas_IngameLocales = {
 	["Relic Coffer Key"] = GetItemInfo(11078),
 	["The Eye of Haramad"] = GetItemInfo(32092),
 
+	-- Jul. 14, 2016
+	-- GetFactionInfoByID will only return the faction info for the same faction side to the player. 
+	-- For example, if the player is with Alliance, then s/he won't be able to see the name for "Hellscream's Reach" which is in Horde side
+	-- Therefore, we will be using LibBabble-Faction. 
+	-- We will be removing below faction section in the later release
 	-- ######################################################################
 	-- Factions
 	-- ######################################################################

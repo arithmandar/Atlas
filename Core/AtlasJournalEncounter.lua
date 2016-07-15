@@ -26,8 +26,8 @@
 
 -- Atlas JournalEncounter Integration
 
-local AtlasLocale = LibStub("AceLocale-3.0"):GetLocale("Atlas");
-local BabbleBoss = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0");
+local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
+local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0");
 
 function Atlas_JournalEncounter_InstanceButton_OnClick(frame)
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
@@ -68,7 +68,7 @@ function Atlas_JournalEncounter_InstanceButton_OnEnter(frame)
 			GameTooltip:SetText(name);
 			GameTooltipTextLeft1:SetTextColor(1, 1, 1);
 			GameTooltip:AddLine(description, nil, nil, nil, true);
-			GameTooltip:AddLine(AtlasLocale["Click to open Dungeon Journal window."], 0.5, 0.5, 1, true);
+			GameTooltip:AddLine(L["Click to open Dungeon Journal window."], 0.5, 0.5, 1, true);
 			GameTooltip:Show();
 		end
 	else
@@ -94,10 +94,10 @@ function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 				bossname, _, _, _, link = EJ_GetEncounterInfo(encounterID);
 			end
 		end
-	elseif (bossname and BabbleBoss[bossname]) then
-		bossname = BabbleBoss[bossname];
-	elseif (bossname and AtlasLocale[bossname]) then
-		bossname = AtlasLocale[bossname];
+	elseif (bossname and BB[bossname]) then
+		bossname = BB[bossname];
+	elseif (bossname and L[bossname]) then
+		bossname = L[bossname];
 	else
 		--bossname = bossname;
 	end

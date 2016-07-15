@@ -15,6 +15,7 @@ externals:
     Libs/LibAboutPanel: git://git.curseforge.net/wow/libaboutpanel/mainline.git
     Libs/LibBabble-Boss-3.0: svn://svn.wowace.com/wow/libbabble-boss-3-0/mainline/trunk
     Libs/LibBabble-SubZone-3.0: svn://svn.wowace.com/wow/libbabble-subzone-3-0/mainline/trunk
+    Libs/LibBabble-Faction-3.0: svn://svn.wowace.com/wow/libbabble-faction-3-0/mainline/trunk
     Libs/LibDataBroker-1.1: git://git.wowace.com/wow/libdatabroker-1-1/mainline.git
     Libs/LibDBIcon-1.0: svn://svn.wowace.com/wow/libdbicon-1-0/mainline/trunk/LibDBIcon-1.0
     Libs/LibDialog-1.0: http://hg.wowace.com/wow/libdialog-1-0/mainline
