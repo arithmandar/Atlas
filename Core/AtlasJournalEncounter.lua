@@ -84,15 +84,27 @@ end
 -- ------------------------------------------------------------
 function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 	if (encounterID) then
+		local encounter;
 		if (creatureIndex) then
 			if (EJ_GetCreatureInfo(creatureIndex, encounterID)) then
 				local _;
-				_, bossname = EJ_GetCreatureInfo(creatureIndex, encounterID);
+				_, encounter = EJ_GetCreatureInfo(creatureIndex, encounterID);
 			end
 		else 
 			if (EJ_GetEncounterInfo(encounterID)) then
-				bossname, _, _, _, link = EJ_GetEncounterInfo(encounterID);
+				encounter, _, _, _, link = EJ_GetEncounterInfo(encounterID);
 			end
+		end
+		if (encounter == nil) then
+			if (bossname and BB[bossname]) then
+				bossname = BB[bossname];
+			elseif (bossname and L[bossname]) then
+				bossname = L[bossname];
+			else
+				--bossname = bossname;
+			end
+		else
+			bossname = encounter;
 		end
 	elseif (bossname and BB[bossname]) then
 		bossname = BB[bossname];

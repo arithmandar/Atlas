@@ -62,8 +62,8 @@ if L then
 	L["ATLAS_SLASH_OPTIONS"] = "options";
 
 	L["ATLAS_STRING_LOCATION"] = "Location";
-	L["ATLAS_STRING_LEVELRANGE"] = "Level"; -- shorten from "Level Range" as we are running out of space
-	L["ATLAS_STRING_RECLEVELRANGE"] = "Rec. Level"; -- abbrevation and shorten of "Recommended Level Range", the dungeon's recommended level range
+	L["ATLAS_STRING_LEVELRANGE"] = "Level Range"; 
+	L["ATLAS_STRING_RECLEVELRANGE"] = "Recommended Level";
 	L["ATLAS_STRING_PLAYERLIMIT"] = "Player Limit";
 	L["ATLAS_STRING_SELECT_CAT"] = "Select Category";
 	L["ATLAS_STRING_SELECT_MAP"] = "Select Map";
@@ -182,6 +182,9 @@ if L then
 	L["Lunar Festival"] = "Lunar Festival";
 	L["Midsummer Festival"] = "Midsummer Festival";
 
+	--Instance Difficulties
+	L["Heroic_Symbol"] = "(H)";
+	L["Mythic_Symbol"] = "(M)";
 	--Misc strings
 		--Symbols
 		L["Colon"] = ": "; -- The colon symbol to be used in string, ex: "Zone: Firelands
@@ -270,6 +273,7 @@ if L then
 	L["Wave 18"] = "Wave 18";
 	L["MapsNotFound"] = "Current selected dungeon does not have a \ncorresponding map image associated with. \n\nPlease make sure you have installed \nthe corresponding Atlas map module(s).";
 	L["PossibleMissingModule"] = "It is likely this map is from this module: ";
+	L["Transport"] = "Transport";
 
 	--Classic Acronyms
 	L["AQ"] = "AQ"; -- Ahn'Qiraj
@@ -1259,6 +1263,39 @@ if L then
 	--Skyreach
 
 	--Upper Blackrock Spire
+
+--************************************************
+-- Legion
+--************************************************
+	--Halls of Valor
+	L["King Tor"] = "King Tor"; -- 97084
+	L["King Bjorn"] = "King Bjorn"; -- 97081
+	L["King Haldor"] = "King Haldor"; -- 95843
+	L["King Ranulf"] = "King Ranulf"; -- 97083
+
+	--Black Rook Hold 
+
+	--Vault of the Wardens
+
+	--Eye of Azshara
+
+	--Darkheart Thicket
+
+	--Neltharion's Lair
+
+	--Maw of Souls
+	L["Echoing Horn of the Damned"] = "Echoing Horn of the Damned";
+
+	--The Arcway
+
+	--Court of Stars
+
+	--Assault on VioletHold
+
+	--The Emerald Nightmare
+
+	--The Nighthold
+
 --@end-do-not-package@
 
 end

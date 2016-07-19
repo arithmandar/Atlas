@@ -2,7 +2,6 @@
 ..\FrameXML\UI.xsd">
 
 <Include file="NoTaint_UIDropDownMenu\UIDropDownMenuTemplates.xml"/>
-<Script file="NoTaint_UIDropDownMenu\EasyMenu.lua"/>
 <Script file="NoTaint_UIDropDownMenu\UIDropDownMenu.lua"/>
 <!--@no-lib-strip@-->
 <Script file="LibStub\LibStub.lua"/>

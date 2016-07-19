@@ -45,6 +45,7 @@ Atlas_IngameLocales = {
 	-- ######################################################################
 	-- Factions
 	-- ######################################################################
+	--[[
 	-- Mists of Pandaria
 	["Shado-Pan Assault"] = GetFactionInfoByID(1435),
 	["The August Celestials"] = GetFactionInfoByID(1341),
@@ -84,6 +85,7 @@ Atlas_IngameLocales = {
 	["The Defilers"] = GetFactionInfoByID(510),
 	["The League of Arathor"] = GetFactionInfoByID(509),
 	["Warsong Outriders"] = GetFactionInfoByID(889),
+	]]
 }
 
 do

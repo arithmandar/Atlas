@@ -34,7 +34,7 @@ AtlasSortIgnore = {};
 
 -- Syntax: ["real_zone_name"] = "localized map zone name"
 AtlasZoneSubstitutions = {
-	["Ahn'Qiraj"] = "安其拉神廟";
+	["Ahn'Qiraj"] = "安其拉：安其拉神廟";
 	["Karazhan"] = "卡拉贊 - 1.開始";
 };
 end
@@ -59,7 +59,7 @@ if L then
 
 	L["ATLAS_STRING_LOCATION"] = "所在位置";
 	L["ATLAS_STRING_LEVELRANGE"] = "等級範圍";
-	L["ATLAS_STRING_RECLEVELRANGE"] = "建議等級"; -- abbrevation and shorten of "Recommended Level Range", the dungeon's recommended level range
+	L["ATLAS_STRING_RECLEVELRANGE"] = "建議等級";
 	L["ATLAS_STRING_PLAYERLIMIT"] = "人數上限";
 	L["ATLAS_STRING_SELECT_CAT"] = "選擇類別";
 	L["ATLAS_STRING_SELECT_MAP"] = "選擇地圖";
@@ -174,6 +174,9 @@ if L then
 	L["Lunar Festival"] = "新年慶典";
 	L["Midsummer Festival"] = "仲夏節慶";
 
+	--Instance Difficulties
+	L["Heroic_Symbol"] = "(英雄)";
+	L["Mythic_Symbol"] = "(傳奇)";
 	--Misc strings
 		--Symbols
 		L["Colon"] = "：";

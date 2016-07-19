@@ -42,5 +42,5 @@ function Atlas_GetLocaleLibBabble(typ)
 			rettab[k] = v;
 		end
 	end
-	return rettab
+	return rettab;
 end
