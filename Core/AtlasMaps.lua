@@ -3786,9 +3786,8 @@ Syntax:
 		{ WHIT.." 9) "..Atlas_GetBossName("Grand Magistrix Elisande", 1743) };
 		{ WHIT.." 10) "..Atlas_GetBossName("Gul'dan", 1737) };
 	};
-	-- Map TODO
-	VaultoftheWardens = {
-		ZoneName = { BZ["Vault of the Wardens"] };
+	VaultoftheWardensA = {
+		ZoneName = { BZ["Vault of the Wardens"]..L["MapA"] };
 		Location = { BZ["Azsuna"] };
 		DungeonID = "1043";
 		DungeonHeroicID = "1044";
@@ -3796,10 +3795,33 @@ Syntax:
 		JournalInstanceID = "707";
 		Module = "Atlas_Legion";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
+		{ BLUE.." B) "..L["Connection"], 10002 };
+		{ BLUE.." C) "..L["Elevator"], 10003 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Tirathon Saltheril", 1467) };
+	};
+	VaultoftheWardensB = {
+		ZoneName = { BZ["Vault of the Wardens"]..L["MapB"] };
+		Location = { BZ["Azsuna"] };
+		DungeonID = "1043";
+		DungeonHeroicID = "1044";
+		--Acronym = "";
+		JournalInstanceID = "707";
+		Module = "Atlas_Legion";
+		{ BLUE.." C) "..L["Elevator"], 10003 };
+		{ BLUE.." D) "..L["Connection"], 10004 };
 		{ WHIT.." 2) "..Atlas_GetBossName("Inquisitor Tormentorum", 1695) };
 		{ WHIT.." 3) "..Atlas_GetBossName("Ash'golm", 1468) };
 		{ WHIT.." 4) "..Atlas_GetBossName("Glazer", 1469) };
+	};
+	VaultoftheWardensC = {
+		ZoneName = { BZ["Vault of the Wardens"]..L["MapC"] };
+		Location = { BZ["Azsuna"] };
+		DungeonID = "1043";
+		DungeonHeroicID = "1044";
+		--Acronym = "";
+		JournalInstanceID = "707";
+		Module = "Atlas_Legion";
+		{ BLUE.." D) "..L["Connection"], 10004 };
 		{ WHIT.." 5) "..Atlas_GetBossName("Cordana Felsong", 1470) };
 	};
 --@end-alpha@

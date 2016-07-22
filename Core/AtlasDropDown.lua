@@ -279,7 +279,9 @@ Atlas_DropDownLayouts = {
 			"HallsofValorB",
 			"HallsofValorC",
 			"BlackRookHold",
-			"VaultoftheWardens",
+			"VaultoftheWardensA",
+			"VaultoftheWardensB",
+			"VaultoftheWardensC",
 			"EyeofAzshara",
 			"DarkheartThicket",
 			"NeltharionsLair",
@@ -518,7 +520,9 @@ Atlas_DropDownLayouts = {
 		},
 		[ATLAS_DDL_LEVEL_110PLUS] = {
 			"BlackRookHold",
-			"VaultoftheWardens",
+			"VaultoftheWardensA",
+			"VaultoftheWardensB",
+			"VaultoftheWardensC",
 			"MawofSoulsA",
 			"MawofSoulsB",
 			"TheArcway",
@@ -663,7 +667,9 @@ Atlas_DropDownLayouts = {
 			"UtgardeKeep",
 			"UtgardePinnacle",
 --@alpha@
-			"VaultoftheWardens",		-- Legion
+			"VaultoftheWardensA",
+			"VaultoftheWardensB",
+			"VaultoftheWardensC",
 --@end-alpha@
 			"VioletHold",
 			"WailingCaverns",
@@ -1006,7 +1012,9 @@ Atlas_DropDownLayouts = {
 			"HallsofValorB",
 			"HallsofValorC",
 			"BlackRookHold",
-			"VaultoftheWardens",
+			"VaultoftheWardensA",
+			"VaultoftheWardensB",
+			"VaultoftheWardensC",
 			"EyeofAzshara",
 			"DarkheartThicket",
 			"NeltharionsLair",
@@ -1206,7 +1214,9 @@ Atlas_DropDownLayouts = {
 			"UtgardePinnacle",
 			"VaultOfArchavon",
 --@alpha@
-			"VaultoftheWardens",		-- Legion
+			"VaultoftheWardensA",
+			"VaultoftheWardensB",
+			"VaultoftheWardensC",
 --@end-alpha@
 			"VioletHold",
 			"WailingCaverns",

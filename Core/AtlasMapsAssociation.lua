@@ -712,6 +712,9 @@ Atlas_MapSeries = {
 	["TheNightholdB"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD" };
 	["TheNightholdC"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD" };
 	["TheNightholdD"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD" };
+	["VaultoftheWardensA"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
+	["VaultoftheWardensB"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
+	["VaultoftheWardensC"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
 --@end-alpha@
 };
 
@@ -778,5 +781,8 @@ Atlas_SubZoneAssoc = {
 	["TheNightholdB"] = 			BZ["The Nighthold"];
 	["TheNightholdC"] = 			BZ["The Nighthold"];
 	["TheNightholdD"] = 			BZ["The Nighthold"];
+	["VaultoftheWardensA"] = 		BZ["Vault of the Wardens"];
+	["VaultoftheWardensB"] = 		BZ["Vault of the Wardens"];
+	["VaultoftheWardensC"] = 		BZ["Vault of the Wardens"];
 --@end-alpha@
 };
