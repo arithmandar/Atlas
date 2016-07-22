@@ -1274,6 +1274,7 @@ if L then
 	L["King Ranulf"] = "King Ranulf"; -- 97083
 
 	--Black Rook Hold 
+	L["Dantalionax"] = "Dantalionax";
 
 	--Vault of the Wardens
 

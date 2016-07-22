@@ -3543,9 +3543,8 @@ Syntax:
 		{ WHIT.." 8) "..Atlas_GetBossName("Fel Lord Betrug", 1711) };
 		
 	};
-	-- Map TODO
-	BlackRookHold = {
-		ZoneName = { BZ["Black Rook Hold"] };
+	BlackRookHoldA = {
+		ZoneName = { BZ["Black Rook Hold"]..L["MapA"] };
 		Location = { BZ["Val'sharah"] };
 		DungeonID = "1204";
 		DungeonHeroicID = "1205";
@@ -3553,10 +3552,32 @@ Syntax:
 		JournalInstanceID = "740";
 		Module = "Atlas_Legion";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
+		{ BLUE.." B) "..L["Connection"], 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("The Amalgam of Souls", 1518) };
+	};
+	BlackRookHoldB = {
+		ZoneName = { BZ["Black Rook Hold"]..L["MapB"] };
+		Location = { BZ["Val'sharah"] };
+		DungeonID = "1204";
+		DungeonHeroicID = "1205";
+		--Acronym = "";
+		JournalInstanceID = "740";
+		Module = "Atlas_Legion";
+		{ BLUE.." B-G) "..L["Connection"], 10001 };
 		{ WHIT.." 2) "..Atlas_GetBossName("Illysanna Ravencrest", 1653) };
+	};
+	BlackRookHoldC = {
+		ZoneName = { BZ["Black Rook Hold"]..L["MapC"] };
+		Location = { BZ["Val'sharah"] };
+		DungeonID = "1204";
+		DungeonHeroicID = "1205";
+		--Acronym = "";
+		JournalInstanceID = "740";
+		Module = "Atlas_Legion";
+		{ BLUE.." E-G) "..L["Connection"], 10001 };
 		{ WHIT.." 3) "..Atlas_GetBossName("Smashspite the Hateful", 1664) };
 		{ WHIT.." 4) "..Atlas_GetBossName("Lord Kur'talos Ravencrest", 1672) };
+		{ INDENT..WHIT..L["Dantalionax"] };
 	};
 	CourtofStarsA = {
 		ZoneName = { BZ["Court of Stars"]..L["MapA"] };

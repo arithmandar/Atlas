@@ -8,6 +8,13 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.33.01 (XXX. XX, 2016)
+------------------------
+- Translation update:
+  - Simplified Chinese (lilyhewitt)
+  - French (Stuxz)
+  - Korean (muffinman369)
+
 v1.33.00 (Jul. 19, 2016)
 ------------------------
 - Toc updated to support WoW Legion pre-patch (7.0.3)

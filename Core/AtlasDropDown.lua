@@ -278,7 +278,9 @@ Atlas_DropDownLayouts = {
 			"HallsofValorA",
 			"HallsofValorB",
 			"HallsofValorC",
-			"BlackRookHold",
+			"BlackRookHoldA",
+			"BlackRookHoldB",
+			"BlackRookHoldC",
 			"VaultoftheWardensA",
 			"VaultoftheWardensB",
 			"VaultoftheWardensC",
@@ -519,7 +521,9 @@ Atlas_DropDownLayouts = {
 			"UpperBlackrockSpire",
 		},
 		[ATLAS_DDL_LEVEL_110PLUS] = {
-			"BlackRookHold",
+			"BlackRookHoldA",
+			"BlackRookHoldB",
+			"BlackRookHoldC",
 			"VaultoftheWardensA",
 			"VaultoftheWardensB",
 			"VaultoftheWardensC",
@@ -555,7 +559,9 @@ Atlas_DropDownLayouts = {
 			"BlackrockCaverns",
 			"BlackrockDepths",
 --@alpha@
-			"BlackRookHold",		-- Legion
+			"BlackRookHoldA",
+			"BlackRookHoldB",
+			"BlackRookHoldC",
 --@end-alpha@
 			"BlackrockMountainEnt",
 			"BloodmaulSlagMines",
@@ -1011,7 +1017,9 @@ Atlas_DropDownLayouts = {
 			"HallsofValorA",
 			"HallsofValorB",
 			"HallsofValorC",
-			"BlackRookHold",
+			"BlackRookHoldA",
+			"BlackRookHoldB",
+			"BlackRookHoldC",
 			"VaultoftheWardensA",
 			"VaultoftheWardensB",
 			"VaultoftheWardensC",
@@ -1052,7 +1060,9 @@ Atlas_DropDownLayouts = {
 			"BlackrockCaverns",
 			"BlackrockDepths",
 --@alpha@
-			"BlackRookHold",		-- Legion
+			"BlackRookHoldA",
+			"BlackRookHoldB",
+			"BlackRookHoldC",
 --@end-alpha@
 			"BlackTempleBasement",
 			"BlackTempleStart",

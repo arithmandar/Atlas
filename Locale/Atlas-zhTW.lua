@@ -1258,6 +1258,39 @@ if L then
 	--Skyreach
 
 	--Upper Blackrock Spire
+--************************************************
+-- Legion
+--************************************************
+	--Halls of Valor
+	--L["King Tor"] = "King Tor"; -- 97084
+	--L["King Bjorn"] = "King Bjorn"; -- 97081
+	--L["King Haldor"] = "King Haldor"; -- 95843
+	--L["King Ranulf"] = "King Ranulf"; -- 97083
+
+	--Black Rook Hold 
+	L["Dantalionax"] = "丹塔利翁斯";
+
+	--Vault of the Wardens
+
+	--Eye of Azshara
+
+	--Darkheart Thicket
+
+	--Neltharion's Lair
+
+	--Maw of Souls
+	--L["Echoing Horn of the Damned"] = "Echoing Horn of the Damned";
+
+	--The Arcway
+
+	--Court of Stars
+
+	--Assault on VioletHold
+
+	--The Emerald Nightmare
+
+	--The Nighthold
+
 --@end-do-not-package@
 
 end
