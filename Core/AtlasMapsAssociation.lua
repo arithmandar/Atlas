@@ -699,6 +699,20 @@ Atlas_MapSeries = {
 	["ThroneofThunderB"] = 			{"ThroneofThunderA", "ThroneofThunderB", "ThroneofThunderC", "ThroneofThunderD" };
 	["ThroneofThunderC"] = 			{"ThroneofThunderA", "ThroneofThunderB", "ThroneofThunderC", "ThroneofThunderD" };
 	["ThroneofThunderD"] = 			{"ThroneofThunderA", "ThroneofThunderB", "ThroneofThunderC", "ThroneofThunderD" };
+--@alpha@
+	-- Legion
+	["CourtofStarsA"] = 			{"CourtofStarsA", "CourtofStarsB" };
+	["CourtofStarsB"] = 			{"CourtofStarsA", "CourtofStarsB" };
+	["HallsofValorA"] = 			{"HallsofValorA", "HallsofValorB", "HallsofValorC" };
+	["HallsofValorB"] = 			{"HallsofValorA", "HallsofValorB", "HallsofValorC" };
+	["HallsofValorC"] = 			{"HallsofValorA", "HallsofValorB", "HallsofValorC" };
+	["MawofSoulsA"] = 			{"MawofSoulsA", "MawofSoulsB" };
+	["MawofSoulsB"] = 			{"MawofSoulsA", "MawofSoulsB" };
+	["TheNightholdA"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD" };
+	["TheNightholdB"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD" };
+	["TheNightholdC"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD" };
+	["TheNightholdD"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD" };
+--@end-alpha@
 };
 
 -- Links maps together that are part of the same instance
@@ -751,4 +765,18 @@ Atlas_SubZoneAssoc = {
 	["UlduarC"] =				BZ["Ulduar"];
 	["UlduarD"] =				BZ["Ulduar"];
 	["UlduarE"] =				BZ["Ulduar"];
+--@alpha@
+	-- Legion
+	["CourtofStarsA"] = 			BZ["Court of Stars"];
+	["CourtofStarsB"] = 			BZ["Court of Stars"];
+	["HallsofValorA"] = 			BZ["Halls of Valor"];
+	["HallsofValorB"] = 			BZ["Halls of Valor"];
+	["HallsofValorC"] = 			BZ["Halls of Valor"];
+	["MawofSoulsA"] = 			BZ["Maw of Souls"];
+	["MawofSoulsB"] = 			BZ["Maw of Souls"];
+	["TheNightholdA"] = 			BZ["The Nighthold"];
+	["TheNightholdB"] = 			BZ["The Nighthold"];
+	["TheNightholdC"] = 			BZ["The Nighthold"];
+	["TheNightholdD"] = 			BZ["The Nighthold"];
+--@end-alpha@
 };

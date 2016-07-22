@@ -109,6 +109,7 @@ if L then
 	L["ATLAS_DDL_CONTINENT_DEEPHOLM"] = "地深之源副本";
 	L["ATLAS_DDL_CONTINENT_PANDARIA"] = "潘達利亞副本";
 	L["ATLAS_DDL_CONTINENT_DRAENOR"] = "德拉諾副本";
+	L["ATLAS_DDL_CONTINENT_BROKENISLES"] = "破碎群島副本";
 	L["ATLAS_DDL_LEVEL"] = "依等級分類";
 	L["ATLAS_DDL_LEVEL_UNDER45"] = "副本等級低於 45";
 	L["ATLAS_DDL_LEVEL_45TO60"] = "副本等級介於 45-60";
@@ -118,6 +119,8 @@ if L then
 	L["ATLAS_DDL_LEVEL_85TO90"] = "副本等級介於 85-90";
 	L["ATLAS_DDL_LEVEL_90TO100"] = "副本等級介於 90-100";
 	L["ATLAS_DDL_LEVEL_100PLUS"] = "副本等級大於 100";
+	L["ATLAS_DDL_LEVEL_100TO110"] = "副本等級介於 100-110";
+	L["ATLAS_DDL_LEVEL_110PLUS"] = "副本等級大於 110";
 	L["ATLAS_DDL_PARTYSIZE"] = "依隊伍人數分類";
 	L["ATLAS_DDL_PARTYSIZE_5_AE"] = "5 人副本 1/3";
 	L["ATLAS_DDL_PARTYSIZE_5_FS"] = "5 人副本 2/3";
@@ -134,6 +137,7 @@ if L then
 	L["ATLAS_DDL_EXPANSION_CATA"] = "浩劫與重生副本";
 	L["ATLAS_DDL_EXPANSION_MOP"] = "潘達利亞之謎副本";
 	L["ATLAS_DDL_EXPANSION_WOD"] = "德拉諾之霸副本";
+	L["ATLAS_DDL_EXPANSION_LEGION"] = "君臨天下副本";
 	L["ATLAS_DDL_TYPE"] = "依地圖類型分類";
 	L["ATLAS_DDL_TYPE_INSTANCE_AB"] = "副本 1/5";
 	L["ATLAS_DDL_TYPE_INSTANCE_CF"] = "副本 2/5";

@@ -177,7 +177,9 @@ local function Process_Deprecated()
 	local Deprecated_List = {
 		-- Most recent (working) versions of known modules at time of release
 		-- Atlas Modules
-		--{ "Atlas_Legion",	 	"1.33.00" },
+--@alpha@
+		{ "Atlas_Legion",	 	"1.33.00" },
+--@end-alpha@
 		{ "Atlas_WarlordsofDraenor", 	"1.33.00" },
 		{ "Atlas_MistsofPandaria",	"1.33.00" },
 		{ "Atlas_Cataclysm", 		"1.33.00" },
@@ -342,7 +344,9 @@ local function Atlas_Check_Modules()
 		"Atlas_Cataclysm",
 		"Atlas_MistsofPandaria",
 		"Atlas_WarlordsofDraenor",
-		--"Atlas_Legion",
+--@alpha@
+		"Atlas_Legion",
+--@end-alpha@
 		"Atlas_Battlegrounds",
 		"Atlas_DungeonLocs",
 		"Atlas_OutdoorRaids",
