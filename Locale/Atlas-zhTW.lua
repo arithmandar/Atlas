@@ -159,7 +159,9 @@ if L then
 	L["ATLAS_INFO_12200"] = "重要提示：\n\n由於副本插件檔案大小日益增加，我們已獨立出部分副本地圖和內建插件\n到單獨的模組。\n\n您從各大遊戲插件網站所下載的 Atlas 插件，可能只包含了主要的核心功能\n與最新資料片裡的副本地圖。\n\n若您想要取得包含舊的資料片的所有地圖，以及 Atlas 團隊所開發的其他\n模組，您必須分別下載這些獨立模組的壓縮檔並分別進行安裝。\n\n請詳讀我們論壇的這個討論串以了解更多詳情：\n|cff6666ffhttp://www.atlasmod.com/phpBB3/viewtopic.php?t=1522|cffffffff\n或造訪我們的首頁：\n|cff6666ffhttp://www.atlasmod.com/|cffffffff";
 	L["ATLAS_INFO_12201"] = "我們最近新增了一個新的 Atlas 插件 - |cff6666ffAtlas 情境地圖|cffffffff，用以提供 WoW 5.0 \n起新增的情境事件的地圖。\n\n請參見我們的網站以取得更詳細的資訊，並請記得分別下載並安裝此插件。\n|cff6666ffhttp://www.atlasmod.com/|cffffffff";
 
-	L["ATLAS_MISSING_MODULE"] = "Atlas 已偵測到遺失的模組/插件：";
+	L["ATLAS_MISSING_MODULE"] = "Atlas 已偵測到遺失的模組／插件。\n\n這有可能是因為先前您有過期的模組／插件而被 Atlas 停用。\n如果您現在已經將所有的模組／插件安裝到最新版，請到插件列表裡確認是否所有的項目都已被啟用。\n\n如果您確認您不需要這些「遺失」的插件並且不想繼續看到這樣的通知，您可以到選項視窗去關閉通知。\n\n以下是遺失的模組／插件列表：\n";
+	L["ATLAS_OPEN_ADDON_LIST"] = "開啟插件列表";
+
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings

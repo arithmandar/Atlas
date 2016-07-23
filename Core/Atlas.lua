@@ -206,13 +206,13 @@ local function Process_Deprecated()
 	local OldList = {};
 	for k, v in pairs(Deprecated_List) do
 		local loadable = select(4, GetAddOnInfo(v[1]));
-		local enabled = GetAddOnEnableState(nil, GetAddOnInfo(v[1]))
-		if (enabled >= 0) and loadable then
+		local enabled = GetAddOnEnableState(UnitName("player"), GetAddOnInfo(v[1]))
+		if ( (enabled > 0) and loadable ) then
 			local oldVersion = true;			
-			if v[2] ~= nil and GetAddOnMetadata(v[1], "Version") >= v[2] then
+			if (v[2] ~= nil and GetAddOnMetadata(v[1], "Version") >= v[2]) then
 				oldVersion = false;
 			end
-			if oldVersion then
+			if (oldVersion) then
 				table.insert(OldList, v[1]);
 			end
 		end
@@ -329,6 +329,18 @@ function Atlas_PopulateDropdowns()
 	end
 end
 
+function Atlas_EnableMissing_Modules(list)
+	local addon;
+	print("Number: "..table.getn(list));
+
+	for _, addon in pairs(list) do
+		print(addon);
+		--EnableAddon(addon, UnitName("player"));
+	end
+	
+	ReloadUI();
+end
+
 -- Detect if not all modules / plugins are installed
 local function Atlas_Check_Modules()
 	if (AtlasOptions["AtlasCheckModule"] == nil) then
@@ -358,8 +370,8 @@ local function Atlas_Check_Modules()
 	local List = {};
 	for _, module in pairs(Module_List) do
 		local loadable = select(4, GetAddOnInfo(module));
-		local enabled = GetAddOnEnableState(nil, module)
-		if (enabled == 0) or (not loadable) then
+		local enabled = GetAddOnEnableState(UnitName("player"), module)
+		if ( (enabled == 0) or (not loadable) ) then
 			table.insert(List, module);
 		end
 	end
@@ -370,12 +382,17 @@ local function Atlas_Check_Modules()
 		end
 
 		LibDialog:Register("DetectMissing", {
-			text = L["ATLAS_MISSING_MODULE"].."\n|cff6666ff"..textList.."|r\n\n"..L["ATLAS_INFO_12200"],
+			text = L["ATLAS_MISSING_MODULE"].."\n|cff6666ff"..textList.."|r\n",
 			buttons = {
 				{
-					text = ATLAS_DEP_OK,
+					text = CLOSE,
+				},
+				{
+					text = L["ATLAS_OPEN_ADDON_LIST"],
+					on_click = AddonList_Show,
 				},
 			},
+			width = 500,
 			show_while_dead = false,
 			hide_on_escape = true,
 		});

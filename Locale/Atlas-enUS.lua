@@ -163,7 +163,8 @@ if L then
 	L["ATLAS_INFO_12200"] = "Important Notice:\n\nDue to the concern of increasing addon file size, we have moved out \npart of our dungeon maps and built-in plug-ins into separated addon package.\n\nUsers who download our addons from some of the famous game web sites \nmay only get our core addon which only include the Atlas core function \nand the latest WoW expansion maps.\n\nIf you also want to see all the old expansions' maps, and also want all those \nAtlas plug-ins made by us, you have to download and install them separately.\n\nRead below forum topic for more information:\n|cff6666ffhttp://www.atlasmod.com/phpBB3/viewtopic.php?t=1522|cffffffff\n\nOr visit our website to see where to download:\n|cff6666ffhttp://www.atlasmod.com/|cffffffff";
 	L["ATLAS_INFO_12201"] = "Please be advised that we have created a new plug-in - |cff6666ffAtlas Scenarios|cffffffff, to \nprovide the brand-new Scenarios maps introduced in WoW 5.0. \n\nCheck out our web site for more details, and don't forget to download / \ninstall it separately.\n|cff6666ffhttp://www.atlasmod.com/|cffffffff";
 
-	L["ATLAS_MISSING_MODULE"] = "Atlas has detected missing module(s) / plugin(s): ";
+	L["ATLAS_MISSING_MODULE"] = "Atlas has detected some missing module(s) / plugin(s). \n\nIt could be you had outdated module(s) / plugin(s) which had been disabled by Atlas. \nIf you have now installed all latest ones, go to your addon list to see if all of them have been enabled. \n\nIf you are sure that you don't need those \"missing\" module(s) / plugin(s) and do not want to see this message again, you can go to option panel to disable the notification. \n\nList of missing module(s) / plugin(s): \n";
+	L["ATLAS_OPEN_ADDON_LIST"] = "Open addon list";
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings

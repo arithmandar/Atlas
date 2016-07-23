@@ -10,6 +10,7 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 
 v1.33.01 (XXX. XX, 2016)
 ------------------------
+- Slightly enhanced the detection of old modules / plugins and notification of missing those. 
 - Translation update:
   - Simplified Chinese (lilyhewitt)
   - French (Stuxz)
