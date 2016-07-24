@@ -193,7 +193,7 @@ local function Process_Deprecated()
 		{ "Atlas_Transportation", 	"1.33.00" },
 		{ "Atlas_Scenarios", 		"1.33.00" },
 		-- 3rd parties plugins
-		{ "AtlasQuest", 		"4.9.7" }, 	-- updated May 15, 2016
+		{ "AtlasQuest", 		"4.10.00" }, 	-- updated Jul. 23, 2016
 		{ "Atlas_Arena", 		"1.06.00" }, 	-- updated Jul. 19, 2016
 		{ "Atlas_WorldEvents", 		"3.15" }, 	-- updated Jul. 19, 2016
 		-- remove AtlasLoot as it did not rely on Atlas since its v8 release

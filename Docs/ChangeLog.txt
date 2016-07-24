@@ -8,13 +8,15 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
-v1.33.01 (XXX. XX, 2016)
+v1.33.01 (Jul. 25, 2016)
 ------------------------
 - Slightly enhanced the detection of old modules / plugins and notification of missing those. 
 - Translation update:
   - Simplified Chinese (lilyhewitt)
   - French (Stuxz)
   - Korean (muffinman369)
+  - German (pas06)
+- Update Deprecated_List to support the latest AtlasQuest
 
 v1.33.00 (Jul. 19, 2016)
 ------------------------
