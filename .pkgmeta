@@ -26,5 +26,9 @@ ignore:
     - Libs/LibAboutPanel
     - Libs/LibDataBroker-1.1
     - Libs/LibDialog-1.0
-    - Images/AtlasFrame-Right.psd
+    - Images/AtlasFrame-Main.psd
+    - Images/AtlasFrame-BottomLeft.psd
+    - Images/AtlasFrame-BottomRight.psd
+    - Images/AtlasFrame-TopLeft.psd
+    - Images/AtlasFrame-TopRight.psd
 

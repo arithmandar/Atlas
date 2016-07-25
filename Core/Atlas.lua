@@ -50,7 +50,7 @@ end
 ATLAS_VERSION = GetAddOnMetadata("Atlas", "Version");
 ATLAS_DROPDOWNS = {};
 ATLAS_INST_ENT_DROPDOWN = {};
-ATLAS_NUM_LINES = 23;
+ATLAS_NUM_LINES = 26;
 ATLAS_CUR_LINES = 0;
 ATLAS_SCROLL_LIST = {};
 ATLAS_DATA = {};
@@ -1386,15 +1386,15 @@ function AtlasEntryTemplate_OnUpdate(self)
 	end
 end
 
---[[
 -- In Development, this could be fun
+--[[
 function AtlasSetEJBackground(instanceID)
 	AtlasEJBackground = CreateFrame("Frame", "AtlasEJBackground", AtlasFrame);	
 	if (instanceID) then
 		AtlasEJBackground:ClearAllPoints();
-		AtlasEJBackground:SetWidth(340);
-		AtlasEJBackground:SetHeight(365);
-		AtlasEJBackground:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", 539, -182);
+		AtlasEJBackground:SetWidth(470);
+		AtlasEJBackground:SetHeight(470);
+		AtlasEJBackground:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", 533, -201);
 		local t = AtlasEJBackground:CreateTexture(nil,"BACKGROUND");
 		local name, description, bgImage, buttonImage, loreImage, dungeonAreaMapID, link = EJ_GetInstanceInfo(instanceID)
 		t:SetTexture(bgImage);
