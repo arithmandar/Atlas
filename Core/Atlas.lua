@@ -592,8 +592,8 @@ end
 -- Function to handle the boss description to be added as GameToolTip
 -- Description is adopted from Dungeon Journal
 function AtlasMaps_NPC_Text_OnUpdate(self)
-	local strAtlasLootVersion;
-	strAtlasLootVersion = GetAddOnMetadata("AtlasLoot", "Version");
+	--local strAtlasLootVersion;
+	--strAtlasLootVersion = GetAddOnMetadata("AtlasLoot", "Version");
 	local ejbid = self:GetID();
 
 	if (not GameTooltip:IsShown()) then
@@ -619,6 +619,7 @@ function AtlasMaps_NPC_Text_OnUpdate(self)
 		end
 		if (ejbossname) then
 			tip_title = ejbossname;
+			--[[
 			if ( ( IsAddOnLoaded("AtlasLoot") and (strAtlasLootVersion <= "v7.07.03")) ) then -- temporary arrangement as some players are still using old version of AtlasLoot due to Atlas integration has not yet been added to AtlasLoot v8.00.00
 				if (AtlasLootItemsFrame:IsShown()) then
 					showtip = false;
@@ -626,8 +627,9 @@ function AtlasMaps_NPC_Text_OnUpdate(self)
 					showtip = true;
 				end
 			else
+			]]
 				showtip = true;
-			end
+			--end
 		end
 		if (showtip and tip_title) then
 			GameTooltip:SetOwner(self, "ANCHOR_CURSOR");

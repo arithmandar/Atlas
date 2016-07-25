@@ -11,6 +11,7 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 v1.33.02 (Jul. XX, 2016)
 ------------------------
 - Revamped Atlas frame and slightly enlarge the info panel.
+- Removed AtlasLoot related codes
 
 v1.33.01 (Jul. 25, 2016)
 ------------------------
