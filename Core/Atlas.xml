@@ -34,7 +34,7 @@
 	<Script file="AtlasDropDown.lua"/>
 	<Script file="Atlas.lua"/>
 
-	<Button name="AtlasEntryTemplate" hidden="true" virtual="true">
+	<Button name="AtlasEntryTemplate" hidden="true" virtual="true" toplevel="false">
 		<Size>
 			<AbsDimension x="440" y="15" />
 		</Size>
@@ -54,6 +54,9 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
+			<OnClick>
+				AtlasEntry_OnClick(self);
+			</OnClick>
 		</Scripts>
 	</Button>
 

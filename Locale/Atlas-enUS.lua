@@ -225,6 +225,7 @@ if L then
 	L["Ghost"] = "Ghost";
 	L["Graveyard"] = "Graveyard";
 	L["Heroic"] = "Heroic";
+	L["Mythic"] = "Mythic";
 	L["Holy Paladin"] = "Holy Paladin";
 	L["Holy Priest"] = "Holy Priest";
 	L["Hunter"] = "Hunter";

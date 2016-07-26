@@ -222,6 +222,7 @@ if L then
 	L["Ghost"] = "鬼魂";
 	L["Graveyard"] = "墓地";
 	L["Heroic"] = "英雄";
+	L["Mythic"] = "傳奇";
 	L["Holy Paladin"] = "神聖聖騎";
 	L["Holy Priest"] = "神聖牧師";
 	L["Hunter"] = "獵人";
