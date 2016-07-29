@@ -256,6 +256,9 @@ function Atlas_OnLoad(self)
 
 	-- Allows Atlas to be closed with the Escape key
 	tinsert(UISpecialFrames, "AtlasFrame");
+--@alpha@
+	tinsert(UISpecialFrames, "AtlasFrameLarge");
+--@end-alpha@
 	
 	-- Dragging involves some special registration
 	self:RegisterForDrag("LeftButton");
@@ -606,7 +609,7 @@ function AtlasMaps_NPC_Text_OnUpdate(self)
 		local showtip = true;
 		local ejbossname, description, _, rootSectionID;
 		local tip_title;
-		-- for non boss entry, we define the id to be larger than 10000
+		-- for non boss entry, we define the id to be greater than 10000
 		-- in this situation, the AtlasMaps_NPC_DB table entry will have 5th entity
 		if (ejbid < 10000) then 
 			ejbossname, description, _, rootSectionID = EJ_GetEncounterInfo(ejbid); 
@@ -832,31 +835,59 @@ function Atlas_MapRefresh()
 	-- Check if Journal Encounter Instance is available
 	if (base.JournalInstanceID) then
 		Atlas_JournalEncounter_InstanceButton:Show();
+--@alpha@
+		local _, _, _, _, _, _, dungeonAreaMapID = EJ_GetInstanceInfo(base.JournalInstanceID);
+		if (dungeonAreaMapID and dungeonAreaMapID > 0) then
+			AtlasJournalInstanceMapButton:Show()
+		end
+		if (AtlasFrameSizeUpButton:IsShown()) then
+			AtlasJournalInstanceMapButton:ClearAllPoints();
+			AtlasJournalInstanceMapButton:SetWidth(32);
+			AtlasJournalInstanceMapButton:SetHeight(32);
+			AtlasJournalInstanceMapButton:SetPoint("TOPLEFT", "AtlasFrameSizeUpButton", "TOPLEFT", -20, 0);
+		else
+			AtlasJournalInstanceMapButton:ClearAllPoints();
+			AtlasJournalInstanceMapButton:SetWidth(32);
+			AtlasJournalInstanceMapButton:SetHeight(32);
+			AtlasJournalInstanceMapButton:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", 502, -78);
+		end
+--@end-alpha@
 		--AtlasSetEJBackground(base.JournalInstanceID);
 	else
 		Atlas_JournalEncounter_InstanceButton:Hide();
+		AtlasJournalInstanceMapButton:Hide();
 		--AtlasSetEJBackground();
 	end
+	
+--@alpha@
+	if (base.LargeMap) then
+		AtlasFrameSizeUpButton:Show();
+	else
+		AtlasFrameSizeUpButton:Hide();
+	end
+--@end-alpha@
 	
 	-- Clear boss description gametooltip when map is refreshing
 	if (AtlasOptions["AtlasBossDesc"]) then
 		Atlas_Clean_NPC_TextFrame();
 	end
-	
+
+--[[	
 	AtlasMap:ClearAllPoints();
 	AtlasMap:SetWidth(512);
 	AtlasMap:SetHeight(512);
 	AtlasMap:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", 18, -84);
-
+]]
 	-- Searching for the map path from Atlas or from plugins
+	local AtlasMapPath;
 	for k, v in pairs(Atlas_CoreMapsKey) do
 		-- If selected map is Atlas' core map
 		if (zoneID == v) then
 			if (base.Module) then
 				-- if the map belong to a module, set the path to module
-				AtlasMap:SetTexture("Interface\\AddOns\\"..base.Module.."\\Images\\"..zoneID);
+				AtlasMapPath = "Interface\\AddOns\\"..base.Module.."\\Images\\";
 			else
-				AtlasMap:SetTexture("Interface\\AddOns\\Atlas\\Images\\Maps\\"..zoneID);
+				AtlasMapPath = "Interface\\AddOns\\Atlas\\Images\\Maps\\";
 			end
 			break;
 		-- Check if selected map is from plugin
@@ -866,13 +897,14 @@ function Atlas_MapRefresh()
 				-- Searching for plugin's maps
 				for kb,vb in pairs(ATLAS_PLUGINS[ka]) do
 					if (zoneID == vb) then
-						AtlasMap:SetTexture("Interface\\AddOns\\"..ka.."\\Images\\"..zoneID);
+						AtlasMapPath = "Interface\\AddOns\\"..ka.."\\Images\\";
 						break;
 					end
 				end
 			end
 		end
 	end
+	AtlasMap:SetTexture(AtlasMapPath..zoneID);
 
 	local AtlasMap_Text = _G["AtlasMap_Text"];
 	if (not AtlasMap_Text) then
@@ -897,6 +929,15 @@ function Atlas_MapRefresh()
 	else
 		AtlasMap_Text:SetText("");
 	end
+
+--@alpha@
+	-- Large Atlas map
+	if (base.LargeMap) then
+		for i=1, 12 do
+			_G["AtlasMapLarge"..i]:SetTexture(AtlasMapPath..base.LargeMap..i);
+		end
+	end
+--@endalpha@
 
 	-- The boss description to be added here
 	if (AtlasOptions["AtlasBossDesc"]) then
@@ -1425,6 +1466,19 @@ function AtlasEntry_OnClick(self)
 	
 	Atlas_JournalEncounter_EncounterButton_OnClick(encounterID);
 end
+
+--@alpha@
+function AtlasFrame_ToggleWindowSize()
+	if (AtlasFrameLarge:IsVisible()) then
+		HideUIPanel(AtlasFrameLarge);
+		ShowUIPanel(AtlasFrame);
+	else
+		HideUIPanel(AtlasFrame);
+		ShowUIPanel(AtlasFrameLarge);
+	end
+end
+--@end-alpha@
+
 --[[
 -- In Development, this could be fun
 function AtlasSetEJBackground(instanceID)
@@ -1443,6 +1497,7 @@ function AtlasSetEJBackground(instanceID)
 		AtlasEJBackground:Show()
 	else
 		AtlasEJBackground:ClearAllPoints();
+		AtlasEJBackground.TexTure:SetTexture(nil);
 		AtlasEJBackground:Hide()
 	end
 end

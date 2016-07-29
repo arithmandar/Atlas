@@ -1062,6 +1062,7 @@ if L then
 	--Baradin Hold
 
 	--Blackrock Caverns
+	L["Finkle Einhorn"] = "芬克·恩霍爾"
 
 	--Blackwing Descent
 

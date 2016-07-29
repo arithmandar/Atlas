@@ -103,6 +103,28 @@ function Atlas_JournalEncounter_InstanceButton_OnEnter(frame)
 	end
 end
 
+--@alpha@
+function AtlasJournalInstanceMapButton_OnClick()
+	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+	local data = AtlasMaps;
+	local base = data[zoneID];
+
+	local _, _, _, _, _, _, dungeonAreaMapID = EJ_GetInstanceInfo(base.JournalInstanceID);
+	if (dungeonAreaMapID and dungeonAreaMapID > 0) then
+--[[
+		local AtlasMapPath = "Interface\\WorldMap\\dungeonAreaMapID\\";
+		for i=1, 12 do
+			_G["AtlasMapLarge"..i]:SetTexture(AtlasMapPath..dungeonAreaMapID..i);
+		end
+]]
+		HideUIPanel(AtlasFrame);
+		WorldMapFrame.fromJournal = true;
+		ShowUIPanel(WorldMapFrame);
+		SetMapByID(dungeonAreaMapID);
+	end
+end
+--@end-alpha@
+
 -- ------------------------------------------------------------
 -- Call this function to translate boss name
 -- Syntax 1: Atlas_GetBossName(bossname);

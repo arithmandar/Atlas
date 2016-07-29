@@ -1861,7 +1861,7 @@ Syntax:
 		Module = "Atlas_WrathoftheLichKing";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Ashen Verdict"] };
 		{ BLUE.." A) "..L["Entrance"], 10001 };
-		{ BLUE.." B) "..L["Connection"], 10002 };
+		{ BLUE.." B) "..L["Elevator"], 10002 };
 		{ BLUE.." C) "..L["To next map"], 10003 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Lord Marrowgar", 1624), 1624 };
 		{ WHIT.." 2) "..Atlas_GetBossName("Lady Deathwhisper", 1625), 1625 };
@@ -1869,8 +1869,9 @@ Syntax:
 		{ WHIT.." 4) "..Atlas_GetBossName("Icecrown Gunship Battle", 1627)..L["L-Parenthesis"]..FACTION_HORDE..L["R-Parenthesis"], 1627 };
 		{ WHIT.." 5) "..Atlas_GetBossName("Deathbringer Saurfang", 1628), 1628 };
 		{ GREN.." 1') "..BZ["Light's Hammer"]..L["L-Parenthesis"]..L["Teleporter"]..L["R-Parenthesis"], 10009 };
-		{ GREN.." 2') "..BZ["Oratory of the Damned"]..L["L-Parenthesis"]..L["Teleporter"]..L["R-Parenthesis"], 10010 };
-		{ GREN.." 3') "..BZ["Rampart of Skulls"]..L["L-Parenthesis"]..L["Teleporter"]..L["Comma"]..L["Lower"]..L["R-Parenthesis"], 10011 };
+		{ GREN.." 2') "..L["Portal"]..L["L-Parenthesis"]..BZ["Dalaran"]..L["R-Parenthesis"], 10012 };
+		{ GREN.." 3') "..BZ["Oratory of the Damned"]..L["L-Parenthesis"]..L["Teleporter"]..L["R-Parenthesis"], 10010 };
+		{ GREN.." 4') "..BZ["Rampart of Skulls"]..L["L-Parenthesis"]..L["Teleporter"]..L["Comma"]..L["Lower"]..L["R-Parenthesis"], 10011 };
 		{ GREN..INDENT..BZ["Deathbringer's Rise"]..L["L-Parenthesis"]..L["Teleporter"]..L["Comma"]..L["Upper"]..L["R-Parenthesis"] };
 	};
 	IcecrownCitadelB = {
@@ -3612,6 +3613,7 @@ Syntax:
 		--Acronym = "";
 		JournalInstanceID = "762";
 		Module = "Atlas_Legion"; 
+		LargeMap = "DarkheartThicket";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
 		{ BLUE.." B) "..L["Connection"], 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Arch-Druid Glaidalis", 1654), 1654 };

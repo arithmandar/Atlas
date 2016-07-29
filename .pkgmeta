@@ -31,4 +31,12 @@ ignore:
     - Images/AtlasFrame-BottomRight.psd
     - Images/AtlasFrame-TopLeft.psd
     - Images/AtlasFrame-TopRight.psd
-
+    - Images/AtlasFrame-BottomLeftLarge.psd
+    - Images/AtlasFrame-BottomRightLarge.psd
+    - Images/AtlasFrame-MainLarge.psd
+    - Images/AtlasFrame-MidLeftLarge.psd
+    - Images/AtlasFrame-MidRightLarge.psd
+    - Images/AtlasFrame-TopLeftLarge.psd
+    - Images/AtlasFrame-TopRightLarge.psd
+    - Images/WorldMapIcon-Down.psd
+    - Images/WorldMapIcon-Up.psd
