@@ -304,6 +304,9 @@ Atlas_DropDownLayouts = {
 			"TheNightholdB",
 			"TheNightholdC",
 			"TheNightholdD",
+			"TheNightholdE",
+			"TheNightholdF",
+			"TheNightholdG",
 		},
 --@end-alpha@
 	},
@@ -549,6 +552,9 @@ Atlas_DropDownLayouts = {
 			"TheNightholdB",
 			"TheNightholdC",
 			"TheNightholdD",
+			"TheNightholdE",
+			"TheNightholdF",
+			"TheNightholdG",
 		},
 --@end-alpha@		
 	},
@@ -739,6 +745,9 @@ Atlas_DropDownLayouts = {
 			"TheNightholdB",		-- Legion
 			"TheNightholdC",		-- Legion
 			"TheNightholdD",		-- Legion
+			"TheNightholdE",
+			"TheNightholdF",
+			"TheNightholdG",
 --@end-alpha@
 		},
 		[ATLAS_DDL_PARTYSIZE_10_OZ] = {
@@ -823,6 +832,9 @@ Atlas_DropDownLayouts = {
 			"TheNightholdB",		-- Legion
 			"TheNightholdC",		-- Legion
 			"TheNightholdD",		-- Legion
+			"TheNightholdE",
+			"TheNightholdF",
+			"TheNightholdG",
 --@end-alpha@
 			"ObsidianSanctum",
 			"OnyxiasLair",
@@ -1067,6 +1079,9 @@ Atlas_DropDownLayouts = {
 			"TheNightholdB",
 			"TheNightholdC",
 			"TheNightholdD",
+			"TheNightholdE",
+			"TheNightholdF",
+			"TheNightholdG",
 		},
 --@end-alpha@
 	},
@@ -1202,6 +1217,9 @@ Atlas_DropDownLayouts = {
 			"TheNightholdB",		-- Legion
 			"TheNightholdC",		-- Legion
 			"TheNightholdD",		-- Legion
+			"TheNightholdE",
+			"TheNightholdF",
+			"TheNightholdG",
 --@end-alpha@
 			"OnyxiasLair",
 			"RagefireChasm",

@@ -3853,8 +3853,8 @@ Syntax:
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
-		{ BLUE.." B-C) "..L["Connection"], 10001 };
-		{ WHIT.." 2) "..Atlas_GetBossName("Chronomatic Anomaly", 1725), 1725 };
+		{ BLUE.." B-D) "..L["Connection"], 10001 };
+		{ WHIT.." 2) "..Atlas_GetBossName("Chronomatic Anomaly", 1725)..L["L-Parenthesis"]..L["Wanders"]..L["R-Parenthesis"], 1725 };
 		{ WHIT.." 3) "..Atlas_GetBossName("Trilliax", 1731), 1731 };
 	};
 	TheNightholdC = {
@@ -3867,11 +3867,11 @@ Syntax:
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
-		{ WHIT.." 4) "..Atlas_GetBossName("Spellblade Aluriel", 1751), 1751 };
+		{ BLUE.." D-H) "..L["Connection"], 10001 };
+		{ WHIT.." 4) "..Atlas_GetBossName("Spellblade Aluriel", 1751)..L["L-Parenthesis"]..L["Wanders"]..L["R-Parenthesis"], 1751 };
 		{ WHIT.." 6) "..Atlas_GetBossName("Krosus", 1713), 1713 };
 		{ WHIT.." 7) "..Atlas_GetBossName("High Botanist Tel'arn", 1761), 1761 };
 	};
-	-- Map TODO
 	TheNightholdD = {
 		ZoneName = { BZ["The Nighthold"]..L["MapD"] };
 		Location = { BZ["Suramar"] };
@@ -3882,9 +3882,44 @@ Syntax:
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
-		{ WHIT.." 5) "..Atlas_GetBossName("Tichondrius") };
+		{ WHIT.." 5) "..Atlas_GetBossName("Tichondrius", 1762), 1762 };
+	};
+	TheNightholdE = {
+		ZoneName = { BZ["The Nighthold"]..L["MapE"] };
+		Location = { BZ["Suramar"] };
+		DungeonID = "1351";
+		DungeonHeroicID = "1352";
+		DungeonMythicID = "1353";
+		--Acronym = "";
+		JournalInstanceID = "786";
+		PlayerLimit = "10-30";
+		Module = "Atlas_Legion";
+		{ BLUE.." E-G) "..L["Connection"], 10001 };
 		{ WHIT.." 8) "..Atlas_GetBossName("Star Augur Etraeus", 1732), 1732 };
+	};
+	TheNightholdF = {
+		ZoneName = { BZ["The Nighthold"]..L["MapF"] };
+		Location = { BZ["Suramar"] };
+		DungeonID = "1351";
+		DungeonHeroicID = "1352";
+		DungeonMythicID = "1353";
+		--Acronym = "";
+		JournalInstanceID = "786";
+		PlayerLimit = "10-30";
+		Module = "Atlas_Legion";
 		{ WHIT.." 9) "..Atlas_GetBossName("Grand Magistrix Elisande", 1743), 1743 };
+	};
+	-- Map TODO
+	TheNightholdG = {
+		ZoneName = { BZ["The Nighthold"]..L["MapG"] };
+		Location = { BZ["Suramar"] };
+		DungeonID = "1351";
+		DungeonHeroicID = "1352";
+		DungeonMythicID = "1353";
+		--Acronym = "";
+		JournalInstanceID = "786";
+		PlayerLimit = "10-30";
+		Module = "Atlas_Legion";
 		{ WHIT.." 10) "..Atlas_GetBossName("Gul'dan", 1737), 1737 };
 	};
 	VaultoftheWardensA = {
