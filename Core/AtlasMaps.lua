@@ -3533,6 +3533,7 @@ Syntax:
 		--Acronym = "";
 		JournalInstanceID = "777";
 		Module = "Atlas_Legion";
+		LargeMap = "AssaultonVioletHold1_";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Shivermaw", 1694), 1694 };
 		{ WHIT.." 2) "..Atlas_GetBossName("Blood-Princess Thal'ena", 1702), 1702 };
@@ -3552,6 +3553,7 @@ Syntax:
 		--Acronym = "";
 		JournalInstanceID = "740";
 		Module = "Atlas_Legion";
+		LargeMap = "BlackRookHold1_";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
 		{ BLUE.." B) "..L["Connection"], 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("The Amalgam of Souls", 1518), 1518 };
@@ -3564,6 +3566,7 @@ Syntax:
 		--Acronym = "";
 		JournalInstanceID = "740";
 		Module = "Atlas_Legion";
+		LargeMap = "BlackRookHold2_";
 		{ BLUE.." B-G) "..L["Connection"], 10001 };
 		{ WHIT.." 2) "..Atlas_GetBossName("Illysanna Ravencrest", 1653), 1653 };
 	};

@@ -934,7 +934,7 @@ function Atlas_MapRefresh()
 	-- Large Atlas map
 	if (base.LargeMap) then
 		for i=1, 12 do
-			_G["AtlasMapLarge"..i]:SetTexture(AtlasMapPath..base.LargeMap..i);
+			_G["AtlasMapLarge"..i]:SetTexture(AtlasMapPath..zoneID.."\\"..base.LargeMap..i);
 		end
 	end
 --@endalpha@
