@@ -1297,8 +1297,12 @@ if L then
 	--Assault on VioletHold
 
 	--The Emerald Nightmare
+	L["Nightmare Watcher"] = "Nightmare Watcher";
+	L["Malfurion Stormrage"] = "Malfurion Stormrage";
+	L["Teleport to Moonglade"] = "Teleport to Moonglade";
 
 	--The Nighthold
+	L["Teleport to Tichondrius / Grand Magistrix Elisande"] = "Teleport to Tichondrius / Grand Magistrix Elisande";
 
 --@end-do-not-package@
 

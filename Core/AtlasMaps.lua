@@ -88,6 +88,7 @@ local ALIL = Atlas_IngameLocales;
 
 local BLUE = "|cff6666ff";
 local GREN = "|cff66cc33";
+local GREY = "|cff999999";
 local LBLU = "|cff33cccc";
 local _RED = "|cffcc3333";
 local ORNG = "|cffcc9933";
@@ -3675,10 +3676,10 @@ Syntax:
 		{ BLUE.." C) "..L["Connection"], 10003 };
 		{ WHIT.." 4) "..Atlas_GetBossName("God-King Skovald", 1488), 1488 };
 		{ WHIT.." 5) "..Atlas_GetBossName("Odyn", 1489), 1489 };
-		{ GREN.." 1) "..L["King Tor"], 10004 };
-		{ GREN.." 2) "..L["King Bjorn"], 10005 };
-		{ GREN.." 3) "..L["King Haldor"], 10006 };
-		{ GREN.." 4) "..L["King Ranulf"], 10007 };
+		{ ORNG.." 1) "..L["King Tor"], 10004 };
+		{ ORNG.." 2) "..L["King Bjorn"], 10005 };
+		{ ORNG.." 3) "..L["King Haldor"], 10006 };
+		{ ORNG.." 4) "..L["King Ranulf"], 10007 };
 	};
 	MawofSoulsA = {
 		ZoneName = { BZ["Maw of Souls"]..L["MapA"] };
@@ -3744,8 +3745,9 @@ Syntax:
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
-		{ BLUE.." B) "..L["Portal"], 10002 };
+		{ BLUE.." B) "..L["Connection"], 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Nythendra", 1703), 1703 };
+		{ GREN.." 1') "..L["Nightmare Watcher"], 10003 };
 	};
 	TheEmeraldNightmareB = {
 		ZoneName = { BZ["The Emerald Nightmare"]..L["MapB"] };
@@ -3757,12 +3759,17 @@ Syntax:
 		JournalInstanceID = "768";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
-		{ BLUE.." B) "..L["Portal"], 10002 };
-		{ WHIT.." 2) "..Atlas_GetBossName("Il'gynoth, Heart of Corruption", 1738), 1738 };
+		{ BLUE.." B) "..L["Connection"], 10002 };
+		{ BLUE.." C) "..L["Portal"]..L["Colon"]..BZ["Un'Goro Crater"], 10003 };
+		{ BLUE.." D) "..L["Portal"]..L["Colon"]..BZ["Mulgore"], 10004 };
+		{ BLUE.." E) "..L["Portal"]..L["Colon"]..BZ["Grizzly Hills"], 10005 };
+		{ BLUE.." F) "..L["Portal"]..L["Colon"]..BZ["The Emerald Dreamway"], 10006 };
+		{ GREN.." 1') "..L["Malfurion Stormrage"], 10003 };
+		{ INDENT..GREY..L["Teleport to Moonglade"] };
 	};
 	TheEmeraldNightmareC = {
 		ZoneName = { BZ["The Emerald Nightmare"]..L["MapC"] };
-		Location = { BZ["Mulgore"] };
+		Location = { BZ["Un'Goro Crater"] };
 		DungeonID = "1348";
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
@@ -3771,12 +3778,11 @@ Syntax:
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
 		{ BLUE.." C) "..L["Portal"], 10003 };
-		{ WHIT.." 3) "..Atlas_GetBossName("Elerethe Renferal", 1744), 1744 };
+		{ WHIT.." 2) "..Atlas_GetBossName("Il'gynoth, Heart of Corruption", 1738), 1738 };
 	};
-	-- Map TODO
 	TheEmeraldNightmareD = {
 		ZoneName = { BZ["The Emerald Nightmare"]..L["MapD"] };
-		Location = { BZ["Grizzly Hills"] };
+		Location = { BZ["Mulgore"] };
 		DungeonID = "1348";
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
@@ -3785,12 +3791,11 @@ Syntax:
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
 		{ BLUE.." D) "..L["Portal"], 10004 };
-		{ WHIT.." 4) "..Atlas_GetBossName("Ursoc", 1672), 1672 };
+		{ WHIT.." 3) "..Atlas_GetBossName("Elerethe Renferal", 1744), 1744 };
 	};
-	-- Map TODO
 	TheEmeraldNightmareE = {
 		ZoneName = { BZ["The Emerald Nightmare"]..L["MapE"] };
-		Location = { BZ["Val'sharah"] };
+		Location = { BZ["Grizzly Hills"] };
 		DungeonID = "1348";
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
@@ -3799,12 +3804,11 @@ Syntax:
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
 		{ BLUE.." E) "..L["Portal"], 10005 };
-		{ WHIT.." 5) "..Atlas_GetBossName("Dragons of Nightmare", 1704), 1704 };
+		{ WHIT.." 4) "..Atlas_GetBossName("Ursoc", 1672), 1672 };
 	};
-	-- Map TODO
 	TheEmeraldNightmareF = {
 		ZoneName = { BZ["The Emerald Nightmare"]..L["MapF"] };
-		Location = { BZ["Moonglade"] };
+		Location = { BZ["The Emerald Dreamway"] };
 		DungeonID = "1348";
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
@@ -3813,11 +3817,24 @@ Syntax:
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
 		{ BLUE.." F) "..L["Portal"], 10006 };
+		{ WHIT.." 5) "..Atlas_GetBossName("Dragons of Nightmare", 1704), 1704 };
+	};
+	TheEmeraldNightmareG = {
+		ZoneName = { BZ["The Emerald Nightmare"]..L["MapG"] };
+		Location = { BZ["Moonglade"] };
+		DungeonID = "1348";
+		DungeonHeroicID = "1349";
+		DungeonMythicID = "1350";
+		--Acronym = "";
+		JournalInstanceID = "768";
+		PlayerLimit = "10-30";
+		Module = "Atlas_Legion";
+		{ BLUE.." G) "..L["Portal"], 10007 };
 		{ WHIT.." 6) "..Atlas_GetBossName("Cenarius", 1750), 1750 };
 	};
 	-- Map TODO
-	TheEmeraldNightmareG = {
-		ZoneName = { BZ["The Emerald Nightmare"]..L["MapG"] };
+	TheEmeraldNightmareH = {
+		ZoneName = { BZ["The Emerald Nightmare"]..L["MapH"] };
 		Location = { BZ["Rift of Aln"] };
 		DungeonID = "1348";
 		DungeonHeroicID = "1349";
@@ -3842,6 +3859,8 @@ Syntax:
 		{ BLUE.." A) "..L["Entrance"], 10001 };
 		{ BLUE.." B) "..L["Connection"], 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Skorpyron", 1706), 1706 };
+		{ GREN.." 1') "..L["Palace Watcher"] }; 
+		{ GREY..INDENT..L["Teleport to Tichondrius / Grand Magistrix Elisande"] };
 	};
 	TheNightholdB = {
 		ZoneName = { BZ["The Nighthold"]..L["MapB"] };
@@ -3907,6 +3926,7 @@ Syntax:
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
+		{ BLUE.." H) "..L["Portal"], 10001 };
 		{ WHIT.." 9) "..Atlas_GetBossName("Grand Magistrix Elisande", 1743), 1743 };
 	};
 	-- Map TODO
