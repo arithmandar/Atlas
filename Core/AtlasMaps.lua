@@ -155,6 +155,7 @@ Syntax:
 		MinLevel = "20";
 		PlayerLimit = "5";
 		Acronym = L["BFD"];
+		WorldMapID = "688";
 		JournalInstanceID = "227";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -257,6 +258,7 @@ Syntax:
 		MinLevel = "36";
 		PlayerLimit = "5";
 		Acronym = L["DM"];
+		WorldMapID = "699";
 		JournalInstanceID = "230";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -305,6 +307,8 @@ Syntax:
 		DungeonID = "175";
 		PlayerLimit = "10";
 		Acronym = L["Kara"];
+		WorldMapID = "799";
+		JournalInstanceID = "745";
 		Module = "Atlas_BurningCrusade";
 		{ BLUE.." A) "..BZ["Karazhan"]..L["L-Parenthesis"]..L["Front"]..L["R-Parenthesis"], 10001 };
 		{ BLUE.." B) "..BZ["Karazhan"]..L["L-Parenthesis"]..L["Back"]..L["R-Parenthesis"], 10002 };
@@ -324,6 +328,7 @@ Syntax:
 		MinLevel = "30";
 		PlayerLimit = "5";
 		Acronym = L["Mara"];
+		WorldMapID = "750";
 		JournalInstanceID = "232";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -366,6 +371,7 @@ Syntax:
 		MinLevel = "15";
 		PlayerLimit = "5";
 		Acronym = L["VC"];
+		WorldMapID = "756";
 		JournalInstanceID = "63";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -380,6 +386,7 @@ Syntax:
 		Location = { BZ["Swamp of Sorrows"] };
 		DungeonID = "28";
 		Acronym = L["ST"];
+		WorldMapID = "687";
 		JournalInstanceID = "237";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -396,6 +403,7 @@ Syntax:
 		Location = { BZ["Badlands"] };
 		DungeonID = "22";
 		Acronym = L["Ulda"];
+		WorldMapID = "692";
 		JournalInstanceID = "239";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -423,6 +431,7 @@ Syntax:
 		Location = { BZ["Northern Barrens"] };
 		DungeonID = "1";
 		Acronym = L["WC"];
+		WorldMapID = "749";
 		JournalInstanceID = "240";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -440,6 +449,7 @@ Syntax:
 		Location = { BZ["Ashenvale"] };
 		DungeonID = "10";
 		Acronym = L["BFD"];
+		WorldMapID = "688";
 		JournalInstanceID = "227";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -467,6 +477,7 @@ Syntax:
 		Location = { BZ["Feralas"] };
 		DungeonID = "34";
 		Acronym = L["DM"];
+		WorldMapID = "699";
 		JournalInstanceID = "230";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -490,6 +501,7 @@ Syntax:
 		Location = { BZ["Feralas"] };
 		DungeonID = "36";
 		Acronym = L["DM"];
+		WorldMapID = "699";
 		JournalInstanceID = "230";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -509,6 +521,7 @@ Syntax:
 		Location = { BZ["Feralas"] };
 		DungeonID = "38";
 		Acronym = L["DM"];
+		WorldMapID = "699";
 		JournalInstanceID = "230";
 		Module = "Atlas_ClassicWoW";
 		{ ORNG..L["Key"]..L["Colon"]..ALIL["J'eevee's Jar"]..L["L-Parenthesis"]..Atlas_GetBossName("Lord Hel'nurath")..L["R-Parenthesis"] };
@@ -542,6 +555,7 @@ Syntax:
 		MinLevel = "30";
 		PlayerLimit = "5";
 		Acronym = L["Mara"];
+		WorldMapID = "750";
 		JournalInstanceID = "232";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"]..L["L-Parenthesis"]..L["Orange"]..L["R-Parenthesis"], 10001 };
@@ -564,6 +578,7 @@ Syntax:
 		Location = { BZ["Orgrimmar"] };
 		DungeonID = "4";
 		Acronym = L["RFC"];
+		WorldMapID = "680";
 		JournalInstanceID = "226";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -580,6 +595,7 @@ Syntax:
 		Location = { BZ["Thousand Needles"] };
 		DungeonID = "20";
 		Acronym = L["RFD"];
+		WorldMapID = "760";
 		JournalInstanceID = "233";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -597,6 +613,7 @@ Syntax:
 		Location = { BZ["Southern Barrens"] };
 		DungeonID = "16";
 		Acronym = L["RFK"];
+		WorldMapID = "761";
 		JournalInstanceID = "234";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -615,6 +632,7 @@ Syntax:
 		DungeonID = "160";
 		Acronym = L["AQ10"];
 		PlayerLimit = "10";
+		WorldMapID = "717";
 		JournalInstanceID = "743";
 		Module = "Atlas_ClassicWoW";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Cenarion Circle"] };
@@ -642,6 +660,7 @@ Syntax:
 		DungeonID = "161";
 		Acronym = L["AQ40"];
 		PlayerLimit = "40";
+		WorldMapID = "766";
 		JournalInstanceID = "744";
 		Module = "Atlas_ClassicWoW";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Brood of Nozdormu"] };
@@ -676,6 +695,7 @@ Syntax:
 		Location = { BZ["Northern Barrens"] };
 		DungeonID = "1";
 		Acronym = L["WC"];
+		WorldMapID = "749";
 		JournalInstanceID = "240";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -698,6 +718,7 @@ Syntax:
 		Location = { BZ["Tanaris"] };
 		DungeonID = "24";
 		Acronym = L["ZF"];
+		WorldMapID = "686";
 		JournalInstanceID = "241";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -735,6 +756,7 @@ Syntax:
 		MinLevel = "47";
 		PlayerLimit = "5";
 		Acronym = L["BRD"];
+		WorldMapID = "704";
 		JournalInstanceID = "228";
 		Module = "Atlas_ClassicWoW";
 		{ ORNG..L["Key"]..L["Colon"]..ALIL["Relic Coffer Key"] };
@@ -813,6 +835,7 @@ Syntax:
 		Location = { BZ["Searing Gorge"]..L["Slash"]..BZ["Burning Steppes"] };
 		DungeonID = "50";
 		PlayerLimit = "40";
+		WorldMapID = "755";
 		JournalInstanceID = "742";
 		Acronym = L["BWL"];
 		Module = "Atlas_ClassicWoW";
@@ -836,6 +859,7 @@ Syntax:
 		Location = { BZ["Dun Morogh"] };
 		DungeonID = "14";
 		Acronym = L["Gnome"];
+		WorldMapID = "691";
 		JournalInstanceID = "231";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -851,6 +875,7 @@ Syntax:
 		Location = { BZ["Dun Morogh"] };
 		DungeonID = "14";
 		Acronym = L["Gnome"];
+		WorldMapID = "691";
 		JournalInstanceID = "231";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"]..L["L-Parenthesis"]..L["Front"]..L["R-Parenthesis"], 10001 };
@@ -877,6 +902,7 @@ Syntax:
 		Location = { BZ["Searing Gorge"]..L["Slash"]..BZ["Burning Steppes"] };
 		DungeonID = "32";
 		Acronym = L["LBRS"];
+		WorldMapID = "721";
 		JournalInstanceID = "229";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -910,6 +936,7 @@ Syntax:
 		DungeonID = "48";
 		Acronym = L["MC"];
 		PlayerLimit = "40";
+		WorldMapID = "696";
 		JournalInstanceID = "741";
 		Module = "Atlas_ClassicWoW";
 		{ ORNG..L["Attunement Required"] };
@@ -931,6 +958,7 @@ Syntax:
 		Location = { BZ["Eastern Plaguelands"] };
 		DungeonID = "40";
 		Acronym = L["Strat"];
+		WorldMapID = "765";
 		JournalInstanceID = "236";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"]..L["L-Parenthesis"]..L["Front"]..L["R-Parenthesis"], 10001 };
@@ -960,6 +988,7 @@ Syntax:
 		Location = { BZ["Eastern Plaguelands"] };
 		DungeonID = "274";
 		Acronym = L["Strat"];
+		WorldMapID = "765";
 		JournalInstanceID = "236";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"]..L["L-Parenthesis"]..L["Front"]..L["R-Parenthesis"], 10001 };
@@ -982,6 +1011,7 @@ Syntax:
 		Location = { BZ["Stormwind City"] };
 		DungeonID = "12";
 		Acronym = L["Stocks"];
+		WorldMapID = "690";
 		JournalInstanceID = "238";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -997,6 +1027,7 @@ Syntax:
 		Location = { BZ["Swamp of Sorrows"] };
 		DungeonID = "28";
 		Acronym = L["ST"];
+		WorldMapID = "687";
 		JournalInstanceID = "237";
 		Module = "Atlas_ClassicWoW";
 		{ ORNG..L["AKA"]..L["Colon"]..BZ["The Temple of Atal'Hakkar"] };
@@ -1017,6 +1048,7 @@ Syntax:
 		Location = { BZ["Badlands"] };
 		DungeonID = "22";
 		Acronym = L["Ulda"];
+		WorldMapID = "692";
 		JournalInstanceID = "239";
 		Module = "Atlas_ClassicWoW";
 		{ BLUE.." A) "..L["Entrance"]..L["L-Parenthesis"]..L["Front"]..L["R-Parenthesis"], 10001 };
@@ -1054,6 +1086,7 @@ Syntax:
 		DungeonID = "149";
 		DungeonHeroicID = "178";
 		Acronym = L["AC"];
+		WorldMapID = "722";
 		JournalInstanceID = "247";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Lower City"] };
@@ -1071,6 +1104,7 @@ Syntax:
 		DungeonID = "148";
 		DungeonHeroicID = "179";
 		Acronym = L["MT"];
+		WorldMapID = "732";
 		JournalInstanceID = "250";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Consortium"] };
@@ -1093,6 +1127,7 @@ Syntax:
 		DungeonID = "150";
 		DungeonHeroicID = "180";
 		Acronym = L["Seth"];
+		WorldMapID = "723";
 		JournalInstanceID = "252";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Lower City"] };
@@ -1111,6 +1146,7 @@ Syntax:
 		DungeonID = "151";
 		DungeonHeroicID = "181";
 		Acronym = L["SL"];
+		WorldMapID = "724";
 		JournalInstanceID = "253";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Lower City"] };
@@ -1132,6 +1168,7 @@ Syntax:
 		DungeonID = "196";
 		Acronym = L["BT"];
 		PlayerLimit = "25";
+		WorldMapID = "796";
 		JournalInstanceID = "751";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Ashtongue Deathsworn"] };
@@ -1154,6 +1191,7 @@ Syntax:
 		DungeonID = "196";
 		Acronym = L["BT"];
 		PlayerLimit = "25";
+		WorldMapID = "796";
 		JournalInstanceID = "751";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Ashtongue Deathsworn"] };
@@ -1172,6 +1210,7 @@ Syntax:
 		DungeonID = "196";
 		Acronym = L["BT"];
 		PlayerLimit = "25";
+		WorldMapID = "796";
 		JournalInstanceID = "751";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Ashtongue Deathsworn"] };
@@ -1191,6 +1230,7 @@ Syntax:
 		DungeonID = "194";
 		Acronym = L["SSC"];
 		PlayerLimit = "25";
+		WorldMapID = "780";
 		JournalInstanceID = "748";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Cenarion Expedition"] };
@@ -1210,6 +1250,7 @@ Syntax:
 		DungeonID = "140";
 		DungeonHeroicID = "184";
 		Acronym = L["SP"];
+		WorldMapID = "728";
 		JournalInstanceID = "260";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Cenarion Expedition"] };
@@ -1230,6 +1271,7 @@ Syntax:
 		DungeonID = "147";
 		DungeonHeroicID = "185";
 		Acronym = L["SV"];
+		WorldMapID = "727";
 		JournalInstanceID = "261";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Cenarion Expedition"] };
@@ -1251,6 +1293,7 @@ Syntax:
 		DungeonID = "146";
 		DungeonHeroicID = "186";
 		Acronym = L["UB"];
+		WorldMapID = "726";
 		JournalInstanceID = "262";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Cenarion Expedition"] };
@@ -1273,6 +1316,7 @@ Syntax:
 		MinLevel = "68";
 		PlayerLimit = "5";
 		Acronym = L["CoT2"];
+		WorldMapID = "733";
 		JournalInstanceID = "255";
 		Module = "Atlas_BurningCrusade";
 		{ PURP..L["Event"]..L["Colon"]..BZ["Opening of the Dark Portal"] };
@@ -1294,6 +1338,7 @@ Syntax:
 		MinLevel = "70";
 		PlayerLimit = "25";
 		Acronym = L["CoT3"];
+		WorldMapID = "775";
 		JournalInstanceID = "750";
 		Module = "Atlas_BurningCrusade";
 		{ PURP..L["Event"]..L["Colon"]..BZ["The Battle for Mount Hyjal"] };
@@ -1317,6 +1362,7 @@ Syntax:
 		MinLevel = "66";
 		PlayerLimit = "5";
 		Acronym = L["CoT1"];
+		WorldMapID = "734";
 		JournalInstanceID = "251";
 		Module = "Atlas_BurningCrusade";
 		{ PURP..L["Event"]..L["Colon"]..BZ["The Escape From Durnholde"] };
@@ -1392,6 +1438,7 @@ Syntax:
 		DungeonID = "177";
 		Acronym = L["GL"];
 		PlayerLimit = "25";
+		WorldMapID = "776";
 		JournalInstanceID = "746";
 		Module = "Atlas_BurningCrusade";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -1408,6 +1455,7 @@ Syntax:
 		DungeonID = "137";
 		DungeonHeroicID = "187";
 		Acronym = L["BF"];
+		WorldMapID = "725";
 		JournalInstanceID = "256";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Honor Hold"]..L["L-Parenthesis"]..FACTION_ALLIANCE..L["R-Parenthesis"] };
@@ -1425,6 +1473,7 @@ Syntax:
 		DungeonID = "136";
 		DungeonHeroicID = "188";
 		Acronym = L["Ramp"];
+		WorldMapID = "797";
 		JournalInstanceID = "248";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Honor Hold"]..L["L-Parenthesis"]..FACTION_ALLIANCE..L["R-Parenthesis"] };
@@ -1444,6 +1493,7 @@ Syntax:
 		DungeonID = "176";
 		Acronym = L["Mag"];
 		PlayerLimit = "25";
+		WorldMapID = "779";
 		JournalInstanceID = "747";
 		Module = "Atlas_BurningCrusade";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -1455,6 +1505,7 @@ Syntax:
 		DungeonID = "138";
 		DungeonHeroicID = "189";
 		Acronym = L["SH"];
+		WorldMapID = "710";
 		JournalInstanceID = "259";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Honor Hold"]..L["L-Parenthesis"]..FACTION_ALLIANCE..L["R-Parenthesis"] };
@@ -1484,6 +1535,7 @@ Syntax:
 		DungeonID = "175";
 		Acronym = L["Kara"];
 		PlayerLimit = "10";
+		WorldMapID = "799";
 		JournalInstanceID = "745";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Violet Eye"] };
@@ -1535,6 +1587,7 @@ Syntax:
 		DungeonID = "175";
 		Acronym = L["Kara"];
 		PlayerLimit = "10";
+		WorldMapID = "799";
 		JournalInstanceID = "745";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Violet Eye"] };
@@ -1566,6 +1619,7 @@ Syntax:
 		DungeonID = "198";
 		DungeonHeroicID = "201";
 		Acronym = L["MaT"];
+		WorldMapID = "798";
 		JournalInstanceID = "249";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Shattered Sun Offensive"] };
@@ -1597,6 +1651,7 @@ Syntax:
 		DungeonID = "199";
 		Acronym = L["SuP"];
 		PlayerLimit = "25";
+		WorldMapID = "789";
 		JournalInstanceID = "752";
 		Module = "Atlas_BurningCrusade";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -1618,6 +1673,7 @@ Syntax:
 		DungeonID = "174";
 		DungeonHeroicID = "190";
 		Acronym = L["Arca"];
+		WorldMapID = "731";
 		JournalInstanceID = "254";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Sha'tar"] };
@@ -1638,6 +1694,7 @@ Syntax:
 		DungeonID = "173";
 		DungeonHeroicID = "191";
 		Acronym = L["Bota"];
+		WorldMapID = "729";
 		JournalInstanceID = "257";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Sha'tar"] };
@@ -1655,6 +1712,7 @@ Syntax:
 		DungeonID = "172";
 		DungeonHeroicID = "192";
 		Acronym = L["Mech"];
+		WorldMapID = "730";
 		JournalInstanceID = "258";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Sha'tar"] };
@@ -1674,6 +1732,7 @@ Syntax:
 		DungeonID = "193";
 		Acronym = L["TK"];
 		PlayerLimit = "25";
+		WorldMapID = "729";
 		JournalInstanceID = "749";
 		Module = "Atlas_BurningCrusade";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Sha'tar"] };
@@ -1698,6 +1757,7 @@ Syntax:
 		DungeonID = "218";
 		DungeonHeroicID = "219";
 		Acronym = L["AK, Kahet"];
+		WorldMapID = "522";
 		JournalInstanceID = "271";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -1716,6 +1776,7 @@ Syntax:
 		DungeonID = "204";
 		DungeonHeroicID = "241";
 		Acronym = L["AN, Nerub"];
+		WorldMapID = "533";
 		JournalInstanceID = "272";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -1736,6 +1797,7 @@ Syntax:
 		DungeonID = "209";
 		DungeonHeroicID = "210";
 		Acronym = L["CoT-Strat"];
+		WorldMapID = "521";
 		JournalInstanceID = "279";
 		Module = "Atlas_WrathoftheLichKing";
 		{ PURP..L["Event"]..L["Colon"]..L["The Culling of Stratholme"] };
@@ -1757,6 +1819,7 @@ Syntax:
 		DungeonID = "214";
 		DungeonHeroicID = "215";
 		Acronym = L["DTK"];
+		WorldMapID = "534";
 		JournalInstanceID = "273";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -1776,6 +1839,7 @@ Syntax:
 		DungeonID = "255";
 		DungeonHeroicID = "256";
 		Acronym = L["HoR"]..L["Comma"]..L["FH3"];
+		WorldMapID = "603";
 		JournalInstanceID = "276";
 		Module = "Atlas_WrathoftheLichKing";
 		{ ORNG..L["Attunement Required"] };
@@ -1796,6 +1860,7 @@ Syntax:
 		DungeonID = "253";
 		DungeonHeroicID = "254";
 		Acronym = L["PoS"]..L["Comma"]..L["FH2"];
+		WorldMapID = "602";
 		JournalInstanceID = "278";
 		Module = "Atlas_WrathoftheLichKing";
 		{ ORNG..L["Attunement Required"] };
@@ -1820,6 +1885,7 @@ Syntax:
 		DungeonID = "251";
 		DungeonHeroicID = "252";
 		Acronym = L["FoS"]..L["Comma"]..L["FH1"];
+		WorldMapID = "601";
 		JournalInstanceID = "280";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -1839,6 +1905,7 @@ Syntax:
 		DungeonID = "216";
 		DungeonHeroicID = "217";
 		Acronym = L["Gun"];
+		WorldMapID = "530";
 		JournalInstanceID = "274";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -1858,6 +1925,7 @@ Syntax:
 		DungeonHeroicID = "280";
 		Acronym = L["IC"];
 		PlayerLimit = "10/25";
+		WorldMapID = "604";
 		JournalInstanceID = "758";
 		Module = "Atlas_WrathoftheLichKing";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Ashen Verdict"] };
@@ -1882,6 +1950,7 @@ Syntax:
 		DungeonHeroicID = "280";
 		Acronym = L["IC"];
 		PlayerLimit = "10/25";
+		WorldMapID = "604";
 		JournalInstanceID = "758";
 		Module = "Atlas_WrathoftheLichKing";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Ashen Verdict"] };
@@ -1913,6 +1982,7 @@ Syntax:
 		DungeonHeroicID = "280";
 		Acronym = L["IC"];
 		PlayerLimit = "10/25";
+		WorldMapID = "604";
 		JournalInstanceID = "758";
 		Module = "Atlas_WrathoftheLichKing";
 		{ ORNG..REPUTATION..L["Colon"]..BF["The Ashen Verdict"] };
@@ -1926,6 +1996,7 @@ Syntax:
 		DungeonHeroicID = "227";
 		Acronym = L["Nax"];
 		PlayerLimit = "10/25";
+		WorldMapID = "535";
 		JournalInstanceID = "754";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -1967,6 +2038,7 @@ Syntax:
 		DungeonHeroicID = "238";
 		Acronym = L["OS"];
 		PlayerLimit = "10/25";
+		WorldMapID = "531";
 		JournalInstanceID = "755";
 		Module = "Atlas_WrathoftheLichKing";
 		{ ORNG..L["AKA"]..L["Colon"]..L["Black Dragonflight Chamber"] };
@@ -1983,6 +2055,7 @@ Syntax:
 		DungeonHeroicID = "257";
 		Acronym = L["Ony"];
 		PlayerLimit = "10/25";
+		WorldMapID = "718";
 		JournalInstanceID = "760";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -1995,6 +2068,7 @@ Syntax:
 		DungeonHeroicID = "294";
 		Acronym = L["RS"];
 		PlayerLimit = "10/25";
+		WorldMapID = "609";
 		JournalInstanceID = "761";
 		Module = "Atlas_WrathoftheLichKing";
 		{ ORNG..L["AKA"]..L["Colon"]..L["Red Dragonflight Chamber"] };
@@ -2011,6 +2085,7 @@ Syntax:
 		DungeonHeroicID = "237";
 		Acronym = L["TEoE"];
 		PlayerLimit = "10/25";
+		WorldMapID = "527";
 		JournalInstanceID = "756";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"]..L["Slash"]..L["Exit"]..L["L-Parenthesis"]..L["Portal"]..L["R-Parenthesis"], 10001 };
@@ -2022,6 +2097,7 @@ Syntax:
 		DungeonID = "225";
 		DungeonHeroicID = "226";
 		Acronym = L["Nex, Nexus"];
+		WorldMapID = "520";
 		JournalInstanceID = "281";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2041,6 +2117,7 @@ Syntax:
 		DungeonID = "206";
 		DungeonHeroicID = "211";
 		Acronym = L["Ocu"];
+		WorldMapID = "528";
 		JournalInstanceID = "282";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2061,6 +2138,7 @@ Syntax:
 		DungeonID = "245";
 		DungeonHeroicID = "249";
 		Acronym = L["Champ"];
+		WorldMapID = "542";
 		JournalInstanceID = "284";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2088,6 +2166,8 @@ Syntax:
 		DungeonHeroicID = "248";
 		Acronym = L["Crus"];
 		PlayerLimit = "10/25";
+		WorldMapID = "543";
+		JournalInstanceID = "757";
 		Module = "Atlas_WrathoftheLichKing";
 		{ ORNG..L["Heroic: Trial of the Grand Crusader"] };
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2115,6 +2195,7 @@ Syntax:
 		DungeonHeroicID = "244";
 		Acronym = L["Uldu"];
 		PlayerLimit = "10/25";
+		WorldMapID = "529";
 		JournalInstanceID = "759";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2139,6 +2220,7 @@ Syntax:
 		DungeonHeroicID = "244";
 		Acronym = L["Uldu"];
 		PlayerLimit = "10/25";
+		WorldMapID = "529";
 		JournalInstanceID = "759";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." B) "..L["The Siege"], 10001 };
@@ -2161,6 +2243,7 @@ Syntax:
 		DungeonHeroicID = "244";
 		Acronym = L["Uldu"];
 		PlayerLimit = "10/25";
+		WorldMapID = "529";
 		JournalInstanceID = "759";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." C) "..BZ["The Antechamber"], 10001 };
@@ -2184,6 +2267,7 @@ Syntax:
 		DungeonHeroicID = "244";
 		Acronym = L["Uldu"];
 		PlayerLimit = "10/25";
+		WorldMapID = "529";
 		JournalInstanceID = "759";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." D) "..L["The Keepers"], 10001 };
@@ -2197,6 +2281,7 @@ Syntax:
 		DungeonHeroicID = "244";
 		Acronym = L["Uldu"];
 		PlayerLimit = "10/25";
+		WorldMapID = "529";
 		JournalInstanceID = "759";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." E) "..L["The Keepers"], 10001 };
@@ -2211,6 +2296,7 @@ Syntax:
 		DungeonID = "207";
 		DungeonHeroicID = "212";
 		Acronym = L["HoL"];
+		WorldMapID = "525";
 		JournalInstanceID = "275";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2226,6 +2312,7 @@ Syntax:
 		DungeonID = "208";
 		DungeonHeroicID = "213";
 		Acronym = L["HoS"];
+		WorldMapID = "526";
 		JournalInstanceID = "277";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2244,6 +2331,7 @@ Syntax:
 		DungeonID = "202";
 		DungeonHeroicID = "242";
 		Acronym = L["UK, Keep"];
+		WorldMapID = "523";
 		JournalInstanceID = "285";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2261,6 +2349,7 @@ Syntax:
 		DungeonID = "203";
 		DungeonHeroicID = "205";
 		Acronym = L["UP, Pinn"];
+		WorldMapID = "524";
 		JournalInstanceID = "286";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2279,6 +2368,7 @@ Syntax:
 		DungeonHeroicID = "240";
 		Acronym = L["VoA"];
 		PlayerLimit = "10/25";
+		WorldMapID = "532";
 		JournalInstanceID = 753;
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2293,6 +2383,7 @@ Syntax:
 		DungeonID = "220";
 		DungeonHeroicID = "221";
 		Acronym = L["VH"];
+		WorldMapID = "536";
 		JournalInstanceID = "283";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2317,6 +2408,7 @@ Syntax:
 		DungeonHeroicID = "329";
 		Acronym = L["BH"];
 		PlayerLimit = "10/25";
+		WorldMapID = "752";
 		JournalInstanceID = "75";
 		Module = "Atlas_Cataclysm";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Baradin's Wardens"]..L["L-Parenthesis"]..FACTION_ALLIANCE..L["R-Parenthesis"] };
@@ -2332,6 +2424,7 @@ Syntax:
 		DungeonID = "303";
 		DungeonHeroicID = "323";
 		Acronym = L["BRC"];
+		WorldMapID = "753";
 		JournalInstanceID = "66";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2351,6 +2444,7 @@ Syntax:
 		DungeonHeroicID = "314";
 		Acronym = L["BWD"];
 		PlayerLimit = "10/25";
+		WorldMapID = "754";
 		JournalInstanceID = "73";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2368,6 +2462,7 @@ Syntax:
 		DungeonHeroicID = "448";
 		Acronym = L["CoT-DS"];
 		PlayerLimit = "10/25";
+		WorldMapID = "824";
 		JournalInstanceID = "187";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2384,6 +2479,7 @@ Syntax:
 		DungeonHeroicID = "448";
 		Acronym = L["CoT-DS"];
 		PlayerLimit = "10/25";
+		WorldMapID = "824";
 		JournalInstanceID = "187";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." C-E) "..L["Portal"], 10001 };
@@ -2398,6 +2494,7 @@ Syntax:
 		DungeonHeroicID = "448";
 		Acronym = L["CoT-DS"];
 		PlayerLimit = "10/25";
+		WorldMapID = "824";
 		JournalInstanceID = "187";
 		Module = "Atlas_Cataclysm";
 		{ WHIT.." 6) "..Atlas_GetBossName("Warmaster Blackhorn", 332), 332 };
@@ -2409,6 +2506,7 @@ Syntax:
 		Location = { BZ["Tanaris"] };
 		DungeonID = "435";
 		Acronym = L["CoT-ET"];
+		WorldMapID = "820";
 		JournalInstanceID = "184";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2427,6 +2525,7 @@ Syntax:
 		Location = { BZ["Tanaris"] };
 		DungeonID = "439";
 		Acronym = L["CoT-HoT"];
+		WorldMapID = "819";
 		JournalInstanceID = "186";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2442,6 +2541,7 @@ Syntax:
 		Location = { BZ["Tanaris"] };
 		DungeonID = "437";
 		Acronym = L["CoT-WoE"];
+		WorldMapID = "816";
 		JournalInstanceID = "185";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2462,6 +2562,7 @@ Syntax:
 		DungeonHeroicID = "362";
 		Acronym = L["FL"];
 		PlayerLimit = "10/25";
+		WorldMapID = "800";
 		JournalInstanceID = "78";
 		Module = "Atlas_Cataclysm";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Avengers of Hyjal"] };
@@ -2484,6 +2585,7 @@ Syntax:
 		DungeonID = "304";
 		DungeonHeroicID = "322";
 		Acronym = L["GB"];
+		WorldMapID = "757";
 		JournalInstanceID = "71";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2501,6 +2603,7 @@ Syntax:
 		DungeonID = "305";
 		DungeonHeroicID = "321";
 		Acronym = L["HoO"];
+		WorldMapID = "759";
 		JournalInstanceID = "70";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2521,6 +2624,7 @@ Syntax:
 		DungeonID = "312";
 		DungeonHeroicID = "325";
 		Acronym = L["LCoT"];
+		WorldMapID = "747";
 		JournalInstanceID = "69";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2538,6 +2642,7 @@ Syntax:
 		DungeonID = "8";
 		DungeonHeroicID = "327";
 		Acronym = L["SFK"];
+		WorldMapID = "764";
 		JournalInstanceID = "64";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2567,6 +2672,7 @@ Syntax:
 		DungeonHeroicID = "316";
 		Acronym = L["BoT"];
 		PlayerLimit = "10/25";
+		WorldMapID = "758";
 		JournalInstanceID = "72";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2586,6 +2692,7 @@ Syntax:
 		DungeonID = "6";
 		DungeonHeroicID = "326";
 		Acronym = L["VC"];
+		WorldMapID = "756";
 		JournalInstanceID = "63";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2611,6 +2718,7 @@ Syntax:
 		DungeonID = "307";
 		DungeonHeroicID = "320";
 		Acronym = L["TSC"];
+		WorldMapID = "768";
 		JournalInstanceID = "67";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2628,6 +2736,7 @@ Syntax:
 		DungeonID = "311";
 		DungeonHeroicID = "319";
 		Acronym = L["VP"];
+		WorldMapID = "769";
 		JournalInstanceID = "68";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2645,6 +2754,7 @@ Syntax:
 		DungeonHeroicID = "318";
 		Acronym = L["TWT"];
 		PlayerLimit = "10/25";
+		WorldMapID = "773";
 		JournalInstanceID = "74";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2660,6 +2770,7 @@ Syntax:
 		DungeonID = "302";
 		DungeonHeroicID = "324";
 		Acronym = L["ToTT"];
+		WorldMapID = "767";
 		JournalInstanceID = "65";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2678,6 +2789,7 @@ Syntax:
 		Location = { BZ["Ghostlands"] };
 		DungeonID = "340";
 		Acronym = L["ZA"];
+		WorldMapID = "781";
 		JournalInstanceID = "77";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2724,6 +2836,7 @@ Syntax:
 		Location = { BZ["Northern Stranglethorn"] };
 		DungeonID = "334";
 		Acronym = L["ZG"];
+		WorldMapID = "793";
 		JournalInstanceID = "76";
 		Module = "Atlas_Cataclysm";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2778,6 +2891,7 @@ Syntax:
 		DungeonID = "631";
 		DungeonHeroicID = "471"; -- yes, it's weird that heroic ID is smaller than normal dungeon ID
 		Acronym = L["GSS"];
+		WorldMapID = "875";
 		JournalInstanceID = "303";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2795,6 +2909,7 @@ Syntax:
 		DungeonHeroicID = "534";
 		Acronym = L["HoF"];
 		PlayerLimit = "10/25";
+		WorldMapID = "897";
 		JournalInstanceID = "330";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2813,6 +2928,7 @@ Syntax:
 		DungeonID = "467";
 		DungeonHeroicID = "519";
 		Acronym = L["MP"];
+		WorldMapID = "885";
 		JournalInstanceID = "321";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2832,6 +2948,7 @@ Syntax:
 		DungeonHeroicID = "532";
 		Acronym = L["MV"];
 		PlayerLimit = "10/25";
+		WorldMapID = "896";
 		JournalInstanceID = "317";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2859,6 +2976,7 @@ Syntax:
 		DungeonID = "163";
 		DungeonHeroicID = "473";
 		Acronym = L["Halls"];
+		WorldMapID = "874";
 		JournalInstanceID = "311";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2877,6 +2995,7 @@ Syntax:
 		DungeonID = "164";
 		DungeonHeroicID = "474";
 		Acronym = L["SM"];
+		WorldMapID = "874";
 		JournalInstanceID = "316";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2893,6 +3012,7 @@ Syntax:
 		DungeonID = "2";
 		DungeonHeroicID = "472";
 		Acronym = L["Scholo"];
+		WorldMapID = "898";
 		JournalInstanceID = "246";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2918,6 +3038,7 @@ Syntax:
 		DungeonID = "466";
 		DungeonHeroicID = "470";
 		Acronym = L["SPM"];
+		WorldMapID = "877";
 		JournalInstanceID = "312";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." B-H) "..L["Connection"], 10001 };
@@ -2931,6 +3052,7 @@ Syntax:
 		DungeonID = "466";
 		DungeonHeroicID = "470";
 		Acronym = L["SPM"];
+		WorldMapID = "877";
 		JournalInstanceID = "312";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2945,6 +3067,7 @@ Syntax:
 		DungeonID = "554";
 		DungeonHeroicID = "630";
 		Acronym = L["SNT"];
+		WorldMapID = "887";
 		JournalInstanceID = "324";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2958,6 +3081,7 @@ Syntax:
 		DungeonID = "554";
 		DungeonHeroicID = "630";
 		Acronym = L["SNT"];
+		WorldMapID = "887";
 		JournalInstanceID = "324";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." C) "..L["Connection"], 10001 };
@@ -2972,6 +3096,7 @@ Syntax:
 		DungeonHeroicID = "715";
 		Acronym = L["SoO"];
 		PlayerLimit = "10-30";
+		WorldMapID = "953";
 		JournalInstanceID = "369";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -2988,6 +3113,7 @@ Syntax:
 		DungeonHeroicID = "715";
 		Acronym = L["SoO"];
 		PlayerLimit = "10-30";
+		WorldMapID = "953";
 		JournalInstanceID = "369";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." B-C) "..L["Connection"], 10001 };
@@ -3003,6 +3129,7 @@ Syntax:
 		DungeonHeroicID = "715";
 		Acronym = L["SoO"];
 		PlayerLimit = "10-30";
+		WorldMapID = "953";
 		JournalInstanceID = "369";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." D-E) "..L["Connection"], 10001 };
@@ -3019,6 +3146,7 @@ Syntax:
 		DungeonHeroicID = "715";
 		Acronym = L["SoO"];
 		PlayerLimit = "10-30";
+		WorldMapID = "953";
 		JournalInstanceID = "369";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." E) "..L["Connection"], 10001 };
@@ -3047,6 +3175,7 @@ Syntax:
 		DungeonID = "465";
 		DungeonHeroicID = "469";
 		Acronym = L["SB"];
+		WorldMapID = "876";
 		JournalInstanceID = "302";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3063,6 +3192,7 @@ Syntax:
 		DungeonID = "464";
 		DungeonHeroicID = "468";
 		Acronym = L["TJS"];
+		WorldMapID = "867";
 		JournalInstanceID = "313";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3082,6 +3212,7 @@ Syntax:
 		DungeonHeroicID = "834"; -- -- 25 players
 		Acronym = L["TES"];
 		PlayerLimit = "10/25";
+		WorldMapID = "1059";
 		JournalInstanceID = "320";
 		Module = "Atlas_MistsofPandaria";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3100,6 +3231,7 @@ Syntax:
 		DungeonHeroicID = "634";
 		Acronym = L["ToT"];
 		PlayerLimit = "10/25";
+		WorldMapID = "930";
 		JournalInstanceID = "362";
 		Module = "Atlas_MistsofPandaria";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Shado-Pan Assault"] };
@@ -3122,6 +3254,7 @@ Syntax:
 		DungeonHeroicID = "634";
 		Acronym = L["ToT"];
 		PlayerLimit = "10/25";
+		WorldMapID = "930";
 		JournalInstanceID = "362";
 		Module = "Atlas_MistsofPandaria";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Shado-Pan Assault"] };
@@ -3138,6 +3271,7 @@ Syntax:
 		DungeonHeroicID = "634";
 		Acronym = L["ToT"];
 		PlayerLimit = "10/25";
+		WorldMapID = "930";
 		JournalInstanceID = "362";
 		Module = "Atlas_MistsofPandaria";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Shado-Pan Assault"] };
@@ -3157,6 +3291,7 @@ Syntax:
 		DungeonHeroicID = "634";
 		Acronym = L["ToT"];
 		PlayerLimit = "10/25";
+		WorldMapID = "930";
 		JournalInstanceID = "362";
 		Module = "Atlas_MistsofPandaria";
 		{ ORNG..REPUTATION..L["Colon"]..BF["Shado-Pan Assault"] };
@@ -3183,6 +3318,7 @@ Syntax:
 		DungeonHeroicID = "845";
 		DungeonMythicID = "1008";
 		Acronym = L["Auch"]; -- taken from BC
+		WorldMapID = "984";
 		JournalInstanceID = "547";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3202,6 +3338,7 @@ Syntax:
 		DungeonMythicID = "900";
 		Acronym = L["BRF"];
 		PlayerLimit = "10-30";
+		WorldMapID = "988";
 		JournalInstanceID = "457";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3233,6 +3370,7 @@ Syntax:
 		DungeonMythicID = "900";
 		Acronym = L["BRF"];
 		PlayerLimit = "10-30";
+		WorldMapID = "988";
 		JournalInstanceID = "457";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." C) "..L["Connection"], 10001 };
@@ -3255,6 +3393,7 @@ Syntax:
 		DungeonHeroicID = "859";
 		DungeonMythicID = "1005";
 		Acronym = L["BSM"];
+		WorldMapID = "964";
 		JournalInstanceID = "385";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3272,6 +3411,7 @@ Syntax:
 		DungeonHeroicID = "866";
 		DungeonMythicID = "1003";
 		Acronym = L["EB"];
+		WorldMapID = "1008";
 		JournalInstanceID = "556";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3291,6 +3431,7 @@ Syntax:
 		DungeonHeroicID = "866";
 		DungeonMythicID = "1003";
 		Acronym = L["EB"];
+		WorldMapID = "1008";
 		JournalInstanceID = "556";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." B) "..L["Connection"].. L["L-Parenthesis"]..L["Portal"]..L["R-Parenthesis"], 10001 };
@@ -3303,6 +3444,7 @@ Syntax:
 		DungeonHeroicID = "858";
 		DungeonMythicID = "1006";
 		Acronym = L["GD"];
+		WorldMapID = "993";
 		JournalInstanceID = "536";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3322,6 +3464,7 @@ Syntax:
 		DungeonMythicID = "989";
 		Acronym = L["HC"];
 		PlayerLimit = "10-30";
+		WorldMapID = "1026";
 		JournalInstanceID = "669";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3339,6 +3482,7 @@ Syntax:
 		DungeonMythicID = "989";
 		Acronym = L["HC"];
 		PlayerLimit = "10-30";
+		WorldMapID = "1026";
 		JournalInstanceID = "669";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." B/C) "..L["Connection"], 10001 };
@@ -3357,6 +3501,7 @@ Syntax:
 		DungeonMythicID = "989";
 		Acronym = L["HC"];
 		PlayerLimit = "10-30";
+		WorldMapID = "1026";
 		JournalInstanceID = "669";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." C) "..L["Connection"], 10001 };
@@ -3370,6 +3515,7 @@ Syntax:
 		DungeonMythicID = "989";
 		Acronym = L["HC"];
 		PlayerLimit = "10-30";
+		WorldMapID = "1026";
 		JournalInstanceID = "669";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." B/C) "..L["Connection"], 10001 };
@@ -3391,6 +3537,7 @@ Syntax:
 		DungeonMythicID = "989";
 		Acronym = L["HC"];
 		PlayerLimit = "10-30";
+		WorldMapID = "1026";
 		JournalInstanceID = "669";
 		Module = "Atlas_WarlordsofDraenor";
 		{ WHIT.."12) "..Atlas_GetBossName("Mannoroth", 1395), 1395 };				-- 12
@@ -3403,6 +3550,7 @@ Syntax:
 		DungeonMythicID = "989";
 		Acronym = L["HC"];
 		PlayerLimit = "10-30";
+		WorldMapID = "1026";
 		JournalInstanceID = "669";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." D) "..L["Connection"], 10001 };
@@ -3416,6 +3564,7 @@ Syntax:
 		DungeonMythicID = "897";
 		Acronym = L["HM"];
 		PlayerLimit = "10-30";
+		WorldMapID = "994";
 		JournalInstanceID = "477";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"]..L["L-Parenthesis"]..L["Lower"]..L["R-Parenthesis"], 10001 };
@@ -3434,6 +3583,7 @@ Syntax:
 		DungeonMythicID = "897";
 		Acronym = L["HM"];
 		PlayerLimit = "10-30";
+		WorldMapID = "994";
 		JournalInstanceID = "477";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." B-D) "..L["Connection"], 10001 };
@@ -3450,6 +3600,7 @@ Syntax:
 		DungeonHeroicID = "857";
 		DungeonMythicID = "1007";
 		Acronym = L["ID"];
+		WorldMapID = "987";
 		JournalInstanceID = "558";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3471,6 +3622,7 @@ Syntax:
 		DungeonHeroicID = "784";
 		DungeonMythicID = "1009";
 		Acronym = L["SBG"];
+		WorldMapID = "969";
 		JournalInstanceID = "537";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3489,6 +3641,7 @@ Syntax:
 		DungeonHeroicID = "780";
 		DungeonMythicID = "1010";
 		Acronym = L["SR"];
+		WorldMapID = "989";
 		JournalInstanceID = "476";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3508,6 +3661,7 @@ Syntax:
 		DungeonHeroicID = "860";
 		DungeonMythicID = "1004";
 		Acronym = L["UBRS"];
+		WorldMapID = "995";
 		JournalInstanceID = "559";
 		Module = "Atlas_WarlordsofDraenor";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3532,6 +3686,7 @@ Syntax:
 		DungeonID = "1208";
 		DungeonHeroicID = "1209";
 		--Acronym = "";
+		WorldMapID = "1066";
 		JournalInstanceID = "777";
 		Module = "Atlas_Legion";
 		LargeMap = "AssaultonVioletHold1_";
@@ -3552,6 +3707,7 @@ Syntax:
 		DungeonID = "1204";
 		DungeonHeroicID = "1205";
 		--Acronym = "";
+		WorldMapID = "1081";
 		JournalInstanceID = "740";
 		Module = "Atlas_Legion";
 		LargeMap = "BlackRookHold1_";
@@ -3565,6 +3721,7 @@ Syntax:
 		DungeonID = "1204";
 		DungeonHeroicID = "1205";
 		--Acronym = "";
+		WorldMapID = "1081";
 		JournalInstanceID = "740";
 		Module = "Atlas_Legion";
 		LargeMap = "BlackRookHold2_";
@@ -3577,6 +3734,7 @@ Syntax:
 		DungeonID = "1204";
 		DungeonHeroicID = "1205";
 		--Acronym = "";
+		WorldMapID = "1081";
 		JournalInstanceID = "740";
 		Module = "Atlas_Legion";
 		{ BLUE.." E-G) "..L["Connection"], 10001 };
@@ -3590,6 +3748,7 @@ Syntax:
 		DungeonID = "1318";
 		DungeonHeroicID = "1319";
 		--Acronym = "";
+		WorldMapID = "1087";
 		JournalInstanceID = "800";
 		Module = "Atlas_Legion";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3605,6 +3764,7 @@ Syntax:
 		DungeonID = "1318";
 		DungeonHeroicID = "1319";
 		--Acronym = "";
+		WorldMapID = "1087";
 		JournalInstanceID = "800";
 		Module = "Atlas_Legion";
 		{ BLUE.." B-C) "..L["Connection"], 10002 };
@@ -3615,6 +3775,7 @@ Syntax:
 		DungeonID = "1201";
 		DungeonHeroicID = "1202";
 		--Acronym = "";
+		WorldMapID = "1067";
 		JournalInstanceID = "762";
 		Module = "Atlas_Legion"; 
 		LargeMap = "DarkheartThicket";
@@ -3631,6 +3792,7 @@ Syntax:
 		DungeonID = "1174";
 		DungeonHeroicID = "1175";
 		--Acronym = "";
+		WorldMapID = "1046";
 		JournalInstanceID = "716";
 		Module = "Atlas_Legion";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3646,6 +3808,7 @@ Syntax:
 		DungeonID = "1193";
 		DungeonHeroicID = "1194";
 		--Acronym = "";
+		WorldMapID = "1041";
 		JournalInstanceID = "721";
 		Module = "Atlas_Legion";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3660,6 +3823,7 @@ Syntax:
 		DungeonID = "1193";
 		DungeonHeroicID = "1194";
 		--Acronym = "";
+		WorldMapID = "1041";
 		JournalInstanceID = "721";
 		Module = "Atlas_Legion";
 		{ BLUE.." B) "..L["Portal"], 10002 };
@@ -3671,6 +3835,7 @@ Syntax:
 		DungeonID = "1193";
 		DungeonHeroicID = "1194";
 		--Acronym = "";
+		WorldMapID = "1041";
 		JournalInstanceID = "721";
 		Module = "Atlas_Legion";
 		{ BLUE.." C) "..L["Connection"], 10003 };
@@ -3687,6 +3852,7 @@ Syntax:
 		DungeonID = "1191";
 		DungeonHeroicID = "1192";
 		--Acronym = "";
+		WorldMapID = "1042";
 		JournalInstanceID = "727";
 		Module = "Atlas_Legion";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3699,6 +3865,7 @@ Syntax:
 		DungeonID = "1191";
 		DungeonHeroicID = "1192";
 		--Acronym = "";
+		WorldMapID = "1043";
 		JournalInstanceID = "727";
 		Module = "Atlas_Legion";
 		{ BLUE.." B-C) "..L["Connection"], 10001 };
@@ -3711,6 +3878,7 @@ Syntax:
 		DungeonID = "1206";
 		DungeonHeroicID = "1207";
 		--Acronym = "";
+		WorldMapID = "1065";
 		JournalInstanceID = "767";
 		Module = "Atlas_Legion";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3725,6 +3893,7 @@ Syntax:
 		DungeonID = "1189";
 		DungeonHeroicID = "1190";
 		--Acronym = "";
+		WorldMapID = "1079";
 		JournalInstanceID = "726";
 		Module = "Atlas_Legion";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3741,6 +3910,7 @@ Syntax:
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
 		--Acronym = "";
+		WorldMapID = "1094";
 		JournalInstanceID = "768";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3756,6 +3926,7 @@ Syntax:
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
 		--Acronym = "";
+		WorldMapID = "1094";
 		JournalInstanceID = "768";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3774,6 +3945,7 @@ Syntax:
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
 		--Acronym = "";
+		WorldMapID = "1094";
 		JournalInstanceID = "768";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3787,6 +3959,7 @@ Syntax:
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
 		--Acronym = "";
+		WorldMapID = "1094";
 		JournalInstanceID = "768";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3800,6 +3973,7 @@ Syntax:
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
 		--Acronym = "";
+		WorldMapID = "1094";
 		JournalInstanceID = "768";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3813,6 +3987,7 @@ Syntax:
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
 		--Acronym = "";
+		WorldMapID = "1094";
 		JournalInstanceID = "768";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3826,6 +4001,7 @@ Syntax:
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
 		--Acronym = "";
+		WorldMapID = "1094";
 		JournalInstanceID = "768";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3840,6 +4016,7 @@ Syntax:
 		DungeonHeroicID = "1349";
 		DungeonMythicID = "1350";
 		--Acronym = "";
+		WorldMapID = "1094";
 		JournalInstanceID = "768";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3853,6 +4030,7 @@ Syntax:
 		DungeonHeroicID = "1352";
 		DungeonMythicID = "1353";
 		--Acronym = "";
+		WorldMapID = "1088";
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3869,6 +4047,7 @@ Syntax:
 		DungeonHeroicID = "1352";
 		DungeonMythicID = "1353";
 		--Acronym = "";
+		WorldMapID = "1088";
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3883,6 +4062,7 @@ Syntax:
 		DungeonHeroicID = "1352";
 		DungeonMythicID = "1353";
 		--Acronym = "";
+		WorldMapID = "1088";
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3898,6 +4078,7 @@ Syntax:
 		DungeonHeroicID = "1352";
 		DungeonMythicID = "1353";
 		--Acronym = "";
+		WorldMapID = "1088";
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3910,6 +4091,7 @@ Syntax:
 		DungeonHeroicID = "1352";
 		DungeonMythicID = "1353";
 		--Acronym = "";
+		WorldMapID = "1088";
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3923,6 +4105,7 @@ Syntax:
 		DungeonHeroicID = "1352";
 		DungeonMythicID = "1353";
 		--Acronym = "";
+		WorldMapID = "1088";
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3937,6 +4120,7 @@ Syntax:
 		DungeonHeroicID = "1352";
 		DungeonMythicID = "1353";
 		--Acronym = "";
+		WorldMapID = "1088";
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
@@ -3948,6 +4132,7 @@ Syntax:
 		DungeonID = "1043";
 		DungeonHeroicID = "1044";
 		--Acronym = "";
+		WorldMapID = "1045";
 		JournalInstanceID = "707";
 		Module = "Atlas_Legion";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
@@ -3961,6 +4146,7 @@ Syntax:
 		DungeonID = "1043";
 		DungeonHeroicID = "1044";
 		--Acronym = "";
+		WorldMapID = "1045";
 		JournalInstanceID = "707";
 		Module = "Atlas_Legion";
 		{ BLUE.." C) "..L["Elevator"], 10003 };
@@ -3975,6 +4161,7 @@ Syntax:
 		DungeonID = "1043";
 		DungeonHeroicID = "1044";
 		--Acronym = "";
+		WorldMapID = "1045";
 		JournalInstanceID = "707";
 		Module = "Atlas_Legion";
 		{ BLUE.." D) "..L["Connection"], 10004 };
