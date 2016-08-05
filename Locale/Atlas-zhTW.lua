@@ -162,6 +162,9 @@ if L then
 	L["ATLAS_MISSING_MODULE"] = "Atlas 已偵測到遺失的模組／插件。\n\n這有可能是因為先前您有過期的模組／插件而被 Atlas 停用。\n如果您現在已經將所有的模組／插件安裝到最新版，請到插件列表裡確認是否所有的項目都已被啟用。\n\n如果您確認您不需要這些「遺失」的插件並且不想繼續看到這樣的通知，您可以到選項視窗去關閉通知。\n\n以下是遺失的模組／插件列表：\n";
 	L["ATLAS_OPEN_ADDON_LIST"] = "開啟插件列表";
 
+	L["ATLAS_OPEN_ADVENTURE"] = "按下以開啟冒險指南視窗.";
+	L["ATLAS_CLICK_TO_OPEN"] = "按下以開啟 Atlas 地圖視窗.";
+	L["ATLAS_OPEN_WOWMAP_WINDOW"] = "按下以開啟冒險指南地圖視窗.";
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
@@ -208,7 +211,6 @@ if L then
 	L["Chase Begins"] = "追逐開始";
 	L["Chase Ends"] = "追逐結束";
 	L["Child"] = "幼年";
-	L["Click to open Dungeon Journal window."] = "按下以開啟地城導覽視窗.";
 	L["Connection"] = "通道";
 	L["Elevator"] = "電梯";
 	L["End"] = "結束";
@@ -1292,8 +1294,12 @@ if L then
 	--Assault on VioletHold
 
 	--The Emerald Nightmare
+	--L["Nightmare Watcher"] = "Nightmare Watcher";
+	--L["Malfurion Stormrage"] = "Malfurion Stormrage";
+	L["Teleport to Moonglade"] = "傳送到月光林地";
 
 	--The Nighthold
+	L["Teleport to Tichondrius / Grand Magistrix Elisande"] = "傳送到提克迪奧斯／大博學者艾莉珊德處";
 
 --@end-do-not-package@
 

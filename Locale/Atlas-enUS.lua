@@ -166,6 +166,12 @@ if L then
 	L["ATLAS_MISSING_MODULE"] = "Atlas has detected some missing module(s) / plugin(s). \n\nIt could be you had outdated module(s) / plugin(s) which had been disabled by Atlas. \nIf you have now installed all latest ones, go to your addon list to see if all of them have been enabled. \n\nIf you are sure that you don't need those \"missing\" module(s) / plugin(s) and do not want to see this message again, you can go to option panel to disable the notification. \n\nList of missing module(s) / plugin(s): \n";
 	L["ATLAS_OPEN_ADDON_LIST"] = "Open addon list";
 
+	L["ATLAS_OPEN_ADVENTURE"] = "Click to open Adventure Journal window.";
+	L["ATLAS_CLICK_TO_OPEN"] = "Click to open Atlas map window.";
+	L["ATLAS_OPEN_WOWMAP_WINDOW"] = "Click to open Adventure Journal Map window.";
+	L["ARLAS_COLLAPSE_BUTTON"] = "Click to close Atlas' legend panel.";
+	L["ARLAS_EXPAND_BUTTON"] = "Click to open Atlas' legend panel.";
+
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************
@@ -211,7 +217,6 @@ if L then
 	L["Chase Begins"] = "Chase Begins";
 	L["Chase Ends"] = "Chase Ends";
 	L["Child"] = "Child";
-	L["Click to open Dungeon Journal window."] = "Click to open Dungeon Journal window.";
 	L["Connection"] = "Connection";
 	L["Elevator"] = "Elevator";
 	L["End"] = "End";

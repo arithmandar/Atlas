@@ -29,7 +29,7 @@
 local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0");
 
-function Atlas_JournalEncounter_InstanceButton_OnClick(frame)
+function AtlasFrameAdventureJournalButton_OnClick(frame)
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local data = AtlasMaps;
 	local base = data[zoneID];
@@ -44,6 +44,7 @@ function Atlas_JournalEncounter_InstanceButton_OnClick(frame)
 	EncounterJournal_ListInstances();
 	EncounterJournal_DisplayInstance(base.JournalInstanceID);
 
+	Atlas_Toggle();
 	if (not EncounterJournal:IsShown()) then
 		EncounterJournal:Show();
 	else
@@ -71,6 +72,7 @@ function Atlas_JournalEncounter_EncounterButton_OnClick(encounterID)
 	EncounterJournal_DisplayInstance(base.JournalInstanceID);
 	EncounterJournal_DisplayEncounter(encounterID);
 
+	Atlas_Toggle();
 	if (not EncounterJournal:IsShown()) then
 		EncounterJournal:Show();
 	else
@@ -80,7 +82,7 @@ function Atlas_JournalEncounter_EncounterButton_OnClick(encounterID)
 end
 
 
-function Atlas_JournalEncounter_InstanceButton_OnEnter(frame)
+function AtlasFrameAdventureJournalButton_OnEnter(frame)
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local data = AtlasMaps;
 	local base = data[zoneID];
@@ -95,7 +97,7 @@ function Atlas_JournalEncounter_InstanceButton_OnEnter(frame)
 			GameTooltip:SetText(name);
 			GameTooltipTextLeft1:SetTextColor(1, 1, 1);
 			GameTooltip:AddLine(description, nil, nil, nil, true);
-			GameTooltip:AddLine(L["Click to open Dungeon Journal window."], 0.5, 0.5, 1, true);
+			GameTooltip:AddLine(L["ATLAS_OPEN_ADVENTURE"], 0.5, 0.5, 1, true);
 			GameTooltip:Show();
 		end
 	else
@@ -104,23 +106,24 @@ function Atlas_JournalEncounter_InstanceButton_OnEnter(frame)
 end
 
 --@alpha@
-function AtlasJournalInstanceMapButton_OnClick()
+function AtlasFrameAdventureJournalMapButton_OnClick()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local data = AtlasMaps;
 	local base = data[zoneID];
 
-	local _, _, _, _, _, _, dungeonAreaMapID = EJ_GetInstanceInfo(base.JournalInstanceID);
-	if (dungeonAreaMapID and dungeonAreaMapID > 0) then
+--	local _, _, _, _, _, _, dungeonAreaMapID = EJ_GetInstanceInfo(base.JournalInstanceID);
+--	if (dungeonAreaMapID and dungeonAreaMapID > 0) then
 --[[
 		local AtlasMapPath = "Interface\\WorldMap\\dungeonAreaMapID\\";
 		for i=1, 12 do
 			_G["AtlasMapLarge"..i]:SetTexture(AtlasMapPath..dungeonAreaMapID..i);
 		end
 ]]
+	if (base.WorldMapID and tonumber(base.WorldMapID) > 0) then
 		HideUIPanel(AtlasFrame);
 		WorldMapFrame.fromJournal = true;
 		ShowUIPanel(WorldMapFrame);
-		SetMapByID(dungeonAreaMapID);
+		SetMapByID(base.WorldMapID);
 	end
 end
 --@end-alpha@

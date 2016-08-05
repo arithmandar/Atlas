@@ -31,12 +31,20 @@ ignore:
     - Images/AtlasFrame-BottomRight.psd
     - Images/AtlasFrame-TopLeft.psd
     - Images/AtlasFrame-TopRight.psd
-    - Images/AtlasFrame-BottomLeftLarge.psd
-    - Images/AtlasFrame-BottomRightLarge.psd
-    - Images/AtlasFrame-MainLarge.psd
-    - Images/AtlasFrame-MidLeftLarge.psd
-    - Images/AtlasFrame-MidRightLarge.psd
-    - Images/AtlasFrame-TopLeftLarge.psd
-    - Images/AtlasFrame-TopRightLarge.psd
+    - Images/AtlasFrameLarge-BottomLeft.psd
+    - Images/AtlasFrameLarge-BottomRight.psd
+    - Images/AtlasFrameLarge-Main.psd
+    - Images/AtlasFrameLarge-MidLeft.psd
+    - Images/AtlasFrameLarge-MidRight.psd
+    - Images/AtlasFrameLarge-TopLeft.psd
+    - Images/AtlasFrameLarge-TopRight.psd
+    - Images/AtlasFrameSmall-Main.psd
+    - Images/AtlasFrameSmall-TopLeft.psd
+    - Images/AtlasFrameSmall-TopRight.psd
+    - Images/AtlasFrameSmall-BottomRight.psd
     - Images/WorldMapIcon-Down.psd
     - Images/WorldMapIcon-Up.psd
+    - Images/UI-Atlas-Icon.psd
+    - Images/UI-Panel-CollapseButton-Up.psd
+    - Images/UI-Panel-ExpandButton-Up.psd
+    - Images/UI-WorldMap-Icon.psd

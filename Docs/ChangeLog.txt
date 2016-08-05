@@ -8,10 +8,11 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
-v1.33.03 (Jul. XX, 2016)
+v1.33.03 (Aug. XX, 2016)
 ------------------------
 - Update Icecrown Citadel mapA to add the info regarding to portal to Dalaran
 - Minor update for map presenting
+- Attached Atlas button to World Map window so that player can easier open Atlas within World Map window
 
 v1.33.02 (Jul. 26, 2016)
 ------------------------
