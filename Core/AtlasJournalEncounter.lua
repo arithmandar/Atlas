@@ -168,3 +168,25 @@ function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 
 	return bossname;
 end
+
+--@alpha@
+function Atlas_EncounterJournal_Binding()
+	local button = _G["AtlasToggleFromEncounterJournal"];
+	if (not button) then
+		button = CreateFrame("Button","AtlasToggleFromEncounterJournal", EncounterJournal);
+		button:SetWidth(32);
+		button:SetHeight(32);
+		
+		button:SetPoint("TOPRIGHT", EncounterJournalCloseButton, -23, 0, "TOPRIGHT"); 
+		button:SetNormalTexture("Interface\\AddOns\\Atlas\\Images\\AtlasButton-Up");
+		button:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight", "ADD");
+
+		button:SetScript("OnEnter", function(self)
+			GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
+			GameTooltip:SetText(L["ATLAS_CLICK_TO_OPEN"], nil, nil, nil, nil, 1);
+		end);
+		button:SetScript("OnLeave", function(self) GameTooltip:Hide(); end);
+		button:SetScript("OnClick",AtlasToggleFromEncounterJournal_OnClick);
+	end
+end
+--@end-alpha@

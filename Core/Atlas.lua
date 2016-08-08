@@ -300,6 +300,15 @@ end
 -- Main Atlas event handler
 function Atlas_OnEvent(self, event, ...)
 	local arg1 = ...;
+--@alpha@
+	if(event=="ADDON_LOADED" and (arg1=="Atlas" or arg1=="Blizzard_EncounterJournal")) then
+		--Blizzard_EncounterJournal
+		if (IsAddOnLoaded("Blizzard_EncounterJournal") and IsAddOnLoaded("Atlas")) then
+			Atlas_EncounterJournal_Binding();
+		end
+	end
+--@end-alpha@
+
 	if (event == "ADDON_LOADED" and arg1 == "Atlas") then
 		Atlas_Init();
 	end
@@ -1621,17 +1630,53 @@ function AtlasFrame_ToggleLegendPanel()
 end
 
 function AtlasToggleFromWorldMap_OnClick(self)
-	--local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
-	--local data = AtlasMaps;
-	--local base = data[zoneID];
-
+	Atlas_AutoSelect_from_WorldMap();
 	ToggleFrame(WorldMapFrame);
 	Atlas_Toggle();
 end
 
 function AtlasToggleFromEncounterJournal_OnClick(self)
+	Atlas_AutoSelect_from_EncounterJournal();
 	ToggleFrame(EncounterJournal);
 	Atlas_Toggle();
+end
+
+function Atlas_AutoSelect_from_WorldMap()
+	local mapID, _ = GetCurrentMapAreaID();
+	
+	if (not mapID) then
+		return;
+	end
+
+	for type_k, type_v in pairs(ATLAS_DROPDOWNS) do
+		for zone_k, zone_v in pairs(type_v) do
+			if (AtlasMaps[zone_v].WorldMapID and tonumber(AtlasMaps[zone_v].WorldMapID) == mapID) then
+				AtlasOptions.AtlasType = type_k;
+				AtlasOptions.AtlasZone = zone_k;
+				Atlas_Refresh();
+				return;
+			end
+		end
+	end
+end
+
+function Atlas_AutoSelect_from_EncounterJournal()
+	local instanceID = EncounterJournal.instanceID;
+	
+	if (not instanceID) then
+		return;
+	end
+
+	for type_k, type_v in pairs(ATLAS_DROPDOWNS) do
+		for zone_k, zone_v in pairs(type_v) do
+			if (AtlasMaps[zone_v].JournalInstanceID and tonumber(AtlasMaps[zone_v].JournalInstanceID) == instanceID) then
+				AtlasOptions.AtlasType = type_k;
+				AtlasOptions.AtlasZone = zone_k;
+				Atlas_Refresh();
+				return;
+			end
+		end
+	end
 end
 --@end-alpha@
 
@@ -1658,3 +1703,4 @@ function AtlasSetEJBackground(instanceID)
 	end
 end
 ]]
+

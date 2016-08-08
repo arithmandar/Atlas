@@ -645,10 +645,12 @@
 			</OnEvent>
 			<OnShow>
 				Atlas_OnShow();
+				PlaySound("igQuestLogOpen");
 				ATLAS_SMALLFRAME_SELECTED = false;
 			</OnShow>
 			<OnHide>
 				AtlasFrame:StopMovingOrSizing();
+				PlaySound("igQuestLogClose");
 			</OnHide>
 			<OnDragStart>
 				if(button == "LeftButton") then
@@ -969,8 +971,12 @@
 			</Layer>
 		</Layers>
 		<Scripts>
+			<OnShow>
+				PlaySound("igQuestLogOpen");
+			</OnShow>
 			<OnHide>
 				AtlasFrameLarge:StopMovingOrSizing();
+				PlaySound("igQuestLogClose");
 			</OnHide>
 			<OnMouseDown>
 				if(button == "LeftButton") then
@@ -1107,7 +1113,6 @@
 					</Anchor>
 				</Anchors>
 			</Button>
-<!--@alpha@-->
 			<Button name="$parentAdventureJournalMapButton" hidden="true">
 				<Size x="32" y="32"/>
 				<Anchors>
@@ -1136,7 +1141,6 @@
 					</Anchors>
 				</HighlightTexture>
 			</Button>
-<!--@end-alpha@-->
 			<Button name="$parentAdventureJournalButton" hidden="true" toplevel="true">
 				<Size>
 					<AbsDimension x="32" y="32" />
@@ -1164,7 +1168,6 @@
 					</OnLeave>
 				</Scripts>
 			</Button>
-<!--@alpha@-->
 			<Button name="$parentExpandButton">
 				<Size x="32" y="32"/>
 				<Anchors>
@@ -1196,7 +1199,6 @@
 				<PushedTexture file="Interface\Buttons\UI-Panel-BiggerButton-Down"/>
 				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
 			</Button>
-<!--@end-alpha@-->
 		</Frames>
 		<Layers>
 			<Layer level="ARTWORK">
@@ -1284,9 +1286,11 @@
 		<Scripts>
 			<OnShow>
 				ATLAS_SMALLFRAME_SELECTED = true;
+				PlaySound("igQuestLogOpen");
 			</OnShow>
 			<OnHide>
 				AtlasFrameSmall:StopMovingOrSizing();
+				PlaySound("igQuestLogClose");
 			</OnHide>
 			<OnMouseDown>
 				if(button == "LeftButton") then
@@ -1456,28 +1460,6 @@
 				AtlasToggleFromWorldMap_OnClick(self);
 			</OnClick>
 		</Scripts>
-	</Button>
-
-	<Button name="AtlasToggleFromEncounterJournal" toplevel="true" parent="EncounterJournal">
-		<Size x="32" y="32"/>
-		<Anchors>
-			<Anchor point="TOPRIGHT" relativeTo="EncounterJournal" relativePoint="TOPRIGHT" x="150" y="-50"/>
-		</Anchors>
-		<Scripts>
-			<OnEnter>
-				GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
-				GameTooltip:SetText(ATLAS_CLICK_TO_OPEN, nil, nil, nil, nil, 1);
-			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				AtlasToggleFromEncounterJournal_OnClick(self);
-			</OnClick>
-		</Scripts>
-		<NormalTexture file="Interface\AddOns\Atlas\Images\AtlasButton-Up"/>
-		<PushedTexture file="Interface\AddOns\Atlas\Images\AtlasButton-Up"/>
-		<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
 	</Button>
 <!--@end-alpha@-->
 
