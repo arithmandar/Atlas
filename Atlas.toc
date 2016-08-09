@@ -47,6 +47,7 @@
 
 Libs\Libs.xml
 Locale\Locales.xml
+Core\AtlasTemplates.xml
 Core\Atlas.xml
 Core\AtlasOptions.xml
 Core\AtlasButton.lua

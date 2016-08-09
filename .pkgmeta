@@ -42,9 +42,9 @@ ignore:
     - Images/AtlasFrameSmall-TopLeft.psd
     - Images/AtlasFrameSmall-TopRight.psd
     - Images/AtlasFrameSmall-BottomRight.psd
+    - Images/AtlasFrameSmall-BottomSmall.psd
     - Images/WorldMapIcon-Down.psd
     - Images/WorldMapIcon-Up.psd
-    - Images/UI-Atlas-Icon.psd
     - Images/UI-Panel-CollapseButton-Up.psd
     - Images/UI-Panel-ExpandButton-Up.psd
     - Images/UI-WorldMap-Icon.psd
