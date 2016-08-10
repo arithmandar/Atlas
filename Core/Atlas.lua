@@ -65,6 +65,7 @@ ATLAS_DATA = {};
 ATLAS_SEARCH_METHOD = nil;
 ATLAS_PLUGINS = {};
 ATLAS_PLUGIN_DATA = {};
+AtlasMaps_NPC_DB = {};
 --@alpha@
 ATLAS_SMALLFRAME_SELECTED = false;
 --@end-alpha@
@@ -637,10 +638,16 @@ function Atlas_Clear_NPC_Button()
 	end
 	if (ATLAS_MAP_NPC_NUM > 0) then
 		for i = 1, ATLAS_MAP_NPC_NUM do
-			local f = _G["AtlasMapNPCButton"..i];
-			if (f) then
-				f:Hide();
-				f:ClearAllPoints();
+			local button = _G["AtlasMapNPCButton"..i];
+			local bossbutton = _G["AtlasMapBossButton"..i];
+
+			if (button) then
+				button:Hide();
+				button:ClearAllPoints();
+			end
+			if (bossbutton) then
+				bossbutton:Hide();
+				bossbutton:ClearAllPoints();
 			end
 			local t = _G["AtlasMapNPCButton_Text"..i];
 			if (t) then
@@ -649,10 +656,16 @@ function Atlas_Clear_NPC_Button()
 		end
 
 		for i = 1, ATLAS_MAP_NPC_NUM do
-			local f = _G["AtlasMapNPCButtonS"..i];
-			if (f) then
-				f:Hide();
-				f:ClearAllPoints();
+			local button = _G["AtlasMapNPCButtonS"..i];
+			local bossbutton = _G["AtlasMapBossButtonS"..i];
+
+			if (button) then
+				button:Hide();
+				button:ClearAllPoints();
+			end
+			if (bossbutton) then
+				bossbutton:Hide();
+				bossbutton:ClearAllPoints();
 			end
 			local t = _G["AtlasMapNPCButton_TextS"..i];
 			if (t) then
@@ -713,6 +726,13 @@ function Atlas_MapRefresh()
 	
 	-- Zone Name Acronym
 	local tName = base.ZoneName[1];
+--@alpha@
+	if (base.LargeMap) then
+		AtlasFrameLarge.ZoneName.Text:SetText(tName);
+	end
+	AtlasFrameSmall.ZoneName.Text:SetText(tName);
+--@end-alpha@
+	AtlasFrame.ZoneName.Text:SetText(tName);
 	if (AtlasOptions.AtlasAcronyms and base.Acronym ~= nil) then
 		tName = tName.._RED.." ["..base.Acronym.."]";
 	end
@@ -1077,36 +1097,90 @@ end
 -- Add boss / NPC button here so that we can add GameTooltip
 function AtlasMap_AddNPCButton()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
-	local NPC_Table = AtlasMaps_NPC_DB[zoneID];
+	local t = AtlasMaps_NPC_DB[zoneID];
 	local i = ATLAS_MAP_NPC_NUM;
 
-	if (NPC_Table and i == 0) then
+	if (t and i == 0) then
 		i = 1;
-		local button, button2;
-		while (NPC_Table[i]) do
-			local info_mark 	= NPC_Table[i][1];
-			local info_id 		= NPC_Table[i][2];
-			local info_x 		= NPC_Table[i][3];
-			local info_y 		= NPC_Table[i][4];
+		local bossbutton, button, bossbutton2, button2;
+		while (t[i]) do
+			local info_mark 	= t[i][1];
+			local info_id 		= t[i][2];
+			local info_x 		= t[i][3];
+			local info_y 		= t[i][4];
 
-			button = _G["AtlasMapNPCButton"..i];
-			if (not button) then
-				button = CreateFrame("Button", "AtlasMapNPCButton"..i, AtlasFrame, "AtlasMapNPCButtonTemplate");
-			end
-			button2 = _G["AtlasMapNPCButtonS"..i];
-			if (not button2) then
-				button2 = CreateFrame("Button", "AtlasMapNPCButtonS"..i, AtlasFrameSmall, "AtlasMapNPCButtonTemplate");
-			end
-			
-			local ejbossname, description, _, rootSectionID, encounterID;
 			if (info_id < 10000) then
+				bossbutton = _G["AtlasMapBossButton"..i];
+				if (not bossbutton) then
+					bossbutton = CreateFrame("Button", "AtlasMapBossButton"..i, AtlasFrame, "AtlasFrameLargeMapButtonTemplate");
+				end
+				bossbutton2 = _G["AtlasMapBossButtonS"..i];
+				if (not bossbutton2) then
+					bossbutton2 = CreateFrame("Button", "AtlasMapBossButtonS"..i, AtlasFrameSmall, "AtlasFrameLargeMapButtonTemplate");
+				end
+
 				encounterID = info_id;
 				ejbossname, description, _, rootSectionID = EJ_GetEncounterInfo(encounterID); 
-			end
-			if (ejbossname) then 
-				button.tooltipTitle = ejbossname; 
-				button2.tooltipTitle = ejbossname; 
+				if (ejbossname) then 
+					bossbutton.tooltipTitle = ejbossname; 
+					bossbutton2.tooltipTitle = ejbossname; 
+				else
+					bossbutton.tooltipTitle = nil; 
+					bossbutton2.tooltipTitle = nil; 
+				end
+				if (encounterID) then
+					bossbutton.encounterID = encounterID;
+					bossbutton2.encounterID = encounterID;
+				else
+					bossbutton.encounterID = nil;
+					bossbutton2.encounterID = nil;
+				end
+				if (description) then 
+					bossbutton.tooltipText = description; 
+					bossbutton2.tooltipText = description; 
+				else
+					bossbutton.tooltipText = nil; 
+					bossbutton2.tooltipText = nil; 
+				end
+				if (ejbossname and EncounterJournal_CheckForOverview(rootSectionID)) then
+					local _, overviewDescription = EJ_GetSectionInfo(rootSectionID);
+					if (overviewDescription) then
+						bossbutton.overviewDescription = overviewDescription;
+						bossbutton2.overviewDescription = overviewDescription;
+					else
+						bossbutton.overviewDescription = nil;
+						bossbutton2.overviewDescription = nil;
+					end
+				end
+
+				_, _, _, displayInfo, iconImage = EJ_GetCreatureInfo(1, encounterID);
+				bossbutton.displayInfo = displayInfo;
+				if ( encounterID and iconImage ) then
+					SetPortraitTexture(bossbutton.bgImage, displayInfo);
+					SetPortraitTexture(bossbutton2.bgImage, displayInfo);
+				else 
+					bossbutton.bgImage:SetTexture(nil);
+					bossbutton2.bgImage:SetTexture(nil);
+				end
+				bossbutton:ClearAllPoints();
+				bossbutton:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18-15, -info_y - 82+15);
+				bossbutton:SetID(info_id);
+				bossbutton:Show();
+
+				bossbutton2:ClearAllPoints();
+				bossbutton2:SetPoint("TOPLEFT", "AtlasFrameSmall", "TOPLEFT", info_x + 18-15, -info_y - 82+15);
+				bossbutton2:SetID(info_id);
+				bossbutton2:Show();
 			else
+				button = _G["AtlasMapNPCButton"..i];
+				if (not button) then
+					button = CreateFrame("Button", "AtlasMapNPCButton"..i, AtlasFrame, "AtlasMapNPCButtonTemplate");
+				end
+				button2 = _G["AtlasMapNPCButtonS"..i];
+				if (not button2) then
+					button2 = CreateFrame("Button", "AtlasMapNPCButtonS"..i, AtlasFrameSmall, "AtlasMapNPCButtonTemplate");
+				end
+
 				local tip_title;
 				for k, v in pairs(AtlasMaps[zoneID]) do
 					if (v[2] == info_id) then
@@ -1118,79 +1192,25 @@ function AtlasMap_AddNPCButton()
 						end
 					end
 				end
-			end
-			if (encounterID) then
-				button.encounterID = encounterID;
-				button2.encounterID = encounterID;
-			end
-			if (description) then 
-				button.tooltipText = description; 
-				button2.tooltipText = description; 
-			end
-			if (ejbossname and EncounterJournal_CheckForOverview(rootSectionID)) then
-				local _, overviewDescription = EJ_GetSectionInfo(rootSectionID);
-				button.overviewDescription = overviewDescription;
-				button2.overviewDescription = overviewDescription;
-			end
---[[
-			_, _, _, displayInfo, iconImage = EJ_GetCreatureInfo(1, encounterID);
-			button.displayInfo = displayInfo;
-			if ( encounterID and iconImage ) then
-				SetPortraitTexture(button.bgImage, displayInfo);
-			else 
-				button.bgImage:SetTexture(nil);
-			end
-]]
-
---[[
-			if (info_id < 10000) then
-				button:ClearAllPoints();
-				button:SetNormalTexture("Interface\\EncounterJournal\\UI-EncounterJournalTextures");
-				button:GetNormalTexture():SetTexCoord(0.84960938, 0.97070313, 0.42871094, 0.48828125);
-				
-				button:SetPushedTexture("Interface\\EncounterJournal\\UI-EncounterJournalTextures");
-				button:GetPushedTexture():SetTexCoord(0.77734375, 0.89843750, 0.26953125, 0.32910156);
-				
-				button:SetHighlightTexture("Interface\\EncounterJournal\\UI-EncounterJournalTextures");
-				button:GetHighlightTexture():SetTexCoord(0.68945313, 0.81054688, 0.33300781, 0.39257813);
-
-				button:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18-15, -info_y - 82+15);
-			else
-]]
-				button:ClearAllPoints();
---				button:SetWidth(12);
---				button:SetHeight(12);
---				button:SetNormalTexture(nil);
---				button:SetPushedTexture(nil);
---				button:SetHighlightTexture(nil);
 				button:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18, -info_y - 82 );
---			end
-			button:SetID(info_id);
-			button:Show();
+				button:SetID(info_id);
+				button:Show();
+				button2:SetPoint("TOPLEFT", "AtlasFrameSmall", "TOPLEFT", info_x + 18, -info_y - 82 );
+				button2:SetID(info_id);
+				button2:Show();
+			end
 
 			-- Disable the set text unless one day we want the text to be added dynamatically
 			-- Or, enable it for debugging purpose
 --[[
-			local AtlasMap_NPC_Text = button:CreateFontString("AtlasMapNPCButton_Text"..i, "MEDIUM", "GameFontHighlightLarge");
-			AtlasMap_NPC_Text:SetPoint("CENTER", f, "CENTER", 0, 0);
-			AtlasMap_NPC_Text:SetText(info_mark);
+			local f_text = button:CreateFontString("AtlasMapNPCButton_Text"..i, "MEDIUM", "NumberFont_Outline_Huge");
+			f_text:SetPoint("CENTER", button, "CENTER", 0, 0);
+			f_text:SetText(info_mark);
 ]]
-
-			button2:SetPoint("TOPLEFT", "AtlasFrameSmall", "TOPLEFT", info_x + 18, -info_y - 82 );
-			button2:SetID(info_id);
-			button2:Show();
-
 			i = i + 1;
 		end
 		-- We started the counting from 1, plus 1 in each loop, need to adjust by removing 1 after the loop is ended
 		ATLAS_MAP_NPC_NUM = i - 1;
-		
-		button = _G["AtlasMapNPCButton"..i];
-		while button do
-			button:Hide();
-			i = i + 1;
-			button = _G["AtlasMapNPCButton"..i];
-		end
 	end
 end
 

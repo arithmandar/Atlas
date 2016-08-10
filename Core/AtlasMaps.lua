@@ -3935,7 +3935,7 @@ Syntax:
 		{ BLUE.." D) "..L["Portal"]..L["Colon"]..BZ["Mulgore"], 10004 };
 		{ BLUE.." E) "..L["Portal"]..L["Colon"]..BZ["Grizzly Hills"], 10005 };
 		{ BLUE.." F) "..L["Portal"]..L["Colon"]..BZ["The Emerald Dreamway"], 10006 };
-		{ GREN.." 1') "..L["Malfurion Stormrage"], 10003 };
+		{ GREN.." 1') "..L["Malfurion Stormrage"], 10010 };
 		{ INDENT..GREY..L["Teleport to Moonglade"] };
 	};
 	TheEmeraldNightmareC = {
@@ -4037,7 +4037,7 @@ Syntax:
 		{ BLUE.." A) "..L["Entrance"], 10001 };
 		{ BLUE.." B) "..L["Connection"], 10002 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Skorpyron", 1706), 1706 };
-		{ GREN.." 1') "..L["Palace Watcher"] }; 
+		{ GREN.." 1') "..L["Palace Watcher"], 10003 }; 
 		{ GREY..INDENT..L["Teleport to Tichondrius / Grand Magistrix Elisande"] };
 	};
 	TheNightholdB = {
@@ -4082,6 +4082,7 @@ Syntax:
 		JournalInstanceID = "786";
 		PlayerLimit = "10-30";
 		Module = "Atlas_Legion";
+		{ BLUE.." E) "..L["Connection"], 10001 };
 		{ WHIT.." 5) "..Atlas_GetBossName("Tichondrius", 1762), 1762 };
 	};
 	TheNightholdE = {

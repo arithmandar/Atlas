@@ -129,6 +129,49 @@
 			</OnClick>
 		</Scripts>
 	</Button>
+
+	<!-- Atlas Marks - Letters -->
+	<Texture name="Atlas_Letter_White_A" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+		<Size x="20" y="20"/>
+		<TexCoords left="0.00000000" right="0.15625000" top="0.00000000" bottom="0.15625000"/>	
+	</Texture>
+	<Texture name="Atlas_Letter_White_B" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+		<Size x="20" y="20"/>
+		<TexCoords left="0.15625000" right="0.31250000" top="0.00000000" bottom="0.15625000"/>	
+	</Texture>
+	<Texture name="Atlas_Letter_White_C" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+		<Size x="20" y="20"/>	
+		<TexCoords left="0.31250000" right="0.46875000" top="0.00000000" bottom="0.15625000"/>	
+	</Texture>
+	<Texture name="Atlas_Letter_White_D" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+		<Size x="20" y="20"/>	
+		<TexCoords left="0.46875000" right="0.62500000" top="0.00000000" bottom="0.15625000"/>	
+	</Texture>
+	<Texture name="Atlas_Letter_White_E" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+		<Size x="20" y="20"/>	
+		<TexCoords left="0.62500000" right="0.78125000" top="0.00000000" bottom="0.15625000"/>	
+	</Texture>
+	<Texture name="Atlas_Letter_White_F" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+		<Size x="20" y="20"/>	
+		<TexCoords left="0.78125000" right="0.93750000" top="0.00000000" bottom="0.15625000"/>	
+	</Texture>
+	<Texture name="Atlas_Letter_White_G" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+		<Size x="20" y="20"/>	
+		<TexCoords left="0.00000000" right="0.15625000" top="0.15625000" bottom="0.3125000"/>	
+	</Texture>
+	<Texture name="Atlas_Letter_White_H" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+		<Size x="20" y="20"/>	
+		<TexCoords left="0.15625000" right="0.31250000" top="0.15625000" bottom="0.3125000"/>	
+	</Texture>
+	<Texture name="Atlas_Letter_White_I" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+		<Size x="20" y="20"/>	
+		<TexCoords left="0.31250000" right="0.46875000" top="0.15625000" bottom="0.3125000"/>	
+	</Texture>
+	<Texture name="Atlas_Letter_White_J" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+		<Size x="20" y="20"/>	
+		<TexCoords left="0.46875000" right="0.62500000" top="0.15625000" bottom="0.3125000"/>	
+	</Texture>
+	
 <!--@end-alpha@-->
 
 </Ui>

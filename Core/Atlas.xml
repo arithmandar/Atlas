@@ -437,6 +437,31 @@
 					</OnLeave>
 				</Scripts>
 			</Frame>
+			<Button name="$parentMapZoneName" parentKey="ZoneName">
+				<Size>
+					<AbsDimension x="100" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="272" y="-88"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parent_Text" parentKey="Text" inherits="PVPInfoTextFont" justifyH="CENTER" justifyV="BOTTOM">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
 <!--@alpha@-->
 			<Button name="$parentAdventureJournalMapButton" hidden="true">
 				<Size x="32" y="32"/>
@@ -823,6 +848,48 @@
 						GameTooltip:Hide();
 					</OnLeave>
 				</Scripts>
+			</Button>
+<!--			<Button name="$parentLetterB">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentLetterA" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="40" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture inherits="Atlas_Letter_White_B"/>
+					</Layer>
+				</Layers>
+			</Button>-->
+			<Button name="$parentMapZoneName" parentKey="ZoneName">
+				<Size>
+					<AbsDimension x="10" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="512" y="-84"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parent_Text" parentKey="Text" inherits="ZoneTextFont" justifyH="CENTER">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
 			</Button>
 			<Frame name="$parentBossButtonFrame" setAllPoints="true"/>
 			<Frame name="$parentMapFrame" parentKey="MapFrame">
@@ -1318,6 +1385,31 @@
 				<NormalTexture file="Interface\Buttons\UI-Panel-BiggerButton-Up"/>
 				<PushedTexture file="Interface\Buttons\UI-Panel-BiggerButton-Down"/>
 				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Button name="$parentMapZoneName" parentKey="ZoneName">
+				<Size>
+					<AbsDimension x="100" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="272" y="-88"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parent_Text" parentKey="Text" inherits="PVPInfoTextFont" justifyH="CENTER" justifyV="BOTTOM">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
 			</Button>
 		</Frames>
 		<Layers>
