@@ -71,6 +71,7 @@ ATLAS_SMALLFRAME_SELECTED = false;
 --@end-alpha@
 local GREN = "|cff66cc33";
 local ATLAS_MAP_NPC_NUM = 0;
+local ATLAS_LARGEMAP_NPC_NUM = 0;
 ATLAS_GAMETOOLTIP_ORIGINAL_SCALE = GameTooltip:GetScale();
 
 -- Only update this version number when the options have been revised and a force update is needed.
@@ -672,8 +673,34 @@ function Atlas_Clear_NPC_Button()
 				t:SetText("");
 			end
 		end
-
 		ATLAS_MAP_NPC_NUM = 0;
+	end
+end
+
+function Atlas_Clear_NPC_ButtonLarge()
+	-- Clean up NPC text frames
+	if (ATLAS_LARGEMAP_NPC_NUM == 0) then 
+		return; 
+	end
+	if (ATLAS_LARGEMAP_NPC_NUM > 0) then
+		for i = 1, ATLAS_LARGEMAP_NPC_NUM do
+			local button = _G["AtlasMapNPCButtonL"..i];
+			local bossbutton = _G["AtlasMapBossButtonL"..i];
+
+			if (button) then
+				button:Hide();
+				button:ClearAllPoints();
+			end
+			if (bossbutton) then
+				bossbutton:Hide();
+				bossbutton:ClearAllPoints();
+			end
+			local t = _G["AtlasMapNPCButton_TextL"..i];
+			if (t) then
+				t:SetText("");
+			end
+		end
+		ATLAS_LARGEMAP_NPC_NUM = 0;
 	end
 end
 
@@ -888,6 +915,7 @@ function Atlas_MapRefresh()
 	-- Clear boss description gametooltip when map is refreshing
 	if (AtlasOptions["AtlasBossDesc"]) then
 		Atlas_Clear_NPC_Button();
+		Atlas_Clear_NPC_ButtonLarge();
 	end
 
 	-- Searching for the map path from Atlas or from plugins
@@ -976,8 +1004,10 @@ function Atlas_MapRefresh()
 	-- The boss description to be added here
 	if (AtlasOptions["AtlasBossDesc"]) then
 		AtlasMap_AddNPCButton();
+		AtlasMap_AddNPCButtonLarge();
 	else
 		Atlas_Clear_NPC_Button();
+		Atlas_Clear_NPC_ButtonLarge();
 	end
 end
 
@@ -1003,7 +1033,8 @@ function Atlas_Refresh()
 		end
 	end
 	
-	AtlasFrameLarge_AddMapButtons();
+	--AtlasFrameLarge_AddMapButtons();
+	--AtlasMap_AddNPCButtonLarge();
 --@end-alpha@
 	Atlas_MapRefresh();
 	
@@ -1214,6 +1245,110 @@ function AtlasMap_AddNPCButton()
 	end
 end
 
+function AtlasMap_AddNPCButtonLarge()
+	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+	local t = AtlasMaps_NPC_DB[zoneID];
+	local i = ATLAS_LARGEMAP_NPC_NUM;
+
+	if (t and i == 0) then
+		i = 1;
+		local bossbutton, button;
+		while (t[i]) do
+			local info_mark 	= t[i][1];
+			local info_id 		= t[i][2];
+			local info_x 		= t[i][5];
+			local info_y 		= t[i][6];
+			local info_colortag	= t[i][7];
+
+			if (info_id < 10000 and info_x and info_y) then
+				bossbutton = _G["AtlasMapBossButtonL"..i];
+				if (not bossbutton) then
+					bossbutton = CreateFrame("Button", "AtlasMapBossButtonL"..i, AtlasFrameLarge, "AtlasFrameLargeMapButtonTemplate");
+				end
+
+				encounterID = info_id;
+				ejbossname, description, _, rootSectionID = EJ_GetEncounterInfo(encounterID); 
+				if (ejbossname) then 
+					bossbutton.tooltipTitle = ejbossname; 
+				else
+					bossbutton.tooltipTitle = nil; 
+				end
+				if (encounterID) then
+					bossbutton.encounterID = encounterID;
+				else
+					bossbutton.encounterID = nil;
+				end
+				if (description) then 
+					bossbutton.tooltipText = description; 
+				else
+					bossbutton.tooltipText = nil; 
+				end
+				if (ejbossname and EncounterJournal_CheckForOverview(rootSectionID)) then
+					local _, overviewDescription = EJ_GetSectionInfo(rootSectionID);
+					if (overviewDescription) then
+						bossbutton.overviewDescription = overviewDescription;
+					else
+						bossbutton.overviewDescription = nil;
+					end
+				end
+
+				_, _, _, displayInfo, iconImage = EJ_GetCreatureInfo(1, encounterID);
+				bossbutton.displayInfo = displayInfo;
+				if ( encounterID and iconImage ) then
+					SetPortraitTexture(bossbutton.bgImage, displayInfo);
+				else 
+					bossbutton.bgImage:SetTexture(nil);
+				end
+				bossbutton:ClearAllPoints();
+				bossbutton:SetPoint("TOPLEFT", "AtlasFrameLarge", "TOPLEFT", info_x, -info_y - 82+15);
+				bossbutton:SetID(info_id);
+				bossbutton:Show();
+
+			elseif (info_x and info_y) then
+				button = _G["AtlasMapNPCButtonL"..i];
+				if (not button) then
+					button = CreateFrame("Button", "AtlasMapNPCButtonL"..i, AtlasFrameLarge, "AtlasMapNPCButtonTemplate");
+				end
+
+				local tip_title;
+				for k, v in pairs(AtlasMaps[zoneID]) do
+					if (v[2] == info_id) then
+						tip_title = v[1];
+						local _, endpos = strfind(tip_title, ") ");
+						if (endpos) then
+							button.tooltipTitle = strsub(tip_title, endpos+1);
+						end
+					end
+				end
+
+				if (info_colortag) then
+					if (info_colortag == "Blue" or info_colortag == "Purple") then
+						local texcoord_template;
+						texcoord_template = "Atlas_Letter_"..info_colortag.."_"..info_mark;
+						local tex;
+						tex = button:CreateTexture(nil, "BACKGROUND", texcoord_template);
+						tex:SetAllPoints();
+					else
+						local f_text = button:CreateFontString("AtlasMapNPCButton_Text"..i, "MEDIUM", "NumberFont_Outline_Huge");
+						f_text:SetPoint("CENTER", button, "CENTER", 0, 0);
+						f_text:SetText(info_mark);
+					end
+				end
+				button:SetPoint("TOPLEFT", "AtlasFrameLarge", "TOPLEFT", info_x + 18, -info_y - 82 );
+				button:SetID(info_id);
+				button:SetWidth(20);
+				button:SetHeight(20);
+				button:Show();
+			else
+				-- Do Nothing;
+			end
+
+			i = i + 1;
+		end
+		-- We started the counting from 1, plus 1 in each loop, need to adjust by removing 1 after the loop is ended
+		ATLAS_LARGEMAP_NPC_NUM = i - 1;
+	end
+end
 -- Calculate the dungeon difficulty based on the dungeon's level and player's level
 -- Codes adopted from FastQuest_Classic
 function Atlas_DungeonDifficulty(minRecLevel)

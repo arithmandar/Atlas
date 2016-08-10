@@ -189,7 +189,8 @@ function AtlasFrameAdventureJournalMapButton_OnClick()
 end
 
 function AtlasFrameLarge_OnShow(self)
-	AtlasFrameLarge_AddMapButtons();
+	--AtlasFrameLarge_AddMapButtons();
+	AtlasMap_AddNPCButtonLarge();
 end
 
 local EJ_HTYPE_OVERVIEW = 3;
