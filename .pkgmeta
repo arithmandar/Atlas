@@ -26,25 +26,5 @@ ignore:
     - Libs/LibAboutPanel
     - Libs/LibDataBroker-1.1
     - Libs/LibDialog-1.0
-    - Images/AtlasFrame-Main.psd
-    - Images/AtlasFrame-BottomLeft.psd
-    - Images/AtlasFrame-BottomRight.psd
-    - Images/AtlasFrame-TopLeft.psd
-    - Images/AtlasFrame-TopRight.psd
-    - Images/AtlasFrameLarge-BottomLeft.psd
-    - Images/AtlasFrameLarge-BottomRight.psd
-    - Images/AtlasFrameLarge-Main.psd
-    - Images/AtlasFrameLarge-MidLeft.psd
-    - Images/AtlasFrameLarge-MidRight.psd
-    - Images/AtlasFrameLarge-TopLeft.psd
-    - Images/AtlasFrameLarge-TopRight.psd
-    - Images/AtlasFrameSmall-Main.psd
-    - Images/AtlasFrameSmall-TopLeft.psd
-    - Images/AtlasFrameSmall-TopRight.psd
-    - Images/AtlasFrameSmall-BottomRight.psd
-    - Images/AtlasFrameSmall-BottomSmall.psd
-    - Images/WorldMapIcon-Down.psd
-    - Images/WorldMapIcon-Up.psd
-    - Images/UI-Panel-CollapseButton-Up.psd
-    - Images/UI-Panel-ExpandButton-Up.psd
-    - Images/UI-WorldMap-Icon.psd
+    - Images/PSD
+
