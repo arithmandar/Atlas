@@ -83,7 +83,6 @@
 			</OnClick>
 		</Scripts>
 	</Button>
-<!--@alpha@-->
 	<Button name="AtlasFrameLargeMapButtonTemplate" virtual="true">
 		<Size x="50" y="49"/>
 		<Layers>
@@ -130,48 +129,163 @@
 		</Scripts>
 	</Button>
 
-	<!-- Atlas Marks - Letters -->
-	<Texture name="Atlas_Letter_Blue_A" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+	<!-- Atlas Marks - Letters1 -->
+	<Texture name="Atlas_Letter_Blue_A" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
 		<Size x="20" y="20"/>
 		<TexCoords left="0.00000000" right="0.15625000" top="0.00000000" bottom="0.15625000"/>	
 	</Texture>
-	<Texture name="Atlas_Letter_Blue_B" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+	<Texture name="Atlas_Letter_Blue_B" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
 		<Size x="20" y="20"/>
 		<TexCoords left="0.15625000" right="0.31250000" top="0.00000000" bottom="0.15625000"/>	
 	</Texture>
-	<Texture name="Atlas_Letter_Blue_C" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+	<Texture name="Atlas_Letter_Blue_C" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
 		<Size x="20" y="20"/>	
 		<TexCoords left="0.31250000" right="0.46875000" top="0.00000000" bottom="0.15625000"/>	
 	</Texture>
-	<Texture name="Atlas_Letter_Blue_D" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+	<Texture name="Atlas_Letter_Blue_D" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
 		<Size x="20" y="20"/>	
 		<TexCoords left="0.46875000" right="0.62500000" top="0.00000000" bottom="0.15625000"/>	
 	</Texture>
-	<Texture name="Atlas_Letter_Blue_E" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+	<Texture name="Atlas_Letter_Blue_E" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
 		<Size x="20" y="20"/>	
 		<TexCoords left="0.62500000" right="0.78125000" top="0.00000000" bottom="0.15625000"/>	
 	</Texture>
-	<Texture name="Atlas_Letter_Blue_F" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+	<Texture name="Atlas_Letter_Blue_F" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
 		<Size x="20" y="20"/>	
 		<TexCoords left="0.78125000" right="0.93750000" top="0.00000000" bottom="0.15625000"/>	
 	</Texture>
-	<Texture name="Atlas_Letter_Blue_G" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+	<Texture name="Atlas_Letter_Blue_G" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
 		<Size x="20" y="20"/>	
 		<TexCoords left="0.00000000" right="0.15625000" top="0.15625000" bottom="0.3125000"/>	
 	</Texture>
-	<Texture name="Atlas_Letter_Blue_H" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+	<Texture name="Atlas_Letter_Blue_H" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
 		<Size x="20" y="20"/>	
 		<TexCoords left="0.15625000" right="0.31250000" top="0.15625000" bottom="0.3125000"/>	
 	</Texture>
-	<Texture name="Atlas_Letter_Blue_I" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+	<Texture name="Atlas_Letter_Blue_I" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
 		<Size x="20" y="20"/>	
 		<TexCoords left="0.31250000" right="0.46875000" top="0.15625000" bottom="0.3125000"/>	
 	</Texture>
-	<Texture name="Atlas_Letter_Blue_J" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters" virtual="true">
+	<Texture name="Atlas_Letter_Blue_J" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
 		<Size x="20" y="20"/>	
 		<TexCoords left="0.46875000" right="0.62500000" top="0.15625000" bottom="0.3125000"/>	
 	</Texture>
-	
-<!--@end-alpha@-->
+	<Texture name="Atlas_Letter_Blue_K" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.62500000"  right="0.78125000"  top="0.15625000"  bottom="0.31250000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_L" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.78125000"  right="0.93750000"  top="0.15625000"  bottom="0.31250000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_M" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.00000000"  right="0.15625000"  top="0.31250000"  bottom="0.46875000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_N" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.15625000"  right="0.31250000"  top="0.31250000"  bottom="0.46875000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_O" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.31250000"  right="0.46875000"  top="0.31250000"  bottom="0.46875000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_P" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.46875000"  right="0.62500000"  top="0.31250000"  bottom="0.46875000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_Q" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.62500000"  right="0.78125000"  top="0.31250000"  bottom="0.46875000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_R" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.78125000"  right="0.93750000"  top="0.31250000"  bottom="0.46875000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_S" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.00000000"  right="0.15625000"  top="0.46875000"  bottom="0.62500000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_T" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.15625000"  right="0.31250000"  top="0.46875000"  bottom="0.62500000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_U" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.31250000"  right="0.46875000"  top="0.46875000"  bottom="0.62500000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Blue_V" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.46875000"  right="0.62500000"  top="0.46875000"  bottom="0.62500000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_A" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.62500000"  right="0.78125000"  top="0.46875000"  bottom="0.62500000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_B" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.78125000"  right="0.93750000"  top="0.46875000"  bottom="0.62500000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_C" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.00000000"  right="0.15625000"  top="0.62500000"  bottom="0.78125000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_D" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.15625000"  right="0.31250000"  top="0.62500000"  bottom="0.78125000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_E" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.31250000"  right="0.46875000"  top="0.62500000"  bottom="0.78125000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_F" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.46875000"  right="0.62500000"  top="0.62500000"  bottom="0.78125000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_G" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.62500000"  right="0.78125000"  top="0.62500000"  bottom="0.78125000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_H" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.78125000"  right="0.93750000"  top="0.62500000"  bottom="0.78125000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_I" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.00000000"  right="0.15625000"  top="0.78125000"  bottom="0.93750000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_J" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.15625000"  right="0.31250000"  top="0.78125000"  bottom="0.93750000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_K" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.31250000"  right="0.46875000"  top="0.78125000"  bottom="0.93750000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_L" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.46875000"  right="0.62500000"  top="0.78125000"  bottom="0.93750000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_M" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.62500000"  right="0.78125000"  top="0.78125000"  bottom="0.93750000"/>
+	</Texture>
+	<Texture name="Atlas_Letter_Purple_N" file="Interface\AddOns\Atlas\Images\Atlas_Marks_Letters1" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.78125000"  right="0.93750000"  top="0.78125000"  bottom="0.93750000"/>
+	</Texture>
 
+	<!-- POI -->
+	<Texture name="AtlasPOI_TaxiNeutral" file="Interface\AddOns\Atlas\Images\POIICONS" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.00000000" right="0.31250000" top="0.00000000" bottom="0.31250000"/>
+	</Texture>
+	<Texture name="AtlasPOI_TaxiHorde" file="Interface\AddOns\Atlas\Images\POIICONS" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.31250000" right="0.62500000" top="0.00000000" bottom="0.31250000"/>
+	</Texture>
+	<Texture name="AtlasPOI_TaxiAlliance" file="Interface\AddOns\Atlas\Images\POIICONS" virtual="true">
+		<Size x="20" y="20"/>								
+		<TexCoords left="0.62500000" right="0.93750000" top="0.00000000" bottom="0.31250000"/>
+	</Texture>
 </Ui>

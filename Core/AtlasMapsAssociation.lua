@@ -511,7 +511,6 @@ Atlas_SubZoneData = {
 			BZ["Pit of Fangs"],
 		},
 	},
---@alpha@
 	-- /////////////////////////////////////////////
 	-- Legion instances
 	-- /////////////////////////////////////////////
@@ -652,7 +651,6 @@ Atlas_SubZoneData = {
 			BZ["Vault of the Betrayer"],
 		},
 	},
---@end-alpha@
 };
 
 --[[
@@ -726,7 +724,6 @@ Atlas_OutdoorZoneToAtlas = {
 	[BZ["Northern Barrens"]] = 		"WailingCavernsEnt";
 	[BZ["Ghostlands"]] = 			"ZulAman";
 	[BZ["Northern Stranglethorn"]] = 	"ZulGurub";
---@alpha@
 -- Legion
 	[BZ["Dalaran"]] = 			"AssaultonVioletHold";
 	[BZ["Azsuna"]] = 			"VaultoftheWardensA";
@@ -734,7 +731,6 @@ Atlas_OutdoorZoneToAtlas = {
 	[BZ["Highmountain"]] = 			"NeltharionsLair";
 	[BZ["Stormheim"]] = 			"HallsofValorA";
 	[BZ["Suramar"]] = 			"TheNightholdA";
---@end-alpha@
 };
 
 -- Yes, the following two tables are redundant, but they're both here in case there's ever more than one entrance map for an instance
@@ -855,7 +851,6 @@ Atlas_MapSeries = {
 	["ThroneofThunderB"] = 			{"ThroneofThunderA", "ThroneofThunderB", "ThroneofThunderC", "ThroneofThunderD" };
 	["ThroneofThunderC"] = 			{"ThroneofThunderA", "ThroneofThunderB", "ThroneofThunderC", "ThroneofThunderD" };
 	["ThroneofThunderD"] = 			{"ThroneofThunderA", "ThroneofThunderB", "ThroneofThunderC", "ThroneofThunderD" };
---@alpha@
 	-- Legion
 	["BlackRookHoldA"] = 			{"BlackRookHoldA", "BlackRookHoldB", "BlackRookHoldC" };
 	["BlackRookHoldB"] = 			{"BlackRookHoldA", "BlackRookHoldB", "BlackRookHoldC" };
@@ -885,7 +880,6 @@ Atlas_MapSeries = {
 	["VaultoftheWardensA"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
 	["VaultoftheWardensB"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
 	["VaultoftheWardensC"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
---@end-alpha@
 };
 
 -- Links maps together that are part of the same instance
@@ -938,7 +932,6 @@ Atlas_SubZoneAssoc = {
 	["UlduarC"] =				BZ["Ulduar"];
 	["UlduarD"] =				BZ["Ulduar"];
 	["UlduarE"] =				BZ["Ulduar"];
---@alpha@
 	-- Legion
 	["BlackRookHoldA"] = 			BZ["Black Rook Hold"];
 	["BlackRookHoldB"] = 			BZ["Black Rook Hold"];
@@ -968,5 +961,4 @@ Atlas_SubZoneAssoc = {
 	["VaultoftheWardensA"] = 		BZ["Vault of the Wardens"];
 	["VaultoftheWardensB"] = 		BZ["Vault of the Wardens"];
 	["VaultoftheWardensC"] = 		BZ["Vault of the Wardens"];
---@end-alpha@
 };

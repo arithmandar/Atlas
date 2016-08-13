@@ -146,7 +146,6 @@ function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 	return bossname;
 end
 
---@alpha@
 function Atlas_EncounterJournal_Binding()
 	local button = _G["AtlasToggleFromEncounterJournal"];
 	if (not button) then
@@ -193,8 +192,8 @@ function AtlasFrameLarge_OnShow(self)
 	AtlasMap_AddNPCButtonLarge();
 end
 
+--[[
 local EJ_HTYPE_OVERVIEW = 3;
-
 local function EncounterJournal_CheckForOverview(rootSectionID)
 	return select(3,EJ_GetSectionInfo(rootSectionID)) == EJ_HTYPE_OVERVIEW;
 end
@@ -311,4 +310,4 @@ function AtlasFrameLarge_CheckQuestButtons()
 		_G["AtlasEJMapButton1"]:SetScript("OnUpdate", nil);
 	end
 end
---@end-alpha@
+]]

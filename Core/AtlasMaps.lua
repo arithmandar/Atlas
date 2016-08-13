@@ -3676,7 +3676,7 @@ Syntax:
 		{ WHIT..INDENT..Atlas_GetBossName("Ragewind Whelp", 1229, 2), 1229 };
 		{ WHIT.." 5) "..Atlas_GetBossName("Warlord Zaela", 1234), 1234 };
 	};
---@alpha@
+
 --************************************************
 -- Legion
 --************************************************
@@ -4168,5 +4168,4 @@ Syntax:
 		{ BLUE.." D) "..L["Connection"], 10004 };
 		{ WHIT.." 5) "..Atlas_GetBossName("Cordana Felsong", 1470), 1470 , 1470 };
 	};
---@end-alpha@
 };

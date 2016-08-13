@@ -462,7 +462,6 @@
 					</Layer>
 				</Layers>
 			</Button>
-<!--@alpha@-->
 			<Button name="$parentAdventureJournalMapButton" hidden="true">
 				<Size x="32" y="32"/>
 				<Anchors>
@@ -491,7 +490,6 @@
 					</Anchors>
 				</HighlightTexture>
 			</Button>
-<!--@end-alpha@-->
 			<Button name="$parentAdventureJournalButton" hidden="true" toplevel="true">
 				<Size>
 					<AbsDimension x="32" y="32" />
@@ -519,11 +517,10 @@
 					</OnLeave>
 				</Scripts>
 			</Button>
-<!--@alpha@-->
 			<Button name="$parentSizeUpButton" hidden="true">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parent" x="502" y="-78"/>
+					<Anchor point="TOPLEFT" relativeTo="$parent" x="505" y="-76"/>
 				</Anchors>
 				<Scripts>
 					<OnClick function="AtlasFrame_ToggleWindowSize" />
@@ -535,7 +532,7 @@
 			<Button name="$parentCollapseButton">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parent" x="502" y="-568"/>
+					<Anchor point="TOPLEFT" relativeTo="$parent" x="505" y="-571"/>
 				</Anchors>
 				<Scripts>
 					<OnClick function="AtlasFrame_ToggleLegendPanel" />
@@ -551,7 +548,30 @@
 				<PushedTexture file="Interface\AddOns\Atlas\Images\UI-Panel-CollapseButton-Up"/>
 				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
 			</Button>
-<!--@end-alpha@-->
+			<Frame name="$parentMapFrame" parentKey="MapFrame">
+				<Size x="512" y="512"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="18" y="-84"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="AtlasMap">
+							<Size x="512" y="512"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
 		</Frames>
 		<Layers>
 			<Layer level="ARTWORK">
@@ -623,18 +643,6 @@
 					</Anchors>
 				</FontString>-->
 			</Layer>
-			<Layer level="BACKGROUND">
-				<Texture name="AtlasMap">
-					<Size x="512" y="512"/>
-					<Anchors>
-						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
-							<Offset>
-								<AbsDimension x="18" y="-84"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-			</Layer>
 		</Layers>
 		<Scripts>
 			<OnLoad>
@@ -672,7 +680,6 @@
 		</Scripts>
 	</Frame>
 
-<!--@alpha@-->
 	<Frame name="AtlasFrameLarge" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true">
 		<Size>
 			<AbsDimension x="1023" y="790"/>
@@ -1358,7 +1365,7 @@
 			<Button name="$parentExpandButton">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parent" x="502" y="-568"/>
+					<Anchor point="TOPLEFT" relativeTo="$parent" x="505" y="-571"/>
 				</Anchors>
 				<Scripts>
 					<OnClick function="AtlasFrame_ToggleLegendPanel" />
@@ -1377,7 +1384,7 @@
 			<Button name="$parentSizeUpButton" hidden="true">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parent" x="502" y="-78"/>
+					<Anchor point="TOPLEFT" relativeTo="$parent" x="505" y="-76"/>
 				</Anchors>
 				<Scripts>
 					<OnClick function="AtlasFrame_ToggleWindowSize" />
@@ -1411,6 +1418,30 @@
 					</Layer>
 				</Layers>
 			</Button>
+			<Frame name="$parentMapFrame" parentKey="MapFrame">
+				<Size x="512" y="512"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="18" y="-84"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="AtlasMapSmall">
+							<Size x="512" y="512"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
 		</Frames>
 		<Layers>
 			<Layer level="ARTWORK">
@@ -1482,18 +1513,6 @@
 					</Anchors>
 				</FontString>-->
 			</Layer>
-			<Layer level="BACKGROUND">
-				<Texture name="AtlasMapSmall">
-					<Size x="512" y="512"/>
-					<Anchors>
-						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
-							<Offset>
-								<AbsDimension x="18" y="-84"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-			</Layer>
 		</Layers>
 		<Scripts>
 			<OnShow>
@@ -1529,9 +1548,6 @@
 			</OnMouseUp>
 		</Scripts>
 	</Frame>
-<!--@end-alpha@-->
-
-
 
 	<Frame name="AtlasInfoFrame" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent" clampedToScreen="true">
 		<Size>
@@ -1638,8 +1654,6 @@
 		</Scripts>
 	</Frame>
 
-
-<!--@alpha@-->
 	<Button name="AtlasToggleFromWorldMap" toplevel="true" parent="WorldMapFrame" frameLevel="10">
 		<Size>
 			<AbsDimension x="32" y="32" />
@@ -1705,6 +1719,4 @@
 			</OnClick>
 		</Scripts>
 	</Button>
-<!--@end-alpha@-->
-
 </Ui>

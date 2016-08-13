@@ -1,0 +1,145 @@
+<!-- $Id$ -->
+<!--
+
+	Atlas, a World of Warcraft instance map browser
+	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
+	Copyright 2010 - Lothaer <lothayer@gmail.com>, Atlas Team
+	Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
+
+	This file is part of Atlas.
+
+	Atlas is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+
+	Atlas is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with Atlas; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script>
+		if (LOCALE_koKR) then
+			STANDARD_TEXT_FONT = "Fonts\\2002.TTF";
+			UNIT_NAME_FONT = "Fonts\\2002B.TTF";
+			DAMAGE_TEXT_FONT = "Fonts\\K_Damage.TTF";
+		elseif (LOCALE_zhCN) then
+			STANDARD_TEXT_FONT = "Fonts\\ARKai_T.ttf";
+			UNIT_NAME_FONT = "Fonts\\ARKai_T.ttf";
+			DAMAGE_TEXT_FONT = "Fonts\\ARKai_C.ttf";
+		elseif (LOCALE_zhTW) then
+			STANDARD_TEXT_FONT = "Fonts\\blei00d.TTF";
+			UNIT_NAME_FONT = "Fonts\\blei00d.TTF";
+			DAMAGE_TEXT_FONT = "Fonts\\bKAI00M.TTF";
+		elseif (LOCALE_ruRU) then
+			STANDARD_TEXT_FONT = "Fonts\\FRIZQT___CYR.TTF";
+			UNIT_NAME_FONT = "Fonts\\FRIZQT___CYR.TTF";
+			DAMAGE_TEXT_FONT = "Fonts\\FRIZQT___CYR.TTF";
+		else
+			STANDARD_TEXT_FONT = "Fonts\\FRIZQT__.TTF";
+			UNIT_NAME_FONT = "Fonts\\FRIZQT__.TTF";
+			DAMAGE_TEXT_FONT = "Fonts\\FRIZQT__.TTF";
+		end
+		NAMEPLATE_FONT = "GameFontWhite";
+		NAMEPLATE_SPELLCAST_FONT = "GameFontWhiteTiny";
+	</Script>
+	<FontFamily name="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Fonts\FRIZQT__.TTF" height="16" outline="THICK">
+				<Shadow>
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+					<Color r="0" g="0" b="0"/>
+				</Shadow>
+			</Font>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\2002.TTF" height="14" outline="THICK">
+				<Shadow>
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+					<Color r="0" g="0" b="0"/>
+				</Shadow>
+			</Font>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_T.ttf" height="17" outline="THICK">
+				<Shadow>
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+					<Color r="0" g="0" b="0"/>
+				</Shadow>
+			</Font>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Fonts\blei00d.TTF" height="17" outline="THICK">
+				<Shadow>
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+					<Color r="0" g="0" b="0"/>
+				</Shadow>
+			</Font>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.TTF" height="16" outline="THICK">
+				<Shadow>
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+					<Color r="0" g="0" b="0"/>
+				</Shadow>
+			</Font>
+		</Member>
+	</FontFamily>
+	<FontFamily name="AtlasNumberFont_Outline_Huge" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Fonts\skurri.ttf" height="30" outline="THICK"/>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\K_Damage.ttf" height="24" outline="THICK"/>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_C.ttf" height="20" outline="THICK"/>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Fonts\bKAI00M.ttf" height="20" outline="THICK"/>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\SKURRI_CYR.TTF" height="30" outline="THICK"/>
+		</Member>
+	</FontFamily>	
+	<Font name="AtlasNumberFontNormalHugeWhite" inherits="AtlasNumberFont_Outline_Huge" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	<Font name="AtlasNumberFontNormalHugeOrange" inherits="AtlasNumberFont_Outline_Huge" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	<Font name="AtlasGameFontNormalLargeWhite" inherits="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	<Font name="AtlasGameFontNormalLargeYellow" inherits="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
+		<Color r="1.0" g="1.0" b="0.0"/>
+	</Font>
+	<Font name="AtlasGameFontNormalLargeGreen" inherits="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
+		<Color r="0.0" g="1.0" b="0.0"/>
+	</Font>
+	<Font name="AtlasGameFontNormalLargeRed" inherits="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
+		<Color r="1.0" g="0.0" b="0.0"/>
+	</Font>
+	<Font name="AtlasGameFontNormalLargeOrange" inherits="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
+		<Color r="1.0" g="0.82" b="0"/>
+	</Font>
+
+</Ui>

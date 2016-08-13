@@ -55,6 +55,7 @@ end
 
 -- Initialization
 ATLAS_VERSION = GetAddOnMetadata("Atlas", "Version");
+ATLAS_PLAYER_FACTION = UnitFactionGroup("player");
 ATLAS_DROPDOWNS = {};
 ATLAS_INST_ENT_DROPDOWN = {};
 ATLAS_NUM_LINES = 26;
@@ -66,9 +67,8 @@ ATLAS_SEARCH_METHOD = nil;
 ATLAS_PLUGINS = {};
 ATLAS_PLUGIN_DATA = {};
 AtlasMaps_NPC_DB = {};
---@alpha@
 ATLAS_SMALLFRAME_SELECTED = false;
---@end-alpha@
+
 local GREN = "|cff66cc33";
 local ATLAS_MAP_NPC_NUM = 0;
 local ATLAS_LARGEMAP_NPC_NUM = 0;
@@ -195,9 +195,7 @@ local function Process_Deprecated()
 	local Deprecated_List = {
 		-- Most recent (working) versions of known modules at time of release
 		-- Atlas Modules
---@alpha@
 		{ "Atlas_Legion",	 	"1.33.00" },
---@end-alpha@
 		{ "Atlas_WarlordsofDraenor", 	"1.33.00" },
 		{ "Atlas_MistsofPandaria",	"1.33.00" },
 		{ "Atlas_Cataclysm", 		"1.33.00" },
@@ -268,10 +266,8 @@ function Atlas_OnLoad(self)
 
 	-- Allows Atlas to be closed with the Escape key
 	tinsert(UISpecialFrames, "AtlasFrame");
---@alpha@
 	tinsert(UISpecialFrames, "AtlasFrameLarge");
 	tinsert(UISpecialFrames, "AtlasFrameSmall");
---@end-alpha@
 	
 	-- Dragging involves some special registration
 	self:RegisterForDrag("LeftButton");
@@ -309,14 +305,12 @@ end
 -- Main Atlas event handler
 function Atlas_OnEvent(self, event, ...)
 	local arg1 = ...;
---@alpha@
 	if(event=="ADDON_LOADED" and (arg1=="Atlas" or arg1=="Blizzard_EncounterJournal")) then
 		--Blizzard_EncounterJournal
 		if (IsAddOnLoaded("Blizzard_EncounterJournal") and IsAddOnLoaded("Atlas")) then
 			Atlas_EncounterJournal_Binding();
 		end
 	end
---@end-alpha@
 
 	if (event == "ADDON_LOADED" and arg1 == "Atlas") then
 		Atlas_Init();
@@ -387,9 +381,7 @@ local function Atlas_Check_Modules()
 		"Atlas_Cataclysm",
 		"Atlas_MistsofPandaria",
 		"Atlas_WarlordsofDraenor",
---@alpha@
 		"Atlas_Legion",
---@end-alpha@
 		"Atlas_Battlegrounds",
 		"Atlas_DungeonLocs",
 		"Atlas_OutdoorRaids",
@@ -491,10 +483,8 @@ function Atlas_Init()
 
 	-- Make the Atlas window go all the way to the edge of the screen, exactly
 	AtlasFrame:SetClampRectInsets(12, 0, -12, 0);
---@alpha@
 	AtlasFrameLarge:SetClampRectInsets(12, 0, -12, 0);
 	AtlasFrameSmall:SetClampRectInsets(12, 0, -12, 0);
---@end-alpha@
 
 	Atlas_InitOptions();
 
@@ -513,10 +503,8 @@ function Atlas_Init()
 	Atlas_UpdateLock();
 	Atlas_UpdateAlpha();
 	AtlasFrame:SetClampedToScreen(AtlasOptions.AtlasClamped);
---@alpha@
 	AtlasFrameLarge:SetClampedToScreen(AtlasOptions.AtlasClamped);
 	AtlasFrameSmall:SetClampedToScreen(AtlasOptions.AtlasClamped);
---@end-alpha@
 	--AtlasButton_UpdatePosition();
 	AtlasOptions_Init();
 	
@@ -553,24 +541,24 @@ end
 
 -- Updates the appearance of the lock button based on the status of AtlasLocked
 function Atlas_UpdateLock()
+	local btnLckUp = 	"Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Up";
+	local btnLckDn = 	"Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Down";
+	local btnUlckUp = 	"Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Up";
+	local btnUnlckDn = 	"Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Down";
 	if (AtlasOptions.AtlasLocked) then
-		AtlasLockNorm:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Up");
-		AtlasLockPush:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Down");
---@alpha@
-		AtlasLockLargeNorm:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Up");
-		AtlasLockLargePush:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Down");
-		AtlasLockSmallNorm:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Up");
-		AtlasLockSmallPush:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Down");
---@end-alpha@
+		AtlasLockNorm:SetTexture(btnLckUp);
+		AtlasLockPush:SetTexture(btnLckDn);
+		AtlasLockLargeNorm:SetTexture(btnLckUp);
+		AtlasLockLargePush:SetTexture(btnLckDn);
+		AtlasLockSmallNorm:SetTexture(btnLckUp);
+		AtlasLockSmallPush:SetTexture(btnLckDn);
 	else
-		AtlasLockNorm:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Up");
-		AtlasLockPush:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Down");
---@alpha@
-		AtlasLockLargeNorm:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Up");
-		AtlasLockLargePush:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Down");
-		AtlasLockSmallNorm:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Up");
-		AtlasLockSmallPush:SetTexture("Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Down");
---@end-alpha@
+		AtlasLockNorm:SetTexture(btnUlckUp);
+		AtlasLockPush:SetTexture(btnUnlckDn);
+		AtlasLockLargeNorm:SetTexture(btnUlckUp);
+		AtlasLockLargePush:SetTexture(btnUnlckDn);
+		AtlasLockSmallNorm:SetTexture(btnUlckUp);
+		AtlasLockSmallPush:SetTexture(btnUnlckDn);
 	end
 end
 
@@ -594,24 +582,19 @@ end
 -- Sets the transparency of the Atlas frame based on AtlasAlpha
 function Atlas_UpdateAlpha()
 	AtlasFrame:SetAlpha(AtlasOptions.AtlasAlpha);
---@alpha@
 	AtlasFrameLarge:SetAlpha(AtlasOptions.AtlasAlpha);
 	AtlasFrameSmall:SetAlpha(AtlasOptions.AtlasAlpha);
---@end-alpha@
 end
 
 -- Sets the scale of the Atlas frame based on AtlasScale
 function Atlas_UpdateScale()
 	AtlasFrame:SetScale(AtlasOptions.AtlasScale);
---@alpha@
 	AtlasFrameLarge:SetScale(AtlasOptions.AtlasScale);
 	AtlasFrameSmall:SetScale(AtlasOptions.AtlasScale);
---@end-alpha@
 end
 
 -- Simple function to toggle the visibility of the Atlas frame
 function Atlas_Toggle()
---@alpha@
 	if (ATLAS_SMALLFRAME_SELECTED) then
 		if (AtlasFrameSmall:IsVisible()) then
 			HideUIPanel(AtlasFrameSmall);
@@ -619,15 +602,12 @@ function Atlas_Toggle()
 			ShowUIPanel(AtlasFrameSmall);
 		end
 	else
---@end-alpha@
 		if (AtlasFrame:IsVisible()) then
 			HideUIPanel(AtlasFrame);
 		else
 			ShowUIPanel(AtlasFrame);
 		end
---@alpha@
 	end
---@end-alpha@
 end
 
 -- Adopted some of the codes from AlasMajorCitiesEnhanced
@@ -753,12 +733,10 @@ function Atlas_MapRefresh()
 	
 	-- Zone Name Acronym
 	local tName = base.ZoneName[1];
---@alpha@
 	if (base.LargeMap) then
 		AtlasFrameLarge.ZoneName.Text:SetText(tName);
 	end
 	AtlasFrameSmall.ZoneName.Text:SetText(tName);
---@end-alpha@
 	AtlasFrame.ZoneName.Text:SetText(tName);
 	if (AtlasOptions.AtlasAcronyms and base.Acronym ~= nil) then
 		tName = tName.._RED.." ["..base.Acronym.."]";
@@ -877,20 +855,15 @@ function Atlas_MapRefresh()
 	-- Check if Journal Encounter Instance is available
 	if (base.JournalInstanceID) then
 		AtlasFrameAdventureJournalButton:Show();
---@alpha@
 		AtlasFrameLargeAdventureJournalButton:Show();
 		AtlasFrameSmallAdventureJournalButton:Show();
---@end-alpha@
 		--AtlasSetEJBackground(base.JournalInstanceID);
 	else
 		AtlasFrameAdventureJournalButton:Hide();
---@alpha@
 		AtlasFrameLargeAdventureJournalButton:Hide();
 		AtlasFrameSmallAdventureJournalButton:Hide();
---@end-alpha@
 		--AtlasSetEJBackground();
 	end
---@alpha@
 	if (base.WorldMapID and tonumber(base.WorldMapID) > 0) then
 		AtlasFrameAdventureJournalMapButton:Show();
 		AtlasFrameLargeAdventureJournalMapButton:Show();
@@ -900,9 +873,7 @@ function Atlas_MapRefresh()
 		AtlasFrameLargeAdventureJournalMapButton:Hide();
 		AtlasFrameSmallAdventureJournalMapButton:Hide();
 	end
---@end-alpha@
-	
---@alpha@
+
 	if (base.LargeMap) then
 		AtlasFrameSizeUpButton:Show();
 		AtlasFrameSmallSizeUpButton:Show();
@@ -910,7 +881,6 @@ function Atlas_MapRefresh()
 		AtlasFrameSizeUpButton:Hide();
 		AtlasFrameSmallSizeUpButton:Hide();
 	end
---@end-alpha@
 	
 	-- Clear boss description gametooltip when map is refreshing
 	if (AtlasOptions["AtlasBossDesc"]) then
@@ -945,21 +915,15 @@ function Atlas_MapRefresh()
 		end
 	end
 	AtlasMap:SetTexture(AtlasMapPath..zoneID);
---@alpha@
 	AtlasMapSmall:SetTexture(AtlasMapPath..zoneID);
---@end-alpha@
 
 	local AtlasMap_Text = _G["AtlasMap_Text"];
 	if (not AtlasMap_Text) then
 		AtlasMap_Text = AtlasFrame:CreateFontString("AtlasMap_Text", "OVERLAY", "GameFontHighlightLarge");
---@alpha@
 		AtlasMapS_Text = AtlasFrameSmall:CreateFontString("AtlasMapS_Text", "OVERLAY", "GameFontHighlightLarge");
---@end-alpha@
 	end
 	AtlasMap_Text:SetPoint("CENTER", "AtlasFrame", "LEFT", 256, -32);
---@alpha@
 	AtlasMapS_Text:SetPoint("CENTER", "AtlasFrameSmall", "LEFT", 256, -32);
---@end-alpha@
 	-- Check if the map image is available, if not replace with black and Map Not Found text
 	if (base.Module) then
 		local loadable = select(4, GetAddOnInfo(base.Module));
@@ -969,37 +933,27 @@ function Atlas_MapRefresh()
 			-- Legion changes: texture:SetTexture(r, g, b, a) changes into texture:SetColorTexture(r, g, b, a)
 			AtlasMap:SetColorTexture(0, 0, 0, 0.9); 
 			AtlasMap_Text:SetText(L["MapsNotFound"].."\n\n"..L["PossibleMissingModule"].."\n|cff6666ff"..base.Module);
---@alpha@
 			AtlasMapSmall:SetColorTexture(0, 0, 0, 0.9); 
 			AtlasMapS_Text:SetText(L["MapsNotFound"].."\n\n"..L["PossibleMissingModule"].."\n|cff6666ff"..base.Module);
---@end-alpha@
 			if (not AtlasMap_Text:IsShown()) then
 				AtlasMap_Text:Show();
---@alpha@
 				AtlasMapS_Text:Show();
---@end-alpha@
 			end
 		else 
 			AtlasMap_Text:SetText("");
---@alpha@
 			AtlasMapS_Text:SetText("");
---@emd-alpha@
 		end
 	else
 		AtlasMap_Text:SetText("");
---@alpha@
 		AtlasMapS_Text:SetText("");
---@end-alpha@
 	end
 
---@alpha@
 	-- Large Atlas map
 	if (base.LargeMap) then
 		for i=1, 12 do
 			_G["AtlasMapLarge"..i]:SetTexture(AtlasMapPath..zoneID.."\\"..base.LargeMap..i);
 		end
 	end
---@endalpha@
 
 	-- The boss description to be added here
 	if (AtlasOptions["AtlasBossDesc"]) then
@@ -1020,7 +974,6 @@ function Atlas_Refresh()
 	local data = AtlasMaps;
 	local base = data[zoneID];
 
---@alpha@
 	if (not base.LargeMap) then
 		if (AtlasFrameLarge:IsVisible()) then
 			if (ATLAS_SMALLFRAME_SELECTED) then
@@ -1033,9 +986,6 @@ function Atlas_Refresh()
 		end
 	end
 	
-	--AtlasFrameLarge_AddMapButtons();
-	--AtlasMap_AddNPCButtonLarge();
---@end-alpha@
 	Atlas_MapRefresh();
 	
 	ATLAS_DATA = base;
@@ -1139,6 +1089,7 @@ function AtlasMap_AddNPCButton()
 			local info_id 		= t[i][2];
 			local info_x 		= t[i][3];
 			local info_y 		= t[i][4];
+			local info_colortag	= t[i][7];
 
 			if (info_id < 10000) then
 				bossbutton = _G["AtlasMapBossButton"..i];
@@ -1221,6 +1172,18 @@ function AtlasMap_AddNPCButton()
 							button.tooltipTitle = strsub(tip_title, endpos+1);
 							button2.tooltipTitle = strsub(tip_title, endpos+1);
 						end
+					end
+				end
+				if (info_colortag) then
+					if (info_colortag == "Dungeon" or info_colortag == "Raid") then
+						local texture;
+						texture = "Interface\\MINIMAP\\"..info_colortag;
+						local tex;
+						tex = button2:CreateTexture(nil, "BACKGROUND");
+						tex:SetTexture(texture);
+						tex:SetAllPoints();
+						button2:SetWidth(20);
+						button2:SetHeight(20);
 					end
 				end
 				button:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18, -info_y - 82 );
@@ -1328,16 +1291,40 @@ function AtlasMap_AddNPCButtonLarge()
 						local tex;
 						tex = button:CreateTexture(nil, "BACKGROUND", texcoord_template);
 						tex:SetAllPoints();
-					else
-						local f_text = button:CreateFontString("AtlasMapNPCButton_Text"..i, "MEDIUM", "NumberFont_Outline_Huge");
+						button:SetWidth(20);
+						button:SetHeight(20);
+					elseif (info_colortag == "Dungeon" or info_colortag == "Raid") then
+						local texture;
+						texture = "Interface\\MINIMAP\\"..info_colortag;
+						local tex;
+						tex = button:CreateTexture(nil, "BACKGROUND");
+						tex:SetTexture(texture);
+						tex:SetAllPoints();
+						button:SetWidth(32);
+						button:SetHeight(32);
+					elseif (info_colortag == "TaxiAlliance" or info_colortag == "TaxiHorde" or info_colortag == "TaxiNeutral" ) then
+						local texcoord_template;
+						texcoord_template = "AtlasPOI_"..info_colortag;
+
+						button.Texture = button:CreateTexture(button:GetName().."Texture", "BACKGROUND", texcoord_template);
+						button.HighlightTexture = button:CreateTexture(button:GetName().."HighlightTexture", "HIGHLIGHT", texcoord_template);
+						button.HighlightTexture:SetBlendMode("ADD");
+						button.HighlightTexture:SetAlpha(.4);
+						button.HighlightTexture:SetAllPoints(button.Texture);
+						button:SetWidth(20);
+						button:SetHeight(20);
+					elseif (info_colortag == "White" or info_colortag == "Yellow" or info_colortag == "Red" or info_colortag == "Orange" or info_colortag == "Green") then
+						local f_text = button:CreateFontString("AtlasMapNPCButton_Text"..i, "MEDIUM", "AtlasGameFontNormalLarge"..info_colortag);
 						f_text:SetPoint("CENTER", button, "CENTER", 0, 0);
 						f_text:SetText(info_mark);
+						button:SetWidth(20);
+						button:SetHeight(20);
+					else
+						-- Do Nothing
 					end
 				end
 				button:SetPoint("TOPLEFT", "AtlasFrameLarge", "TOPLEFT", info_x + 18, -info_y - 82 );
 				button:SetID(info_id);
-				button:SetWidth(20);
-				button:SetHeight(20);
 				button:Show();
 			else
 				-- Do Nothing;
@@ -1450,7 +1437,6 @@ function AtlasFrameDropDownType_OnShow()
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, AtlasOptions.AtlasType);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameDropDownType, 190);
 
---@alpha@
 	Lib_UIDropDownMenu_Initialize(AtlasFrameLargeDropDownType, AtlasFrameDropDownType_Initialize);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, AtlasOptions.AtlasType);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameLargeDropDownType, 190);
@@ -1458,7 +1444,6 @@ function AtlasFrameDropDownType_OnShow()
 	Lib_UIDropDownMenu_Initialize(AtlasFrameSmallDropDownType, AtlasFrameDropDownType_Initialize);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, AtlasOptions.AtlasType);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameSmallDropDownType, 190);
---@end-alpha@
 end
 
 -- Called whenever an item in the map type dropdown menu is clicked
@@ -1466,10 +1451,9 @@ end
 function AtlasFrameDropDownType_OnClick(self)
 	local thisID = self:GetID();
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, thisID);
---@alpha@
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, thisID);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, thisID);
---@end-alpha@
+
 	AtlasOptions.AtlasType = thisID;
 	AtlasOptions.AtlasZone = 1;
 	AtlasFrameDropDown_OnShow();
@@ -1511,7 +1495,6 @@ function AtlasFrameDropDown_OnShow()
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, AtlasOptions.AtlasZone);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameDropDown, 190);
 
---@alpha@
 	Lib_UIDropDownMenu_Initialize(AtlasFrameLargeDropDown, AtlasFrameDropDown_Initialize);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, AtlasOptions.AtlasZone);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameLargeDropDown, 190);
@@ -1519,7 +1502,6 @@ function AtlasFrameDropDown_OnShow()
 	Lib_UIDropDownMenu_Initialize(AtlasFrameSmallDropDown, AtlasFrameDropDown_Initialize);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, AtlasOptions.AtlasZone);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameSmallDropDown, 190);
---@end-alpha@
 end
 
 -- Called whenever an item in the main dropdown menu is clicked
@@ -1527,10 +1509,9 @@ end
 function AtlasFrameDropDown_OnClick(self)
 	local i = self:GetID();
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, i);
---@alpha@
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, i);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, i);
---@end-alpha@
+
 	AtlasOptions.AtlasZone = i;
 	Atlas_Refresh();
 end
@@ -1767,7 +1748,6 @@ function AtlasEntry_OnClick(self)
 	Atlas_JournalEncounter_EncounterButton_OnClick(encounterID);
 end
 
---@alpha@
 function AtlasFrame_ToggleWindowSize()
 	if ( AtlasFrameLarge:IsVisible() ) then
 		if (ATLAS_SMALLFRAME_SELECTED) then
@@ -1818,17 +1798,26 @@ function Atlas_AutoSelect_from_WorldMap()
 	if (not mapID) then
 		return;
 	end
+	
 
 	for type_k, type_v in pairs(ATLAS_DROPDOWNS) do
 		for zone_k, zone_v in pairs(type_v) do
-			if (AtlasMaps[zone_v].WorldMapID and tonumber(AtlasMaps[zone_v].WorldMapID) == mapID) then
-				AtlasOptions.AtlasType = type_k;
-				AtlasOptions.AtlasZone = zone_k;
-				Atlas_Refresh();
-				return;
+			local AtlasWorldMapID = tonumber(AtlasMaps[zone_v].WorldMapID);
+			local AtlasMapFaction = AtlasMaps[zone_v].Faction;
+			if (AtlasWorldMapID and AtlasWorldMapID == mapID) then
+				if (AtlasMapFaction and AtlasMapFaction == ATLAS_PLAYER_FACTION) then
+					AtlasOptions.AtlasType = type_k;
+					AtlasOptions.AtlasZone = zone_k;
+					Atlas_Refresh();
+					return;
+				else
+					AtlasOptions.AtlasType = type_k;
+					AtlasOptions.AtlasZone = zone_k;
+				end
 			end
 		end
 	end
+	Atlas_Refresh();
 end
 
 function Atlas_AutoSelect_from_EncounterJournal()
@@ -1849,7 +1838,6 @@ function Atlas_AutoSelect_from_EncounterJournal()
 		end
 	end
 end
---@end-alpha@
 
 --[[
 -- In Development, this could be fun
