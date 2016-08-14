@@ -450,7 +450,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="ARTWORK">
-						<FontString name="$parent_Text" parentKey="Text" inherits="PVPInfoTextFont" justifyH="CENTER" justifyV="BOTTOM">
+						<FontString name="$parent_Text" parentKey="Text" inherits="AtlasSubZoneTextFont" justifyH="CENTER" justifyV="BOTTOM">
 							<Anchors>
 								<Anchor point="TOP">
 									<Offset>
@@ -538,7 +538,7 @@
 					<OnClick function="AtlasFrame_ToggleLegendPanel" />
 					<OnEnter>
 						GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
-						GameTooltip:SetText(ARLAS_COLLAPSE_BUTTON, nil, nil, nil, nil, 1);
+						GameTooltip:SetText(ATLAS_COLLAPSE_BUTTON, nil, nil, nil, nil, 1);
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -886,7 +886,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="ARTWORK">
-						<FontString name="$parent_Text" parentKey="Text" inherits="ZoneTextFont" justifyH="CENTER">
+						<FontString name="$parent_Text" parentKey="Text" inherits="AtlasZoneTextFont" justifyH="CENTER">
 							<Anchors>
 								<Anchor point="TOP">
 									<Offset>
@@ -1371,7 +1371,7 @@
 					<OnClick function="AtlasFrame_ToggleLegendPanel" />
 					<OnEnter>
 						GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
-						GameTooltip:SetText(ARLAS_COLLAPSE_BUTTON, nil, nil, nil, nil, 1);
+						GameTooltip:SetText(ATLAS_EXPAND_BUTTON, nil, nil, nil, nil, 1);
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -1406,7 +1406,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="ARTWORK">
-						<FontString name="$parent_Text" parentKey="Text" inherits="PVPInfoTextFont" justifyH="CENTER" justifyV="BOTTOM">
+						<FontString name="$parent_Text" parentKey="Text" inherits="AtlasSubZoneTextFont" justifyH="CENTER" justifyV="BOTTOM">
 							<Anchors>
 								<Anchor point="TOP">
 									<Offset>

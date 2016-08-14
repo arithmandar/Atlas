@@ -54,8 +54,7 @@
 		</Scripts>
 	</Button>
 
-	<Button name="AtlasMapNPCButtonTemplate" virtual="true">
-		<Size x="12" y="12"/>
+	<Button name="AtlasMapButtonTemplate" virtual="true">
 		<Scripts>
 			<OnEnter>
 				if (self.tooltipTitle) then
@@ -83,6 +82,39 @@
 			</OnClick>
 		</Scripts>
 	</Button>
+	<Button name="AtlasMapNPCButtonTemplate" inherits="AtlasMapButtonTemplate" virtual="true">
+		<Size x="12" y="12"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentImage" parentKey="bgImage">
+					<Size x="32" y="32"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="-5" y="5"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTaxiImage" parentKey="TaxiImage">
+					<Size x="20" y="20"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+				<HighlightTexture name="$parentTaxiImageHightlight" parentKey="TaxiHighlight" alphaMode="ADD" setAllPoints="true">
+					<Size x="20" y="20"/>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</HighlightTexture>
+				<Texture name="$parentLImage" parentKey="LetterImage">
+					<Size x="20" y="20"/>
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Button>
+
+
 	<Button name="AtlasFrameLargeMapButtonTemplate" virtual="true">
 		<Size x="50" y="49"/>
 		<Layers>

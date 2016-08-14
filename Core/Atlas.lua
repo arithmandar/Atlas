@@ -32,11 +32,9 @@ local string = _G.string
 local select = _G.select
 local type = _G.type
 
-
 local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0");
 local LibDialog = LibStub("LibDialog-1.0");
-
 
 -- Turn ON / OFF Atlas debug mode
 local Atlas_DebugMode = false;
@@ -76,6 +74,61 @@ ATLAS_GAMETOOLTIP_ORIGINAL_SCALE = GameTooltip:GetScale();
 
 -- Only update this version number when the options have been revised and a force update is needed.
 ATLAS_OLDEST_VERSION_SAME_SETTINGS = "1.24.00"; 
+
+local ATLAS_LETTER_MARKS_TCOORDS = {
+	["Atlas_Letter_Blue_A"] 	= {0.00000000, 0.15625000, 0.00000000, 0.15625000},
+	["Atlas_Letter_Blue_B"] 	= {0.15625000, 0.31250000, 0.00000000, 0.15625000},
+	["Atlas_Letter_Blue_C"] 	= {0.31250000, 0.46875000, 0.00000000, 0.15625000},
+	["Atlas_Letter_Blue_D"] 	= {0.46875000, 0.62500000, 0.00000000, 0.15625000},
+	["Atlas_Letter_Blue_E"] 	= {0.62500000, 0.78125000, 0.00000000, 0.15625000},
+	["Atlas_Letter_Blue_F"] 	= {0.78125000, 0.93750000, 0.00000000, 0.15625000},
+	["Atlas_Letter_Blue_G"] 	= {0.00000000, 0.15625000, 0.15625000, 0.31250000},
+	["Atlas_Letter_Blue_H"] 	= {0.15625000, 0.31250000, 0.15625000, 0.31250000},
+	["Atlas_Letter_Blue_I"] 	= {0.31250000, 0.46875000, 0.15625000, 0.31250000},
+	["Atlas_Letter_Blue_J"] 	= {0.46875000, 0.62500000, 0.15625000, 0.31250000},
+	["Atlas_Letter_Blue_K"] 	= {0.62500000, 0.78125000, 0.15625000, 0.31250000},
+	["Atlas_Letter_Blue_L"] 	= {0.78125000, 0.93750000, 0.15625000, 0.31250000},
+	["Atlas_Letter_Blue_M"] 	= {0.00000000, 0.15625000, 0.31250000, 0.46875000},
+	["Atlas_Letter_Blue_N"] 	= {0.15625000, 0.31250000, 0.31250000, 0.46875000},
+	["Atlas_Letter_Blue_O"] 	= {0.31250000, 0.46875000, 0.31250000, 0.46875000},
+	["Atlas_Letter_Blue_P"] 	= {0.46875000, 0.62500000, 0.31250000, 0.46875000},
+	["Atlas_Letter_Blue_Q"] 	= {0.62500000, 0.78125000, 0.31250000, 0.46875000},
+	["Atlas_Letter_Blue_R"] 	= {0.78125000, 0.93750000, 0.31250000, 0.46875000},
+	["Atlas_Letter_Blue_S"] 	= {0.00000000, 0.15625000, 0.46875000, 0.62500000},
+	["Atlas_Letter_Blue_T"] 	= {0.15625000, 0.31250000, 0.46875000, 0.62500000},
+	["Atlas_Letter_Blue_U"] 	= {0.31250000, 0.46875000, 0.46875000, 0.62500000},
+	["Atlas_Letter_Blue_V"] 	= {0.46875000, 0.62500000, 0.46875000, 0.62500000},
+	["Atlas_Letter_Purple_A"] 	= {0.62500000, 0.78125000, 0.46875000, 0.62500000},
+	["Atlas_Letter_Purple_B"] 	= {0.78125000, 0.93750000, 0.46875000, 0.62500000},
+	["Atlas_Letter_Purple_C"] 	= {0.00000000, 0.15625000, 0.62500000, 0.78125000},
+	["Atlas_Letter_Purple_D"] 	= {0.15625000, 0.31250000, 0.62500000, 0.78125000},
+	["Atlas_Letter_Purple_E"] 	= {0.31250000, 0.46875000, 0.62500000, 0.78125000},
+	["Atlas_Letter_Purple_F"] 	= {0.46875000, 0.62500000, 0.62500000, 0.78125000},
+	["Atlas_Letter_Purple_G"] 	= {0.62500000, 0.78125000, 0.62500000, 0.78125000},
+	["Atlas_Letter_Purple_H"] 	= {0.78125000, 0.93750000, 0.62500000, 0.78125000},
+	["Atlas_Letter_Purple_I"] 	= {0.00000000, 0.15625000, 0.78125000, 0.93750000},
+	["Atlas_Letter_Purple_J"] 	= {0.15625000, 0.31250000, 0.78125000, 0.93750000},
+	["Atlas_Letter_Purple_K"] 	= {0.31250000, 0.46875000, 0.78125000, 0.93750000},
+	["Atlas_Letter_Purple_L"] 	= {0.46875000, 0.62500000, 0.78125000, 0.93750000},
+	["Atlas_Letter_Purple_M"] 	= {0.62500000, 0.78125000, 0.78125000, 0.93750000},
+	["Atlas_Letter_Purple_N"] 	= {0.78125000, 0.93750000, 0.78125000, 0.93750000},
+};
+
+local ATLAS_FONT_COLORS = {
+	["White"] 	= {1.00, 1.00, 1.00},
+	["Yellow"] 	= {1.00, 1.00, 0.00},
+	["Green"] 	= {0.00, 1.00, 0.00},
+	["Red"] 	= {1.00, 0.00, 0.00},
+	["Orange"] 	= {1.00, 0.82, 0.00},
+	["Purple"]	= {0.73, 0.40, 1.00},
+	["Blue"]	= {0.40, 0.40, 1.00},
+};
+
+local ATLAS_TAXI_TCOORDS = {
+	["TaxiNeutral"] 	= {0.00000000, 0.31250000, 0.00000000, 0.31250000},
+	["TaxiHorde"] 		= {0.31250000, 0.62500000, 0.00000000, 0.31250000},
+	["TaxiAlliance"] 	= {0.62500000, 0.93750000, 0.00000000, 0.31250000},
+};
 
 local DefaultAtlasOptions = {
 	["AtlasVersion"] = ATLAS_OLDEST_VERSION_SAME_SETTINGS;
@@ -625,14 +678,15 @@ function Atlas_Clear_NPC_Button()
 			if (button) then
 				button:Hide();
 				button:ClearAllPoints();
+
+				local t = _G[button:GetName().."_Text"];
+				if (t) then
+					t:SetText("");
+				end
 			end
 			if (bossbutton) then
 				bossbutton:Hide();
 				bossbutton:ClearAllPoints();
-			end
-			local t = _G["AtlasMapNPCButton_Text"..i];
-			if (t) then
-				t:SetText("");
 			end
 		end
 
@@ -643,44 +697,24 @@ function Atlas_Clear_NPC_Button()
 			if (button) then
 				button:Hide();
 				button:ClearAllPoints();
+
+				local tex = _G[button:GetName().."Texture"];
+				if (tex) then
+					tex:ClearAllPoints();
+					tex:SetTexture(nil);
+				end
+
+				local t = _G[button:GetName().."_Text"];
+				if (t) then
+					t:SetText("");
+				end
 			end
 			if (bossbutton) then
 				bossbutton:Hide();
 				bossbutton:ClearAllPoints();
-			end
-			local t = _G["AtlasMapNPCButton_TextS"..i];
-			if (t) then
-				t:SetText("");
 			end
 		end
 		ATLAS_MAP_NPC_NUM = 0;
-	end
-end
-
-function Atlas_Clear_NPC_ButtonLarge()
-	-- Clean up NPC text frames
-	if (ATLAS_LARGEMAP_NPC_NUM == 0) then 
-		return; 
-	end
-	if (ATLAS_LARGEMAP_NPC_NUM > 0) then
-		for i = 1, ATLAS_LARGEMAP_NPC_NUM do
-			local button = _G["AtlasMapNPCButtonL"..i];
-			local bossbutton = _G["AtlasMapBossButtonL"..i];
-
-			if (button) then
-				button:Hide();
-				button:ClearAllPoints();
-			end
-			if (bossbutton) then
-				bossbutton:Hide();
-				bossbutton:ClearAllPoints();
-			end
-			local t = _G["AtlasMapNPCButton_TextL"..i];
-			if (t) then
-				t:SetText("");
-			end
-		end
-		ATLAS_LARGEMAP_NPC_NUM = 0;
 	end
 end
 
@@ -885,7 +919,6 @@ function Atlas_MapRefresh()
 	-- Clear boss description gametooltip when map is refreshing
 	if (AtlasOptions["AtlasBossDesc"]) then
 		Atlas_Clear_NPC_Button();
-		Atlas_Clear_NPC_ButtonLarge();
 	end
 
 	-- Searching for the map path from Atlas or from plugins
@@ -961,7 +994,6 @@ function Atlas_MapRefresh()
 		AtlasMap_AddNPCButtonLarge();
 	else
 		Atlas_Clear_NPC_Button();
-		Atlas_Clear_NPC_ButtonLarge();
 	end
 end
 
@@ -1174,18 +1206,6 @@ function AtlasMap_AddNPCButton()
 						end
 					end
 				end
-				if (info_colortag) then
-					if (info_colortag == "Dungeon" or info_colortag == "Raid") then
-						local texture;
-						texture = "Interface\\MINIMAP\\"..info_colortag;
-						local tex;
-						tex = button2:CreateTexture(nil, "BACKGROUND");
-						tex:SetTexture(texture);
-						tex:SetAllPoints();
-						button2:SetWidth(20);
-						button2:SetHeight(20);
-					end
-				end
 				button:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18, -info_y - 82 );
 				button:SetID(info_id);
 				button:Show();
@@ -1197,7 +1217,7 @@ function AtlasMap_AddNPCButton()
 			-- Disable the set text unless one day we want the text to be added dynamatically
 			-- Or, enable it for debugging purpose
 --[[
-			local f_text = button:CreateFontString("AtlasMapNPCButton_Text"..i, "MEDIUM", "NumberFont_Outline_Huge");
+			local f_text = button:CreateFontString(button:GetName().."_Text", "MEDIUM", "NumberFont_Outline_Huge");
 			f_text:SetPoint("CENTER", button, "CENTER", 0, 0);
 			f_text:SetText(info_mark);
 ]]
@@ -1211,11 +1231,12 @@ end
 function AtlasMap_AddNPCButtonLarge()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local t = AtlasMaps_NPC_DB[zoneID];
-	local i = ATLAS_LARGEMAP_NPC_NUM;
+	local i = 1;
+	local bossindex = 1;
+	local buttonindex = 1;
+	local bossbutton, button;
 
-	if (t and i == 0) then
-		i = 1;
-		local bossbutton, button;
+	if (t) then
 		while (t[i]) do
 			local info_mark 	= t[i][1];
 			local info_id 		= t[i][2];
@@ -1224,9 +1245,9 @@ function AtlasMap_AddNPCButtonLarge()
 			local info_colortag	= t[i][7];
 
 			if (info_id < 10000 and info_x and info_y) then
-				bossbutton = _G["AtlasMapBossButtonL"..i];
+				bossbutton = _G["AtlasMapBossButtonL"..bossindex];
 				if (not bossbutton) then
-					bossbutton = CreateFrame("Button", "AtlasMapBossButtonL"..i, AtlasFrameLarge, "AtlasFrameLargeMapButtonTemplate");
+					bossbutton = CreateFrame("Button", "AtlasMapBossButtonL"..bossindex, AtlasFrameLarge, "AtlasFrameLargeMapButtonTemplate");
 				end
 
 				encounterID = info_id;
@@ -1267,11 +1288,19 @@ function AtlasMap_AddNPCButtonLarge()
 				bossbutton:SetID(info_id);
 				bossbutton:Show();
 
+				bossindex = bossindex + 1;
 			elseif (info_x and info_y) then
-				button = _G["AtlasMapNPCButtonL"..i];
+				button = _G["AtlasMapNPCButtonL"..buttonindex];
 				if (not button) then
-					button = CreateFrame("Button", "AtlasMapNPCButtonL"..i, AtlasFrameLarge, "AtlasMapNPCButtonTemplate");
+					button = CreateFrame("Button", "AtlasMapNPCButtonL"..buttonindex, AtlasFrameLarge, "AtlasMapNPCButtonTemplate");
 				end
+				local text = _G[button:GetName().."_Text"];
+				if (text) then
+					text:SetText("");
+				end
+				button.TaxiImage:SetTexture(nil);
+				button.bgImage:SetTexture(nil);
+				--button.LetterImage:SetTexture(nil);
 
 				local tip_title;
 				for k, v in pairs(AtlasMaps[zoneID]) do
@@ -1285,43 +1314,45 @@ function AtlasMap_AddNPCButtonLarge()
 				end
 
 				if (info_colortag) then
+--[[
+					-- Arith: 2016.08.15 - I decided to use fontstring instead of pre-made character image. But codes can be left here for future reference until I don't need it anymore.
 					if (info_colortag == "Blue" or info_colortag == "Purple") then
-						local texcoord_template;
-						texcoord_template = "Atlas_Letter_"..info_colortag.."_"..info_mark;
-						local tex;
-						tex = button:CreateTexture(nil, "BACKGROUND", texcoord_template);
-						tex:SetAllPoints();
+						local texcoord;
+						texcoord = "Atlas_Letter_"..info_colortag.."_"..info_mark;
+						button.LetterImage:SetTexture("Interface\\AddOns\\Atlas\\Images\\Atlas_Marks_Letters1");
+						button.LetterImage:SetTexCoord(unpack(ATLAS_LETTER_MARKS_TCOORDS[texcoord]));
 						button:SetWidth(20);
-						button:SetHeight(20);
-					elseif (info_colortag == "Dungeon" or info_colortag == "Raid") then
-						local texture;
-						texture = "Interface\\MINIMAP\\"..info_colortag;
-						local tex;
-						tex = button:CreateTexture(nil, "BACKGROUND");
-						tex:SetTexture(texture);
-						tex:SetAllPoints();
-						button:SetWidth(32);
-						button:SetHeight(32);
+						button:SetHeight(20);]]
+					if (info_colortag == "Dungeon" or info_colortag == "Raid") then
+						button.bgImage:SetTexture("Interface\\MINIMAP\\"..info_colortag);
+					elseif (info_colortag == "Battlegrounds") then
+						button.bgImage:SetTexture("Interface\\MINIMAP\\Tracking\\BattleMaster");
+					elseif (info_colortag == "FlightMaster") then
+						button.TaxiImage:SetTexture("Interface\\MINIMAP\\Tracking\\FlightMaster");
+						button.TaxiImage:SetTexCoord(0, 1, 0, 1);
 					elseif (info_colortag == "TaxiAlliance" or info_colortag == "TaxiHorde" or info_colortag == "TaxiNeutral" ) then
-						local texcoord_template;
-						texcoord_template = "AtlasPOI_"..info_colortag;
-
-						button.Texture = button:CreateTexture(button:GetName().."Texture", "BACKGROUND", texcoord_template);
-						button.HighlightTexture = button:CreateTexture(button:GetName().."HighlightTexture", "HIGHLIGHT", texcoord_template);
-						button.HighlightTexture:SetBlendMode("ADD");
-						button.HighlightTexture:SetAlpha(.4);
-						button.HighlightTexture:SetAllPoints(button.Texture);
-						button:SetWidth(20);
-						button:SetHeight(20);
-					elseif (info_colortag == "White" or info_colortag == "Yellow" or info_colortag == "Red" or info_colortag == "Orange" or info_colortag == "Green") then
-						local f_text = button:CreateFontString("AtlasMapNPCButton_Text"..i, "MEDIUM", "AtlasGameFontNormalLarge"..info_colortag);
-						f_text:SetPoint("CENTER", button, "CENTER", 0, 0);
-						f_text:SetText(info_mark);
+						button.TaxiImage:SetTexture("Interface\\AddOns\\Atlas\\Images\\POIICONS");
+						button.TaxiImage:SetTexCoord(unpack(ATLAS_TAXI_TCOORDS[info_colortag]));
+					elseif (info_colortag == "White" or 
+						info_colortag == "Yellow" or 
+						info_colortag == "Red" or 
+						info_colortag == "Orange" or 
+						info_colortag == "Green" or 
+						info_colortag == "Purple" or
+						info_colortag == "Blue") then
+						if (not text) then
+							text = button:CreateFontString(button:GetName().."_Text", "MEDIUM", "AtlasSystemFont_Large_Outline_Thick");
+						end
+						text:SetPoint("CENTER", button, "CENTER", 0, 0);
+						text:SetText(info_mark);
+						text:SetTextColor(unpack(ATLAS_FONT_COLORS[info_colortag]));
 						button:SetWidth(20);
 						button:SetHeight(20);
 					else
 						-- Do Nothing
 					end
+					
+					buttonindex = buttonindex + 1;
 				end
 				button:SetPoint("TOPLEFT", "AtlasFrameLarge", "TOPLEFT", info_x + 18, -info_y - 82 );
 				button:SetID(info_id);
@@ -1332,8 +1363,22 @@ function AtlasMap_AddNPCButtonLarge()
 
 			i = i + 1;
 		end
-		-- We started the counting from 1, plus 1 in each loop, need to adjust by removing 1 after the loop is ended
-		ATLAS_LARGEMAP_NPC_NUM = i - 1;
+	end
+
+	bossbutton = _G["AtlasMapBossButtonL"..bossindex];
+	while bossbutton do
+		bossbutton.bgImage:SetTexture(nil);
+		bossbutton:Hide();
+		bossindex = bossindex + 1;
+		bossbutton = _G["AtlasMapBossButtonL"..bossindex];
+	end
+	
+	button = _G["AtlasMapNPCButtonL"..buttonindex];
+	while button do
+		button.bgImage:SetTexture(nil);
+		button:Hide();
+		buttonindex = buttonindex + 1;
+		button = _G["AtlasMapNPCButtonL"..buttonindex];
 	end
 end
 -- Calculate the dungeon difficulty based on the dungeon's level and player's level

@@ -169,8 +169,8 @@ if L then
 	L["ATLAS_OPEN_ADVENTURE"] = "Click to open Adventure Journal window.";
 	L["ATLAS_CLICK_TO_OPEN"] = "Click to open Atlas map window.";
 	L["ATLAS_OPEN_WOWMAP_WINDOW"] = "Click to open Adventure Journal Map window.";
-	L["ARLAS_COLLAPSE_BUTTON"] = "Click to close Atlas' legend panel.";
-	L["ARLAS_EXPAND_BUTTON"] = "Click to open Atlas' legend panel.";
+	L["ATLAS_COLLAPSE_BUTTON"] = "Click to close Atlas' legend panel.";
+	L["ATLAS_EXPAND_BUTTON"] = "Click to open Atlas' legend panel.";
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings

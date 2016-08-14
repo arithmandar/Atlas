@@ -242,7 +242,7 @@ function AtlasOptionsFrameDropDownCats_OnClick(self)
 	local thisID = self:GetID();
 	Lib_UIDropDownMenu_SetSelectedID(AtlasOptionsFrameDropDownCats, thisID);
 	AtlasOptions.AtlasSortBy = thisID;
-	Reset_Dropdowns();
+	AtlasReset_Dropdowns();
 end
 
 function AtlasOptions_OnMouseWheel(self, delta)

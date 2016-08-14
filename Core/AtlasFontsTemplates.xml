@@ -26,32 +26,7 @@
 
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
-	<Script>
-		if (LOCALE_koKR) then
-			STANDARD_TEXT_FONT = "Fonts\\2002.TTF";
-			UNIT_NAME_FONT = "Fonts\\2002B.TTF";
-			DAMAGE_TEXT_FONT = "Fonts\\K_Damage.TTF";
-		elseif (LOCALE_zhCN) then
-			STANDARD_TEXT_FONT = "Fonts\\ARKai_T.ttf";
-			UNIT_NAME_FONT = "Fonts\\ARKai_T.ttf";
-			DAMAGE_TEXT_FONT = "Fonts\\ARKai_C.ttf";
-		elseif (LOCALE_zhTW) then
-			STANDARD_TEXT_FONT = "Fonts\\blei00d.TTF";
-			UNIT_NAME_FONT = "Fonts\\blei00d.TTF";
-			DAMAGE_TEXT_FONT = "Fonts\\bKAI00M.TTF";
-		elseif (LOCALE_ruRU) then
-			STANDARD_TEXT_FONT = "Fonts\\FRIZQT___CYR.TTF";
-			UNIT_NAME_FONT = "Fonts\\FRIZQT___CYR.TTF";
-			DAMAGE_TEXT_FONT = "Fonts\\FRIZQT___CYR.TTF";
-		else
-			STANDARD_TEXT_FONT = "Fonts\\FRIZQT__.TTF";
-			UNIT_NAME_FONT = "Fonts\\FRIZQT__.TTF";
-			DAMAGE_TEXT_FONT = "Fonts\\FRIZQT__.TTF";
-		end
-		NAMEPLATE_FONT = "GameFontWhite";
-		NAMEPLATE_SPELLCAST_FONT = "GameFontWhiteTiny";
-	</Script>
-	<FontFamily name="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
+	<FontFamily name="AtlasSystemFont_Shadow_Large_Outline_Thick" virtual="true">
 		<Member alphabet="roman">
 			<Font font="Fonts\FRIZQT__.TTF" height="16" outline="THICK">
 				<Shadow>
@@ -103,6 +78,102 @@
 			</Font>
 		</Member>
 	</FontFamily>
+	<FontFamily name="AtlasSystemFont_Shadow_Large_Outline_Normal" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Fonts\FRIZQT__.TTF" height="16" outline="NORMAL">
+				<Shadow>
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+					<Color r="0" g="0" b="0"/>
+				</Shadow>
+			</Font>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\2002.TTF" height="14" outline="NORMAL">
+				<Shadow>
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+					<Color r="0" g="0" b="0"/>
+				</Shadow>
+			</Font>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_T.ttf" height="17" outline="NORMAL">
+				<Shadow>
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+					<Color r="0" g="0" b="0"/>
+				</Shadow>
+			</Font>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Fonts\blei00d.TTF" height="17" outline="NORMAL">
+				<Shadow>
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+					<Color r="0" g="0" b="0"/>
+				</Shadow>
+			</Font>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.TTF" height="16" outline="NORMAL">
+				<Shadow>
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+					<Color r="0" g="0" b="0"/>
+				</Shadow>
+			</Font>
+		</Member>
+	</FontFamily>
+	<FontFamily name="AtlasSystemFont_Large_Outline_Thick" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Fonts\FRIZQT__.TTF" height="16" outline="THICK">
+			</Font>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\2002.TTF" height="14" outline="THICK">
+			</Font>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_T.ttf" height="17" outline="THICK">
+			</Font>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Fonts\blei00d.TTF" height="17" outline="THICK">
+			</Font>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.TTF" height="16" outline="THICK">
+			</Font>
+		</Member>
+	</FontFamily>
+	<FontFamily name="AtlasSystemFont_Large_Outline_Normal" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Fonts\FRIZQT__.TTF" height="16" outline="NORMAL">
+			</Font>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\2002.TTF" height="14" outline="NORMAL">
+			</Font>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_T.ttf" height="17" outline="NORMAL">
+			</Font>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Fonts\blei00d.TTF" height="17" outline="NORMAL">
+			</Font>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.TTF" height="16" outline="NORMAL">
+			</Font>
+		</Member>
+	</FontFamily>
 	<FontFamily name="AtlasNumberFont_Outline_Huge" virtual="true">
 		<Member alphabet="roman">
 			<Font font="Fonts\skurri.ttf" height="30" outline="THICK"/>
@@ -120,26 +191,53 @@
 			<Font font="Fonts\SKURRI_CYR.TTF" height="30" outline="THICK"/>
 		</Member>
 	</FontFamily>	
+	<FontFamily name="AtlasZoneInfoFont_Outline_Thick_Huge2" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Fonts\FRIZQT__.TTF" height="22" outline="THICK"/>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\K_Pagetext.TTF" height="22" outline="THICK"/>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_T.ttf" height="22" outline="THICK"/>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Fonts\blei00d.TTF" height="22" outline="THICK"/>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.TTF" height="22" outline="THICK"/>
+		</Member>
+	</FontFamily>
+	<FontFamily name="AtlasSystemFont_OutlineThick_WTF" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Fonts\FRIZQT__.TTF" height ="32" outline="THICK"/>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\K_Pagetext.TTF" height="32" outline="THICK"/>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_T.ttf" height="32" outline="THICK"/>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Fonts\blei00d.TTF" height="32" outline="THICK"/>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.TTF" height="32" outline="THICK"/>
+		</Member>
+	</FontFamily>
+
+	<Font name="AtlasZoneTextFont" inherits="AtlasSystemFont_OutlineThick_WTF" virtual="true">
+		<Color r="1.0" g="0.9294" b="0.7607"/>
+	</Font>
+	<Font name="AtlasSubZoneTextFont" inherits="AtlasZoneInfoFont_Outline_Thick_Huge2" virtual="true">
+		<Color r="1.0" g="0.9294" b="0.7607"/>
+	</Font>
 	<Font name="AtlasNumberFontNormalHugeWhite" inherits="AtlasNumberFont_Outline_Huge" virtual="true">
 		<Color r="1.0" g="1.0" b="1.0"/>
 	</Font>
 	<Font name="AtlasNumberFontNormalHugeOrange" inherits="AtlasNumberFont_Outline_Huge" virtual="true">
 		<Color r="1.0" g="1.0" b="1.0"/>
 	</Font>
-	<Font name="AtlasGameFontNormalLargeWhite" inherits="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
-		<Color r="1.0" g="1.0" b="1.0"/>
-	</Font>
-	<Font name="AtlasGameFontNormalLargeYellow" inherits="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
-		<Color r="1.0" g="1.0" b="0.0"/>
-	</Font>
-	<Font name="AtlasGameFontNormalLargeGreen" inherits="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
-		<Color r="0.0" g="1.0" b="0.0"/>
-	</Font>
-	<Font name="AtlasGameFontNormalLargeRed" inherits="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
-		<Color r="1.0" g="0.0" b="0.0"/>
-	</Font>
-	<Font name="AtlasGameFontNormalLargeOrange" inherits="AtlasSystemFont_Shadow_Large_Outline" virtual="true">
-		<Color r="1.0" g="0.82" b="0"/>
-	</Font>
+
 
 </Ui>
