@@ -1126,11 +1126,11 @@ function AtlasMap_AddNPCButton()
 			if (info_id < 10000) then
 				bossbutton = _G["AtlasMapBossButton"..i];
 				if (not bossbutton) then
-					bossbutton = CreateFrame("Button", "AtlasMapBossButton"..i, AtlasFrame, "AtlasFrameLargeMapButtonTemplate");
+					bossbutton = CreateFrame("Button", "AtlasMapBossButton"..i, AtlasFrame, "AtlasFrameBossButtonTemplate");
 				end
 				bossbutton2 = _G["AtlasMapBossButtonS"..i];
 				if (not bossbutton2) then
-					bossbutton2 = CreateFrame("Button", "AtlasMapBossButtonS"..i, AtlasFrameSmall, "AtlasFrameLargeMapButtonTemplate");
+					bossbutton2 = CreateFrame("Button", "AtlasMapBossButtonS"..i, AtlasFrameSmall, "AtlasFrameBossButtonTemplate");
 				end
 
 				encounterID = info_id;
@@ -1177,6 +1177,8 @@ function AtlasMap_AddNPCButton()
 					bossbutton2.bgImage:SetTexture(nil);
 				end
 				bossbutton:ClearAllPoints();
+				--bossbutton:SetWidth(20);
+				--bossbutton:SetHeight(20);
 				bossbutton:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18-15, -info_y - 82+15);
 				bossbutton:SetID(info_id);
 				bossbutton:Show();
@@ -1197,12 +1199,14 @@ function AtlasMap_AddNPCButton()
 
 				local tip_title;
 				for k, v in pairs(AtlasMaps[zoneID]) do
-					if (v[2] == info_id) then
-						tip_title = v[1];
-						local _, endpos = strfind(tip_title, ") ");
-						if (endpos) then
-							button.tooltipTitle = strsub(tip_title, endpos+1);
-							button2.tooltipTitle = strsub(tip_title, endpos+1);
+					if (type(v[2]) == "number") then
+						if (v[2] == info_id) then
+							tip_title = v[1];
+							local _, endpos = strfind(tip_title, ") ");
+							if (endpos) then
+								button.tooltipTitle = strsub(tip_title, endpos+1);
+								button2.tooltipTitle = strsub(tip_title, endpos+1);
+							end
 						end
 					end
 				end
@@ -1247,7 +1251,7 @@ function AtlasMap_AddNPCButtonLarge()
 			if (info_id < 10000 and info_x and info_y) then
 				bossbutton = _G["AtlasMapBossButtonL"..bossindex];
 				if (not bossbutton) then
-					bossbutton = CreateFrame("Button", "AtlasMapBossButtonL"..bossindex, AtlasFrameLarge, "AtlasFrameLargeMapButtonTemplate");
+					bossbutton = CreateFrame("Button", "AtlasMapBossButtonL"..bossindex, AtlasFrameLarge, "AtlasFrameBossButtonTemplate");
 				end
 
 				encounterID = info_id;

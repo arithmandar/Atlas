@@ -532,7 +532,7 @@
 			<Button name="$parentCollapseButton">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parent" x="505" y="-571"/>
+					<Anchor point="TOPLEFT" relativeTo="$parent" x="505" y="-570"/>
 				</Anchors>
 				<Scripts>
 					<OnClick function="AtlasFrame_ToggleLegendPanel" />
@@ -1365,7 +1365,7 @@
 			<Button name="$parentExpandButton">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parent" x="505" y="-571"/>
+					<Anchor point="TOPLEFT" relativeTo="$parent" x="505" y="-570"/>
 				</Anchors>
 				<Scripts>
 					<OnClick function="AtlasFrame_ToggleLegendPanel" />

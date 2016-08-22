@@ -114,8 +114,7 @@
 		</Layers>
 	</Button>
 
-
-	<Button name="AtlasFrameLargeMapButtonTemplate" virtual="true">
+	<Button name="AtlasFrameBossButtonTemplate" inherits="AtlasMapButtonTemplate" virtual="true">
 		<Size x="50" y="49"/>
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -136,29 +135,6 @@
 		<HighlightTexture file="Interface\EncounterJournal\UI-EncounterJournalTextures">
 			<TexCoords left="0.68945313" right="0.81054688" top="0.33300781" bottom="0.39257813"/>
 		</HighlightTexture>
-		<Scripts>
-			<OnEnter>
-				if (self.tooltipTitle) then
-					GameTooltip:SetOwner(self, "ANCHOR_LEFT");
-					GameTooltip:SetText(self.tooltipTitle,1,1,1);
-					GameTooltip:AddLine(self.tooltipText, nil, nil, nil, true);
-					if (self.overviewDescription) then
-						GameTooltip:AddLine("\n"..OVERVIEW, 1, 1, 1, 1)
-						GameTooltip:AddLine(self.overviewDescription, nil, nil, nil, 1);
-					end
-					GameTooltip:Show();
-				end
-			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnShow>
-				self:SetFrameLevel(self:GetParent():GetFrameLevel() + 10);
-			</OnShow>
-			<OnClick>
-				Atlas_JournalEncounter_EncounterButton_OnClick(self.encounterID);
-			</OnClick>
-		</Scripts>
 	</Button>
 
 	<!-- Atlas Marks - Letters1 -->

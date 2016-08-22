@@ -2046,7 +2046,7 @@ Syntax:
 		{ WHIT.." 1) "..Atlas_GetBossName("Tenebron"), 10002 };
 		{ WHIT.." 2) "..Atlas_GetBossName("Shadron"), 10003 };
 		{ WHIT.." 3) "..Atlas_GetBossName("Vesperon"), 10004 };
-		{ WHIT.." 4) "..Atlas_GetBossName("Sartharion", 1516), 1516 };
+		{ WHIT.." 4) "..Atlas_GetBossName("Sartharion", 1616), 1616 };
 	};
 	OnyxiasLair = {
 		ZoneName = { BZ["Onyxia's Lair"] };
@@ -2369,7 +2369,7 @@ Syntax:
 		Acronym = L["VoA"];
 		PlayerLimit = "10/25";
 		WorldMapID = "532";
-		JournalInstanceID = 753;
+		JournalInstanceID = "753";
 		Module = "Atlas_WrathoftheLichKing";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
 		{ WHIT.." 1) "..Atlas_GetBossName("Archavon the Stone Watcher", 1597), 1597 };
@@ -2379,7 +2379,7 @@ Syntax:
 	};
 	VioletHold = {
 		ZoneName = { BZ["The Violet Hold"] };
-		Location = { BZ["Dalaran"] };
+		Location = { BZ["Dalaran (Northrend)"] };
 		DungeonID = "220";
 		DungeonHeroicID = "221";
 		Acronym = L["VH"];
@@ -4166,6 +4166,6 @@ Syntax:
 		JournalInstanceID = "707";
 		Module = "Atlas_Legion";
 		{ BLUE.." D) "..L["Connection"], 10004 };
-		{ WHIT.." 5) "..Atlas_GetBossName("Cordana Felsong", 1470), 1470 , 1470 };
+		{ WHIT.." 5) "..Atlas_GetBossName("Cordana Felsong", 1470), 1470 };
 	};
 };
