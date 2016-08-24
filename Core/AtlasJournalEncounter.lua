@@ -170,6 +170,7 @@ function AtlasFrameAdventureJournalMapButton_OnClick()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local data = AtlasMaps;
 	local base = data[zoneID];
+	local mapID, mapLevel;
 
 --	local _, _, _, _, _, _, dungeonAreaMapID = EJ_GetInstanceInfo(base.JournalInstanceID);
 --	if (dungeonAreaMapID and dungeonAreaMapID > 0) then
@@ -179,11 +180,26 @@ function AtlasFrameAdventureJournalMapButton_OnClick()
 			_G["AtlasMapLarge"..i]:SetTexture(AtlasMapPath..dungeonAreaMapID..i);
 		end
 ]]
-	if (base.WorldMapID and tonumber(base.WorldMapID) > 0) then
-		HideUIPanel(AtlasFrame);
-		WorldMapFrame.fromJournal = true;
-		ShowUIPanel(WorldMapFrame);
-		SetMapByID(base.WorldMapID);
+	if (base.WorldMapID) then
+		if (type(base.WorldMapID) == "table") then
+			if (tonumber(base.WorldMapID[1]) > 0) then
+				mapID = base.WorldMapID[1];
+				mapLevel = base.WorldMapID[2];
+			end
+		else
+			if (tonumber(base.WorldMapID) > 0) then
+				mapID = base.WorldMapID;
+			end
+		end
+	end
+	HideUIPanel(AtlasFrame);
+	WorldMapFrame.fromJournal = true;
+	ShowUIPanel(WorldMapFrame);
+	if (mapID) then
+		SetMapByID(mapID);
+	end
+	if (mapLevel) then
+		SetDungeonMapLevel(mapLevel);
 	end
 end
 

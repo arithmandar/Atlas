@@ -898,14 +898,22 @@ function Atlas_MapRefresh()
 		AtlasFrameSmallAdventureJournalButton:Hide();
 		--AtlasSetEJBackground();
 	end
-	if (base.WorldMapID and tonumber(base.WorldMapID) > 0) then
-		AtlasFrameAdventureJournalMapButton:Show();
-		AtlasFrameLargeAdventureJournalMapButton:Show();
-		AtlasFrameSmallAdventureJournalMapButton:Show();
-	else
-		AtlasFrameAdventureJournalMapButton:Hide();
-		AtlasFrameLargeAdventureJournalMapButton:Hide();
-		AtlasFrameSmallAdventureJournalMapButton:Hide();
+	if (base.WorldMapID) then
+		local mapID;
+		if (type(base.WorldMapID) == "table") then
+			mapID = tonumber(base.WorldMapID[1]);
+		else
+			mapID = tonumber(base.WorldMapID);
+		end
+		if (mapID > 0) then
+			AtlasFrameAdventureJournalMapButton:Show();
+			AtlasFrameLargeAdventureJournalMapButton:Show();
+			AtlasFrameSmallAdventureJournalMapButton:Show();
+		else
+			AtlasFrameAdventureJournalMapButton:Hide();
+			AtlasFrameLargeAdventureJournalMapButton:Hide();
+			AtlasFrameSmallAdventureJournalMapButton:Hide();
+		end
 	end
 
 	if (base.LargeMap) then
@@ -1851,7 +1859,13 @@ function Atlas_AutoSelect_from_WorldMap()
 
 	for type_k, type_v in pairs(ATLAS_DROPDOWNS) do
 		for zone_k, zone_v in pairs(type_v) do
-			local AtlasWorldMapID = tonumber(AtlasMaps[zone_v].WorldMapID);
+			local AtlasWorldMapID;
+			if (type(AtlasMaps[zone_v].WorldMapID) == "table") then
+				AtlasWorldMapID = tonumber(AtlasMaps[zone_v].WorldMapID[1]);
+			else
+				AtlasWorldMapID = tonumber(AtlasMaps[zone_v].WorldMapID);
+			end
+			
 			local AtlasMapFaction = AtlasMaps[zone_v].Faction;
 			if (AtlasWorldMapID and AtlasWorldMapID == mapID) then
 				if (AtlasMapFaction and AtlasMapFaction == ATLAS_PLAYER_FACTION) then
