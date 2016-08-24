@@ -25,6 +25,9 @@ v1.34.00 (Aug. 31, 2016)
 - Libraries update: LibBabble-Boss-3.0, LibBabble-Faction-3.0
 - Translation update:
   - Simplified Chinese (ananhaid)
+  - French (Stuxz)
+  - German (pas06)
+  - Brazilian Portuguese (Sunflow72)
 
 v1.33.02 (Jul. 26, 2016)
 ------------------------

@@ -248,7 +248,7 @@ local function Process_Deprecated()
 	local Deprecated_List = {
 		-- Most recent (working) versions of known modules at time of release
 		-- Atlas Modules
-		{ "Atlas_Legion",	 	"1.33.00" },
+		{ "Atlas_Legion",	 	"1.34.00" },
 		{ "Atlas_WarlordsofDraenor", 	"1.33.00" },
 		{ "Atlas_MistsofPandaria",	"1.33.00" },
 		{ "Atlas_Cataclysm", 		"1.33.00" },
@@ -261,6 +261,7 @@ local function Process_Deprecated()
 		{ "Atlas_OutdoorRaids", 	"1.33.00" },
 		{ "Atlas_Transportation", 	"1.33.00" },
 		{ "Atlas_Scenarios", 		"1.33.00" },
+		{ "Atlas_ClassOrderHalls",	"1.34.00" },
 		-- 3rd parties plugins
 		{ "AtlasQuest", 		"4.10.01" }, 	-- updated Jul. 26, 2016
 		{ "Atlas_Arena", 		"1.06.00" }, 	-- updated Jul. 19, 2016
@@ -440,6 +441,7 @@ local function Atlas_Check_Modules()
 		"Atlas_OutdoorRaids",
 		"Atlas_Transportation",
 		"Atlas_Scenarios",
+		"Atlas_ClassOrderHalls",
 	};
 
 	-- Check for outdated modules, build a list of them, then disable them and tell the player
