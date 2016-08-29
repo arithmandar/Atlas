@@ -667,6 +667,7 @@ end
 
 -- Adopted some of the codes from AlasMajorCitiesEnhanced
 -- Function to cleanup the text frame
+--[[
 function Atlas_Clear_NPC_Button()
 	-- Clean up NPC text frames
 	if (ATLAS_MAP_NPC_NUM == 0) then 
@@ -719,6 +720,7 @@ function Atlas_Clear_NPC_Button()
 		ATLAS_MAP_NPC_NUM = 0;
 	end
 end
+]]
 
 function Atlas_MapRefresh()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
@@ -733,7 +735,6 @@ function Atlas_MapRefresh()
 	local colortag, dungeon_difficulty;
 	
 	if (base.DungeonID) then
-		-- name, typeID, subtypeID, minLevel, maxLevel, recLevel, minRecLevel, maxRecLevel, expansionLevel, groupID, textureFilename, difficulty, maxPlayers, description, isHoliday = GetLFGDungeonInfo(base.DungeonID);
 		_, _, _, minLevel, maxLevel, _, minRecLevel, maxRecLevel, _, _, _, _, maxPlayers = GetLFGDungeonInfo(base.DungeonID);
 
 		-- For some unknown reason, some of the dungeons do not have recommended level range
@@ -745,7 +746,6 @@ function Atlas_MapRefresh()
 		end
 	end
 	if (base.DungeonHeroicID) then
-		-- nameH, typeIDH, subtypeIDH, minLevelH, maxLevelH, recLevelH, minRecLevelH, maxRecLevelH, expansionLevelH, groupIDH, textureFilenameH, difficultyH, maxPlayersH, descriptionH, isHolidayH = GetLFGDungeonInfo(base.DungeonHeroicID);
 		_, _, _, minLevelH, maxLevelH, _, minRecLevelH, maxRecLevelH, _, _, _, _, maxPlayersH = GetLFGDungeonInfo(base.DungeonHeroicID);
 
 		if (minRecLevelH == 0) then
@@ -756,7 +756,6 @@ function Atlas_MapRefresh()
 		end
 	end
 	if (base.DungeonMythicID) then
-		-- nameH, typeIDH, subtypeIDH, minLevelH, maxLevelH, recLevelH, minRecLevelH, maxRecLevelH, expansionLevelH, groupIDH, textureFilenameH, difficultyH, maxPlayersH, descriptionH, isHolidayH = GetLFGDungeonInfo(base.DungeonHeroicID);
 		_, _, _, minLevelM, maxLevelM, _, minRecLevelM, maxRecLevelM, _, _, _, _, maxPlayersM = GetLFGDungeonInfo(base.DungeonMythicID);
 
 		if (minRecLevelM == 0) then
@@ -767,7 +766,7 @@ function Atlas_MapRefresh()
 		end
 	end
 	
-	-- Zone Name Acronym
+	-- Zone Name and Acronym
 	local tName = base.ZoneName[1];
 	if (base.LargeMap) then
 		AtlasFrameLarge.ZoneName.Text:SetText(tName);
@@ -855,6 +854,7 @@ function Atlas_MapRefresh()
 		tRLR = ATLAS_STRING_RECLEVELRANGE..L["Colon"]..WHIT..base.LevelRange;
 	end
 	AtlasText_RecommendedRange_Text:SetText(tRLR);
+
 	-- Map's Minimum Level
 	local tML = "";
 	if (base.DungeonID) then 
@@ -900,22 +900,16 @@ function Atlas_MapRefresh()
 		AtlasFrameSmallAdventureJournalButton:Hide();
 		--AtlasSetEJBackground();
 	end
+
+	-- Check if WorldMap ID is available, if so, show the map button
 	if (base.WorldMapID) then
-		local mapID;
-		if (type(base.WorldMapID) == "table") then
-			mapID = tonumber(base.WorldMapID[1]);
-		else
-			mapID = tonumber(base.WorldMapID);
-		end
-		if (mapID > 0) then
-			AtlasFrameAdventureJournalMapButton:Show();
-			AtlasFrameLargeAdventureJournalMapButton:Show();
-			AtlasFrameSmallAdventureJournalMapButton:Show();
-		else
-			AtlasFrameAdventureJournalMapButton:Hide();
-			AtlasFrameLargeAdventureJournalMapButton:Hide();
-			AtlasFrameSmallAdventureJournalMapButton:Hide();
-		end
+		AtlasFrameAdventureJournalMapButton:Show();
+		AtlasFrameLargeAdventureJournalMapButton:Show();
+		AtlasFrameSmallAdventureJournalMapButton:Show();
+	else
+		AtlasFrameAdventureJournalMapButton:Hide();
+		AtlasFrameLargeAdventureJournalMapButton:Hide();
+		AtlasFrameSmallAdventureJournalMapButton:Hide();
 	end
 
 	if (base.LargeMap) then
@@ -928,7 +922,7 @@ function Atlas_MapRefresh()
 	
 	-- Clear boss description gametooltip when map is refreshing
 	if (AtlasOptions["AtlasBossDesc"]) then
-		Atlas_Clear_NPC_Button();
+		--Atlas_Clear_NPC_Button();
 	end
 
 	-- Searching for the map path from Atlas or from plugins
@@ -1003,7 +997,7 @@ function Atlas_MapRefresh()
 		AtlasMap_AddNPCButton();
 		AtlasMap_AddNPCButtonLarge();
 	else
-		Atlas_Clear_NPC_Button();
+		--Atlas_Clear_NPC_Button();
 	end
 end
 
@@ -1016,15 +1010,14 @@ function Atlas_Refresh()
 	local data = AtlasMaps;
 	local base = data[zoneID];
 
-	if (not base.LargeMap) then
-		if (AtlasFrameLarge:IsVisible()) then
-			if (ATLAS_SMALLFRAME_SELECTED) then
-				HideUIPanel(AtlasFrameLarge);
-				ShowUIPanel(AtlasFrameSmall);
-			else
-				HideUIPanel(AtlasFrameLarge);
-				ShowUIPanel(AtlasFrame);
-			end
+	-- Dealing with the scenario that when user is in a large map, but then the newly selected map does not have large map
+	if (not base.LargeMap and AtlasFrameLarge:IsVisible() ) then
+		if (ATLAS_SMALLFRAME_SELECTED) then
+			HideUIPanel(AtlasFrameLarge);
+			ShowUIPanel(AtlasFrameSmall);
+		else
+			HideUIPanel(AtlasFrameLarge);
+			ShowUIPanel(AtlasFrame);
 		end
 	end
 	
@@ -1121,11 +1114,14 @@ end
 function AtlasMap_AddNPCButton()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local t = AtlasMaps_NPC_DB[zoneID];
-	local i = ATLAS_MAP_NPC_NUM;
+	local i = 1;
+	local bossindex = 1;
+	local buttonindex = 1;
+	local bossindexS = 1;
+	local buttonindexS = 1;
+	local bossbutton, button, bossbuttonS, buttonS;
 
-	if (t and i == 0) then
-		i = 1;
-		local bossbutton, button, bossbutton2, button2;
+	if (t) then
 		while (t[i]) do
 			local info_mark 	= t[i][1];
 			local info_id 		= t[i][2];
@@ -1134,46 +1130,46 @@ function AtlasMap_AddNPCButton()
 			local info_colortag	= t[i][7];
 
 			if (info_id < 10000) then
-				bossbutton = _G["AtlasMapBossButton"..i];
+				bossbutton = _G["AtlasMapBossButton"..bossindex];
 				if (not bossbutton) then
-					bossbutton = CreateFrame("Button", "AtlasMapBossButton"..i, AtlasFrame, "AtlasFrameBossButtonTemplate");
+					bossbutton = CreateFrame("Button", "AtlasMapBossButton"..bossindex, AtlasFrame, "AtlasFrameBossButtonTemplate");
 				end
-				bossbutton2 = _G["AtlasMapBossButtonS"..i];
-				if (not bossbutton2) then
-					bossbutton2 = CreateFrame("Button", "AtlasMapBossButtonS"..i, AtlasFrameSmall, "AtlasFrameBossButtonTemplate");
+				bossbuttonS = _G["AtlasMapBossButtonS"..bossindexS];
+				if (not bossbuttonS) then
+					bossbuttonS = CreateFrame("Button", "AtlasMapBossButtonS"..bossindexS, AtlasFrameSmall, "AtlasFrameBossButtonTemplate");
 				end
 
 				encounterID = info_id;
 				ejbossname, description, _, rootSectionID = EJ_GetEncounterInfo(encounterID); 
 				if (ejbossname) then 
 					bossbutton.tooltipTitle = ejbossname; 
-					bossbutton2.tooltipTitle = ejbossname; 
+					bossbuttonS.tooltipTitle = ejbossname; 
 				else
 					bossbutton.tooltipTitle = nil; 
-					bossbutton2.tooltipTitle = nil; 
+					bossbuttonS.tooltipTitle = nil; 
 				end
 				if (encounterID) then
 					bossbutton.encounterID = encounterID;
-					bossbutton2.encounterID = encounterID;
+					bossbuttonS.encounterID = encounterID;
 				else
 					bossbutton.encounterID = nil;
-					bossbutton2.encounterID = nil;
+					bossbuttonS.encounterID = nil;
 				end
 				if (description) then 
 					bossbutton.tooltipText = description; 
-					bossbutton2.tooltipText = description; 
+					bossbuttonS.tooltipText = description; 
 				else
 					bossbutton.tooltipText = nil; 
-					bossbutton2.tooltipText = nil; 
+					bossbuttonS.tooltipText = nil; 
 				end
 				if (ejbossname and EncounterJournal_CheckForOverview(rootSectionID)) then
 					local _, overviewDescription = EJ_GetSectionInfo(rootSectionID);
 					if (overviewDescription) then
 						bossbutton.overviewDescription = overviewDescription;
-						bossbutton2.overviewDescription = overviewDescription;
+						bossbuttonS.overviewDescription = overviewDescription;
 					else
 						bossbutton.overviewDescription = nil;
-						bossbutton2.overviewDescription = nil;
+						bossbuttonS.overviewDescription = nil;
 					end
 				end
 
@@ -1181,10 +1177,10 @@ function AtlasMap_AddNPCButton()
 				bossbutton.displayInfo = displayInfo;
 				if ( encounterID and iconImage ) then
 					SetPortraitTexture(bossbutton.bgImage, displayInfo);
-					SetPortraitTexture(bossbutton2.bgImage, displayInfo);
+					SetPortraitTexture(bossbuttonS.bgImage, displayInfo);
 				else 
 					bossbutton.bgImage:SetTexture(nil);
-					bossbutton2.bgImage:SetTexture(nil);
+					bossbuttonS.bgImage:SetTexture(nil);
 				end
 				bossbutton:ClearAllPoints();
 				--bossbutton:SetWidth(20);
@@ -1193,39 +1189,43 @@ function AtlasMap_AddNPCButton()
 				bossbutton:SetID(info_id);
 				bossbutton:Show();
 
-				bossbutton2:ClearAllPoints();
-				bossbutton2:SetPoint("TOPLEFT", "AtlasFrameSmall", "TOPLEFT", info_x + 18-15, -info_y - 82+15);
-				bossbutton2:SetID(info_id);
-				bossbutton2:Show();
+				bossbuttonS:ClearAllPoints();
+				bossbuttonS:SetPoint("TOPLEFT", "AtlasFrameSmall", "TOPLEFT", info_x + 18-15, -info_y - 82+15);
+				bossbuttonS:SetID(info_id);
+				bossbuttonS:Show();
+
+				bossindex = bossindex + 1;
+				bossindexS = bossindexS + 1;
 			else
-				button = _G["AtlasMapNPCButton"..i];
+				button = _G["AtlasMapNPCButton"..buttonindex];
 				if (not button) then
-					button = CreateFrame("Button", "AtlasMapNPCButton"..i, AtlasFrame, "AtlasMapNPCButtonTemplate");
+					button = CreateFrame("Button", "AtlasMapNPCButton"..buttonindex, AtlasFrame, "AtlasMapNPCButtonTemplate");
 				end
-				button2 = _G["AtlasMapNPCButtonS"..i];
-				if (not button2) then
-					button2 = CreateFrame("Button", "AtlasMapNPCButtonS"..i, AtlasFrameSmall, "AtlasMapNPCButtonTemplate");
+				buttonS = _G["AtlasMapNPCButtonS"..buttonindexS];
+				if (not buttonS) then
+					buttonS = CreateFrame("Button", "AtlasMapNPCButtonS"..buttonindexS, AtlasFrameSmall, "AtlasMapNPCButtonTemplate");
 				end
 
 				local tip_title;
 				for k, v in pairs(AtlasMaps[zoneID]) do
-					if (type(v[2]) == "number") then
-						if (v[2] == info_id) then
-							tip_title = v[1];
-							local _, endpos = strfind(tip_title, ") ");
-							if (endpos) then
-								button.tooltipTitle = strsub(tip_title, endpos+1);
-								button2.tooltipTitle = strsub(tip_title, endpos+1);
-							end
+					if (v[2] == info_id) then
+						tip_title = v[1];
+						local _, endpos = strfind(tip_title, ") ");
+						if (endpos) then
+							button.tooltipTitle = strsub(tip_title, endpos+1);
+							buttonS.tooltipTitle = strsub(tip_title, endpos+1);
 						end
 					end
 				end
 				button:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18, -info_y - 82 );
 				button:SetID(info_id);
 				button:Show();
-				button2:SetPoint("TOPLEFT", "AtlasFrameSmall", "TOPLEFT", info_x + 18, -info_y - 82 );
-				button2:SetID(info_id);
-				button2:Show();
+				buttonS:SetPoint("TOPLEFT", "AtlasFrameSmall", "TOPLEFT", info_x + 18, -info_y - 82 );
+				buttonS:SetID(info_id);
+				buttonS:Show();
+
+				buttonindex = buttonindex + 1;
+				buttonindexS = buttonindexS + 1;
 			end
 
 			-- Disable the set text unless one day we want the text to be added dynamatically
@@ -1238,8 +1238,41 @@ function AtlasMap_AddNPCButton()
 			i = i + 1;
 		end
 		-- We started the counting from 1, plus 1 in each loop, need to adjust by removing 1 after the loop is ended
-		ATLAS_MAP_NPC_NUM = i - 1;
+		--ATLAS_MAP_NPC_NUM = i - 1;
 	end
+
+	bossbutton = _G["AtlasMapBossButton"..bossindex];
+	while bossbutton do
+		bossbutton.bgImage:SetTexture(nil);
+		bossbutton:Hide();
+		bossindex = bossindex + 1;
+		bossbutton = _G["AtlasMapBossButton"..bossindex];
+	end
+
+	bossbuttonS = _G["AtlasMapBossButtonS"..bossindexS];
+	while bossbuttonS do
+		bossbuttonS.bgImage:SetTexture(nil);
+		bossbuttonS:Hide();
+		bossindexS = bossindexS + 1;
+		bossbuttonS = _G["AtlasMapBossButtonS"..bossindexS];
+	end
+	
+	button = _G["AtlasMapNPCButton"..buttonindex];
+	while button do
+		button.bgImage:SetTexture(nil);
+		button:Hide();
+		buttonindex = buttonindex + 1;
+		button = _G["AtlasMapNPCButton"..buttonindex];
+	end
+
+	buttonS = _G["AtlasMapNPCButtonS"..buttonindexS];
+	while buttonS do
+		buttonS.bgImage:SetTexture(nil);
+		buttonS:Hide();
+		buttonindexS = buttonindexS + 1;
+		buttonS = _G["AtlasMapNPCButtonS"..buttonindexS];
+	end
+
 end
 
 function AtlasMap_AddNPCButtonLarge()
@@ -1336,7 +1369,8 @@ function AtlasMap_AddNPCButtonLarge()
 						button.LetterImage:SetTexture("Interface\\AddOns\\Atlas\\Images\\Atlas_Marks_Letters1");
 						button.LetterImage:SetTexCoord(unpack(ATLAS_LETTER_MARKS_TCOORDS[texcoord]));
 						button:SetWidth(20);
-						button:SetHeight(20);]]
+						button:SetHeight(20);
+]]
 					if (info_colortag == "Dungeon" or info_colortag == "Raid") then
 						button.bgImage:SetTexture("Interface\\MINIMAP\\"..info_colortag);
 					elseif (info_colortag == "Battlegrounds") then
@@ -1366,11 +1400,12 @@ function AtlasMap_AddNPCButtonLarge()
 						-- Do Nothing
 					end
 					
-					buttonindex = buttonindex + 1;
 				end
 				button:SetPoint("TOPLEFT", "AtlasFrameLarge", "TOPLEFT", info_x + 18, -info_y - 82 );
 				button:SetID(info_id);
 				button:Show();
+
+				buttonindex = buttonindex + 1;
 			else
 				-- Do Nothing;
 			end
@@ -1395,6 +1430,7 @@ function AtlasMap_AddNPCButtonLarge()
 		button = _G["AtlasMapNPCButtonL"..buttonindex];
 	end
 end
+
 -- Calculate the dungeon difficulty based on the dungeon's level and player's level
 -- Codes adopted from FastQuest_Classic
 function Atlas_DungeonDifficulty(minRecLevel)
@@ -1853,21 +1889,16 @@ end
 
 function Atlas_AutoSelect_from_WorldMap()
 	local mapID, _ = GetCurrentMapAreaID();
+	local dungeonLevel = GetCurrentMapDungeonLevel();
 	
 	if (not mapID) then
 		return;
 	end
-	
 
 	for type_k, type_v in pairs(ATLAS_DROPDOWNS) do
 		for zone_k, zone_v in pairs(type_v) do
-			local AtlasWorldMapID;
-			if (type(AtlasMaps[zone_v].WorldMapID) == "table") then
-				AtlasWorldMapID = tonumber(AtlasMaps[zone_v].WorldMapID[1]);
-			else
-				AtlasWorldMapID = tonumber(AtlasMaps[zone_v].WorldMapID);
-			end
-			
+			local AtlasWorldMapID = tonumber(AtlasMaps[zone_v].WorldMapID);
+			local AtlasMapDungeonLevel = tonumber(AtlasMaps[zone_v].DungeonLevel);
 			local AtlasMapFaction = AtlasMaps[zone_v].Faction;
 			if (AtlasWorldMapID and AtlasWorldMapID == mapID) then
 				if (AtlasMapFaction and AtlasMapFaction == ATLAS_PLAYER_FACTION) then
@@ -1876,8 +1907,15 @@ function Atlas_AutoSelect_from_WorldMap()
 					Atlas_Refresh();
 					return;
 				else
-					AtlasOptions.AtlasType = type_k;
-					AtlasOptions.AtlasZone = zone_k;
+					if (dungeonLevel > 0 and AtlasMapDungeonLevel) then
+						if (AtlasMapDungeonLevel == dungeonLevel) then
+							AtlasOptions.AtlasType = type_k;
+							AtlasOptions.AtlasZone = zone_k;
+						end
+					else
+						AtlasOptions.AtlasType = type_k;
+						AtlasOptions.AtlasZone = zone_k;
+					end
 				end
 			end
 		end

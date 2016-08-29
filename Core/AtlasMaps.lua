@@ -4009,6 +4009,7 @@ Syntax:
 		{ WHIT.." 6) "..Atlas_GetBossName("Cenarius", 1750), 1750 };
 	};
 	-- Map TODO
+--[[
 	TheEmeraldNightmareH = {
 		ZoneName = { BZ["The Emerald Nightmare"]..L["MapH"] };
 		Location = { BZ["Rift of Aln"] };
@@ -4023,6 +4024,7 @@ Syntax:
 		{ BLUE.." G) "..L["Portal"], 10007 };
 		{ WHIT.." 7) "..Atlas_GetBossName("Xavius", 1726), 1726 };
 	};
+]]
 	TheNightholdA = {
 		ZoneName = { BZ["The Nighthold"]..L["MapA"] };
 		Location = { BZ["Suramar"] };
@@ -4114,6 +4116,7 @@ Syntax:
 		{ WHIT.." 9) "..Atlas_GetBossName("Grand Magistrix Elisande", 1743), 1743 };
 	};
 	-- Map TODO
+--[[
 	TheNightholdG = {
 		ZoneName = { BZ["The Nighthold"]..L["MapG"] };
 		Location = { BZ["Suramar"] };
@@ -4127,6 +4130,7 @@ Syntax:
 		Module = "Atlas_Legion";
 		{ WHIT.." 10) "..Atlas_GetBossName("Gul'dan", 1737), 1737 };
 	};
+]]
 	VaultoftheWardensA = {
 		ZoneName = { BZ["Vault of the Wardens"]..L["MapA"] };
 		Location = { BZ["Azsuna"] };

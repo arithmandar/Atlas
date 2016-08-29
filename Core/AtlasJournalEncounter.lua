@@ -170,160 +170,19 @@ function AtlasFrameAdventureJournalMapButton_OnClick()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local data = AtlasMaps;
 	local base = data[zoneID];
-	local mapID, mapLevel;
 
---	local _, _, _, _, _, _, dungeonAreaMapID = EJ_GetInstanceInfo(base.JournalInstanceID);
---	if (dungeonAreaMapID and dungeonAreaMapID > 0) then
---[[
-		local AtlasMapPath = "Interface\\WorldMap\\dungeonAreaMapID\\";
-		for i=1, 12 do
-			_G["AtlasMapLarge"..i]:SetTexture(AtlasMapPath..dungeonAreaMapID..i);
-		end
-]]
-	if (base.WorldMapID) then
-		if (type(base.WorldMapID) == "table") then
-			if (tonumber(base.WorldMapID[1]) > 0) then
-				mapID = base.WorldMapID[1];
-				mapLevel = base.WorldMapID[2];
-			end
-		else
-			if (tonumber(base.WorldMapID) > 0) then
-				mapID = base.WorldMapID;
-			end
-		end
-	end
 	HideUIPanel(AtlasFrame);
 	WorldMapFrame.fromJournal = true;
 	ShowUIPanel(WorldMapFrame);
-	if (mapID) then
-		SetMapByID(mapID);
+	if (base.WorldMapID) then
+		SetMapByID(base.WorldMapID);
 	end
-	if (mapLevel) then
-		SetDungeonMapLevel(mapLevel);
+	if (base.DungeonLevel) then
+		SetDungeonMapLevel(base.DungeonLevel);
 	end
 end
 
 function AtlasFrameLarge_OnShow(self)
-	--AtlasFrameLarge_AddMapButtons();
 	AtlasMap_AddNPCButtonLarge();
 end
 
---[[
-local EJ_HTYPE_OVERVIEW = 3;
-local function EncounterJournal_CheckForOverview(rootSectionID)
-	return select(3,EJ_GetSectionInfo(rootSectionID)) == EJ_HTYPE_OVERVIEW;
-end
-
--- codes adopted from WorldMapFrame.lua
-function AtlasFrameLarge_AddMapButtons()
-	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
-	local data = AtlasMaps;
-	local base = data[zoneID];
-	local instanceID = base.JournalInstanceID;
-	local worldmapID = base.WorldMapID;
-	
-	if (worldmapID) then 
-		SetMapByID(worldmapID);
-	end
-
-	local left = AtlasFrameLargeBossButtonFrame:GetLeft();
-	local right = AtlasFrameLargeBossButtonFrame:GetRight();
-	local top = AtlasFrameLargeBossButtonFrame:GetTop();
-	local bottom = AtlasFrameLargeBossButtonFrame:GetBottom();
-
-	if not left or not right or not top or not bottom then
-		--This frame is resizing
-		AtlasFrameLargeBossButtonFrame.ready = false;
-		AtlasFrameLargeBossButtonFrame:SetScript("OnUpdate", AtlasFrameLarge_AddMapButtons);
-		return;
-	else
-		AtlasFrameLargeBossButtonFrame:SetScript("OnUpdate", nil);
-	end
-	
-	-- frame size of AtlasFrameLarge, for the map area, not the entire frame
-	local width = 1002;
-	local height = 668;
-	
-	local bossButton, displayInfo;
-	local index = 1;
-	local x, y, instanceID, name, description, encounterID = EJ_GetMapEncounter(index, true);
-
-	while name do
-		bossButton = _G["AtlasEJMapButton"..index];
-		if (not bossButton) then -- create button
-			bossButton = CreateFrame("Button", "AtlasEJMapButton"..index, AtlasFrameLargeBossButtonFrame, "AtlasFrameLargeMapButtonTemplate");
-		end
-
-		local _, _, _, rootSectionID = EJ_GetEncounterInfo(encounterID); 
-		if (EncounterJournal_CheckForOverview(rootSectionID)) then
-			local _, overviewDescription = EJ_GetSectionInfo(rootSectionID);
-			bossButton.overviewDescription = overviewDescription;
-		end
-		
-		bossButton.instanceID = instanceID;
-		bossButton.encounterID = encounterID;
-		bossButton.tooltipTitle = name;
-		bossButton.tooltipText = description;
-		bossButton:SetPoint("CENTER", AtlasFrameLargeBossButtonFrame, "BOTTOMLEFT", x*width +10, y*height+30);
-		_, _, _, displayInfo = EJ_GetCreatureInfo(1, encounterID);
-		bossButton.displayInfo = displayInfo;
-		if ( displayInfo ) then
-			SetPortraitTexture(bossButton.bgImage, displayInfo);
-		else 
-			bossButton.bgImage:SetTexture("DoesNotExist");
-		end
-		bossButton:Show();
-		index = index + 1;
-		x, y, instanceID, name, description, encounterID = EJ_GetMapEncounter(index, true);
-	end
-	AtlasFrameLarge.hasBosses = index ~= 1;
-	
-	bossButton = _G["AtlasEJMapButton"..index];
-	while bossButton do
-		bossButton:Hide();
-		index = index + 1;
-		bossButton = _G["AtlasEJMapButton"..index];
-	end
-	
-	AtlasFrameLarge.ready = true;
-	AtlasFrameLarge_CheckQuestButtons();
-end
-
-function AtlasFrameLarge_CheckQuestButtons()
-	if not AtlasFrameLarge.ready then
-		return;
-	end
-	
-	--Validate that there are no quest button intersection
-	local questI, bossI = 1, 1;
-	local bossButton = _G["AtlasEJMapButton"..bossI];
-	local questPOI = _G["poiWorldMapPOIFrame1_"..questI];
-	while bossButton and bossButton:IsShown() do
-		while questPOI and questPOI:IsShown() do
-			local qx,qy = questPOI:GetCenter();
-			local bx,by = bossButton:GetCenter();
-			if not qx or not qy or not bx or not by then
-				_G["AtlasEJMapButton1"]:SetScript("OnUpdate", AtlasFrameLarge_CheckQuestButtons);
-				return;
-			end
-			
-			local xdis = abs(bx-qx);
-			local ydis = abs(by-qy);
-			local disSqr = xdis*xdis + ydis*ydis;
-			
-			if EJ_QUEST_POI_MINDIS_SQR > disSqr then
-				questPOI:SetPoint("CENTER", bossButton, "BOTTOMRIGHT",  -15, 15);
-			end
-			questI = questI + 1;
-			questPOI = _G["poiWorldMapPOIFrame1_"..questI];
-		end
-		questI = 1;
-		bossI = bossI + 1;
-		bossButton = _G["AtlasEJMapButton"..bossI];
-		questPOI = _G["poiWorldMapPOIFrame1_"..questI];
-	end
-	if _G["AtlasEJMapButton1"] then
-		_G["AtlasEJMapButton1"]:SetScript("OnUpdate", nil);
-	end
-end
-]]
