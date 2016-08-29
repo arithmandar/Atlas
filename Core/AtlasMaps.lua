@@ -393,7 +393,7 @@ Syntax:
 		{ GREN..INDENT..L["Meeting Stone"] };
 		{ GREN..INDENT..L["Lord Itharius"] };
 		{ BLUE.." B) "..BZ["Sunken Temple"], 10002 };
-		{ WHIT.." 1) "..L["Priestess Udum'bra"], 10003 };
+		{ WHIT.." 1) "..L["PRIESTess Udum'bra"], 10003 };
 		{ WHIT.." 2) "..L["Gomora the Bloodletter"], 10004 };
 		{ WHIT.." 3) "..Atlas_GetBossName("Jammal'an the Prophet", 458), 10005 , 458 };
 		{ ORNG.." 1) "..L["Captain Wyrmak"]..L["L-Parenthesis"]..L["Rare"]..L["R-Parenthesis"], 10006 };
@@ -732,7 +732,7 @@ Syntax:
 		{ WHIT..INDENT..L["Raven"] };
 		{ WHIT..INDENT..Atlas_GetBossName("Oro Eyegouge") };
 		{ WHIT..INDENT..Atlas_GetBossName("Murta Grimgut") };
-		{ WHIT.." 3) "..Atlas_GetBossName("Nekrum Gutchewer and Shadow Priest Sezz'ziz", 487), 487 };
+		{ WHIT.." 3) "..Atlas_GetBossName("Nekrum Gutchewer and Shadow PRIEST Sezz'ziz", 487), 487 };
 		{ WHIT.." 4) "..Atlas_GetBossName("Chief Ukorz Sandscalp", 489), 489 };
 		{ WHIT..INDENT..Atlas_GetBossName("Ruuzlu") };
 		{ WHIT.." 5) "..Atlas_GetBossName("Witch Doctor Zum'rah", 486), 486 };
@@ -801,7 +801,7 @@ Syntax:
 		{ WHIT.."17) "..Atlas_GetBossName("Magmus", 386), 386 };
 		{ WHIT.."18) "..Atlas_GetBossName("Emperor Dagran Thaurissan", 387), 387 };
 		{ WHIT..INDENT..Atlas_GetBossName("Princess Moira Bronzebeard") };
-		{ WHIT..INDENT..Atlas_GetBossName("High Priestess of Thaurissan") };
+		{ WHIT..INDENT..Atlas_GetBossName("High PRIESTess of Thaurissan") };
 		{ ORNG.." 1) "..Atlas_GetBossName("Panzor the Invincible")..L["L-Parenthesis"]..L["Rare"]..L["Comma"]..L["Wanders"]..L["R-Parenthesis"], 10004 };
 		{ GREN.." 1') "..L["Jalinda Sprig <Morgan's Militia>"]..L["L-Parenthesis"]..FACTION_ALLIANCE..L["R-Parenthesis"], 10005 };
 		{ GREN..INDENT..L["Oralius <Morgan's Militia>"]..L["L-Parenthesis"]..FACTION_ALLIANCE..L["R-Parenthesis"] };
@@ -1096,7 +1096,7 @@ Syntax:
 		{ WHIT.." 2) "..Atlas_GetBossName("Exarch Maladaar", 524), 524 };
 		{ WHIT..INDENT..L["Avatar of the Martyred"] };
 		{ GREN..INDENT..L["D'ore"] };
-		{ GREN.." 1') "..L["Tormented Soulpriest"], 10002 };
+		{ GREN.." 1') "..L["Tormented SoulPRIEST"], 10002 };
 	};
 	AuchManaTombs = {
 		ZoneName = { BZ["Auchindoun"]..L["Colon"]..BZ["Mana-Tombs"] };
@@ -1218,10 +1218,10 @@ Syntax:
 		{ BLUE.." E) "..L["Connection"], 10002 };
 		{ WHIT.." 7) "..Atlas_GetBossName("Mother Shahraz", 1588), 1588 };
 		{ WHIT.." 8) "..Atlas_GetBossName("The Illidari Council", 1589), 1589 };
-		{ WHIT..INDENT..Atlas_GetBossName("Lady Malande")..L["L-Parenthesis"]..L["Priest"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..Atlas_GetBossName("Gathios the Shatterer")..L["L-Parenthesis"]..L["Paladin"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..Atlas_GetBossName("High Nethermancer Zerevor")..L["L-Parenthesis"]..L["Mage"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..Atlas_GetBossName("Veras Darkshadow")..L["L-Parenthesis"]..L["Rogue"]..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Lady Malande")..L["L-Parenthesis"]..Atlas_GetClassName("PRIEST")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Gathios the Shatterer")..L["L-Parenthesis"]..Atlas_GetClassName("PALADIN")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("High Nethermancer Zerevor")..L["L-Parenthesis"]..Atlas_GetClassName("MAGE")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Veras Darkshadow")..L["L-Parenthesis"]..Atlas_GetClassName("ROGUE")..L["R-Parenthesis"] };
 		{ WHIT.." 9) "..Atlas_GetBossName("Illidan Stormrage", 1590), 1590 };
 	};
 	CFRSerpentshrineCavern = {
@@ -1348,7 +1348,7 @@ Syntax:
 		{ BLUE.." B) "..BZ["Horde Encampment"], 10002 };
 		{ GREN..INDENT..L["Thrall <Warchief>"] };
 		{ BLUE.." C) "..BZ["Night Elf Village"], 10003 };
-		{ GREN..INDENT..L["Tyrande Whisperwind <High Priestess of Elune>"] };
+		{ GREN..INDENT..L["Tyrande Whisperwind <High PRIESTess of Elune>"] };
 		{ WHIT.." 1) "..Atlas_GetBossName("Rage Winterchill", 1577), 1577 };
 		{ WHIT.." 2) "..Atlas_GetBossName("Anetheron", 1578), 1578 };
 		{ WHIT.." 3) "..Atlas_GetBossName("Kaz'rogal", 1579), 1579 };
@@ -1443,10 +1443,10 @@ Syntax:
 		Module = "Atlas_BurningCrusade";
 		{ BLUE.." A) "..L["Entrance"], 10001 };
 		{ WHIT.." 1) "..Atlas_GetBossName("High King Maulgar", 1564), 1564 };
-		{ WHIT..INDENT..Atlas_GetBossName("Kiggler the Crazed")..L["L-Parenthesis"]..L["Shaman"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..Atlas_GetBossName("Blindeye the Seer")..L["L-Parenthesis"]..L["Priest"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..Atlas_GetBossName("Olm the Summoner")..L["L-Parenthesis"]..L["Warlock"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..Atlas_GetBossName("Krosh Firehand")..L["L-Parenthesis"]..L["Mage"]..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Kiggler the Crazed")..L["L-Parenthesis"]..Atlas_GetClassName("SHAMAN")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Blindeye the Seer")..L["L-Parenthesis"]..Atlas_GetClassName("PRIEST")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Olm the Summoner")..L["L-Parenthesis"]..Atlas_GetClassName("WARLOCK")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Krosh Firehand")..L["L-Parenthesis"]..Atlas_GetClassName("MAGE")..L["R-Parenthesis"] };
 		{ WHIT.." 2) "..Atlas_GetBossName("Gruul the Dragonkiller", 1565), 1565 };
 	};
 	HCBloodFurnace = {
@@ -1544,8 +1544,8 @@ Syntax:
 		{ WHIT.." 1) "..Atlas_GetBossName("Attumen the Huntsman", 1553), 1553 };
 		{ WHIT..INDENT..Atlas_GetBossName("Midnight") };
 		{ WHIT.." 2) "..Atlas_GetBossName("Moroes", 1554), 1554 };
-		{ WHIT..INDENT..L["Baroness Dorothea Millstipe"]..L["L-Parenthesis"]..L["Random"]..L["Comma"]..L["Shadow Priest"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..L["Lady Catriona Von'Indi"]..L["L-Parenthesis"]..L["Random"]..L["Comma"]..L["Holy Priest"]..L["R-Parenthesis"] };
+		{ WHIT..INDENT..L["Baroness Dorothea Millstipe"]..L["L-Parenthesis"]..L["Random"]..L["Comma"]..L["Shadow PRIEST"]..L["R-Parenthesis"] };
+		{ WHIT..INDENT..L["Lady Catriona Von'Indi"]..L["L-Parenthesis"]..L["Random"]..L["Comma"]..L["Holy PRIEST"]..L["R-Parenthesis"] };
 		{ WHIT..INDENT..L["Lady Keira Berrybuck"]..L["L-Parenthesis"]..L["Random"]..L["Comma"]..L["Holy Paladin"]..L["R-Parenthesis"] };
 		{ WHIT..INDENT..L["Baron Rafe Dreuger"]..L["L-Parenthesis"]..L["Random"]..L["Comma"]..L["Retribution Paladin"]..L["R-Parenthesis"] };
 		{ WHIT..INDENT..L["Lord Robin Daris"]..L["L-Parenthesis"]..L["Random"]..L["Comma"]..L["Arms Warrior"]..L["R-Parenthesis"] };
@@ -1629,16 +1629,16 @@ Syntax:
 		{ WHIT.." 1) "..Atlas_GetBossName("Selin Fireheart", 530), 530 };
 		{ GREN..INDENT..L["Fel Crystals"] };
 		{ WHIT.." 2) "..Atlas_GetBossName("Vexallus", 531), 531 };
-		{ WHIT.." 3) "..Atlas_GetBossName("Priestess Delrissa", 532)..L["L-Parenthesis"]..L["Lower"]..L["R-Parenthesis"], 532 };
-		{ WHIT..INDENT..L["Apoko"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..L["Shaman"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..L["Eramas Brightblaze"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..L["Monk"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..L["Ellrys Duskhallow"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..L["Warlock"]..L["R-Parenthesis"] };
+		{ WHIT.." 3) "..Atlas_GetBossName("PRIESTess Delrissa", 532)..L["L-Parenthesis"]..L["Lower"]..L["R-Parenthesis"], 532 };
+		{ WHIT..INDENT..L["Apoko"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..Atlas_GetClassName("SHAMAN")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..L["Eramas Brightblaze"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..Atlas_GetClassName("MONK")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..L["Ellrys Duskhallow"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..Atlas_GetClassName("WARLOCK")..L["R-Parenthesis"] };
 		{ WHIT..INDENT..INDENT..L["Fizzle"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..L["Garaxxas"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..L["Hunter"]..L["R-Parenthesis"] };
+		{ WHIT..INDENT..L["Garaxxas"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..Atlas_GetClassName("HUNTER")..L["R-Parenthesis"] };
 		{ WHIT..INDENT..INDENT..L["Sliver <Garaxxas' Pet>"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..L["Kagani Nightstrike"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..L["Rogue"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..L["Warlord Salaris"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..L["Warrior"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..L["Yazzai"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..L["Mage"]..L["R-Parenthesis"] };
+		{ WHIT..INDENT..L["Kagani Nightstrike"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..Atlas_GetClassName("ROGUE")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..L["Warlord Salaris"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..Atlas_GetClassName("WARRIOR")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..L["Yazzai"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..Atlas_GetClassName("MAGE")..L["R-Parenthesis"] };
 		{ WHIT..INDENT..L["Zelfan"]..L["L-Parenthesis"]..L["Lower"]..L["Comma"]..L["Random"]..L["Comma"]..L["Engineer"]..L["R-Parenthesis"] };
 		{ WHIT.." 4) "..Atlas_GetBossName("Kael'thas Sunstrider", 533), 533 };
 		{ GREN.." 1') "..L["Tyrith"], 10003 };
@@ -1741,10 +1741,10 @@ Syntax:
 		{ WHIT.." 2) "..Atlas_GetBossName("Void Reaver", 1574), 1574 };
 		{ WHIT.." 3) "..Atlas_GetBossName("High Astromancer Solarian", 1575), 1575 };
 		{ WHIT.." 4) "..Atlas_GetBossName("Kael'thas Sunstrider", 1576), 1576 };
-		{ WHIT..INDENT..Atlas_GetBossName("Thaladred the Darkener")..L["L-Parenthesis"]..L["Warrior"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..Atlas_GetBossName("Master Engineer Telonicus")..L["L-Parenthesis"]..L["Hunter"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..Atlas_GetBossName("Grand Astromancer Capernian")..L["L-Parenthesis"]..L["Mage"]..L["R-Parenthesis"] };
-		{ WHIT..INDENT..Atlas_GetBossName("Lord Sanguinar")..L["L-Parenthesis"]..L["Paladin"]..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Thaladred the Darkener")..L["L-Parenthesis"]..Atlas_GetClassName("WARRIOR")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Master Engineer Telonicus")..L["L-Parenthesis"]..Atlas_GetClassName("HUNTER")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Grand Astromancer Capernian")..L["L-Parenthesis"]..Atlas_GetClassName("MAGE")..L["R-Parenthesis"] };
+		{ WHIT..INDENT..Atlas_GetBossName("Lord Sanguinar")..L["L-Parenthesis"]..Atlas_GetClassName("PALADIN")..L["R-Parenthesis"] };
 	};
 
 --************************************************
@@ -2727,7 +2727,7 @@ Syntax:
 		{ WHIT.." 1) "..Atlas_GetBossName("Corborus", 110), 110 };
 		{ WHIT.." 2) "..Atlas_GetBossName("Slabhide", 111), 111 };
 		{ WHIT.." 3) "..Atlas_GetBossName("Ozruk", 112), 112 };
-		{ WHIT.." 4) "..Atlas_GetBossName("High Priestess Azil", 113), 113 };
+		{ WHIT.." 4) "..Atlas_GetBossName("High PRIESTess Azil", 113), 113 };
 		{ GREN.." 1') "..L["Teleporter"], 10003 };
 	};
 	TheVortexPinnacle = {
@@ -2855,7 +2855,7 @@ Syntax:
 		{ WHIT.." 3) "..L["Gub <Destroyer of Fish>"], 10007 };
 		{ WHIT.." 4) "..L["Venomancer T'Kulu <The Toxic Bite>"], 10008 };
 		{ GREN..INDENT..L["Zanzil's Cauldron of Toxic Torment"] };
-		{ WHIT.." 5) "..Atlas_GetBossName("High Priest Venoxis", 175), 175 };
+		{ WHIT.." 5) "..Atlas_GetBossName("High PRIEST Venoxis", 175), 175 };
 		{ WHIT.." 6) "..L["Tor-Tun <The Slumberer>"], 10009 };
 		{ WHIT.." 7) "..L["Kaulema the Mover"], 10010 };
 		{ WHIT.." 8) "..L["Berserking Boulder Roller"], 10011 };
@@ -2872,7 +2872,7 @@ Syntax:
 		{ WHIT.."13) "..L["Mortaxx <The Tolling Bell>"], 10017 };
 		{ WHIT.."14) "..L["Tiki Lord Zim'wae"], 10018 };
 		{ GREN..INDENT..L["Zanzil's Cauldron of Burning Blood"] };
-		{ WHIT.."15) "..Atlas_GetBossName("High Priestess Kilnara", 181)..L["L-Parenthesis"]..L["Basement"]..L["R-Parenthesis"], 181 };
+		{ WHIT.."15) "..Atlas_GetBossName("High PRIESTess Kilnara", 181)..L["L-Parenthesis"]..L["Basement"]..L["R-Parenthesis"], 181 };
 		{ GREN.." 6') "..L["Zanzil's Cauldron of Frostburn Formula"], 10019 };
 		{ WHIT.."16) "..Atlas_GetBossName("Zanzil", 184), 184 };
 		{ GREN..INDENT..L["Zanzil's Cauldron of Toxic Torment"] };
@@ -3201,7 +3201,7 @@ Syntax:
 		{ WHIT.." 3) "..Atlas_GetBossName("Liu Flameheart", 658), 658 };
 		{ WHIT.." 4) "..Atlas_GetBossName("Sha of Doubt", 335), 335 };
 		{ GREN.." 1') "..L["Master Windstrong"], 10002 };
-		{ GREN..INDENT..L["Priestess Summerpetal"] };
+		{ GREN..INDENT..L["PRIESTess Summerpetal"] };
 	};
 	TerraceofEndlessSpring = {
 		ZoneName = { BZ["Terrace of Endless Spring"] };
@@ -3241,7 +3241,7 @@ Syntax:
 		{ WHIT.." 2) "..Atlas_GetBossName("Horridon", 819), 819 };
 		{ WHIT.." 3) "..Atlas_GetBossName("Council of Elders", 816), 816 };
 		{ WHIT..INDENT..Atlas_GetBossName("Frost King Malakk", 816, 3), 816 };
-		{ WHIT..INDENT..Atlas_GetBossName("High Priestess Mar'li", 816, 4), 816 };
+		{ WHIT..INDENT..Atlas_GetBossName("High PRIESTess Mar'li", 816, 4), 816 };
 		{ WHIT..INDENT..Atlas_GetBossName("Kazra'jin", 816, 1), 816 };
 		{ WHIT..INDENT..Atlas_GetBossName("Sul the Sandcrawler", 816, 2), 816 };
 		{ ORNG.." 1) "..L["Monara <The Last Queen>"]..L["L-Parenthesis"]..L["Rare"]..L["R-Parenthesis"], 10003 };
@@ -3522,7 +3522,7 @@ Syntax:
 		{ WHIT.." 7) "..Atlas_GetBossName("Shadow-Lord Iskar", 1433), 1433 };			-- 7
 		{ WHIT..INDENT..Atlas_GetBossName("Fel Raven", 1433, 2), 1433 };
 		{ WHIT..INDENT..Atlas_GetBossName("Shadowfel Warden", 1433, 3), 1433 };
-		{ WHIT..INDENT..Atlas_GetBossName("Corrupted Priest of Terokk", 1433, 4), 1433 };
+		{ WHIT..INDENT..Atlas_GetBossName("Corrupted PRIEST of Terokk", 1433, 4), 1433 };
 		{ WHIT..INDENT..Atlas_GetBossName("Illusionary Outcast", 1433, 5), 1433 };
 		{ WHIT.." 8) "..Atlas_GetBossName("Fel Lord Zakuun", 1391), 1391 };			-- 8
 		{ WHIT.." 9) "..Atlas_GetBossName("Xhul'horac", 1447), 1447 };			-- 9

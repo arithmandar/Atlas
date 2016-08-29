@@ -163,6 +163,7 @@ if L then
 	L["ATLAS_INFO_12201"] = "Обратите внимание, что мы создали новый плагин - |cff6666ffAtlas Сценарии|cffffffff, который \nобеспечивает совершенно новыми картыми сценарий, введенных в 5.0. \n\nДля более подробной информации посетите наш веб-сайт, и не забудьте скачать / \nустановить его отдельно.\n|cff6666ffhttp://www.atlasmod.com/|cffffffff";
 
 	L["ATLAS_MISSING_MODULE"] = "Atlas обнаружил недостоющие модули / плагины: ";
+--	L["Click to open Dungeon Journal window."] = "[ЛКМ] - открывает окно журнала подземелий.";
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
@@ -194,7 +195,6 @@ if L then
 	L["Chase Begins"] = "Начало охоты";
 	L["Chase Ends"] = "Конец охоты";
 	L["Child"] = "Ребенок";
-	L["Click to open Dungeon Journal window."] = "[ЛКМ] - открывает окно журнала подземелий.";
 	L["Connection"] = "Связан";
 	L["Elevator"] = "Лифт";
 	L["End"] = "Конец";
@@ -210,21 +210,16 @@ if L then
 	L["Heroic"] = "Героический";
 	L["Holy Paladin"] = "Паладин-Света";
 	L["Holy Priest"] = "Жрец-Света";
-	L["Hunter"] = "Охотник";
 	L["Imp"] = "Бесс";
 	L["Key"] = "Ключ";
 	L["Lower"] = "Нижний";
-	L["Mage"] = "Маг";
 	L["Meeting Stone"] = "Камень встреч";
 	L["Middle"] = "Центр"; --???
-	L["Monk"] = "Монах";
 	L["Moonwell"] = "Лунный колодец";
 	L["Optional"] = "Необяз.";
 	L["Orange"] = "Оранжевый";
 	L["Outside"] = "Снаружи";
-	L["Paladin"] = "Паладин";
 	L["Portal"] = "Портал";
-	L["Priest"] = "Жрец";
 	L["Protection Warrior"] = "Воин-Защиты";
 	L["Purple"] = "Пурпурный";
 	L["Random"] = "Случайный";
@@ -232,10 +227,8 @@ if L then
 	L["Repair"] = "Починка";
 	L["Retribution Paladin"] = "Паладин-Возмездия";
 	L["Rewards"] = "Награды";
-	L["Rogue"] = "Разбойник";
 	L["Second Stop"] = "Вторая остановка";
 	L["Shadow Priest"] = "Жрец-Темной магии";
-	L["Shaman"] = "Шаман";
 	L["Spawn Point"] = "Точка рождения";
 	L["Start"] = "Начало";
 	L["Summon"] = "Вызов";
@@ -248,8 +241,6 @@ if L then
 	L["Upper"] = "Верхний";
 	L["Varies"] = "Изменяется";
 	L["Wanders"] = "Странник";
-	L["Warlock"] = "Чернокнижник";
-	L["Warrior"] = "Воин";
 	L["Wave 5"] = "5-ая волна";
 	L["Wave 6"] = "6-ая волна";
 	L["Wave 10"] = "10-ая волна";
