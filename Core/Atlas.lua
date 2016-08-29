@@ -1942,6 +1942,17 @@ function Atlas_AutoSelect_from_EncounterJournal()
 	end
 end
 
+function Atlas_GetClassName(class)
+	if (not LOCALIZED_CLASS_NAMES_MALE[class]) then
+		return nil;
+	end
+	if (UnitSex("player") == "3") then
+		return LOCALIZED_CLASS_NAMES_FEMALE[class];
+	else
+		return LOCALIZED_CLASS_NAMES_MALE[class];
+	end
+end
+
 --[[
 -- In Development, this could be fun
 function AtlasSetEJBackground(instanceID)
