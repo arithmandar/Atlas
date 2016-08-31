@@ -256,11 +256,11 @@ local function Process_Deprecated()
 		{ "Atlas_BurningCrusade", 	"1.33.00" },
 		{ "Atlas_ClassicWoW", 		"1.33.00" },
 		-- Atlas Plugins
-		{ "Atlas_Battlegrounds", 	"1.33.00" },
-		{ "Atlas_DungeonLocs", 		"1.33.00" },
-		{ "Atlas_OutdoorRaids", 	"1.33.00" },
-		{ "Atlas_Transportation", 	"1.33.00" },
-		{ "Atlas_Scenarios", 		"1.33.00" },
+		{ "Atlas_Battlegrounds", 	"1.34.00" },
+		{ "Atlas_DungeonLocs", 		"1.34.00" },
+		{ "Atlas_OutdoorRaids", 	"1.34.00" },
+		{ "Atlas_Transportation", 	"1.34.00" },
+		{ "Atlas_Scenarios", 		"1.34.00" },
 		{ "Atlas_ClassOrderHalls",	"1.34.00" },
 		-- 3rd parties plugins
 		{ "AtlasQuest", 		"4.10.01" }, 	-- updated Jul. 26, 2016
