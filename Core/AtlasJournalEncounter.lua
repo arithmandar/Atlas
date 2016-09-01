@@ -41,7 +41,7 @@ function AtlasFrameAdventureJournalButton_OnClick(frame)
 	if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
 		ToggleEncounterJournal();
 	end
-	EncounterJournal_ListInstances();
+	-- EncounterJournal_ListInstances();
 	EncounterJournal_DisplayInstance(base.JournalInstanceID);
 
 	Atlas_Toggle();
