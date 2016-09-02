@@ -29,7 +29,7 @@
 local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0");
 
-function AtlasFrameAdventureJournalButton_OnClick(frame)
+function Atlas_AdventureJournalButton_OnClick(frame)
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local data = AtlasMaps;
 	local base = data[zoneID];
@@ -53,7 +53,7 @@ function AtlasFrameAdventureJournalButton_OnClick(frame)
 	end
 end
 
-function Atlas_JournalEncounter_EncounterButton_OnClick(encounterID)
+function Atlas_AdventureJournal_EncounterButton_OnClick(encounterID)
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local data = AtlasMaps;
 	local base = data[zoneID];
@@ -68,7 +68,7 @@ function Atlas_JournalEncounter_EncounterButton_OnClick(encounterID)
 	if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
 		ToggleEncounterJournal();
 	end
-	EncounterJournal_ListInstances();
+	-- EncounterJournal_ListInstances();
 	EncounterJournal_DisplayInstance(base.JournalInstanceID);
 	EncounterJournal_DisplayEncounter(encounterID);
 

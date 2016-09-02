@@ -78,7 +78,7 @@
 				self:SetFrameLevel(self:GetParent():GetFrameLevel() + 10);
 			</OnShow>
 			<OnClick>
-				Atlas_JournalEncounter_EncounterButton_OnClick(self.encounterID);
+				Atlas_AdventureJournal_EncounterButton_OnClick(self.encounterID);
 			</OnClick>
 		</Scripts>
 	</Button>

@@ -510,7 +510,7 @@
 						AtlasFrameAdventureJournalButton_OnEnter(self);
 					</OnEnter>
 					<OnClick>
-						AtlasFrameAdventureJournalButton_OnClick(self);
+						Atlas_AdventureJournalButton_OnClick(self);
 					</OnClick>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -849,7 +849,7 @@
 						AtlasFrameAdventureJournalButton_OnEnter(self);
 					</OnEnter>
 					<OnClick>
-						AtlasFrameAdventureJournalButton_OnClick(self);
+						Atlas_AdventureJournalButton_OnClick(self);
 					</OnClick>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -1355,7 +1355,7 @@
 						AtlasFrameAdventureJournalButton_OnEnter(self);
 					</OnEnter>
 					<OnClick>
-						AtlasFrameAdventureJournalButton_OnClick(self);
+						Atlas_AdventureJournalButton_OnClick(self);
 					</OnClick>
 					<OnLeave>
 						GameTooltip:Hide();

@@ -1840,7 +1840,7 @@ end
 function AtlasEntry_OnClick(self)
 	local encounterID = self:GetID();
 	
-	Atlas_JournalEncounter_EncounterButton_OnClick(encounterID);
+	Atlas_AdventureJournal_EncounterButton_OnClick(encounterID);
 end
 
 function AtlasFrame_ToggleWindowSize()
