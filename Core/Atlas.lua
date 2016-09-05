@@ -248,13 +248,13 @@ local function Process_Deprecated()
 	local Deprecated_List = {
 		-- Most recent (working) versions of known modules at time of release
 		-- Atlas Modules
-		{ "Atlas_Legion",	 	"1.34.00" },
-		{ "Atlas_WarlordsofDraenor", 	"1.33.00" },
-		{ "Atlas_MistsofPandaria",	"1.33.00" },
-		{ "Atlas_Cataclysm", 		"1.33.00" },
-		{ "Atlas_WrathoftheLichKing", 	"1.33.00" },
-		{ "Atlas_BurningCrusade", 	"1.33.00" },
-		{ "Atlas_ClassicWoW", 		"1.33.00" },
+		{ "Atlas_Legion",	 	"1.34.01" },
+		{ "Atlas_WarlordsofDraenor", 	"1.34.00" },
+		{ "Atlas_MistsofPandaria",	"1.34.00" },
+		{ "Atlas_Cataclysm", 		"1.34.00" },
+		{ "Atlas_WrathoftheLichKing", 	"1.34.00" },
+		{ "Atlas_BurningCrusade", 	"1.34.00" },
+		{ "Atlas_ClassicWoW", 		"1.34.00" },
 		-- Atlas Plugins
 		{ "Atlas_Battlegrounds", 	"1.34.00" },
 		{ "Atlas_DungeonLocs", 		"1.34.00" },
@@ -955,8 +955,11 @@ function Atlas_MapRefresh()
 	AtlasMapSmall:SetTexture(AtlasMapPath..zoneID);
 
 	local AtlasMap_Text = _G["AtlasMap_Text"];
+	local AtlasMapS_Text = _G["AtlasMapS_Text"];
 	if (not AtlasMap_Text) then
 		AtlasMap_Text = AtlasFrame:CreateFontString("AtlasMap_Text", "OVERLAY", "GameFontHighlightLarge");
+	end
+	if (not AtlasMapS_Text) then
 		AtlasMapS_Text = AtlasFrameSmall:CreateFontString("AtlasMapS_Text", "OVERLAY", "GameFontHighlightLarge");
 	end
 	AtlasMap_Text:SetPoint("CENTER", "AtlasFrame", "LEFT", 256, -32);
@@ -964,16 +967,18 @@ function Atlas_MapRefresh()
 	-- Check if the map image is available, if not replace with black and Map Not Found text
 	if (base.Module) then
 		local loadable = select(4, GetAddOnInfo(base.Module));
-		local enabled = GetAddOnEnableState(nil, base.Module)
-		if (enabled == 0) or (not loadable) then
+		local enabled = GetAddOnEnableState(UnitName("player"), base.Module)
+		if ((enabled == 0) or (not loadable)) then
 			-- AtlasMap:SetTexture(0, 0, 0);
 			-- Legion changes: texture:SetTexture(r, g, b, a) changes into texture:SetColorTexture(r, g, b, a)
-			AtlasMap:SetColorTexture(0, 0, 0, 0.9); 
+			AtlasMap:SetColorTexture(0, 0, 0, 0); 
 			AtlasMap_Text:SetText(L["MapsNotFound"].."\n\n"..L["PossibleMissingModule"].."\n|cff6666ff"..base.Module);
-			AtlasMapSmall:SetColorTexture(0, 0, 0, 0.9); 
+			AtlasMapSmall:SetColorTexture(0, 0, 0, 0); 
 			AtlasMapS_Text:SetText(L["MapsNotFound"].."\n\n"..L["PossibleMissingModule"].."\n|cff6666ff"..base.Module);
 			if (not AtlasMap_Text:IsShown()) then
 				AtlasMap_Text:Show();
+			end
+			if (not AtlasMapS_Text:IsShown()) then
 				AtlasMapS_Text:Show();
 			end
 		else 
