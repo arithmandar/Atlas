@@ -56,6 +56,7 @@ function addon:OnInitialize()
 		profile = {
 			minimap = {
 				hide = false,
+				minimapPos = 190,
 			},
 		},
 	})

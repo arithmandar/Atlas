@@ -176,8 +176,8 @@ end
 -- Below to temporary create a table to store the core map's data
 -- in order to identify the dropdown's zoneID is belonging to the
 -- core Atlas or plugins
-Atlas_CoreMapsKey = {};
-Atlas_CoreMapsKey_Index = 0;
+local Atlas_CoreMapsKey = {};
+local Atlas_CoreMapsKey_Index = 0;
 for kc, vc in pairs(AtlasMaps) do
 	Atlas_CoreMapsKey[Atlas_CoreMapsKey_Index] = kc;
 	Atlas_CoreMapsKey_Index = Atlas_CoreMapsKey_Index + 1;
@@ -1975,3 +1975,18 @@ function AtlasSetEJBackground(instanceID)
 	end
 end
 ]]
+
+--@do-not-package@
+-- function adopted from AtlasMajorCities
+function Atlas_GetNPCID()
+	local guid = UnitGUID("target");
+	local type = strsplit("-", guid);
+	-- check the type of target
+	if ( type == "Creature" ) then
+		-- get the NPC ID
+		local _, _, _, _, _, npcid = strsplit("-",guid);
+		local npcid = tonumber(npcid);
+		return npcid;
+	end
+end
+--@end-do-not-package@
