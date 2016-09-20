@@ -1012,6 +1012,9 @@ end
 -- Also responsible for updating all the text when a map is changed
 function Atlas_Refresh()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+	if (not zoneID) then
+		return;
+	end
 	local data = AtlasMaps;
 	local base = data[zoneID];
 

@@ -34,8 +34,9 @@ AtlasSortIgnore = {};
 
 -- Syntax: ["real_zone_name"] = "localized map zone name"
 AtlasZoneSubstitutions = {
-	["Ahn'Qiraj"] = "安其拉：安其拉神廟";
-	["Karazhan"] = "卡拉贊 - 1.開始";
+	["安其拉"] = "安其拉：安其拉神廟";
+	["卡拉贊"] = "卡拉贊 - 1.開始";
+	["悲傷沼澤"] = "沉沒的神廟";
 };
 end
 
@@ -262,6 +263,7 @@ if L then
 	L["Wave 18"] = "第 18 波";	
 	L["MapsNotFound"] = "目前的副本找不到對應的地圖影像檔.\n\n請確認您是否有安裝 Atlas 相關的副本地圖模組.";
 	L["PossibleMissingModule"] = "遺失的地圖應是來自以下的模組: ";
+	L["Transport"] = "傳送";
 
 	--Map sections
 	L["MapA"] = " [1]"; -- For example: Shado-Pan Monastery [A]
