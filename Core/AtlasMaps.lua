@@ -232,6 +232,10 @@ Syntax:
 		ZoneName = { BZ["The Deadmines"]..L["L-Parenthesis"]..L["Entrance"]..L["R-Parenthesis"] };
 		Module = "Atlas_Cataclysm";
 	};
+	TheNightholdEnt = {
+		ZoneName = { BZ["The Nighthold"]..L["L-Parenthesis"]..L["Entrance"]..L["R-Parenthesis"] };
+		Module = "Atlas_Legion";
+	};
 	TheSunkenTempleEnt = {
 		ZoneName = { BZ["Sunken Temple"]..L["L-Parenthesis"]..L["Entrance"]..L["R-Parenthesis"] };
 		Module = "Atlas_ClassicWoW";

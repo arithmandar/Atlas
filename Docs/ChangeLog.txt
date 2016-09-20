@@ -11,7 +11,7 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 v1.34.03 (Sep. 20, 2016)
 ------------------------
 - Slightly enhanced maps' loading process to prevent from nil data being feed
-- Added the entrance map for the Arcway
+- Added the entrance map for the Arcway and Nighthold
 
 v1.34.02 (Sep. 09, 2016)
 ------------------------

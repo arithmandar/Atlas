@@ -291,6 +291,7 @@ Atlas_DropDownLayouts = {
 			"TheEmeraldNightmareE",
 			"TheEmeraldNightmareF",
 			"TheEmeraldNightmareG",
+			"TheNightholdEnt",
 			"TheNightholdA",
 			"TheNightholdB",
 			"TheNightholdC",
@@ -519,6 +520,7 @@ Atlas_DropDownLayouts = {
 			"TheEmeraldNightmareE",
 			"TheEmeraldNightmareF",
 			"TheEmeraldNightmareG",
+			"TheNightholdEnt",
 			"TheNightholdA",
 			"TheNightholdB",
 			"TheNightholdC",
@@ -692,6 +694,7 @@ Atlas_DropDownLayouts = {
 			"TheEmeraldNightmareE",		-- Legion
 			"TheEmeraldNightmareF",		-- Legion
 			"TheEmeraldNightmareG",		-- Legion
+			"TheNightholdEnt",
 			"TheNightholdA",		-- Legion
 			"TheNightholdB",		-- Legion
 			"TheNightholdC",		-- Legion
@@ -797,6 +800,7 @@ Atlas_DropDownLayouts = {
 			"ThroneofThunderB",		-- MoP
 			"ThroneofThunderC",		-- MoP
 			"ThroneofThunderD",		-- MoP
+			"TheNightholdEnt",
 			"TheNightholdA",		-- Legion
 			"TheNightholdB",		-- Legion
 			"TheNightholdC",		-- Legion
@@ -1020,6 +1024,7 @@ Atlas_DropDownLayouts = {
 			"TheEmeraldNightmareE",
 			"TheEmeraldNightmareF",
 			"TheEmeraldNightmareG",
+			"TheNightholdEnt",
 			"TheNightholdA",
 			"TheNightholdB",
 			"TheNightholdC",
@@ -1237,6 +1242,7 @@ Atlas_DropDownLayouts = {
 			"IcecrownEnt",			-- WrathoftheLichKing
 			"UlduarEnt",			-- WrathoftheLichKing
 			"TheArcwayEnt",			-- Legion
+			"TheNightholdEnt",		-- Legion
 		},
 	},
 };

@@ -754,12 +754,14 @@ Atlas_EntToInstMatches = {
 	["MaraudonEnt"] =			{"Maraudon"};
 	["ScarletMonasteryEnt"] =		{"ScarletHalls","ScarletMonastery"};
 	["TempestKeepEnt"] = 			{"TempestKeepArcatraz", "TempestKeepBotanica", "TempestKeepMechanar", "TempestKeepTheEye"};
-	["TheArcwayEnt"] = 			{"TheArcway"};	-- Legion
 	["TheDeadminesEnt"] =			{"TheDeadmines"};
 	["TheSunkenTempleEnt"] =		{"TheSunkenTemple"};
 	["UldamanEnt"] =			{"Uldaman"};
 	["UlduarEnt"] = 			{"UlduarHallsofStone", "UlduarHallsofLightning", "UlduarA", "UlduarB", "UlduarC", "UlduarD", "UlduarE"};
 	["WailingCavernsEnt"] =			{"WailingCaverns"};
+	-- Legion
+	["TheArcwayEnt"] = 			{"TheArcway"};
+ 	["TheNightholdEnt"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF"--[[, "TheNightholdG" ]] };
 };
 
 -- Instance maps to entrance maps
@@ -814,7 +816,6 @@ Atlas_InstToEntMatches = {
 	["TempestKeepBotanica"] = 		{"TempestKeepEnt"}; 
 	["TempestKeepMechanar"] = 		{"TempestKeepEnt"}; 
 	["TempestKeepTheEye"] = 		{"TempestKeepEnt"};
-	["TheArcway"] = 			{"TheArcwayEnt"};	-- Legion
 	["TheDeadmines"] =			{"TheDeadminesEnt"};
 	["TheSunkenTemple"] =			{"TheSunkenTempleEnt"};
 	["Uldaman"] =				{"UldamanEnt"};
@@ -826,6 +827,15 @@ Atlas_InstToEntMatches = {
 	["UlduarD"] = 				{"UlduarEnt"};
 	["UlduarE"] = 				{"UlduarEnt"};
 	["WailingCaverns"] =			{"WailingCavernsEnt"};
+	-- Legion
+	["TheArcway"] = 			{"TheArcwayEnt"};
+	["TheNightholdA"] = 			{"TheNightholdEnt"};
+	["TheNightholdB"] = 			{"TheNightholdEnt"};
+	["TheNightholdC"] = 			{"TheNightholdEnt"};
+	["TheNightholdD"] = 			{"TheNightholdEnt"};
+	["TheNightholdE"] = 			{"TheNightholdEnt"};
+	["TheNightholdF"] = 			{"TheNightholdEnt"};
+--	["TheNightholdG"] = 			{"TheNightholdEnt"};
 };
 
 -- Defines the instance which have multiple maps
@@ -958,6 +968,7 @@ Atlas_SubZoneAssoc = {
 	["TheEmeraldNightmareF"] = 		BZ["The Emerald Nightmare"];
 	["TheEmeraldNightmareG"] = 		BZ["The Emerald Nightmare"];
 	["TheEmeraldNightmareH"] = 		BZ["The Emerald Nightmare"];
+	["TheNightholdEnt"] = 			BZ["The Nighthold"];
 	["TheNightholdA"] = 			BZ["The Nighthold"];
 	["TheNightholdB"] = 			BZ["The Nighthold"];
 	["TheNightholdC"] = 			BZ["The Nighthold"];
