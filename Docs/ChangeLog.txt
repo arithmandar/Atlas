@@ -14,6 +14,7 @@ v1.34.03 (Sep. 20, 2016)
 - Added the entrance map for the Arcway and Nighthold
 - Translation update:
   - French (Stuxz)
+- Fixed the subzone subsitution of Ahn'Qiraj, Temple of Atal'Hakkar, and Karazhan for Traditional Chinese
 
 v1.34.02 (Sep. 09, 2016)
 ------------------------
