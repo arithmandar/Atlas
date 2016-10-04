@@ -1383,6 +1383,8 @@ function AtlasMap_AddNPCButtonLarge()
 						button.bgImage:SetTexture("Interface\\MINIMAP\\"..info_colortag);
 					elseif (info_colortag == "Battlegrounds") then
 						button.bgImage:SetTexture("Interface\\MINIMAP\\Tracking\\BattleMaster");
+					elseif (info_colortag == "PvP") then
+						button.bgImage:SetAtlas("worldquest-icon-pvp-ffa", true);
 					elseif (info_colortag == "FlightMaster") then
 						button.TaxiImage:SetTexture("Interface\\MINIMAP\\Tracking\\FlightMaster");
 						button.TaxiImage:SetTexCoord(0, 1, 0, 1);
@@ -1979,17 +1981,3 @@ function AtlasSetEJBackground(instanceID)
 end
 ]]
 
---@do-not-package@
--- function adopted from AtlasMajorCities
-function Atlas_GetNPCID()
-	local guid = UnitGUID("target");
-	local type = strsplit("-", guid);
-	-- check the type of target
-	if ( type == "Creature" ) then
-		-- get the NPC ID
-		local _, _, _, _, _, npcid = strsplit("-",guid);
-		local npcid = tonumber(npcid);
-		return npcid;
-	end
-end
---@end-do-not-package@

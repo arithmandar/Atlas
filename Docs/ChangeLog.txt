@@ -8,6 +8,10 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.34.04 (Oct. 04, 2016)
+------------------------
+- Added PvP icon to be presented in large map
+
 v1.34.03 (Sep. 20, 2016)
 ------------------------
 - Slightly enhanced maps' loading process to prevent from nil data being feed
