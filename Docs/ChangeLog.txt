@@ -8,6 +8,12 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.34.05 (Oct. 12, 2016)
+------------------------
+- Translation update:
+  - Korean (netaras)
+  - Portuguese (MetalFlavio)
+
 v1.34.04 (Oct. 04, 2016)
 ------------------------
 - Added PvP icon to be presented in large map
