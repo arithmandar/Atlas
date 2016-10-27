@@ -68,6 +68,7 @@ if L then
 	L["ATLAS_STRING_SEARCH"] = "Search";
 	L["ATLAS_STRING_CLEAR"] = "Clear";
 	L["ATLAS_STRING_MINLEVEL"] = "Minimum Level";
+	L["ATLAS_STRING_MINGEARLEVEL"] = "Minimum Gear Level";
 
 	L["ATLAS_OPTIONS_BUTTON"] = "Options";
 	L["ATLAS_OPTIONS_SHOWBUT"] = "Show Button on Minimap";

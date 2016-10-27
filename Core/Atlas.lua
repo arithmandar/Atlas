@@ -727,15 +727,15 @@ function Atlas_MapRefresh()
 	local _;
 	local data = AtlasMaps;
 	local base = data[zoneID];
-	local minLevel, maxLevel, minRecLevel, maxRecLevel, maxPlayers;
-	local minLevelH, maxLevelH, minRecLevelH, maxRecLevelH, maxPlayersH;
-	local minLevelM, maxLevelM, minRecLevelM, maxRecLevelM, maxPlayersM;
+	local minLevel, maxLevel, minRecLevel, maxRecLevel, maxPlayers, minGearLevel;
+	local minLevelH, maxLevelH, minRecLevelH, maxRecLevelH, maxPlayersH, minGearLevelH;
+	local minLevelM, maxLevelM, minRecLevelM, maxRecLevelM, maxPlayersM, minGearLevelM;
 	local _RED = "|cffcc3333";
 	local WHIT = "|cffffffff";
 	local colortag, dungeon_difficulty;
 	
 	if (base.DungeonID) then
-		_, _, _, minLevel, maxLevel, _, minRecLevel, maxRecLevel, _, _, _, _, maxPlayers = GetLFGDungeonInfo(base.DungeonID);
+		_, _, _, minLevel, maxLevel, _, minRecLevel, maxRecLevel, _, _, _, _, maxPlayers, _, _, _, _, _, _, minGearLevel = GetLFGDungeonInfo(base.DungeonID);
 
 		-- For some unknown reason, some of the dungeons do not have recommended level range
 		if (minRecLevel == 0) then 
@@ -746,7 +746,7 @@ function Atlas_MapRefresh()
 		end
 	end
 	if (base.DungeonHeroicID) then
-		_, _, _, minLevelH, maxLevelH, _, minRecLevelH, maxRecLevelH, _, _, _, _, maxPlayersH = GetLFGDungeonInfo(base.DungeonHeroicID);
+		_, _, _, minLevelH, maxLevelH, _, minRecLevelH, maxRecLevelH, _, _, _, _, maxPlayersH, _, _, _, _, _, _, minGearLevelH = GetLFGDungeonInfo(base.DungeonHeroicID);
 
 		if (minRecLevelH == 0) then
 			minRecLevelH = minRecLevel;
@@ -756,7 +756,7 @@ function Atlas_MapRefresh()
 		end
 	end
 	if (base.DungeonMythicID) then
-		_, _, _, minLevelM, maxLevelM, _, minRecLevelM, maxRecLevelM, _, _, _, _, maxPlayersM = GetLFGDungeonInfo(base.DungeonMythicID);
+		_, _, _, minLevelM, maxLevelM, _, minRecLevelM, maxRecLevelM, _, _, _, _, maxPlayersM, _, _, _, _, _, _, minGearLevelM = GetLFGDungeonInfo(base.DungeonMythicID);
 
 		if (minRecLevelM == 0) then
 			minRecLevelM = minRecLevel;
@@ -781,14 +781,14 @@ function Atlas_MapRefresh()
 	-- Map Location
 	local tLoc = "";
 	if (base.Location) then
-		tLoc = ATLAS_STRING_LOCATION..L["Colon"]..WHIT..base.Location[1];
+		tLoc = L["ATLAS_STRING_LOCATION"]..L["Colon"]..WHIT..base.Location[1];
 	end
 	AtlasText_Location_Text:SetText(tLoc);
 
 	-- Map Level Range
 	local tLR = "";
 	if (base.DungeonID) then 
-		local tmp_LR = ATLAS_STRING_LEVELRANGE..L["Colon"];
+		local tmp_LR = L["ATLAS_STRING_LEVELRANGE"]..L["Colon"];
 		dungeon_difficulty = Atlas_DungeonDifficulty(minLevel);
 		colortag = string.format("|cff%02x%02x%02x", dungeon_difficulty.r * 255, dungeon_difficulty.g * 255, dungeon_difficulty.b * 255);
 		if (minLevel ~= maxLevel) then
@@ -816,7 +816,7 @@ function Atlas_MapRefresh()
 		end
 		tLR = tmp_LR;
 	elseif (base.LevelRange) then
-		tLR = ATLAS_STRING_LEVELRANGE..L["Colon"]..WHIT..base.LevelRange;
+		tLR = L["ATLAS_STRING_LEVELRANGE"]..L["Colon"]..WHIT..base.LevelRange;
 	end
 	AtlasText_LevelRange_Text:SetText(tLR);
 
@@ -825,7 +825,7 @@ function Atlas_MapRefresh()
 	if (base.DungeonID) then 
 		dungeon_difficulty = Atlas_DungeonDifficulty(minRecLevel);
 		colortag = string.format("|cff%02x%02x%02x", dungeon_difficulty.r * 255, dungeon_difficulty.g * 255, dungeon_difficulty.b * 255);
-		local tmp_RLR = ATLAS_STRING_RECLEVELRANGE..L["Colon"];
+		local tmp_RLR = L["ATLAS_STRING_RECLEVELRANGE"]..L["Colon"];
 		if (minRecLevel ~= maxRecLevel) then
 			tmp_RLR = tmp_RLR..colortag..minRecLevel.."-"..maxRecLevel;
 		else
@@ -851,7 +851,7 @@ function Atlas_MapRefresh()
 		end
 		tRLR = tmp_RLR;
 	elseif (base.LevelRange) then
-		tRLR = ATLAS_STRING_RECLEVELRANGE..L["Colon"]..WHIT..base.LevelRange;
+		tRLR = L["ATLAS_STRING_RECLEVELRANGE"]..L["Colon"]..WHIT..base.LevelRange;
 	end
 	AtlasText_RecommendedRange_Text:SetText(tRLR);
 
@@ -860,7 +860,7 @@ function Atlas_MapRefresh()
 	if (base.DungeonID) then 
 		dungeon_difficulty = Atlas_DungeonDifficulty(minLevel);
 		colortag = string.format("|cff%02x%02x%02x", dungeon_difficulty.r * 255, dungeon_difficulty.g * 255, dungeon_difficulty.b * 255);
-		tML = ATLAS_STRING_MINLEVEL..L["Colon"]..colortag..minLevel;
+		tML = L["ATLAS_STRING_MINLEVEL"]..L["Colon"]..colortag..minLevel;
 		if (base.DungeonHeroicID) then
 			dungeon_difficulty = Atlas_DungeonDifficulty(minLevelH);
 			colortag = string.format("|cff%02x%02x%02x", dungeon_difficulty.r * 255, dungeon_difficulty.g * 255, dungeon_difficulty.b * 255);
@@ -872,21 +872,43 @@ function Atlas_MapRefresh()
 			tML = tML..L["Slash"]..colortag..minLevelM..L["Mythic_Symbol"];
 		end
 	elseif (base.MinLevel) then
-		tML = ATLAS_STRING_MINLEVEL..L["Colon"]..WHIT..base.MinLevel;
+		tML = L["ATLAS_STRING_MINLEVEL"]..L["Colon"]..WHIT..base.MinLevel;
 	end
 	AtlasText_MinLevel_Text:SetText(tML);
 
 	-- Player Limit
 	local tPL = "";
 	if (base.DungeonID and maxPlayers ~= 0) then 
-		tPL = ATLAS_STRING_PLAYERLIMIT..L["Colon"]..WHIT..maxPlayers;
+		tPL = L["ATLAS_STRING_PLAYERLIMIT"]..L["Colon"]..WHIT..maxPlayers;
 		if (base.DungeonHeroicID and maxPlayers ~= maxPlayersH) then
 			tPL = tPL.." / "..maxPlayersH;
 		end
 	elseif (base.PlayerLimit) then
-		tPL = ATLAS_STRING_PLAYERLIMIT..L["Colon"]..WHIT..base.PlayerLimit;
+		tPL = L["ATLAS_STRING_PLAYERLIMIT"]..L["Colon"]..WHIT..base.PlayerLimit;
 	end
 	AtlasText_PlayerLimit_Text:SetText(tPL);
+	
+	-- Map's Minimum Gear Level for player
+	local tMGL = "";
+	if (base.DungeonID and minGearLevel ~= 0) then 
+		local itemDiff, gearcolortag;
+		--gearcolortag = "|cffffffff";
+
+		itemDiff = Atlas_GearItemLevelDiff(minGearLevel);
+		gearcolortag = string.format("|cff%02x%02x%02x", itemDiff.r * 255, itemDiff.g * 255, itemDiff.b * 255);
+		tMGL = L["ATLAS_STRING_MINGEARLEVEL"]..L["Colon"]..gearcolortag..minGearLevel;
+		if (base.DungeonHeroicID and minGearLevelH ~= 0) then
+			itemDiff = Atlas_GearItemLevelDiff(minGearLevelH);
+			gearcolortag = string.format("|cff%02x%02x%02x", itemDiff.r * 255, itemDiff.g * 255, itemDiff.b * 255);
+			tMGL = tMGL..WHIT..L["Slash"]..gearcolortag..minGearLevelH..L["Heroic_Symbol"];
+		end
+		if (base.DungeonMythicID and minGearLevelM ~= 0) then
+			itemDiff = Atlas_GearItemLevelDiff(minGearLevelM);
+			gearcolortag = string.format("|cff%02x%02x%02x", itemDiff.r * 255, itemDiff.g * 255, itemDiff.b * 255);
+			tMGL = tMGL..WHIT..L["Slash"]..gearcolortag..minGearLevelM..L["Mythic_Symbol"];
+		end
+	end
+	AtlasText_MinGearLevel_Text:SetText(tMGL);
 
 	-- Check if Journal Encounter Instance is available
 	if (base.JournalInstanceID) then
@@ -1462,6 +1484,35 @@ function Atlas_DungeonDifficulty(minRecLevel)
 		--color = {r = 0.75, g = 0.75, b = 0.75};
 		color = {r = 1.00, g = 1.00, b = 1.00};
 	end
+	return color;
+end
+
+local function round(num, idp)
+   local mult = 10 ^ (idp or 0);
+   return math.floor(num * mult + 0.5) / mult;
+end
+
+function Atlas_GearItemLevelDiff(minGearLevel)
+	local myItemLevel = GetAverageItemLevel();
+	local lDiff = minGearLevel - myItemLevel;
+	local color;
+	
+	if (lDiff >= 0) then
+		for i= 1.00, 0.10, -0.10 do
+			color = {r = 1.00, g = i, b = 0.00};
+			if ( (i/0.10)==round(((100-lDiff)/10),0) ) then return color; end
+		end
+	elseif (-lDiff < 100) then
+		for i= 0.90, 0.10, -0.10 do
+			color = {r = i, g = 1.00, b = 0.00};
+			if ((9-i/0.10)==round(((-1*lDiff)/10),0) ) then return color; end
+		end
+	elseif (-lDiff == 100) then
+		color = {r = 0.50, g = 1.00, b = 0.50};
+	else
+		color = {r = 1.00, g = 1.00, b = 1.00};
+	end
+	
 	return color;
 end
 

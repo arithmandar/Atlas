@@ -66,6 +66,7 @@ if L then
 	L["ATLAS_STRING_SEARCH"] = "搜尋";
 	L["ATLAS_STRING_CLEAR"] = "清除";
 	L["ATLAS_STRING_MINLEVEL"] = "最低等級";
+	L["ATLAS_STRING_MINGEARLEVEL"] = "最低裝備等級";
 
 	L["ATLAS_OPTIONS_BUTTON"] = "選項";
 	L["ATLAS_OPTIONS_SHOWBUT"] = "在小地圖旁顯示 Atlas 按鈕";
@@ -165,6 +166,8 @@ if L then
 	L["ATLAS_OPEN_ADVENTURE"] = "按下以開啟冒險指南視窗.";
 	L["ATLAS_CLICK_TO_OPEN"] = "按下以開啟 Atlas 地圖視窗.";
 	L["ATLAS_OPEN_WOWMAP_WINDOW"] = "按下以開啟冒險指南地圖視窗.";
+	L["ATLAS_COLLAPSE_BUTTON"] = "按下以收起 Atlas 的地圖說明窗格.";
+	L["ATLAS_EXPAND_BUTTON"] = "按下以展開 Atlas 的地圖說明窗格.";
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
@@ -184,8 +187,8 @@ if L then
 	L["Midsummer Festival"] = "仲夏節慶";
 
 	--Instance Difficulties
-	L["Heroic_Symbol"] = "(英雄)";
-	L["Mythic_Symbol"] = "(傳奇)";
+	L["Heroic_Symbol"] = "（英雄）";
+	L["Mythic_Symbol"] = "（傳奇）";
 	--Misc strings
 		--Symbols
 		L["Colon"] = "：";

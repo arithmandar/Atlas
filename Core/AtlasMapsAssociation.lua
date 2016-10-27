@@ -69,6 +69,7 @@ Atlas_AssocDefaults = {
 	[BZ["The Emerald Nightmare"]] = 	"TheEmeraldNightmareA";
 	[BZ["The Nighthold"]] = 		"TheNightholdC";
 	[BZ["Vault of the Wardens"]] = 		"VaultoftheWardensA";
+	[BZ["Trial of Valor"]] = 		"TrialofValorA";
 };
 
 --[[
@@ -656,6 +657,16 @@ Atlas_SubZoneData = {
 			BZ["Vault of the Betrayer"],
 		},
 	},
+
+--	[BZ["Trial of Valor"]] = {
+--		["TrialofValorA"] = {
+--		
+--		},
+--		["TrialofValorB"] = {
+--		
+--		},
+--	},
+
 };
 
 --[[
@@ -894,6 +905,8 @@ Atlas_MapSeries = {
 	["TheNightholdE"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF"--[[, "TheNightholdG"]] };
 	["TheNightholdF"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF"--[[, "TheNightholdG"]] };
 -- 	["TheNightholdG"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
+	["TrialofValorA"] = 			{"TrialofValorA", "TrialofValorB"};
+	["TrialofValorB"] = 			{"TrialofValorA", "TrialofValorB"};
 	["VaultoftheWardensA"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
 	["VaultoftheWardensB"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
 	["VaultoftheWardensC"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
@@ -976,6 +989,8 @@ Atlas_SubZoneAssoc = {
 	["TheNightholdE"] = 			BZ["The Nighthold"];
 	["TheNightholdF"] = 			BZ["The Nighthold"];
 -- 	["TheNightholdG"] = 			BZ["The Nighthold"];
+	["TrialofValorA"] = 			BZ["Trial of Valor"];
+	["TrialofValorB"] = 			BZ["Trial of Valor"];
 	["VaultoftheWardensA"] = 		BZ["Vault of the Wardens"];
 	["VaultoftheWardensB"] = 		BZ["Vault of the Wardens"];
 	["VaultoftheWardensC"] = 		BZ["Vault of the Wardens"];

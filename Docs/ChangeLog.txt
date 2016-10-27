@@ -8,6 +8,11 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.35.01 (Oct. 27, 2016)
+------------------------
+- Updated to support Trial of Valor
+- Added instance's minimum gear level
+
 v1.35.00 (Oct. 27, 2016)
 ------------------------
 - Toc update to support WoW 7.1.0
@@ -15,6 +20,9 @@ v1.35.00 (Oct. 27, 2016)
   - LibBabble-SubZone-3.0
   - LibBabble-Boss-3.0
   - NoTaint_UIDropDownMenu
+- Translation update:
+  - Korean (wooyekim)
+  - Portuguese (MetalFlavio)
 
 v1.34.05 (Oct. 12, 2016)
 ------------------------

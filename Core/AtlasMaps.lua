@@ -1004,4 +1004,12 @@ Syntax:
 		ZoneName = { BZ["Vault of the Wardens"]..L["MapC"] };
 		Module = "Atlas_Legion";
 	};
+	TrialofValorA = { 
+		ZoneName = { BZ["Trial of Valor"]..L["MapA"] };
+		Module = "Atlas_Legion";
+	};
+	TrialofValorB = { 
+		ZoneName = { BZ["Trial of Valor"]..L["MapB"] };
+		Module = "Atlas_Legion";
+	};
 };
