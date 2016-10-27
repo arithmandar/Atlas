@@ -234,7 +234,7 @@ if L then
 	L["Optional"] = "可選擇";
 	L["Orange"] = "橙";
 	L["Outside"] = "戶外";
-	L["Portal"] = "入口/傳送門";
+	L["Portal"] = "傳送門";
 	L["Protection Warrior"] = "防戰";
 	L["Purple"] = "紫";
 	L["Random"] = "隨機";

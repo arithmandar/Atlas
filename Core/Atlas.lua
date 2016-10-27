@@ -248,20 +248,20 @@ local function Process_Deprecated()
 	local Deprecated_List = {
 		-- Most recent (working) versions of known modules at time of release
 		-- Atlas Modules
-		{ "Atlas_Legion",	 	"1.34.01" },
-		{ "Atlas_WarlordsofDraenor", 	"1.34.00" },
-		{ "Atlas_MistsofPandaria",	"1.34.00" },
-		{ "Atlas_Cataclysm", 		"1.34.00" },
-		{ "Atlas_WrathoftheLichKing", 	"1.34.00" },
-		{ "Atlas_BurningCrusade", 	"1.34.00" },
-		{ "Atlas_ClassicWoW", 		"1.34.00" },
+		{ "Atlas_Legion",	 	"1.35.00" },
+		{ "Atlas_WarlordsofDraenor", 	"1.35.00" },
+		{ "Atlas_MistsofPandaria",	"1.35.00" },
+		{ "Atlas_Cataclysm", 		"1.35.00" },
+		{ "Atlas_WrathoftheLichKing", 	"1.35.00" },
+		{ "Atlas_BurningCrusade", 	"1.35.00" },
+		{ "Atlas_ClassicWoW", 		"1.35.00" },
 		-- Atlas Plugins
-		{ "Atlas_Battlegrounds", 	"1.34.00" },
-		{ "Atlas_DungeonLocs", 		"1.34.00" },
-		{ "Atlas_OutdoorRaids", 	"1.34.00" },
-		{ "Atlas_Transportation", 	"1.34.00" },
-		{ "Atlas_Scenarios", 		"1.34.00" },
-		{ "Atlas_ClassOrderHalls",	"1.34.00" },
+		{ "Atlas_Battlegrounds", 	"1.35.00" },
+		{ "Atlas_DungeonLocs", 		"1.35.00" },
+		{ "Atlas_OutdoorRaids", 	"1.35.00" },
+		{ "Atlas_Transportation", 	"1.35.00" },
+		{ "Atlas_Scenarios", 		"1.35.00" },
+		{ "Atlas_ClassOrderHalls",	"1.35.00" },
 		-- 3rd parties plugins
 		{ "AtlasQuest", 		"4.10.01" }, 	-- updated Jul. 26, 2016
 		{ "Atlas_Arena", 		"1.06.00" }, 	-- updated Jul. 19, 2016
