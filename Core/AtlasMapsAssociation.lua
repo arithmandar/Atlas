@@ -634,11 +634,9 @@ Atlas_SubZoneData = {
 			BZ["The Nightspire"], -- upper floor
 		},
 		-- Gul'dan
---[[
 		["TheNightholdG"] = {
+			BZ["The Font of Night"],
 		},
-]]
-			-- BZ["The Font of Night"],
 	},
 	[BZ["Vault of the Wardens"]] = {
 		["VaultoftheWardensA"] = {
@@ -846,7 +844,7 @@ Atlas_InstToEntMatches = {
 	["TheNightholdD"] = 			{"TheNightholdEnt"};
 	["TheNightholdE"] = 			{"TheNightholdEnt"};
 	["TheNightholdF"] = 			{"TheNightholdEnt"};
---	["TheNightholdG"] = 			{"TheNightholdEnt"};
+	["TheNightholdG"] = 			{"TheNightholdEnt"};
 };
 
 -- Defines the instance which have multiple maps
@@ -904,7 +902,7 @@ Atlas_MapSeries = {
 	["TheNightholdD"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF"--[[, "TheNightholdG"]] };
 	["TheNightholdE"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF"--[[, "TheNightholdG"]] };
 	["TheNightholdF"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF"--[[, "TheNightholdG"]] };
--- 	["TheNightholdG"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
+ 	["TheNightholdG"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
 	["TrialofValorA"] = 			{"TrialofValorA", "TrialofValorB"};
 	["TrialofValorB"] = 			{"TrialofValorA", "TrialofValorB"};
 	["VaultoftheWardensA"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
@@ -988,7 +986,7 @@ Atlas_SubZoneAssoc = {
 	["TheNightholdD"] = 			BZ["The Nighthold"];
 	["TheNightholdE"] = 			BZ["The Nighthold"];
 	["TheNightholdF"] = 			BZ["The Nighthold"];
--- 	["TheNightholdG"] = 			BZ["The Nighthold"];
+ 	["TheNightholdG"] = 			BZ["The Nighthold"];
 	["TrialofValorA"] = 			BZ["Trial of Valor"];
 	["TrialofValorB"] = 			BZ["Trial of Valor"];
 	["VaultoftheWardensA"] = 		BZ["Vault of the Wardens"];

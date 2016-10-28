@@ -299,7 +299,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",
 			"TheNightholdE",
 			"TheNightholdF",
-			-- "TheNightholdG",
+			"TheNightholdG",
 			"TrialofValorA",
 			"TrialofValorB",
 		},
@@ -523,6 +523,7 @@ Atlas_DropDownLayouts = {
 			"TheEmeraldNightmareE",
 			"TheEmeraldNightmareF",
 			"TheEmeraldNightmareG",
+--			"TheEmeraldNightmareH",
 			"TheNightholdEnt",
 			"TheNightholdA",
 			"TheNightholdB",
@@ -530,7 +531,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",
 			"TheNightholdE",
 			"TheNightholdF",
-			-- "TheNightholdG",
+			"TheNightholdG",
 			-- "ReturntoKarazhan", 		-- Legion
 			"TrialofValorA",
 			"TrialofValorB",
@@ -701,6 +702,7 @@ Atlas_DropDownLayouts = {
 			"TheEmeraldNightmareE",		-- Legion
 			"TheEmeraldNightmareF",		-- Legion
 			"TheEmeraldNightmareG",		-- Legion
+--			"TheEmeraldNightmareH",		-- Legion
 			"TheNightholdEnt",
 			"TheNightholdA",		-- Legion
 			"TheNightholdB",		-- Legion
@@ -708,7 +710,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",		-- Legion
 			"TheNightholdE",		-- Legion
 			"TheNightholdF",		-- Legion
-			-- "TheNightholdG",		-- Legion
+			"TheNightholdG",		-- Legion
 		},
 		[ATLAS_DDL_PARTYSIZE_10_OZ] = {
 			"TheRuinsofAhnQiraj",		-- Classic WoW
@@ -777,6 +779,7 @@ Atlas_DropDownLayouts = {
 			"TheEmeraldNightmareE",		-- Legion
 			"TheEmeraldNightmareF",		-- Legion
 			"TheEmeraldNightmareG",		-- Legion
+--			"TheEmeraldNightmareH",		-- Legion
 		},
 		[ATLAS_DDL_PARTYSIZE_20TO40IZ] = {
 			"Naxxramas",			-- Burning Crusade
@@ -814,7 +817,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",		-- Legion
 			"TheNightholdE",		-- Legion
 			"TheNightholdF",		-- Legion
-			-- "TheNightholdG",		-- Legion
+			"TheNightholdG",		-- Legion
 			"TrialofValorA",
 			"TrialofValorB",
 		},
@@ -1033,6 +1036,7 @@ Atlas_DropDownLayouts = {
 			"TheEmeraldNightmareE",
 			"TheEmeraldNightmareF",
 			"TheEmeraldNightmareG",
+--			"TheEmeraldNightmareH",		-- Legion
 			"TheNightholdEnt",
 			"TheNightholdA",
 			"TheNightholdB",
@@ -1040,7 +1044,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",
 			"TheNightholdE",
 			"TheNightholdF",
-			-- "TheNightholdG",
+			"TheNightholdG",
 			-- "ReturntoKarazhan", 		-- Legion
 			"TrialofValorA",
 			"TrialofValorB",
@@ -1117,6 +1121,7 @@ Atlas_DropDownLayouts = {
 			"TheEmeraldNightmareE",		-- Legion
 			"TheEmeraldNightmareF",		-- Legion
 			"TheEmeraldNightmareG",		-- Legion
+--			"TheEmeraldNightmareH",		-- Legion
 			"EyeofAzshara",			-- Legion
 		},
 		[ATLAS_DDL_TYPE_INSTANCE_GM] = {
@@ -1197,7 +1202,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",		-- Legion
 			"TheNightholdE",		-- Legion
 			"TheNightholdF",		-- Legion
-			-- "TheNightholdG",		-- Legion
+			"TheNightholdG",		-- Legion
 			-- "ReturntoKarazhan", 		-- Legion
 		},
 		[ATLAS_DDL_TYPE_INSTANCE_TZ] = {

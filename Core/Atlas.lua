@@ -1493,8 +1493,7 @@ local function round(num, idp)
 end
 
 function Atlas_GearItemLevelDiff(minGearLevel)
-	local myItemLevel = GetAverageItemLevel();
-	local lDiff = minGearLevel - myItemLevel;
+	local lDiff = minGearLevel - GetAverageItemLevel();
 	local color;
 	
 	if (lDiff >= 0) then
