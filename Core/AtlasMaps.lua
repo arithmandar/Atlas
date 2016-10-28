@@ -954,13 +954,10 @@ Syntax:
 		ZoneName = { BZ["The Emerald Nightmare"]..L["MapG"] };
 		Module = "Atlas_Legion";
 	};
-	-- Map TODO
---[[
 	TheEmeraldNightmareH = {
 		ZoneName = { BZ["The Emerald Nightmare"]..L["MapH"] };
 		Module = "Atlas_Legion";
 	};
-]]
 	TheNightholdA = {
 		ZoneName = { BZ["The Nighthold"]..L["MapA"] };
 		Module = "Atlas_Legion";

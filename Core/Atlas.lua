@@ -892,7 +892,6 @@ function Atlas_MapRefresh()
 	local tMGL = "";
 	if (base.DungeonID and minGearLevel ~= 0) then 
 		local itemDiff, gearcolortag;
-		--gearcolortag = "|cffffffff";
 
 		itemDiff = Atlas_GearItemLevelDiff(minGearLevel);
 		gearcolortag = string.format("|cff%02x%02x%02x", itemDiff.r * 255, itemDiff.g * 255, itemDiff.b * 255);
@@ -907,6 +906,12 @@ function Atlas_MapRefresh()
 			gearcolortag = string.format("|cff%02x%02x%02x", itemDiff.r * 255, itemDiff.g * 255, itemDiff.b * 255);
 			tMGL = tMGL..WHIT..L["Slash"]..gearcolortag..minGearLevelM..L["Mythic_Symbol"];
 		end
+	elseif (base.MinGearLevel) then
+		local itemDiff, gearcolortag;
+
+		itemDiff = Atlas_GearItemLevelDiff(base.MinGearLevel);
+		gearcolortag = string.format("|cff%02x%02x%02x", itemDiff.r * 255, itemDiff.g * 255, itemDiff.b * 255);
+		tMGL = L["ATLAS_STRING_MINGEARLEVEL"]..L["Colon"]..gearcolortag..base.MinGearLevel;
 	end
 	AtlasText_MinGearLevel_Text:SetText(tMGL);
 
@@ -1488,8 +1493,8 @@ function Atlas_DungeonDifficulty(minRecLevel)
 end
 
 local function round(num, idp)
-   local mult = 10 ^ (idp or 0);
-   return math.floor(num * mult + 0.5) / mult;
+	local mult = 10 ^ (idp or 0);
+	return math.floor(num * mult + 0.5) / mult;
 end
 
 function Atlas_GearItemLevelDiff(minGearLevel)
@@ -1849,11 +1854,6 @@ function AtlasSimpleSearch(data, text)
 	return new;
 end
 
-local function round(num, idp)
-	local mult = 10 ^ (idp or 0);
-	return math.floor(num * mult + 0.5) / mult;
-end
-
 function AtlasEntryTemplate_OnUpdate(self)
 	if (MouseIsOver(self)) then
 		if (IsControlKeyDown() and AtlasOptions.AtlasCtrl) then
@@ -2000,6 +2000,18 @@ function Atlas_AutoSelect_from_EncounterJournal()
 			end
 		end
 	end
+end
+
+function Atlas_DungeonMinGearLevelToolTip(self)
+	local currGearLevel = GetAverageItemLevel();
+	local str = format(ITEM_LEVEL, currGearLevel);
+	
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:SetBackdropColor(0, 0, 0, 1 * AtlasOptions["AtlasAlpha"]);
+	GameTooltip:SetText(str, 1, 1, 1, nil, 1);
+	GameTooltip:AddLine(STAT_AVERAGE_ITEM_LEVEL_TOOLTIP, 1, 1, 1, 1)
+	GameTooltip:SetScale(AtlasOptions["AtlasBossDescScale"] * AtlasOptions["AtlasScale"]);
+	GameTooltip:Show();
 end
 
 --[[

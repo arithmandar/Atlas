@@ -461,6 +461,9 @@
 					<OnUpdate>
 						AtlasEntryTemplate_OnUpdate(self);
 					</OnUpdate>
+					<OnEnter>
+						Atlas_DungeonMinGearLevelToolTip(self);
+					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide();
 					</OnLeave>

@@ -8,6 +8,14 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.35.03 (Oct. 28, 2016)
+------------------------
+- Added Xavius to the Emerald Nightmare
+- Added feature to show player's current gear level when hovering over the 
+  instance's minimum gear level line
+- Library update: 
+  - LibBabble-SubZone-3.0
+
 v1.35.02 (Oct. 28, 2016)
 ------------------------
 - Added Gul'dan to the Nighthold
