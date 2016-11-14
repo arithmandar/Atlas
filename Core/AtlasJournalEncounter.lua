@@ -30,9 +30,17 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0");
 
 function Atlas_AdventureJournalButton_OnClick(frame)
+	local disabled = not C_AdventureJournal.CanBeShown();
+	if (disabled) then return; end
+	
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+	if (not zoneID) then return; end
 	local data = AtlasMaps;
 	local base = data[zoneID];
+	
+	if (not base.JournalInstanceID) then
+		return;
+	end
 
 	if (not EJ_GetInstanceInfo(base.JournalInstanceID)) then
 		return;
@@ -54,10 +62,19 @@ function Atlas_AdventureJournalButton_OnClick(frame)
 end
 
 function Atlas_AdventureJournal_EncounterButton_OnClick(encounterID)
+	if (not encounterID) then return; end
+
+	local disabled = not C_AdventureJournal.CanBeShown();
+	if (disabled) then return; end
+
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+	if (not zoneID) then return; end
 	local data = AtlasMaps;
 	local base = data[zoneID];
 
+	if (not base.JournalInstanceID) then
+		return;
+	end
 	if (not EJ_GetInstanceInfo(base.JournalInstanceID)) then
 		return;
 	end
@@ -84,20 +101,30 @@ end
 
 function AtlasFrameAdventureJournalButton_OnEnter(frame)
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+	if (not zoneID) then return; end
 	local data = AtlasMaps;
 	local base = data[zoneID];
+
+	if (not base.JournalInstanceID) then
+		return;
+	end
 
 	if (MouseIsOver(frame)) then
 		if (EJ_GetInstanceInfo(base.JournalInstanceID)) then
 			EJ_SelectInstance(base.JournalInstanceID);
 
 			local name, description = EJ_GetInstanceInfo();
+			local disabled = not C_AdventureJournal.CanBeShown();
 
 			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT");
 			GameTooltip:SetText(name);
 			GameTooltipTextLeft1:SetTextColor(1, 1, 1);
 			GameTooltip:AddLine(description, nil, nil, nil, true);
-			GameTooltip:AddLine(L["ATLAS_OPEN_ADVENTURE"], 0.5, 0.5, 1, true);
+			if (disabled) then
+				GameTooltip:AddLine(FEATURE_NOT_YET_AVAILABLE, 0.7, 0, 0, true);
+			else
+				GameTooltip:AddLine(L["ATLAS_OPEN_ADVENTURE"], 0.5, 0.5, 1, true);
+			end
 			GameTooltip:Show();
 		end
 	else
@@ -172,7 +199,12 @@ function AtlasFrameAdventureJournalMapButton_OnClick()
 	local base = data[zoneID];
 
 	HideUIPanel(AtlasFrame);
-	WorldMapFrame.fromJournal = true;
+	local disabled = not C_AdventureJournal.CanBeShown();
+	if (disabled) then 
+		WorldMapFrame.fromJournal = false;
+	else
+		WorldMapFrame.fromJournal = true;
+	end
 	ShowUIPanel(WorldMapFrame);
 	if (base.WorldMapID) then
 		SetMapByID(base.WorldMapID);

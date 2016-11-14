@@ -8,6 +8,16 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.35.04 (Nov. XX, 2016)
+------------------------
+- Enhanced Journal Encounter related codes to prevent from trying to open 
+  adventure journal when it's not yet available due to user's level is too low
+- Slightly enhanced gear level's tooltip and prevent it from showing up when 
+  the map is non-relative to gear level
+- Added heroci / mythic icon text to instance maps' information panel
+- Translation update:
+  - Korean (netaras)
+
 v1.35.03 (Oct. 28, 2016)
 ------------------------
 - Added Xavius to the Emerald Nightmare
