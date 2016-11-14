@@ -12,8 +12,8 @@ v1.35.04 (Nov. XX, 2016)
 ------------------------
 - Enhanced Journal Encounter related codes to prevent from trying to open 
   adventure journal when it's not yet available due to user's level is too low
-- Slightly enhanced gear level's tooltip and prevent it from showing up when 
-  the map is non-relative to gear level
+- Enhanced gear level's tooltip and prevent it from showing up when the map 
+  is non-relative to gear level
 - Added heroci / mythic icon text to instance maps' information panel
 - Enhanced codes related to Atlas' dropdown and instance map's level related 
   information displaying to better deal with the situation that only heroic 
