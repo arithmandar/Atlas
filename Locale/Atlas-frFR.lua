@@ -77,6 +77,7 @@ L["ATLAS_STRING_SELECT_MAP"] = "Choix de la carte"
 L["ATLAS_STRING_SEARCH"] = "Rechercher"
 L["ATLAS_STRING_CLEAR"] = "Nettoyer"
 L["ATLAS_STRING_MINLEVEL"] = "Niveau Minimum"
+--L["ATLAS_STRING_MINGEARLEVEL"] = "Minimum Gear Level"
 
 L["ATLAS_OPTIONS_BUTTON"] = "Options"
 L["ATLAS_OPTIONS_SHOWBUT"] = "Afficher le bouton sur la mini-carte"
@@ -197,12 +198,12 @@ Visitez notre site web pour plus de détail, et n'oubliez pas de le
 télécharger/installer séparément.]=]
 
 L["ATLAS_MISSING_MODULE"] = "Atlas a détecté des module(s)/plug-in(s) manquant : "
--- L["ATLAS_OPEN_ADDON_LIST"] = ""
+--L["ATLAS_OPEN_ADDON_LIST"] = "Open addon list"
 L["ATLAS_OPEN_ADVENTURE"] = "Cliquer pour ouvrir la fenêtre du Guilde de l'aventurier"
--- L["ATLAS_CLICK_TO_OPEN"] = ""
--- L["ATLAS_OPEN_WOWMAP_WINDOW"] = ""
--- L["ATLAS_COLLAPSE_BUTTON"] = ""
--- L["ATLAS_EXPAND_BUTTON"] = "";
+--L["ATLAS_CLICK_TO_OPEN"] = "Click to open Atlas map window."
+--L["ATLAS_OPEN_WOWMAP_WINDOW"] = "Click to open Adventure Journal Map window."
+--L["ATLAS_COLLAPSE_BUTTON"] = "Click to close Atlas' legend panel."
+--L["ATLAS_EXPAND_BUTTON"] = "Click to open Atlas' legend panel."
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
@@ -302,7 +303,7 @@ L["Wave 12"] = "Vague 12"
 L["Wave 18"] = "Vague 18"
 L["MapsNotFound"] = [=[Le donjon actuellement sélectionné n'a pas d'image de la carte correspondante.
 Assurez-vous d'avoir installé le bon module de cartes d'Atlas]=]
--- L["PossibleMissingModule"] = ""
+--L["PossibleMissingModule"] = "It is likely this map is from this module: "
 L["Transport"] = "Transport"
 
 --Map sections
