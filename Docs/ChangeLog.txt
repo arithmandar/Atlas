@@ -15,6 +15,11 @@ v1.35.04 (Nov. XX, 2016)
 - Slightly enhanced gear level's tooltip and prevent it from showing up when 
   the map is non-relative to gear level
 - Added heroci / mythic icon text to instance maps' information panel
+- Enhanced codes related to Atlas' dropdown and instance map's level related 
+  information displaying to better deal with the situation that only heroic 
+  or mythic mode is available for specific instance
+- Fixed issues that NavBar in Adventure Journal window was wrongly nested while
+  launching from Atlas multiple times with different instances / bosses
 - Translation update:
   - Korean (netaras)
 

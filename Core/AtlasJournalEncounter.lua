@@ -50,6 +50,7 @@ function Atlas_AdventureJournalButton_OnClick(frame)
 		ToggleEncounterJournal();
 	end
 	-- EncounterJournal_ListInstances();
+	NavBar_Reset(EncounterJournal.navBar);
 	EncounterJournal_DisplayInstance(base.JournalInstanceID);
 
 	Atlas_Toggle();
@@ -86,6 +87,7 @@ function Atlas_AdventureJournal_EncounterButton_OnClick(encounterID)
 		ToggleEncounterJournal();
 	end
 	-- EncounterJournal_ListInstances();
+	NavBar_Reset(EncounterJournal.navBar);
 	EncounterJournal_DisplayInstance(base.JournalInstanceID);
 	EncounterJournal_DisplayEncounter(encounterID);
 
