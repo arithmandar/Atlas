@@ -8,7 +8,7 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
-v1.35.04 (Nov. XX, 2016)
+v1.35.04 (Nov. 16, 2016)
 ------------------------
 - Enhanced Journal Encounter related codes to prevent from trying to open 
   adventure journal when it's not yet available due to user's level is too low

@@ -170,6 +170,7 @@ if L then
 	L["ATLAS_OPEN_WOWMAP_WINDOW"] = "Click to open Adventure Journal Map window.";
 	L["ATLAS_COLLAPSE_BUTTON"] = "Click to close Atlas' legend panel.";
 	L["ATLAS_EXPAND_BUTTON"] = "Click to open Atlas' legend panel.";
+	L["ATLAS_TOGGLE_LOOT"] = "Right-click to toggle loot panel.";
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
