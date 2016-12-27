@@ -1181,11 +1181,9 @@ function Atlas_Refresh()
 		end
 	end
 	
---@alpha@
 	if (AtlasEJLootFrame:IsShown()) then
 		AtlasEJLootFrame:Hide();
 	end
---@end-alpha@	
 	Atlas_MapRefresh();
 	
 	ATLAS_DATA = base;
@@ -2013,9 +2011,7 @@ function AtlasSimpleSearch(data, text)
 end
 
 function AtlasEntryTemplate_OnUpdate(self)
---@alpha@
 	if (AtlasEJLootFrame:IsShown()) then return; end
---@end-alpha@
 	if (MouseIsOver(self)) then
 		if (IsControlKeyDown() and AtlasOptions.AtlasCtrl) then
 			if (not GameTooltip:IsShown()) then

@@ -69,9 +69,7 @@
 						if (not disabled) then
 							GameTooltip:AddLine(ATLAS_OPEN_ADVENTURE, 0.5, 0.5, 1, true);
 						end
-						<!--@alpha@-->
 						GameTooltip:AddLine(ATLAS_TOGGLE_LOOT, 0.5, 0.5, 1, true);
-						<!--@end-alpha@-->
 					end
 					GameTooltip:SetScale(AtlasOptions["AtlasBossDescScale"] * AtlasOptions["AtlasScale"]);
 					GameTooltip:Show();
@@ -145,7 +143,6 @@
 			</OnLoad>
 			<OnClick>
 				if (button == "RightButton") then
-				<!--@alpha@-->
 					if (AtlasEJLootFrame:IsShown()) then
 						AtlasEJLootFrame:Hide();
 					else
@@ -153,7 +150,6 @@
 						ToggleEncounterJournal();
 						Atlas_EncounterJournal_DisplayLoot(self.encounterID);
 					end
-				<!--@end-alpha@-->
 				elseif (button == "LeftButton") then
 					Atlas_AdventureJournal_EncounterButton_OnClick(self.encounterID);
 				else

@@ -8,11 +8,12 @@ Copyright 2011 ~ 2017 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 = Change Log =
 ==============
 
-v1.36.00 (Dec. XX, 2016)
+v1.36.00 (Dec. 28, 2016)
 ------------------------
 - Library updated: NoTaint_UIDropDownMenu
 - Slightly enhanced the usage of UIDropDownMenu to better prevent from UI taint
-- Added boss loots (adopted from Adventure Journal)
+- Added boss loots (adopted from Adventure Journal).
+  You can right-click on the boss icon showing in Atlas window to see the boss drops
 - Translation update:
   - Korean
   - Simplified Chinese
