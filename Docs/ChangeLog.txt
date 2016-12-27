@@ -8,6 +8,15 @@ Copyright 2011 ~ 2016 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
 = Change Log =
 ==============
 
+v1.36.00 (Dec. XX, 2016)
+------------------------
+- Library updated: NoTaint_UIDropDownMenu
+- Slightly enhanced the usage of UIDropDownMenu to better prevent from UI taint
+- Added boss loots (adopted from Adventure Journal)
+- Translation update:
+  - Korean
+  - Simplified Chinese
+  
 v1.35.04 (Nov. 16, 2016)
 ------------------------
 - Enhanced Journal Encounter related codes to prevent from trying to open 

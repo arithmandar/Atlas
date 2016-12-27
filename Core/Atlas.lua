@@ -561,7 +561,7 @@ function Atlas_Init()
 	AtlasFrameLarge:SetClampedToScreen(AtlasOptions.AtlasClamped);
 	AtlasFrameSmall:SetClampedToScreen(AtlasOptions.AtlasClamped);
 	--AtlasButton_UpdatePosition();
-	AtlasOptions_Init();
+	--AtlasOptions_Init();
 	
 	-- Make an LDB object
 	LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Atlas", {
@@ -762,10 +762,10 @@ function Atlas_MapRefresh()
 	local _RED = "|cffcc3333";
 	local WHIT = "|cffffffff";
 	local colortag, dungeon_difficulty;
-	local icontext_heroic = " \124TInterface\\EncounterJournal\\UI-EJ-HeroicTextIcon:0:0\124t";
-	local icontext_mythic = " \124TInterface\\AddOns\\Atlas\\Images\\\UI-EJ-MythicTextIcon:0:0\124t";
-	local icontext_dungeon = "\124TInterface\\MINIMAP\\Dungeon:0:0\124t";
-	local icontext_raid = "\124TInterface\\MINIMAP\\Raid:0:0\124t";
+	local icontext_heroic = " |TInterface\\EncounterJournal\\UI-EJ-HeroicTextIcon:0:0|t";
+	local icontext_mythic = " |TInterface\\AddOns\\Atlas\\Images\\\UI-EJ-MythicTextIcon:0:0|t";
+	local icontext_dungeon = "|TInterface\\MINIMAP\\Dungeon:0:0|t";
+	local icontext_raid = "|TInterface\\MINIMAP\\Raid:0:0|t";
 	local icontext_instance;
 	
 	if (base.DungeonID) then
@@ -1181,6 +1181,11 @@ function Atlas_Refresh()
 		end
 	end
 	
+--@alpha@
+	if (AtlasEJLootFrame:IsShown()) then
+		AtlasEJLootFrame:Hide();
+	end
+--@end-alpha@	
 	Atlas_MapRefresh();
 	
 	ATLAS_DATA = base;
@@ -1274,6 +1279,8 @@ end
 function AtlasMap_AddNPCButton()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local t = AtlasMaps_NPC_DB[zoneID];
+	local data = AtlasMaps;
+	local base = data[zoneID];
 	local i = 1;
 	local bossindex = 1;
 	local buttonindex = 1;
@@ -1288,6 +1295,9 @@ function AtlasMap_AddNPCButton()
 			local info_x 		= t[i][3];
 			local info_y 		= t[i][4];
 			local info_colortag	= t[i][7];
+			
+			if (info_x == nil) then info_x = -18; end
+			if (info_y == nil) then info_y = -18; end
 
 			if (info_id < 10000) then
 				bossbutton = _G["AtlasMapBossButton"..bossindex];
@@ -1299,8 +1309,13 @@ function AtlasMap_AddNPCButton()
 					bossbuttonS = CreateFrame("Button", "AtlasMapBossButtonS"..bossindexS, AtlasFrameSmall, "AtlasFrameBossButtonTemplate");
 				end
 
-				encounterID = info_id;
-				ejbossname, description, _, rootSectionID = EJ_GetEncounterInfo(encounterID); 
+				if (base.JournalInstanceID) then
+					bossbutton.instanceID = base.JournalInstanceID; 
+					bossbuttonS.instanceID = base.JournalInstanceID; 
+				end
+
+				local encounterID = info_id;
+				local ejbossname, description, _, rootSectionID = EJ_GetEncounterInfo(encounterID); 
 				if (ejbossname) then 
 					bossbutton.tooltipTitle = ejbossname; 
 					bossbuttonS.tooltipTitle = ejbossname; 
@@ -1333,7 +1348,7 @@ function AtlasMap_AddNPCButton()
 					end
 				end
 
-				_, _, _, displayInfo, iconImage = EJ_GetCreatureInfo(1, encounterID);
+				local _, _, _, displayInfo, iconImage = EJ_GetCreatureInfo(1, encounterID);
 				bossbutton.displayInfo = displayInfo;
 				if ( encounterID and iconImage ) then
 					SetPortraitTexture(bossbutton.bgImage, displayInfo);
@@ -1660,8 +1675,8 @@ function AtlasSwitchButton_OnClick()
 end
 
 function AtlasSwitchDD_OnLoad()
-	local info;
 	for k, v in pairs(ATLAS_INST_ENT_DROPDOWN) do
+		local info = Lib_UIDropDownMenu_CreateInfo();
 		info = {
 			text = AtlasMaps[v].ZoneName[1];
 			func = AtlasSwitchDD_OnClick;
@@ -1697,10 +1712,10 @@ end
 -- Function used to initialize the map type dropdown menu
 -- Cycle through Atlas_MapTypes to populate the dropdown
 function AtlasFrameDropDownType_Initialize()
-	local info;
 	local catName = Atlas_DropDownLayouts_Order[AtlasOptions.AtlasSortBy];
 	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
 	for i = 1, getn(subcatOrder), 1 do
+		local info = Lib_UIDropDownMenu_CreateInfo();
 		info = {
 			text = subcatOrder[i];
 			func = AtlasFrameDropDownType_OnClick;
@@ -1708,6 +1723,7 @@ function AtlasFrameDropDownType_Initialize()
 		Lib_UIDropDownMenu_AddButton(info);
 	end
 	for i = 1, getn(Atlas_MapTypes), 1 do
+		local info = Lib_UIDropDownMenu_CreateInfo();
 		info = {
 			text = Atlas_MapTypes[i];
 			func = AtlasFrameDropDownType_OnClick;
@@ -1748,9 +1764,9 @@ end
 -- Function used to initialize the main dropdown menu
 -- Looks at the status of AtlasType to determine how to populate the list
 function AtlasFrameDropDown_Initialize()
-	local info;
 	local colortag;
 	for k, v in pairs(ATLAS_DROPDOWNS[AtlasOptions.AtlasType]) do
+		local info = Lib_UIDropDownMenu_CreateInfo();
 		
 		if (AtlasOptions["AtlasColoringDropDown"] and AtlasMaps[v].DungeonID) then
 			local _, _, _, minLevel, _, _, minRecLevel = GetLFGDungeonInfo(AtlasMaps[v].DungeonID);
@@ -1997,6 +2013,9 @@ function AtlasSimpleSearch(data, text)
 end
 
 function AtlasEntryTemplate_OnUpdate(self)
+--@alpha@
+	if (AtlasEJLootFrame:IsShown()) then return; end
+--@end-alpha@
 	if (MouseIsOver(self)) then
 		if (IsControlKeyDown() and AtlasOptions.AtlasCtrl) then
 			if (not GameTooltip:IsShown()) then

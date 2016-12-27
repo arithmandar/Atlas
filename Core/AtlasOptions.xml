@@ -336,7 +336,6 @@
 						else
 							AtlasOptions.AtlasColoringDropDown = true;
 						end
-						AtlasOptions_Init();
 						Atlas_Refresh();
 						AtlasFrameDropDown_OnShow();
 					</OnClick>
@@ -349,7 +348,7 @@
 					</OnLeave>
 				</Scripts>
 			</CheckButton>
-			<Button name="$ParentDropDownCats" inherits="Lib_UIDropDownMenuTemplate">
+			<Frame name="$ParentDropDownCats" inherits="Lib_UIDropDownMenuTemplate">
 				<Layers>
 					<Layer level="BACKGROUND">
 						<FontString name="$parentLabel" inherits="GameFontNormalSmall" text="ATLAS_OPTIONS_CATDD">
@@ -370,12 +369,7 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-					<OnShow>
-						AtlasOptionsFrameDropDownCats_OnShow();
-					</OnShow>
-				</Scripts>
-			</Button>
+			</Frame>
 <!--
 			<Slider name="$ParentSliderButtonPos" inherits="OptionsSliderTemplate">
 				<Size>
@@ -533,6 +527,9 @@
 			<OnLoad>
 				AtlasOptions_OnLoad(self);
 			</OnLoad>
+			<OnShow>
+				AtlasOptions_OnShow(self);
+			</OnShow>
 		</Scripts>
 	</Frame>
 </Ui>

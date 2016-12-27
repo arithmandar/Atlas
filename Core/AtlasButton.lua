@@ -74,7 +74,6 @@ function addon:Toggle()
 		AtlasMiniMapIcon:Show("Atlas")
 		AtlasOptions.AtlasButtonShown = true;
 	end
-	AtlasOptions_Init();
 end
 
 function AtlasButton_Toggle()

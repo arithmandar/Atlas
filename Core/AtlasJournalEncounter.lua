@@ -62,7 +62,7 @@ function Atlas_AdventureJournalButton_OnClick(frame)
 	end
 end
 
-function Atlas_AdventureJournal_EncounterButton_OnClick(encounterID)
+function Atlas_AdventureJournal_EncounterButton_OnClick(encounterID, keepAtlas)
 	if (not encounterID) then return; end
 
 	local disabled = not C_AdventureJournal.CanBeShown();
@@ -91,7 +91,9 @@ function Atlas_AdventureJournal_EncounterButton_OnClick(encounterID)
 	EncounterJournal_DisplayInstance(base.JournalInstanceID);
 	EncounterJournal_DisplayEncounter(encounterID);
 
-	Atlas_Toggle();
+	if (not keepAtlas) then
+		Atlas_Toggle();
+	end
 	if (not EncounterJournal:IsShown()) then
 		EncounterJournal:Show();
 	else

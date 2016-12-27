@@ -83,14 +83,14 @@ if L then
 	L["ATLAS_OPTIONS_ACRONYMS"] = "顯示副本縮寫";
 	L["ATLAS_OPTIONS_ACRONYMS_TIP"] = "在地圖的詳盡敘述中顯示副本的縮寫";
 	L["ATLAS_OPTIONS_SCALE"] = "Atlas 視窗大小比率";
-	L["ATLAS_OPTIONS_BOSS_DESC"] = "當首領資訊可獲取時, 顯示該資訊";
-	L["ATLAS_OPTIONS_BOSS_DESC_TIP"] = "當滑鼠游標移動到地圖上首領的標號時, 並且首領資訊可獲取時, 顯示該首領的相關資訊.";
+	L["ATLAS_OPTIONS_BOSS_DESC"] = "當首領資訊可獲取時，顯示該資訊";
+	L["ATLAS_OPTIONS_BOSS_DESC_TIP"] = "當滑鼠游標移動到地圖上首領的標號時，並且首領資訊可獲取時，顯示該首領的相關資訊。";
 	L["ATLAS_OPTIONS_BOSS_DESC_SCALE"] = "首領資訊提示視窗大小比率";
 	L["ATLAS_OPTIONS_BUTRAD"] = "按鈕半徑範圍";
 	L["ATLAS_OPTIONS_CLAMPED"] = "使 Atlas 視窗不超出遊戲畫面";
-	L["ATLAS_OPTIONS_CLAMPED_TIP"] = "使 Atlas 視窗被拖曳時不會超出遊戲主畫面的邊界, 關閉此選項則可將 Atlas 視窗拖曳並超出遊戲畫面邊界";
+	L["ATLAS_OPTIONS_CLAMPED_TIP"] = "使 Atlas 視窗被拖曳時不會超出遊戲主畫面的邊界，關閉此選項則可將 Atlas 視窗拖曳並超出遊戲畫面邊界";
 	L["ATLAS_OPTIONS_CTRL"] = "按住 Ctrl 鍵以顯示工具提示";
-	L["ATLAS_OPTIONS_CTRL_TIP"] = "勾選後, 當滑鼠移到地圖資訊欄位時, 按下 Ctrl 控制鍵, 則會將資訊的完整資訊以提示型態顯示. 當資訊過長而被截斷時很有用.";
+	L["ATLAS_OPTIONS_CTRL_TIP"] = "勾選後，當滑鼠移到地圖資訊欄位時，按下 Ctrl 控制鍵，則會將資訊的完整資訊以提示型態顯示。當資訊過長而被截斷時很有用。";
 	L["ATLAS_OPTIONS_DONTSHOWAGAIN"] = "不再顯示相同訊息。";
 	L["ATLAS_OPTIONS_CHECKMODULE"] = "提醒我是否有遺失的模組或插件";
 	L["ATLAS_OPTIONS_CHECKMODULE_TIP"] = "勾選以在每次登入 WoW 時檢查是否有遺失的 Atlas 模組或插件。";
@@ -98,8 +98,8 @@ if L then
 	L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "依據副本建議的最低進入等級、以及玩家現今等級的差異，將副本清單以難易度色彩顯示。";
 
 	L["ATLAS_BUTTON_CLOSE"] = "關閉";
-	L["ATLAS_LDB_HINT"] = "左鍵開啟 Atlas.\n中鍵開啟 Atlas 選項.\n右鍵打開顯示選單.";
-	L["ATLAS_MINIMAPLDB_HINT"] = "左鍵開啟 Atlas.\n右鍵開啟 Atlas 選項.\n左鍵並拖曳以移動圖示按鈕位置.";
+	L["ATLAS_LDB_HINT"] = "左鍵開啟 Atlas。\n中鍵開啟 Atlas 選項。\n右鍵打開顯示選單。";
+	L["ATLAS_MINIMAPLDB_HINT"] = "左鍵開啟 Atlas。\n右鍵開啟 Atlas 選項。\n左鍵並拖曳以移動圖示按鈕位置。";
 
 	L["ATLAS_OPTIONS_CATDD"] = "副本地圖分類方式:";
 	L["ATLAS_DDL_CONTINENT"] = "依不同大陸分類";
@@ -163,11 +163,12 @@ if L then
 	L["ATLAS_MISSING_MODULE"] = "Atlas 已偵測到遺失的模組／插件。\n\n這有可能是因為先前您有過期的模組／插件而被 Atlas 停用。\n如果您現在已經將所有的模組／插件安裝到最新版，請到插件列表裡確認是否所有的項目都已被啟用。\n\n如果您確認您不需要這些「遺失」的插件並且不想繼續看到這樣的通知，您可以到選項視窗去關閉通知。\n\n以下是遺失的模組／插件列表：\n";
 	L["ATLAS_OPEN_ADDON_LIST"] = "開啟插件列表";
 
-	L["ATLAS_OPEN_ADVENTURE"] = "按下以開啟冒險指南視窗.";
-	L["ATLAS_CLICK_TO_OPEN"] = "按下以開啟 Atlas 地圖視窗.";
-	L["ATLAS_OPEN_WOWMAP_WINDOW"] = "按下以開啟冒險指南地圖視窗.";
-	L["ATLAS_COLLAPSE_BUTTON"] = "按下以收起 Atlas 的地圖說明窗格.";
-	L["ATLAS_EXPAND_BUTTON"] = "按下以展開 Atlas 的地圖說明窗格.";
+	L["ATLAS_OPEN_ADVENTURE"] = "按下以開啟冒險指南視窗。";
+	L["ATLAS_CLICK_TO_OPEN"] = "按下以開啟 Atlas 地圖視窗。";
+	L["ATLAS_OPEN_WOWMAP_WINDOW"] = "按下以開啟冒險指南地圖視窗。";
+	L["ATLAS_COLLAPSE_BUTTON"] = "按下以收起 Atlas 的地圖說明窗格。";
+	L["ATLAS_EXPAND_BUTTON"] = "按下以展開 Atlas 的地圖說明窗格。";
+	L["ATLAS_TOGGLE_LOOT"] = "右鍵點擊以開啟首領戰利品視窗。";
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
@@ -264,8 +265,8 @@ if L then
 	L["Wave 10"] = "第 10 波";
 	L["Wave 12"] = "第 12 波";
 	L["Wave 18"] = "第 18 波";	
-	L["MapsNotFound"] = "目前的副本找不到對應的地圖影像檔.\n\n請確認您是否有安裝 Atlas 相關的副本地圖模組.";
-	L["PossibleMissingModule"] = "遺失的地圖應是來自以下的模組: ";
+	L["MapsNotFound"] = "目前的副本找不到對應的地圖影像檔。\n\n請確認您是否有安裝 Atlas 相關的副本地圖模組。";
+	L["PossibleMissingModule"] = "遺失的地圖應是來自以下的模組：";
 	L["Transport"] = "傳送";
 
 	--Map sections
