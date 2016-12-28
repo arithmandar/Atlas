@@ -8,6 +8,15 @@ Copyright 2011 ~ 2017 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 = Change Log =
 ==============
 
+v1.36.01 (Dec. XX, 2016)
+------------------------
+- Enhanced Adventure Journal features' integration / linking:
+  - setup instanceID, encounterID, mapID, dungeonLevel info to be passed 
+    from AtlasMap or buttons instead of re-retrieve them from map data 
+    while calling encounter journal related functions
+- Fixed to call Atlas_EncounterJournal_SetLootButton() inside 
+  Atlas_EncounterJournal_LootCallback()
+
 v1.36.00 (Dec. 28, 2016)
 ------------------------
 - Library updated: NoTaint_UIDropDownMenu

@@ -146,12 +146,12 @@
 					if (AtlasEJLootFrame:IsShown()) then
 						AtlasEJLootFrame:Hide();
 					else
-						Atlas_AdventureJournal_EncounterButton_OnClick(self.encounterID, true);
+						Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID, true);
 						ToggleEncounterJournal();
-						Atlas_EncounterJournal_DisplayLoot(self.encounterID);
+						Atlas_EncounterJournal_DisplayLoot(self.instanceID, self.encounterID);
 					end
 				elseif (button == "LeftButton") then
-					Atlas_AdventureJournal_EncounterButton_OnClick(self.encounterID);
+					Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID);
 				else
 				end
 			</OnClick>

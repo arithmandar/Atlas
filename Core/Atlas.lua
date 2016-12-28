@@ -1042,6 +1042,9 @@ function Atlas_MapRefresh()
 
 	-- Check if Journal Encounter Instance is available
 	if (base.JournalInstanceID) then
+		AtlasFrame.AdventureJournal.instanceID = base.JournalInstanceID;
+		AtlasFrameLarge.AdventureJournal.instanceID = base.JournalInstanceID;
+		AtlasFrameSmall.AdventureJournal.instanceID = base.JournalInstanceID;
 		AtlasFrameAdventureJournalButton:Show();
 		AtlasFrameLargeAdventureJournalButton:Show();
 		AtlasFrameSmallAdventureJournalButton:Show();
@@ -1055,6 +1058,9 @@ function Atlas_MapRefresh()
 
 	-- Check if WorldMap ID is available, if so, show the map button
 	if (base.WorldMapID) then
+		AtlasFrame.AdventureJournalMap.mapID = base.WorldMapID;
+		AtlasFrameLarge.AdventureJournalMap.mapID = base.WorldMapID;
+		AtlasFrameSmall.AdventureJournalMap.mapID = base.WorldMapID;
 		AtlasFrameAdventureJournalMapButton:Show();
 		AtlasFrameLargeAdventureJournalMapButton:Show();
 		AtlasFrameSmallAdventureJournalMapButton:Show();
@@ -1062,6 +1068,13 @@ function Atlas_MapRefresh()
 		AtlasFrameAdventureJournalMapButton:Hide();
 		AtlasFrameLargeAdventureJournalMapButton:Hide();
 		AtlasFrameSmallAdventureJournalMapButton:Hide();
+	end
+
+	-- Check if DungeonLevel ID is available
+	if (base.DungeonLevel) then
+		AtlasFrame.AdventureJournalMap.dungeonLevel = base.DungeonLevel;
+		AtlasFrameLarge.AdventureJournalMap.dungeonLevel = base.DungeonLevel;
+		AtlasFrameSmall.AdventureJournalMap.dungeonLevel = base.DungeonLevel;
 	end
 
 	if (base.LargeMap) then
@@ -1960,7 +1973,6 @@ function Atlas_OnShow()
 	AtlasFrameDropDown_OnShow();
 end
 
-
 function AtlasScrollBar_Update()
 	GameTooltip:Hide();
 	local lineplusoffset;
@@ -2061,7 +2073,7 @@ end
 function AtlasEntry_OnClick(self)
 	local encounterID = self:GetID();
 	
-	Atlas_AdventureJournal_EncounterButton_OnClick(encounterID);
+	Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, encounterID);
 end
 
 function AtlasFrame_ToggleWindowSize()

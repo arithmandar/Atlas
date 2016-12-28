@@ -67,7 +67,8 @@ local Atlas_EncounterJournalSlotFilters = {
 local BOSS_LOOT_BUTTON_HEIGHT = 45;
 local INSTANCE_LOOT_BUTTON_HEIGHT = 64;
 
-function Atlas_EncounterJournal_DisplayLoot(encounterId)
+function Atlas_EncounterJournal_DisplayLoot(instanceID, encounterId)
+	AtlasEJLootFrame.instanceID = instanceID;
 	AtlasEJLootFrame.encounterID = encounterId;
 	AtlasEJLootFrame:Show();
 end
@@ -272,7 +273,7 @@ function Atlas_EncounterJournal_LootCallback(itemID)
 
 	for i, item in ipairs(scrollFrame.buttons) do
 		if item.itemID == itemID and item:IsShown() then
-			EncounterJournal_SetLootButton(item, item.index);
+			Atlas_EncounterJournal_SetLootButton(item, item.index);
 		end
 	end
 end
@@ -367,6 +368,7 @@ function Atlas_EncounterJournal_Refresh(self)
 	end
 ]]
 end
+
 function Atlas_EncounterJournal_SelectDifficulty(self, value)
 	EJ_SetDifficulty(value);
 end
