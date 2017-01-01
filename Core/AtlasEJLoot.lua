@@ -30,7 +30,8 @@
 
 local NO_INV_TYPE_FILTER = 0;
 
-local ATLAS_EJ_DIFFICULTIES = {
+local ATLAS_EJ_DIFFICULTIES = 
+{
 	{ size = "5", prefix = PLAYER_DIFFICULTY1, difficultyID = 1 },
 	{ size = "5", prefix = PLAYER_DIFFICULTY2, difficultyID = 2 },
 	{ size = "5", prefix = PLAYER_DIFFICULTY6, difficultyID = 23 },
@@ -76,7 +77,7 @@ end
 function Atlas_EncounterJournal_OnLoad(self)
 --	EncounterJournalTitleText:SetText(ADVENTURE_JOURNAL);
 --	SetPortraitToTexture(EncounterJournalPortrait,"Interface\\EncounterJournal\\UI-EJ-PortraitIcon");
-	self:RegisterEvent("EJ_LOOT_DATA_RECIEVED");
+--	self:RegisterEvent("EJ_LOOT_DATA_RECIEVED");
 	self:RegisterEvent("EJ_DIFFICULTY_UPDATE");
 --	self:RegisterEvent("UNIT_PORTRAIT_UPDATE");
 --	self:RegisterEvent("SEARCH_DB_LOADED");
@@ -97,6 +98,9 @@ function Atlas_EncounterJournal_OnLoad(self)
 
 --	self.encounter.info.overviewTab:Click();
 
+-- ////////////////////////////////////////////////////////////////////////////////////////
+-- AtlasEJLootFrame.lootScroll to replace EncounterJournal.encounter.info.lootScroll
+-- ////////////////////////////////////////////////////////////////////////////////////////
 	self.lootScroll.update = Atlas_EncounterJournal_LootUpdate;
 	self.lootScroll.scrollBar.doNotHide = true;
 	self.lootScroll.dynamic = Atlas_EncounterJournal_LootCalcScroll;
@@ -142,6 +146,35 @@ function Atlas_EncounterJournal_OnLoad(self)
 --	EJSuggestFrame_OpenFrame();
 end
 
+function Atlas_EncounterJournal_HasChangedContext(instanceID, instanceType, difficultyID)
+	if ( instanceType == "none" ) then
+		-- we've gone from a dungeon to the open world
+		return EncounterJournal.lastInstance ~= nil;
+	elseif ( instanceID ~= 0 and (instanceID ~= EncounterJournal.lastInstance or EncounterJournal.lastDifficulty ~= difficultyID) ) then
+		-- dungeon or difficulty has changed
+		return true;
+	end
+	return false;
+end
+
+function Atlas_EncounterJournal_ResetDisplay(instanceID, instanceType, difficultyID)
+	if ( instanceType == "none" ) then
+		EncounterJournal.lastInstance = nil;
+		EncounterJournal.lastDifficulty = nil;
+		EJSuggestFrame_OpenFrame();
+	else
+		EJ_ContentTab_Select(EncounterJournal.instanceSelect.dungeonsTab.id);
+
+		EncounterJournal_DisplayInstance(instanceID);
+		EncounterJournal.lastInstance = instanceID;
+		-- try to set difficulty to current instance difficulty
+		if ( EJ_IsValidInstanceDifficulty(difficultyID) ) then
+			EJ_SetDifficulty(difficultyID);
+		end
+		EncounterJournal.lastDifficulty = difficultyID;
+	end
+end
+
 function Atlas_EncounterJournal_OnShow(self)
 	if ( tonumber(GetCVar("advJournalLastOpened")) == 0 ) then
 		SetCVar("advJournalLastOpened", GetServerTime() );
@@ -159,8 +192,8 @@ function Atlas_EncounterJournal_OnShow(self)
 	--automatically navigate to the current dungeon if you are in one;
 	local instanceID = EJ_GetCurrentInstance();
 	local _, instanceType, difficultyID = GetInstanceInfo();
-	if ( EncounterJournal_HasChangedContext(instanceID, instanceType, difficultyID) ) then
-		EncounterJournal_ResetDisplay(instanceID, instanceType, difficultyID);
+	if ( Atlas_EncounterJournal_HasChangedContext(instanceID, instanceType, difficultyID) ) then
+		Atlas_EncounterJournal_ResetDisplay(instanceID, instanceType, difficultyID);
 --[[
 	elseif ( EncounterJournal.queuedPortraitUpdate ) then
 		-- fixes portraits when switching between fullscreen and windowed mode
@@ -192,10 +225,10 @@ function Atlas_EncounterJournal_OnShow(self)
 end
 
 function Atlas_EncounterJournal_OnEvent(self, event, ...)
-	if  event == "EJ_LOOT_DATA_RECIEVED" then
-		local itemID = ...
-		if itemID and not EJ_IsLootListOutOfDate() then
-			Atlas_EncounterJournal_LootCallback(itemID);
+--	if  event == "EJ_LOOT_DATA_RECIEVED" then
+--		local itemID = ...
+--		if itemID and not EJ_IsLootListOutOfDate() then
+--			Atlas_EncounterJournal_LootCallback(itemID);
 --[[
 			if EncounterJournal.searchResults:IsShown() then
 				EncounterJournal_SearchUpdate();
@@ -203,10 +236,11 @@ function Atlas_EncounterJournal_OnEvent(self, event, ...)
 				EncounterJournal_UpdateSearchPreview();
 			end
 ]]
-		else
-			Atlas_EncounterJournal_LootUpdate();
-		end
-	elseif event == "EJ_DIFFICULTY_UPDATE" then
+--		else
+--			Atlas_EncounterJournal_LootUpdate();
+--		end
+--	elseif event == "EJ_DIFFICULTY_UPDATE" then
+	if event == "EJ_DIFFICULTY_UPDATE" then
 		--fix the difficulty buttons
 		Atlas_EncounterJournal_UpdateDifficulty(...);
 --[[
