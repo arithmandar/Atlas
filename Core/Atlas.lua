@@ -209,6 +209,10 @@ function Atlas_RegisterPlugin(name, myCategory, myData)
 end
 
 function Atlas_Search(text)
+	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+	local mapdata = AtlasMaps;
+	local base = mapdata[zoneID];
+
 	local data = nil;
 
 	if (ATLAS_SEARCH_METHOD == nil) then
@@ -222,9 +226,9 @@ function Atlas_Search(text)
 	while ( data[i] ~= nil ) do
 		ATLAS_SCROLL_LIST[i] = data[i][1];
 		if (data[i][2] ~= nil) then
-			ATLAS_SCROLL_ID[i] = data[i][2];
+			ATLAS_SCROLL_ID[i] = { data[i][2], base.JournalInstanceID or nil};
 		else
-			ATLAS_SCROLL_ID[i] = 0;
+			ATLAS_SCROLL_ID[i] = { 0, nil };
 		end
 		i = i + 1;
 	end
@@ -1982,7 +1986,11 @@ function AtlasScrollBar_Update()
 		if (lineplusoffset <= ATLAS_CUR_LINES) then
 			_G["AtlasEntry"..i.."_Text"]:SetText(ATLAS_SCROLL_LIST[lineplusoffset]);
 			if (ATLAS_SCROLL_ID[lineplusoffset]) then
-				_G["AtlasEntry"..i]:SetID(ATLAS_SCROLL_ID[lineplusoffset]);
+				_G["AtlasEntry"..i]:SetID(ATLAS_SCROLL_ID[lineplusoffset][1]);
+				_G["AtlasEntry"..i].encounterID = ATLAS_SCROLL_ID[lineplusoffset][1];
+				if (ATLAS_SCROLL_ID[lineplusoffset][2] ~= nil) then
+					_G["AtlasEntry"..i].instanceID = ATLAS_SCROLL_ID[lineplusoffset][2];
+				end
 			end
 			_G["AtlasEntry"..i]:Show();
 		elseif (_G["AtlasEntry"..i]) then
@@ -2071,9 +2079,9 @@ function AtlasEntryTemplate_OnUpdate(self)
 end
 
 function AtlasEntry_OnClick(self)
-	local encounterID = self:GetID();
-	
-	Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, encounterID);
+	if (self.instanceID and self.encounterID) then
+		Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID);
+	end
 end
 
 function AtlasFrame_ToggleWindowSize()
