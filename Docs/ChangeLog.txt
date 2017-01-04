@@ -19,6 +19,8 @@ v1.36.02 (Jan. 05, 2017)
 ------------------------
 - Fixed the issue that left-click on boss name in right-side legend panel 
   won't open adventure journal
+- Translation update:
+  - Korean
 
 v1.36.01 (Jan. 01, 2017)
 ------------------------
