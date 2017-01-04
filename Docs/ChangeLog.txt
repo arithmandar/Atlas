@@ -7,8 +7,6 @@ Copyright 2011 ~ 2017 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 ==============
 Known Issues:
 ==============
-v1.36.01:
----------
 - User might see the boss loots are not fully loaded and showing item info 
   is retrieving. If that's the case, user will need to close and open the
   loot window again.
@@ -17,7 +15,7 @@ v1.36.01:
 = Change Log =
 ==============
 
-v1.36.02 (Jan. XX, 2017)
+v1.36.02 (Jan. 05, 2017)
 ------------------------
 - Fixed the issue that left-click on boss name in right-side legend panel 
   won't open adventure journal
