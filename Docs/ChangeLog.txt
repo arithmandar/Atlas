@@ -1,7 +1,7 @@
 $Id$
 Atlas, a World of Warcraft instance map browser
-Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
-Copyright 2010 - Lothaer <lothayer@gmail.com>, Atlas Team
+Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
+Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
 Copyright 2011 ~ 2017 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 ==============
@@ -14,6 +14,11 @@ Known Issues:
 ==============
 = Change Log =
 ==============
+
+v1.36.03 (Jan. 16, 2017)
+------------------------
+- Added to support quick map switching by clicking the Next or 
+  Previous map button
 
 v1.36.02 (Jan. 05, 2017)
 ------------------------

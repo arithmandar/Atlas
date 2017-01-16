@@ -2,8 +2,8 @@
 --[[
 
 	Atlas, a World of Warcraft instance map browser
-	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
-	Copyright 2010 - Lothaer <lothayer@gmail.com>, Atlas Team
+	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
+	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
 	Copyright 2011 ~ 2017 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 	This file is part of Atlas.
@@ -138,7 +138,7 @@ if L then
 	L["ATLAS_DDL_EXPANSION_CATA"] = "浩劫與重生副本";
 	L["ATLAS_DDL_EXPANSION_MOP"] = "潘達利亞之謎副本";
 	L["ATLAS_DDL_EXPANSION_WOD"] = "德拉諾之霸副本";
-	L["ATLAS_DDL_EXPANSION_LEGION"] = "君臨天下副本";
+	L["ATLAS_DDL_EXPANSION_LEGION"] = "軍臨天下副本";
 	L["ATLAS_DDL_TYPE"] = "依地圖類型分類";
 	L["ATLAS_DDL_TYPE_INSTANCE_AB"] = "副本 1/5";
 	L["ATLAS_DDL_TYPE_INSTANCE_CF"] = "副本 2/5";

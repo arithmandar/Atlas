@@ -2,8 +2,8 @@
 --[[
 
 	Atlas, a World of Warcraft instance map browser
-	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
-	Copyright 2010 - Lothaer <lothayer@gmail.com>, Atlas Team
+	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
+	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
 	Copyright 2011 ~ 2017 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 	This file is part of Atlas.
@@ -755,21 +755,21 @@ local function Atlas_CheckInstanceHasGearLevel()
 	return iLFGhasGearInfo;
 end
 
-function Atlas_MapRefresh()
-	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
-	local _;
+function Atlas_MapRefresh(mapID)
+	local zoneID = mapID or ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local data = AtlasMaps;
 	local base = data[zoneID];
+	local _;
 	local typeID, subtypeID, minLevel, maxLevel, minRecLevel, maxRecLevel, maxPlayers, minGearLevel;
 	local typeIDH, subtypeIDH, minLevelH, maxLevelH, minRecLevelH, maxRecLevelH, maxPlayersH, minGearLevelH;
 	local typeIDM, subtypeIDM, minLevelM, maxLevelM, minRecLevelM, maxRecLevelM, maxPlayersM, minGearLevelM;
 	local _RED = "|cffcc3333";
 	local WHIT = "|cffffffff";
 	local colortag, dungeon_difficulty;
-	local icontext_heroic = " |TInterface\\EncounterJournal\\UI-EJ-HeroicTextIcon:0:0|t";
-	local icontext_mythic = " |TInterface\\AddOns\\Atlas\\Images\\\UI-EJ-MythicTextIcon:0:0|t";
-	local icontext_dungeon = "|TInterface\\MINIMAP\\Dungeon:0:0|t";
-	local icontext_raid = "|TInterface\\MINIMAP\\Raid:0:0|t";
+	local icontext_heroic 	= " |TInterface\\EncounterJournal\\UI-EJ-HeroicTextIcon:0:0|t";
+	local icontext_mythic 	= " |TInterface\\AddOns\\Atlas\\Images\\\UI-EJ-MythicTextIcon:0:0|t";
+	local icontext_dungeon 	= "|TInterface\\MINIMAP\\Dungeon:0:0|t";
+	local icontext_raid 	= "|TInterface\\MINIMAP\\Raid:0:0|t";
 	local icontext_instance;
 	
 	if (base.DungeonID) then
@@ -1179,8 +1179,8 @@ end
 -- Refreshes the Atlas frame, usually because a new map needs to be displayed
 -- The zoneID variable represents the internal name used for each map, ex: "BlackfathomDeeps"
 -- Also responsible for updating all the text when a map is changed
-function Atlas_Refresh()
-	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+function Atlas_Refresh(mapID)
+	local zoneID = mapID or ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	if (not zoneID) then
 		return;
 	end
@@ -1242,18 +1242,20 @@ function Atlas_Refresh()
 	-- Only display if appropriate
 	-- See if we should display the button or not, and decide what it should say
 	local matchFound = {};
-	local sayEntrance;
+	local isEntrance = false;
 	for k, v in pairs(Atlas_EntToInstMatches) do
 		if (k == zoneID) then
 			matchFound = v;
-			sayEntrance = false;
+			isEntrance = false;
+			break;
 		end
 	end
 	if (not matchFound[1]) then
 		for k, v in pairs(Atlas_InstToEntMatches) do
 			if (k == zoneID) then
 				matchFound = v;
-				sayEntrance = true;
+				isEntrance = true;
+				break;
 			end
 		end
 	end
@@ -1262,7 +1264,8 @@ function Atlas_Refresh()
 		for k, v in pairs(Atlas_MapSeries) do
 			if (k == zoneID) then
 				matchFound = v;
-				sayEntrance = false;
+				isEntrance = false;
+				break;
 			end
 		end
 	end
@@ -1274,7 +1277,7 @@ function Atlas_Refresh()
 			table.insert(ATLAS_INST_ENT_DROPDOWN, v);
 		end
 		table.sort(ATLAS_INST_ENT_DROPDOWN, AtlasSwitchDD_Sort);
-		if (sayEntrance) then
+		if (isEntrance) then
 			AtlasSwitchButton:SetText(ATLAS_ENTRANCE_BUTTON);
 		else
 			AtlasSwitchButton:SetText(ATLAS_INSTANCE_BUTTON);
@@ -1285,9 +1288,28 @@ function Atlas_Refresh()
 		AtlasSwitchButton:Hide();
 	end
 
-	if (TitanPanelButton_UpdateButton) then
-		TitanPanelButton_UpdateButton("Atlas");
+	-- Handle the Prev / Next Map buttons' showing or hiding
+	if (base.NextMap) then
+		AtlasFrame.NextMap:Show();
+		AtlasFrame.NextMap.mapID = base.NextMap;
+
+		AtlasFrameSmall.NextMap:Show();
+		AtlasFrameSmall.NextMap.mapID = base.NextMap;
+	else
+		AtlasFrame.NextMap:Hide();
+		AtlasFrameSmall.NextMap:Hide();
 	end
+	if (base.PrevMap) then
+		AtlasFrame.PrevMap:Show();
+		AtlasFrame.PrevMap.mapID = base.PrevMap;
+
+		AtlasFrameSmall.PrevMap:Show();
+		AtlasFrameSmall.PrevMap.mapID = base.PrevMap;
+	else
+		AtlasFrame.PrevMap:Hide();
+		AtlasFrameSmall.PrevMap:Hide();
+	end
+	
 end
 
 -- Add boss / NPC button here so that we can add GameTooltip
@@ -1675,8 +1697,25 @@ function Atlas_GearItemLevelDiff(minGearLevel)
 	return color;
 end
 
--- When the switch button is clicked
--- We can basically assume that there's a match
+function AtlasPrevNextMap_OnClick(self)
+	local mapID = self.mapID;
+	if not mapID then return; end
+
+	for k, v in pairs(ATLAS_DROPDOWNS) do
+		for k2, v2 in pairs(v) do
+			if (v2 == mapID) then
+				AtlasOptions.AtlasType = k;
+				AtlasOptions.AtlasZone = k2;
+				break;
+			end
+		end
+	end
+	AtlasFrameDropDownType_OnShow();
+	AtlasFrameDropDown_OnShow();
+	Atlas_Refresh();
+end
+
+-- When the switch button is clicked, we can basically assume that there's a match
 -- Find it, set it, then update menus and the maps
 function AtlasSwitchButton_OnClick()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
@@ -1710,6 +1749,7 @@ function AtlasSwitchDD_Set(index)
 			if (v2 == ATLAS_INST_ENT_DROPDOWN[index]) then
 				AtlasOptions.AtlasType = k;
 				AtlasOptions.AtlasZone = k2;
+				break;
 			end
 		end
 	end
