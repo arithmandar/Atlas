@@ -28,7 +28,8 @@
 local AL = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 
 -- Minimap button with LibDBIcon-1.0
-local addon = LibStub("AceAddon-3.0"):NewAddon("Atlas", "AceConsole-3.0")
+--local addon = LibStub("AceAddon-3.0"):NewAddon("Atlas", "AceConsole-3.0")
+local addon = LibStub("AceAddon-3.0"):GetAddon("Atlas")
 local AtlasMiniMapLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Atlas", {
 	type = "launcher",
 	text = AL["ATLAS_TITLE"],

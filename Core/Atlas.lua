@@ -35,6 +35,7 @@ local type = _G.type
 local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0");
 local LibDialog = LibStub("LibDialog-1.0");
+local addon = LibStub("AceAddon-3.0"):NewAddon("Atlas", "AceConsole-3.0")
 
 -- Turn ON / OFF Atlas debug mode
 local Atlas_DebugMode = false;
@@ -515,6 +516,7 @@ ATLAS_OLD_TYPE = false;
 ATLAS_OLD_ZONE = false;
 
 function Atlas_InitOptions()
+	local profile = addon.db.profile;
 	-- Init saved vars for a new install
 	if ( AtlasOptions == nil ) then
 		Atlas_FreshOptions();
@@ -548,12 +550,15 @@ function Atlas_InitOptions()
 	if (AtlasOptions["AtlasVersion"] ~= ATLAS_OLDEST_VERSION_SAME_SETTINGS) then
 		Atlas_FreshOptions();
 	end
+	
+	if (profile.dropdowns == nil) then
+		profile.dropdowns = {};
+	end
 end
 
 -- Initializes everything relating to saved variables and data in other lua files
 -- This should be called ONLY when we're sure our variables are in memory
 function Atlas_Init()
-
 	-- Make the Atlas window go all the way to the edge of the screen, exactly
 	AtlasFrame:SetClampRectInsets(12, 0, -12, 0);
 	AtlasFrameLarge:SetClampRectInsets(12, 0, -12, 0);
@@ -1822,6 +1827,7 @@ function AtlasFrameDropDownType_OnClick(self)
 	local typeID = self:GetID();
 	local catName = Atlas_DropDownLayouts_Order[AtlasOptions.AtlasSortBy];
 	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
+	local profile = addon.db.profile;
 
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, typeID);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, typeID);
@@ -1829,8 +1835,8 @@ function AtlasFrameDropDownType_OnClick(self)
 
 	AtlasOptions.AtlasType = typeID;
 	local dropdowns_catKey = subcatOrder[typeID] or Atlas_MapTypes[typeID - #subcatOrder];
-	if (AtlasOptions.dropdowns[dropdowns_catKey]) then
-		AtlasOptions.AtlasZone = AtlasOptions.dropdowns[dropdowns_catKey];
+	if (profile.dropdowns[dropdowns_catKey]) then
+		AtlasOptions.AtlasZone = profile.dropdowns[dropdowns_catKey];
 	else
 		AtlasOptions.AtlasZone = 1;
 	end
@@ -1905,6 +1911,7 @@ function AtlasFrameDropDown_OnClick(self)
 	local mapID = self:GetID();
 	local catName = Atlas_DropDownLayouts_Order[AtlasOptions.AtlasSortBy];
 	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
+	local profile = addon.db.profile;
 
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, mapID);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, mapID);
@@ -1912,9 +1919,9 @@ function AtlasFrameDropDown_OnClick(self)
 
 	AtlasOptions.AtlasZone = mapID;
 	if (AtlasOptions.AtlasType > #subcatOrder) then
-		AtlasOptions.dropdowns[Atlas_MapTypes[AtlasOptions.AtlasType - #subcatOrder]] = mapID;
+		profile.dropdowns[Atlas_MapTypes[AtlasOptions.AtlasType - #subcatOrder]] = mapID;
 	else
-		AtlasOptions.dropdowns[subcatOrder[AtlasOptions.AtlasType]] = mapID;
+		profile.dropdowns[subcatOrder[AtlasOptions.AtlasType]] = mapID;
 	end
 	Atlas_Refresh();
 end
