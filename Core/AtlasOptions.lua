@@ -24,19 +24,6 @@
 
 --]]
 
-
---[[
-function AtlasOptions_ResetPosition()
-	AtlasFrame:ClearAllPoints();
-	AtlasFrame:SetPoint("TOPLEFT", 0, -104);
-	AtlasOptions.AtlasButtonPosition = 356;
-	AtlasOptions.AtlasButtonRadius = 78;
-	AtlasOptions.AtlasAlpha = 1.0;
-	AtlasOptions.AtlasScale = 1.0;
-	AtlasOptions_Init();
-end
-]]
-
 -- Show the Atlas Options
 function AtlasOptions_Toggle()
 	if InterfaceOptionsFrame:IsVisible() then

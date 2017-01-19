@@ -131,27 +131,28 @@ local ATLAS_TAXI_TCOORDS = {
 };
 
 local DefaultAtlasOptions = {
-	["AtlasVersion"] = ATLAS_OLDEST_VERSION_SAME_SETTINGS;
-	["AtlasAlpha"] = 1.0;			-- Atlas frame's transparency
-	["AtlasLocked"] = false;		-- Lock Atlas frame position
-	["AtlasAutoSelect"] = false;		-- Auto select map
-	["AtlasButtonPosition"] = 26;		-- Minimap button position
-	["AtlasButtonRadius"] = 78;		-- Minimap button radius
-	["AtlasButtonShown"] = true;		-- Show / hide Atlas button
-	["AtlasRightClick"] = false;		-- Right click to open world map
-	["AtlasType"] = 1;			-- Default or last selected map type (category)
-	["AtlasZone"] = 1;			-- Default or last selected map / zone
-	["AtlasAcronyms"] = true;		-- Show dungeon's acronyms
-	["AtlasScale"] = 1.0;			-- Atlas frame scale
-	["AtlasClamped"] = true;		-- Clamp to WoW window
-	["AtlasSortBy"] = 1;			-- Maps sorting type, 1: CONTINENT; 2: LEVEL; 3: PARTYSIZE; 4: EXPANSION; 5: TYPE
-	["AtlasCtrl"] = false;			-- Press ctrl and mouse over to show full description text
-	["AtlasBossDesc"] = true;		-- Toggle to show boss description or not
-	["AtlasBossDescScale"] = 0.9;		-- The boss description GameToolTip scale
-	["AtlasDontShowInfo"] = false; 		-- Atlas latest information
-	["AtlasDontShowInfo_12201"] = false;
-	["AtlasCheckModule"] = true;		-- Check if there is missing module / plugin
-	["AtlasColoringDropDown"] = true;	-- Coloring dungeon dropdown list with difficulty colors
+	["AtlasVersion"] = ATLAS_OLDEST_VERSION_SAME_SETTINGS,
+	["AtlasAlpha"] = 1.0,			-- Atlas frame's transparency
+	["AtlasLocked"] = false,		-- Lock Atlas frame position
+	["AtlasAutoSelect"] = false,		-- Auto select map
+	-- ["AtlasButtonPosition"] = 26,		-- Minimap button position
+	-- ["AtlasButtonRadius"] = 78,		-- Minimap button radius
+	["AtlasButtonShown"] = true,		-- Show / hide Atlas button
+	["AtlasRightClick"] = false,		-- Right click to open world map
+	["AtlasType"] = 1,			-- Default or last selected map type (category)
+	["AtlasZone"] = 1,			-- Default or last selected map / zone
+	["AtlasAcronyms"] = true,		-- Show dungeon's acronyms
+	["AtlasScale"] = 1.0,			-- Atlas frame scale
+	["AtlasClamped"] = true,		-- Clamp to WoW window
+	["AtlasSortBy"] = 1,			-- Maps sorting type, 1: CONTINENT, 2: LEVEL, 3: PARTYSIZE, 4: EXPANSION, 5: TYPE
+	["AtlasCtrl"] = false,			-- Press ctrl and mouse over to show full description text
+	["AtlasBossDesc"] = true,		-- Toggle to show boss description or not
+	["AtlasBossDescScale"] = 0.9,		-- The boss description GameToolTip scale
+	["AtlasDontShowInfo"] = false, 		-- Atlas latest information
+	["AtlasDontShowInfo_12201"] = false,
+	["AtlasCheckModule"] = true,		-- Check if there is missing module / plugin
+	["AtlasColoringDropDown"] = true,	-- Coloring dungeon dropdown list with difficulty colors
+	dropdowns = {},				-- Array to keep the last drop-downs selected
 };
 
 -- Code by Grayhoof (SCT)
@@ -172,8 +173,17 @@ function Atlas_FreshOptions()
 	AtlasOptions = Atlas_CloneTable(DefaultAtlasOptions);
 end
 
+-- function to check if user has all the options parameter, 
+-- if not (due to some might be newly added), then add it with default value
+local function Atlas_UpdateOptions(player_options)
+	for k, v in pairs(DefaultAtlasOptions) do
+		if (player_options[k] == nil) then
+			player_options[k] = v;
+		end
+	end
+end
 
--- Below to temporary create a table to store the core map's data
+-- Below to temporarily create a table to store the core map's data
 -- in order to identify the dropdown's zoneID is belonging to the
 -- core Atlas or plugins
 local Atlas_CoreMapsKey = {};
@@ -509,6 +519,9 @@ function Atlas_InitOptions()
 	if ( AtlasOptions == nil ) then
 		Atlas_FreshOptions();
 	end
+
+	Atlas_UpdateOptions(AtlasOptions);
+--[[
 	-- Init the newly added "AtlasBossDescScale" and don't bother user to reset everything
 	-- Can be removed after 1.21.0 release
 	if (AtlasOptions["AtlasBossDescScale"] == nil) then
@@ -529,6 +542,7 @@ function Atlas_InitOptions()
 	if (AtlasOptions["AtlasColoringDropDown"] == nil) then
 		AtlasOptions["AtlasColoringDropDown"] = true;
 	end
+]]
 	
 	--saved options version check
 	if (AtlasOptions["AtlasVersion"] ~= ATLAS_OLDEST_VERSION_SAME_SETTINGS) then
@@ -1805,13 +1819,21 @@ end
 -- Called whenever an item in the map type dropdown menu is clicked
 -- Sets the main dropdown menu contents to reflect the category of map selected
 function AtlasFrameDropDownType_OnClick(self)
-	local thisID = self:GetID();
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, thisID);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, thisID);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, thisID);
+	local typeID = self:GetID();
+	local catName = Atlas_DropDownLayouts_Order[AtlasOptions.AtlasSortBy];
+	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
 
-	AtlasOptions.AtlasType = thisID;
-	AtlasOptions.AtlasZone = 1;
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, typeID);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, typeID);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, typeID);
+
+	AtlasOptions.AtlasType = typeID;
+	local dropdowns_catKey = subcatOrder[typeID] or Atlas_MapTypes[typeID - #subcatOrder];
+	if (AtlasOptions.dropdowns[dropdowns_catKey]) then
+		AtlasOptions.AtlasZone = AtlasOptions.dropdowns[dropdowns_catKey];
+	else
+		AtlasOptions.AtlasZone = 1;
+	end
 	AtlasFrameDropDown_OnShow();
 	Atlas_Refresh();
 end
@@ -1880,12 +1902,20 @@ end
 -- Called whenever an item in the main dropdown menu is clicked
 -- Sets the newly selected map as current and refreshes the frame
 function AtlasFrameDropDown_OnClick(self)
-	local i = self:GetID();
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, i);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, i);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, i);
+	local mapID = self:GetID();
+	local catName = Atlas_DropDownLayouts_Order[AtlasOptions.AtlasSortBy];
+	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
 
-	AtlasOptions.AtlasZone = i;
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, mapID);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, mapID);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, mapID);
+
+	AtlasOptions.AtlasZone = mapID;
+	if (AtlasOptions.AtlasType > #subcatOrder) then
+		AtlasOptions.dropdowns[Atlas_MapTypes[AtlasOptions.AtlasType - #subcatOrder]] = mapID;
+	else
+		AtlasOptions.dropdowns[subcatOrder[AtlasOptions.AtlasType]] = mapID;
+	end
 	Atlas_Refresh();
 end
 
