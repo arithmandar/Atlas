@@ -153,7 +153,6 @@ local DefaultAtlasOptions = {
 	["AtlasDontShowInfo_12201"] = false,
 	["AtlasCheckModule"] = true,		-- Check if there is missing module / plugin
 	["AtlasColoringDropDown"] = true,	-- Coloring dungeon dropdown list with difficulty colors
-	dropdowns = {},				-- Array to keep the last drop-downs selected
 };
 
 -- Code by Grayhoof (SCT)
