@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.36.05 (Jan. XX, 2017)
+------------------------
+- Added to support show achievement info
+
 v1.36.04 (Jan. 20, 2017)
 ------------------------
 - Remove Highmaul from Outland when categorize map with continent

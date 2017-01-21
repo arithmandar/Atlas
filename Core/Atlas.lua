@@ -2061,9 +2061,49 @@ function AtlasScrollBar_Update()
 		lineplusoffset = i + FauxScrollFrame_GetOffset(AtlasScrollBar);
 		if (lineplusoffset <= ATLAS_CUR_LINES) then
 			_G["AtlasEntry"..i.."_Text"]:SetText(ATLAS_SCROLL_LIST[lineplusoffset]);
+			_G["AtlasEntry"..i]:SetID(0);
+			_G["AtlasEntry"..i].encounterID = nil;
+			_G["AtlasEntry"..i].instanceID = nil;
+			_G["AtlasEntry"..i].achievementID = nil;
+			_G["AtlasEntry"..i].tooltiptitle = nil;
+			_G["AtlasEntry"..i].tooltiptext = nil;
 			if (ATLAS_SCROLL_ID[lineplusoffset]) then
-				_G["AtlasEntry"..i]:SetID(ATLAS_SCROLL_ID[lineplusoffset][1]);
-				_G["AtlasEntry"..i].encounterID = ATLAS_SCROLL_ID[lineplusoffset][1];
+				if (type(ATLAS_SCROLL_ID[lineplusoffset][1]) == "number") then
+					_G["AtlasEntry"..i]:SetID(ATLAS_SCROLL_ID[lineplusoffset][1]);
+					_G["AtlasEntry"..i].encounterID = ATLAS_SCROLL_ID[lineplusoffset][1];
+				elseif (type(ATLAS_SCROLL_ID[lineplusoffset][1]) == "string") then
+					local spos, epos = strfind(ATLAS_SCROLL_ID[lineplusoffset][1], "ac=");
+					if (spos) then
+						local achievementID = strsub(ATLAS_SCROLL_ID[lineplusoffset][1], epos+1);
+						achievementID = tonumber(achievementID);
+						_G["AtlasEntry"..i].achievementID = achievementID;
+						-- id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = GetAchievementInfo(achievementID or categoryID, index)
+						local _, name, _, completed, month, day, year, description, _, _, _, _, _, earnedBy = GetAchievementInfo(achievementID);
+						_G["AtlasEntry"..i].tooltiptitle = name;
+						local tooltiptext = description;
+						local numCriteria = GetAchievementNumCriteria(achievementID);
+						-- criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible =  GetAchievementCriteriaInfo(achievementID, criteriaIndex)
+						local criteriaString, criteriaCompleted;
+						if (numCriteria and numCriteria > 0) then
+							for i = 1, numCriteria do
+								criteriaString, _, criteriaCompleted = GetAchievementCriteriaInfo(achievementID, i);
+								if (criteriaCompleted) then
+									tooltiptext = tooltiptext.."\n|cffffffff - "..criteriaString;
+								else
+									tooltiptext = tooltiptext.."\n|cff999999 - "..criteriaString;
+								end
+							end
+						end
+						if (completed) then
+							name = "      |cffffffff"..name;
+							tooltiptext = tooltiptext.."\n|cff00ff00"..format(ACHIEVEMENT_TOOLTIP_COMPLETE, earnedBy, month, day, year);
+						else
+							name = "      |cff999999"..name;
+						end
+						_G["AtlasEntry"..i.."_Text"]:SetText(name);
+						_G["AtlasEntry"..i].tooltiptext = tooltiptext;
+					end
+				end
 				if (ATLAS_SCROLL_ID[lineplusoffset][2] ~= nil) then
 					_G["AtlasEntry"..i].instanceID = ATLAS_SCROLL_ID[lineplusoffset][2];
 				end
@@ -2149,7 +2189,14 @@ function AtlasEntryTemplate_OnUpdate(self)
 					GameTooltip:SetScale(AtlasOptions["AtlasBossDescScale"] * AtlasOptions["AtlasScale"]);
 					GameTooltip:Show();
 				end
-			end
+			elseif(self.tooltiptitle and self.tooltiptext) then
+				GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
+				GameTooltip:SetBackdropColor(0, 0, 0, 1 * AtlasOptions["AtlasAlpha"]);
+				GameTooltip:SetText(self.tooltiptitle);
+				GameTooltip:AddLine(self.tooltiptext, 1, 1, 1, 1);
+				GameTooltip:SetScale(AtlasOptions["AtlasBossDescScale"] * AtlasOptions["AtlasScale"]);
+				GameTooltip:Show();
+			end			
 		end
 	end
 end
