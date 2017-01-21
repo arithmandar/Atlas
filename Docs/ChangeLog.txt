@@ -18,6 +18,12 @@ Known Issues:
 v1.36.05 (Jan. XX, 2017)
 ------------------------
 - Added to support show achievement info
+- Fixed the issue for old raids which the boss does not have overview information
+  in Adventure Journal but while previously browsing new dungeon / raid and then
+  old raid, the boss is still showing the overview info from wrong boss when 
+  mouse hover the boss button
+- Enhanced tooltip handling
+- Added boss overview's character role's section details
 
 v1.36.04 (Jan. 20, 2017)
 ------------------------

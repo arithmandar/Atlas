@@ -49,7 +49,7 @@
 				GameTooltip:SetScale(ATLAS_GAMETOOLTIP_ORIGINAL_SCALE);
 			</OnLeave>
 			<OnClick>
-				AtlasEntry_OnClick(self);
+				AtlasEntry_OnClick(self, button);
 			</OnClick>
 		</Scripts>
 	</Button>
@@ -65,6 +65,11 @@
 					if (self.overviewDescription) then
 						GameTooltip:AddLine("\n"..OVERVIEW, 1, 1, 1, 1)
 						GameTooltip:AddLine(self.overviewDescription, nil, nil, nil, 1);
+						if (self.roleOverview) then
+							GameTooltip:AddLine("\n"..self.roleOverview, nil, nil, nil, 1);
+						end
+					end
+					if (self.encounterID) then
 						local disabled = not C_AdventureJournal.CanBeShown();
 						if (not disabled) then
 							GameTooltip:AddLine(ATLAS_OPEN_ADVENTURE, 0.5, 0.5, 1, true);
@@ -142,17 +147,23 @@
 				self:RegisterForClicks("LeftButtonDown", "RightButtonDown");
 			</OnLoad>
 			<OnClick>
-				if (button == "RightButton") then
-					if (AtlasEJLootFrame:IsShown()) then
-						AtlasEJLootFrame:Hide();
-					else
-						Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID, true);
-						ToggleEncounterJournal();
-						Atlas_EncounterJournal_DisplayLoot(self.instanceID, self.encounterID);
+				if (IsShiftKeyDown() and self.link) then
+					if (IsModifiedClick("CHATLINK") and ChatEdit_GetActiveWindow()) then
+						ChatEdit_InsertLink(self.link);
 					end
-				elseif (button == "LeftButton") then
-					Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID);
 				else
+					if (button == "RightButton") then
+						if (AtlasEJLootFrame:IsShown()) then
+							AtlasEJLootFrame:Hide();
+						else
+							Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID, true);
+							ToggleEncounterJournal();
+							Atlas_EncounterJournal_DisplayLoot(self.instanceID, self.encounterID);
+						end
+					elseif (button == "LeftButton") then
+						Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID);
+					else
+					end
 				end
 			</OnClick>
 		</Scripts>
