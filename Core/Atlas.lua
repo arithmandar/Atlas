@@ -238,6 +238,101 @@ function Atlas_RegisterPlugin(name, myCategory, myData)
 	Atlas_Refresh();
 end
 
+local function Atlas_BossButtonCleanUp(button)
+	button:SetID(0);
+	button.encounterID = nil;
+	button.instanceID = nil;
+	button.overviewDescription = nil;
+	button.roleOverview = nil;
+	button.achievementID = nil;
+	button.tooltiptitle = nil;
+	button.tooltiptext = nil;
+	button.link = nil;
+	button.displayInfo = nil;
+	if (button.bgImage) then button.bgImage:SetTexture(nil); end
+	if (button.TaxiImage) then button.TaxiImage:SetTexture(nil); end
+end
+
+local function Atlas_BossButtonUpdate(button, encounterID, instanceID, b_iconImage)
+	button:SetID(encounterID);
+	button.encounterID = encounterID;
+	button.instanceID = instanceID or nil;
+
+	local ejbossname, description, _, rootSectionID, link = EJ_GetEncounterInfo(encounterID);
+	if (ejbossname) then
+		button.tooltiptitle = ejbossname;
+		button.tooltiptext = description;
+		button.link = link;
+		if (EncounterJournal_CheckForOverview(rootSectionID)) then
+			-- title, description, depth, abilityIcon, displayInfo, 
+			-- siblingID, nextSectionID, filteredByDifficulty, link, 
+			-- startsOpen, flag1, flag2, flag3, flag4 = EJ_GetSectionInfo(sectionID)
+			local _, overviewDescription, _, _, _, _, nextSectionID = EJ_GetSectionInfo(rootSectionID);
+			button.overviewDescription = overviewDescription or nil;
+
+			local spec, role;
+
+			spec = GetSpecialization();
+			if (spec) then
+				role = GetSpecializationRole(spec);
+			else
+				role = "DAMAGER";
+			end
+
+			local title, description, siblingID, filteredByDifficulty, flag1;
+			local i = 1;
+			while nextSectionID do
+				title, description, _, _, _, siblingID, _, filteredByDifficulty, _, _, flag1 = EJ_GetSectionInfo(nextSectionID);
+				if (role == rolesByFlag[flag1]) then
+					description = string.gsub(description, "$bullet;", "- ");
+					button.roleOverview = "|cffffffff"..L["L-SBracket"]..title..L["R-SBracket"]..L["Colon"].."|r".."\n"..description;
+					break;
+				end
+				i = i + 1;
+				nextSectionID = siblingID;
+			end
+		end
+		
+		if (b_iconImage) then
+			local _, _, _, displayInfo, iconImage = EJ_GetCreatureInfo(1, encounterID);
+			button.displayInfo = displayInfo;
+			if ( iconImage ) then
+				SetPortraitTexture(button.bgImage, displayInfo);
+			end
+		end
+	end
+end
+
+local function Atlas_AchievementButtonUpdate(button, achievementID)
+	button.achievementID = achievementID;
+	button.link = GetAchievementLink(achievementID) or nil;
+	-- id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = GetAchievementInfo(achievementID or categoryID, index)
+	local _, name, _, completed, month, day, year, description, _, _, _, _, _, earnedBy = GetAchievementInfo(achievementID);
+	button.tooltiptitle = name;
+	local tooltiptext = description;
+	local numCriteria = GetAchievementNumCriteria(achievementID);
+	-- criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible =  GetAchievementCriteriaInfo(achievementID, criteriaIndex)
+	local criteriaString, criteriaCompleted;
+	if (numCriteria and numCriteria > 0) then
+		for i = 1, numCriteria do
+			criteriaString, _, criteriaCompleted = GetAchievementCriteriaInfo(achievementID, i);
+			if (criteriaCompleted) then
+				tooltiptext = tooltiptext.."\n|cffffffff - "..criteriaString;
+			else
+				tooltiptext = tooltiptext.."\n|cff999999 - "..criteriaString;
+			end
+		end
+	end
+	if (completed) then
+		name = "      |cffffffff"..name;
+		tooltiptext = tooltiptext.."\n|cff00ff00"..format(ACHIEVEMENT_TOOLTIP_COMPLETE, earnedBy, month, day, year);
+	else
+		name = "      |cff999999"..name;
+	end
+	button.Text:SetText(name);
+	button.tooltiptext = tooltiptext;
+end
+
 function Atlas_Search(text)
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local mapdata = AtlasMaps;
@@ -1380,77 +1475,24 @@ function AtlasMap_AddNPCButton()
 				if (not bossbutton) then
 					bossbutton = CreateFrame("Button", "AtlasMapBossButton"..bossindex, AtlasFrame, "AtlasFrameBossButtonTemplate");
 				end
+				Atlas_BossButtonCleanUp(bossbutton);
+				Atlas_BossButtonUpdate(bossbutton, info_id, base.JournalInstanceID, true);
+				
 				bossbuttonS = _G["AtlasMapBossButtonS"..bossindexS];
 				if (not bossbuttonS) then
 					bossbuttonS = CreateFrame("Button", "AtlasMapBossButtonS"..bossindexS, AtlasFrameSmall, "AtlasFrameBossButtonTemplate");
 				end
-				bossbutton.overviewDescription = nil;
-				bossbuttonS.overviewDescription = nil;
-				bossbutton.roleOverview = nil;
-				bossbuttonS.roleOverview = nil;
-
-				bossbutton.instanceID = base.JournalInstanceID or nil; 
-				bossbuttonS.instanceID = base.JournalInstanceID or nil; 
-
-				local encounterID = info_id;
-				local ejbossname, description, _, rootSectionID, link = EJ_GetEncounterInfo(encounterID); 
-				bossbutton.tooltipTitle = ejbossname or nil; 
-				bossbuttonS.tooltipTitle = ejbossname or nil; 
-				bossbutton.encounterID = encounterID or nil; 
-				bossbuttonS.encounterID = encounterID or nil; 
-				bossbutton.link = link or nil; 
-				bossbuttonS.link = link or nil; 
-				bossbutton.tooltipText = description or nil; 
-				bossbuttonS.tooltipText = description or nil; 
-				if (ejbossname and EncounterJournal_CheckForOverview(rootSectionID)) then
-					local _, overviewDescription, _, _, _, _, nextSectionID = EJ_GetSectionInfo(rootSectionID);
-					bossbutton.overviewDescription = overviewDescription or nil;
-					bossbuttonS.overviewDescription = overviewDescription or nil;
-
-					local spec, role;
-
-					spec = GetSpecialization();
-					if (spec) then
-						role = GetSpecializationRole(spec);
-					else
-						role = "DAMAGER";
-					end
-
-					local title, description, siblingID, filteredByDifficulty, flag1;
-					local i = 1;
-					while nextSectionID do
-						title, description, _, _, _, siblingID, _, filteredByDifficulty, _, _, flag1 = EJ_GetSectionInfo(nextSectionID);
-						if (role == rolesByFlag[flag1]) then
-							description = string.gsub(description, "$bullet;", "- ");
-							bossbutton.roleOverview = "|cffffffff"..L["L-SBracket"]..title..L["R-SBracket"]..L["Colon"].."|r".."\n"..description;
-							bossbuttonS.roleOverview = "|cffffffff"..L["L-SBracket"]..title..L["R-SBracket"]..L["Colon"].."|r".."\n"..description;
-							break;
-						end
-						i = i + 1;
-						nextSectionID = siblingID;
-					end
-				end
-
-				local _, _, _, displayInfo, iconImage = EJ_GetCreatureInfo(1, encounterID);
-				bossbutton.displayInfo = displayInfo;
-				bossbuttonS.displayInfo = displayInfo;
-				if ( encounterID and iconImage ) then
-					SetPortraitTexture(bossbutton.bgImage, displayInfo);
-					SetPortraitTexture(bossbuttonS.bgImage, displayInfo);
-				else 
-					bossbutton.bgImage:SetTexture(nil);
-					bossbuttonS.bgImage:SetTexture(nil);
-				end
+				Atlas_BossButtonCleanUp(bossbuttonS);
+				Atlas_BossButtonUpdate(bossbuttonS, info_id, base.JournalInstanceID, true);
+				
 				bossbutton:ClearAllPoints();
 				--bossbutton:SetWidth(20);
 				--bossbutton:SetHeight(20);
 				bossbutton:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18-15, -info_y - 82+15);
-				bossbutton:SetID(info_id);
 				bossbutton:Show();
 
 				bossbuttonS:ClearAllPoints();
 				bossbuttonS:SetPoint("TOPLEFT", "AtlasFrameSmall", "TOPLEFT", info_x + 18-15, -info_y - 82+15);
-				bossbuttonS:SetID(info_id);
 				bossbuttonS:Show();
 
 				bossindex = bossindex + 1;
@@ -1471,8 +1513,8 @@ function AtlasMap_AddNPCButton()
 						tip_title = v[1];
 						local _, endpos = strfind(tip_title, ") ");
 						if (endpos) then
-							button.tooltipTitle = strsub(tip_title, endpos+1);
-							buttonS.tooltipTitle = strsub(tip_title, endpos+1);
+							button.tooltiptitle = strsub(tip_title, endpos+1);
+							buttonS.tooltiptitle = strsub(tip_title, endpos+1);
 						end
 					end
 				end
@@ -1537,6 +1579,8 @@ end
 function AtlasMap_AddNPCButtonLarge()
 	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
 	local t = AtlasMaps_NPC_DB[zoneID];
+	local data = AtlasMaps;
+	local base = data[zoneID];
 	local i = 1;
 	local bossindex = 1;
 	local buttonindex = 1;
@@ -1555,51 +1599,10 @@ function AtlasMap_AddNPCButtonLarge()
 				if (not bossbutton) then
 					bossbutton = CreateFrame("Button", "AtlasMapBossButtonL"..bossindex, AtlasFrameLarge, "AtlasFrameBossButtonTemplate");
 				end
-				bossbutton.overviewDescription = nil;
-				bossbutton.roleOverview = nil;
-
-				encounterID = info_id;
-				ejbossname, description, _, rootSectionID, link = EJ_GetEncounterInfo(encounterID); 
-				bossbutton.tooltipTitle = ejbossname or nil; 
-				bossbutton.encounterID = encounterID or nil;
-				bossbutton.link = link or nil; 
-				bossbutton.tooltipText = description or nil; 
-				if (ejbossname and EncounterJournal_CheckForOverview(rootSectionID)) then
-					local _, overviewDescription, _, _, _, _, nextSectionID = EJ_GetSectionInfo(rootSectionID);
-					bossbutton.overviewDescription = overviewDescription or nil;
-					
-					local spec, role;
-
-					spec = GetSpecialization();
-					if (spec) then
-						role = GetSpecializationRole(spec);
-					else
-						role = "DAMAGER";
-					end
-
-					local title, description, siblingID, filteredByDifficulty, flag1;
-					local i = 1;
-					while nextSectionID do
-						title, description, _, _, _, siblingID, _, filteredByDifficulty, _, _, flag1 = EJ_GetSectionInfo(nextSectionID);
-						if (role == rolesByFlag[flag1]) then
-							description = string.gsub(description, "$bullet;", "- ");
-							bossbutton.roleOverview = "|cffffffff"..L["L-SBracket"]..title..L["R-SBracket"]..L["Colon"].."|r".."\n"..description;
-							break;
-						end
-						i = i + 1;
-						nextSectionID = siblingID;
-					end
-				end
-				_, _, _, displayInfo, iconImage = EJ_GetCreatureInfo(1, encounterID);
-				bossbutton.displayInfo = displayInfo or nil;
-				if ( encounterID and iconImage ) then
-					SetPortraitTexture(bossbutton.bgImage, displayInfo);
-				else 
-					bossbutton.bgImage:SetTexture(nil);
-				end
+				Atlas_BossButtonCleanUp(bossbutton);
+				Atlas_BossButtonUpdate(bossbutton, info_id, base.JournalInstanceID, true);
 				bossbutton:ClearAllPoints();
 				bossbutton:SetPoint("TOPLEFT", "AtlasFrameLarge", "TOPLEFT", info_x, -info_y - 82+15);
-				bossbutton:SetID(info_id);
 				bossbutton:Show();
 
 				bossindex = bossindex + 1;
@@ -1622,7 +1625,7 @@ function AtlasMap_AddNPCButtonLarge()
 						tip_title = v[1];
 						local _, endpos = strfind(tip_title, ") ");
 						if (endpos) then
-							button.tooltipTitle = strsub(tip_title, endpos+1);
+							button.tooltiptitle = strsub(tip_title, endpos+1);
 						end
 					end
 				end
@@ -2096,98 +2099,22 @@ function AtlasScrollBar_Update()
 	FauxScrollFrame_Update(AtlasScrollBar,ATLAS_CUR_LINES,ATLAS_NUM_LINES,15);
 	for i = 1, ATLAS_NUM_LINES do
 		local button = _G["AtlasEntry"..i];
+		if button then Atlas_BossButtonCleanUp(button); end
+		
 		lineplusoffset = i + FauxScrollFrame_GetOffset(AtlasScrollBar);
 		if (lineplusoffset <= ATLAS_CUR_LINES) then
 			_G["AtlasEntry"..i.."_Text"]:SetText(ATLAS_SCROLL_LIST[lineplusoffset]);
-			button:SetID(0);
-			button.encounterID = nil;
-			button.instanceID = nil;
-			button.overviewDescription = nil;
-			button.roleOverview = nil;
-			button.achievementID = nil;
-			button.tooltiptitle = nil;
-			button.tooltiptext = nil;
-			button.link = nil;
 			if (ATLAS_SCROLL_ID[lineplusoffset]) then
 				if (type(ATLAS_SCROLL_ID[lineplusoffset][1]) == "number") then
 					local id = ATLAS_SCROLL_ID[lineplusoffset][1];
-					button:SetID(id);
-					button.encounterID = id;
-					
-					if (id > 0 and id < 10000) then
-						-- name, description, encounterID, rootSectionID, link = EJ_GetEncounterInfo(encounterID)
-						local ejbossname, description, _, rootSectionID, link = EJ_GetEncounterInfo(id);
-						if (ejbossname) then
-							button.tooltiptitle = ejbossname;
-							button.tooltiptext = description;
-							button.link = link;
-							if (EncounterJournal_CheckForOverview(rootSectionID)) then
-								-- title, description, depth, abilityIcon, displayInfo, 
-								-- siblingID, nextSectionID, filteredByDifficulty, link, 
-								-- startsOpen, flag1, flag2, flag3, flag4 = EJ_GetSectionInfo(sectionID)
-								local _, overviewDescription, _, _, _, _, nextSectionID = EJ_GetSectionInfo(rootSectionID);
-								button.overviewDescription = overviewDescription or nil;
-
-								local spec, role;
-
-								spec = GetSpecialization();
-								if (spec) then
-									role = GetSpecializationRole(spec);
-								else
-									role = "DAMAGER";
-								end
-
-								local title, description, siblingID, filteredByDifficulty, flag1;
-								local i = 1;
-								while nextSectionID do
-									title, description, _, _, _, siblingID, _, filteredByDifficulty, _, _, flag1 = EJ_GetSectionInfo(nextSectionID);
-									if (role == rolesByFlag[flag1]) then
-										description = string.gsub(description, "$bullet;", "- ");
-										button.roleOverview = "|cffffffff"..L["L-SBracket"]..title..L["R-SBracket"]..L["Colon"].."|r".."\n"..description;
-										break;
-									end
-									i = i + 1;
-									nextSectionID = siblingID;
-								end
-							end
-						end
-					end
+					Atlas_BossButtonUpdate(button, ATLAS_SCROLL_ID[lineplusoffset][1], ATLAS_SCROLL_ID[lineplusoffset][2]);
 				elseif (type(ATLAS_SCROLL_ID[lineplusoffset][1]) == "string") then
 					local spos, epos = strfind(ATLAS_SCROLL_ID[lineplusoffset][1], "ac=");
 					if (spos) then
 						local achievementID = strsub(ATLAS_SCROLL_ID[lineplusoffset][1], epos+1);
 						achievementID = tonumber(achievementID);
-						button.achievementID = achievementID;
-						button.link = GetAchievementLink(achievementID) or nil;
-						-- id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = GetAchievementInfo(achievementID or categoryID, index)
-						local _, name, _, completed, month, day, year, description, _, _, _, _, _, earnedBy = GetAchievementInfo(achievementID);
-						button.tooltiptitle = name;
-						local tooltiptext = description;
-						local numCriteria = GetAchievementNumCriteria(achievementID);
-						-- criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible =  GetAchievementCriteriaInfo(achievementID, criteriaIndex)
-						local criteriaString, criteriaCompleted;
-						if (numCriteria and numCriteria > 0) then
-							for i = 1, numCriteria do
-								criteriaString, _, criteriaCompleted = GetAchievementCriteriaInfo(achievementID, i);
-								if (criteriaCompleted) then
-									tooltiptext = tooltiptext.."\n|cffffffff - "..criteriaString;
-								else
-									tooltiptext = tooltiptext.."\n|cff999999 - "..criteriaString;
-								end
-							end
-						end
-						if (completed) then
-							name = "      |cffffffff"..name;
-							tooltiptext = tooltiptext.."\n|cff00ff00"..format(ACHIEVEMENT_TOOLTIP_COMPLETE, earnedBy, month, day, year);
-						else
-							name = "      |cff999999"..name;
-						end
-						_G["AtlasEntry"..i.."_Text"]:SetText(name);
-						button.tooltiptext = tooltiptext;
+						Atlas_AchievementButtonUpdate(button, achievementID);
 					end
-				end
-				if (ATLAS_SCROLL_ID[lineplusoffset][2] ~= nil) then
-					button.instanceID = ATLAS_SCROLL_ID[lineplusoffset][2];
 				end
 			end
 			button:Show();

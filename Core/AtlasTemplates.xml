@@ -33,7 +33,7 @@
 		</Size>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name="$parent_Text" inherits="GameFontHighlight" wraponspaces="false" justifyH="LEFT">
+				<FontString name="$parent_Text" parentKey="Text" inherits="GameFontHighlight" wraponspaces="false" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="440" y="15" />
 					</Size>
@@ -57,11 +57,11 @@
 	<Button name="AtlasMapButtonTemplate" virtual="true">
 		<Scripts>
 			<OnEnter>
-				if (self.tooltipTitle) then
+				if (self.tooltiptitle) then
 					GameTooltip:SetOwner(self, "ANCHOR_LEFT");
 					GameTooltip:SetBackdropColor(0, 0, 0, 1 * AtlasOptions["AtlasAlpha"]);
-					GameTooltip:SetText(self.tooltipTitle, 1, 1, 1, nil, false);
-					GameTooltip:AddLine(self.tooltipText, nil, nil, nil, true);
+					GameTooltip:SetText(self.tooltiptitle, 1, 1, 1, nil, false);
+					GameTooltip:AddLine(self.tooltiptext, nil, nil, nil, true);
 					if (self.overviewDescription) then
 						GameTooltip:AddLine("\n"..OVERVIEW, 1, 1, 1, 1)
 						GameTooltip:AddLine(self.overviewDescription, nil, nil, nil, 1);
