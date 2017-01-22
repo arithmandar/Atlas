@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.37.01 (Jan. XX, 2017)
+------------------------
+
+
 v1.37.00 (Jan. 22, 2017)
 ------------------------
 - Added to support in showing achievement info
