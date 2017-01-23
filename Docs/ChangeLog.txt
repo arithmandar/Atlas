@@ -17,7 +17,8 @@ Known Issues:
 
 v1.37.01 (Jan. XX, 2017)
 ------------------------
-
+- Clicking on achievement showing in instance's legend panel will now open
+  corresponding achievement within Blizzard's Achievement window
 
 v1.37.00 (Jan. 22, 2017)
 ------------------------

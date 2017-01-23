@@ -48,7 +48,7 @@ end
 -- Adopted from EncounterJournal
 local EJ_HTYPE_OVERVIEW = 3;
 
-local function EncounterJournal_CheckForOverview(rootSectionID)
+local function Atlas_EncounterJournal_CheckForOverview(rootSectionID)
 	return select(3,EJ_GetSectionInfo(rootSectionID)) == EJ_HTYPE_OVERVIEW;
 end
 
@@ -263,7 +263,7 @@ local function Atlas_BossButtonUpdate(button, encounterID, instanceID, b_iconIma
 		button.tooltiptitle = ejbossname;
 		button.tooltiptext = description;
 		button.link = link;
-		if (EncounterJournal_CheckForOverview(rootSectionID)) then
+		if (Atlas_EncounterJournal_CheckForOverview(rootSectionID)) then
 			-- title, description, depth, abilityIcon, displayInfo, 
 			-- siblingID, nextSectionID, filteredByDifficulty, link, 
 			-- startsOpen, flag1, flag2, flag3, flag4 = EJ_GetSectionInfo(sectionID)
@@ -366,7 +366,7 @@ function Atlas_SearchAndRefresh(text)
 	AtlasScrollBar_Update();
 end
 
-local function Process_Deprecated()
+local function Atlas_Process_Deprecated()
 	-- List of deprecated Atlas modules.
 	-- First value is the addon name
 	-- Second value is the version
@@ -404,7 +404,13 @@ local function Process_Deprecated()
 	-- Check for outdated modules, build a list of them, then disable them and tell the player
 	local OldList = {};
 	for k, v in pairs(Deprecated_List) do
+		-- name, title, notes, loadable, reason, security, newVersion = GetAddOnInfo(index or "name")
+		--    loadable : Boolean - Indicates if the AddOn is loaded or eligible to be loaded, true if it is, false if it is not.
 		local loadable = select(4, GetAddOnInfo(v[1]));
+		-- GetAddOnEnableState("character", index): 
+		--	0: addon is disabled
+		--	1: partially enabled (only when querying all characters)
+		-- 	2: fully enabled
 		local enabled = GetAddOnEnableState(UnitName("player"), GetAddOnInfo(v[1]))
 		if ( (enabled > 0) and loadable ) then
 			local oldVersion = true;			
@@ -441,7 +447,7 @@ end
 -- We CANNOT assume that data in other files is available yet!
 function Atlas_OnLoad(self)
 
-	Process_Deprecated();
+	Atlas_Process_Deprecated();
 
 	-- Register the Atlas frame for the following events
 	self:RegisterEvent("PLAYER_LOGIN");
@@ -537,7 +543,7 @@ function Atlas_PopulateDropdowns()
 		end	
 	end
 end
-
+--[[
 function Atlas_EnableMissing_Modules(list)
 	local addon;
 	print("Number: "..table.getn(list));
@@ -549,7 +555,7 @@ function Atlas_EnableMissing_Modules(list)
 	
 	ReloadUI();
 end
-
+]]
 -- Detect if not all modules / plugins are installed
 local function Atlas_Check_Modules()
 	if (AtlasOptions["AtlasCheckModule"] == nil) then
@@ -1341,7 +1347,7 @@ function Atlas_Refresh(mapID)
 	ATLAS_SEARCH_METHOD = data.Search;
 
 	if ( data.Search == nil ) then
-		ATLAS_SEARCH_METHOD = AtlasSimpleSearch;
+		ATLAS_SEARCH_METHOD = Atlas_SimpleSearch;
 	end
 	
 	if ( data.Search ~= false ) then
@@ -2124,7 +2130,7 @@ function AtlasScrollBar_Update()
 	end
 end
 
-function AtlasSimpleSearch(data, text)
+function Atlas_SimpleSearch(data, text)
 	if (string.trim(text or "") == "") then
 		return data
 	end
@@ -2153,6 +2159,16 @@ function AtlasSimpleSearch(data, text)
 		i, v = next(data, i); -- Get next index
 	end
 	return new;
+end
+
+local function Atlas_OpenAchievement(achievementID)
+	if not achievementID then return; end
+	
+	if not IsAddOnLoaded("Blizzard_AchievementUI") then
+		LoadAddOn("Blizzard_AchievementUI")
+	end
+	ShowUIPanel(AchievementFrame)
+	AchievementFrame_SelectAchievement(achievementID)
 end
 
 function AtlasEntryTemplate_OnUpdate(self)
@@ -2210,6 +2226,8 @@ function AtlasEntry_OnClick(self, button)
 		end
 	elseif (self.instanceID and self.encounterID) then
 		Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID);
+	elseif (self.achievementID) then
+		Atlas_OpenAchievement(self.achievementID);
 	end
 end
 
