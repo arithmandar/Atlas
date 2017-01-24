@@ -15,7 +15,7 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.37.01 (Jan. XX, 2017)
+v1.37.01 (Jan. 24, 2017)
 ------------------------
 - Clicking on achievement showing in instance's legend panel will now open
   corresponding achievement within Blizzard's Achievement window
