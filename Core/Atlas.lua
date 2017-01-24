@@ -28,9 +28,10 @@ local _G = getfenv(0);
 local pairs = _G.pairs;
 local math = _G.math;
 local table = _G.table;
-local string = _G.string
-local select = _G.select
-local type = _G.type
+local string = _G.string;
+local select = _G.select;
+local type = _G.type;
+local bit = _G.bit;
 
 local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0");
@@ -312,23 +313,38 @@ local function Atlas_AchievementButtonUpdate(button, achievementID)
 	button.tooltiptitle = name;
 	local tooltiptext = description;
 	local numCriteria = GetAchievementNumCriteria(achievementID);
-	-- criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible =  GetAchievementCriteriaInfo(achievementID, criteriaIndex)
-	local criteriaString, criteriaCompleted;
 	if (numCriteria and numCriteria > 0) then
 		for i = 1, numCriteria do
-			criteriaString, _, criteriaCompleted = GetAchievementCriteriaInfo(achievementID, i);
-			if (criteriaCompleted) then
-				tooltiptext = tooltiptext.."\n|cffffffff - "..criteriaString;
+			-- criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible =  GetAchievementCriteriaInfo(achievementID, criteriaIndex)
+			local criteriaString, criteriaType, criteriaCompleted, quantity, reqQuantity, _, flags, assetID, quantityString = GetAchievementCriteriaInfo(achievementID, i);
+			if (criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID) then
+				local _, aname, _, acompleted = GetAchievementInfo(assetID);
+				if (acompleted) then
+					tooltiptext = tooltiptext.."\n|CFFFFFFFF - "..aname;
+				else
+					tooltiptext = tooltiptext.."\n|CFF808080 - "..aname;
+				end
+			--elseif (criteriaString == "" or reqQuantity > 1) then
+			elseif (bit.band(flags, EVALUATION_TREE_FLAG_PROGRESS_BAR) == EVALUATION_TREE_FLAG_PROGRESS_BAR) then
+				if (quantity >= reqQuantity) then
+					tooltiptext = tooltiptext.."\n|CFFFFFFFF - "..quantityString;
+				else
+					tooltiptext = tooltiptext.."\n|CFF808080 - "..quantityString;
+				end
 			else
-				tooltiptext = tooltiptext.."\n|cff999999 - "..criteriaString;
+				if (criteriaCompleted) then
+					tooltiptext = tooltiptext.."\n|CFFFFFFFF - "..criteriaString;
+				else
+					tooltiptext = tooltiptext.."\n|CFF808080 - "..criteriaString;
+				end
 			end
 		end
 	end
 	if (completed) then
-		name = "      |cffffffff"..name;
-		tooltiptext = tooltiptext.."\n|cff00ff00"..format(ACHIEVEMENT_TOOLTIP_COMPLETE, earnedBy, month, day, year);
+		name = "      |CFFFFFFFF"..name;
+		tooltiptext = tooltiptext.."\n|CFF00FF00"..format(ACHIEVEMENT_TOOLTIP_COMPLETE, earnedBy, month, day, year);
 	else
-		name = "      |cff999999"..name;
+		name = "      |CFF808080"..name;
 	end
 	button.Text:SetText(name);
 	button.tooltiptext = tooltiptext;
