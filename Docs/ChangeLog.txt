@@ -15,8 +15,9 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.37.03 (Jan. XX, 2017)
+v1.37.03 (Feb. XX, 2017)
 ------------------------
+- Added option to toggle Atlas button on World Map window
 
 v1.37.02 (Jan. 24, 2017)
 ------------------------

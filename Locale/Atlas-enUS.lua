@@ -74,6 +74,7 @@ if L then
 	L["ATLAS_OPTIONS_BUTTON"] = "Options";
 	L["ATLAS_OPTIONS_SHOWBUT"] = "Show Button on Minimap";
 	L["ATLAS_OPTIONS_SHOWBUT_TIP"] = "Show Atlas button around the minimap.";
+	L["ATLAS_OPTIONS_SHOWWMBUT"] = "Show Button on World Map window.";
 	L["ATLAS_OPTIONS_AUTOSEL"] = "Auto-Select Instance Map";
 	L["ATLAS_OPTIONS_AUTOSEL_TIP"] = "Auto-select instance map, Atlas will detect your location to choose the best instance map for you.";
 	L["ATLAS_OPTIONS_BUTPOS"] = "Button Position";
@@ -97,8 +98,8 @@ if L then
 	L["ATLAS_OPTIONS_DONTSHOWAGAIN"] = "Don't show the same information again.";
 	L["ATLAS_OPTIONS_CHECKMODULE"] = "Remind me for missing module(s) / plug-in(s).";
 	L["ATLAS_OPTIONS_CHECKMODULE_TIP"] = "Enable to perform checking if any missing Atlas module / plug-in after WoW loaded.";
-	L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "Show dungeon dropdown in colors";
-	L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "Based on the dungeon's recommended minimul level and player's level, to show the dungeon with difficulty colors.";
+	L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "Show instance dropdown in colors";
+	L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "Based on the instance's recommended minimul level and player's level, to show the instance with difficulty colors.";
 
 	L["ATLAS_BUTTON_CLOSE"] = "Close";
 	L["ATLAS_LDB_HINT"] = "Left-Click to open Atlas.\nRight-Click for Atlas options.";
@@ -268,7 +269,7 @@ if L then
 	L["Wave 10"] = "Wave 10";
 	L["Wave 12"] = "Wave 12";
 	L["Wave 18"] = "Wave 18";
-	L["MapsNotFound"] = "Current selected dungeon does not have a \ncorresponding map image associated with. \n\nPlease make sure you have installed \nthe corresponding Atlas map module(s).";
+	L["MapsNotFound"] = "The current selected instance does not have a \ncorresponding map image associated with. \n\nPlease make sure you have installed \nthe corresponding Atlas map module(s).";
 	L["PossibleMissingModule"] = "It is likely this map is from this module: ";
 	L["Transport"] = "Transport";
 

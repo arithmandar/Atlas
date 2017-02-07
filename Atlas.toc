@@ -48,7 +48,7 @@
 ## Notes-zhTW: Atlas 地圖集主程式
 #@end-debug@
 ## Author: arith, dubcat
-## Version: 1.37.02
+## Version: 1.37.03
 ## OptionalDeps: Ace3, LibBabble-Boss-3.0, LibBabble-SubZone-3.0, LibBabble-Faction-3.0, LibDataBroker-1.1, LibAboutPanel, CallbackHandler-1.0, LibDBIcon-1.0, LibDialog-1.0
 ## X-Category: Map
 ## X-Credits: Dan Gilbert, Lothaer, Dynaletik
@@ -64,8 +64,16 @@
 
 Libs\Libs.xml
 Locale\Locales.xml
+Core\AtlasConstants.lua
 Core\AtlasFontsTemplates.xml
 Core\AtlasTemplates.xml
+Core\AtlasIngameLocales.lua
+Core\AtlasMapsAssociation.lua
+Core\AtlasJournalEncounter.lua
+Core\AtlasMaps.lua
+Core\AtlasMaps_NPC_DB.lua
+Core\AtlasDropDown.lua
+Core\AtlasAchievements.lua
 Core\Atlas.xml
 Core\AtlasOptions.xml
 Core\AtlasButton.lua
