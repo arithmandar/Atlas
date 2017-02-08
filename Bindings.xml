@@ -25,13 +25,13 @@
 -->
 
 <Bindings>
-	<Binding name="ATLAS_TOGGLE" header="ATLAS_TITLE">
+	<Binding name="ATLAS_TOGGLE" header="ATLAS_TITLE" category="ADDONS">
 		Atlas_Toggle();
 	</Binding>
-	<Binding name="ATLAS_OPTIONS">
+	<Binding name="ATLAS_OPTIONS" category="ADDONS">
 		AtlasOptions_Toggle();
 	</Binding>
-	<Binding name="ATLAS_AUTOSEL">
+	<Binding name="ATLAS_AUTOSEL" category="ADDONS">
 		Atlas_AutoSelect();
 	</Binding>
 </Bindings>
