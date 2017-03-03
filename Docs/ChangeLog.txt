@@ -15,6 +15,9 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.37.05 (Mar. xx, 2017)
+------------------------
+
 v1.37.04 (Mar. 03, 2017)
 ------------------------
 - Enhanced the loot toggling to switch Atlas small frame to normal frame
