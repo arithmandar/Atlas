@@ -969,8 +969,15 @@ end
 
 function Atlas_MapRefresh(mapID)
 	local zoneID = mapID or ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+	if (not zoneID) then
+		return;
+	end
 	local data = AtlasMaps;
 	local base = data[zoneID];
+	if (not base) then
+		return;
+	end
+
 	local _;
 	local typeID, subtypeID, minLevel, maxLevel, minRecLevel, maxRecLevel, maxPlayers, minGearLevel;
 	local typeIDH, subtypeIDH, minLevelH, maxLevelH, minRecLevelH, maxRecLevelH, maxPlayersH, minGearLevelH;
@@ -1397,6 +1404,9 @@ function Atlas_Refresh(mapID)
 	end
 	local data = AtlasMaps;
 	local base = data[zoneID];
+	if (not base) then
+		return;
+	end
 
 	-- Dealing with the scenario that when user is in a large map, but then the newly selected map does not have large map
 	if (not base.LargeMap and AtlasFrameLarge:IsVisible() ) then

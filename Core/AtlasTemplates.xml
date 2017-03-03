@@ -153,6 +153,9 @@
 					end
 				else
 					if (button == "RightButton") then
+						if (AtlasFrameSmall:IsVisible()) then
+							AtlasFrame_ToggleLegendPanel();
+						end
 						if (AtlasEJLootFrame:IsShown()) then
 							AtlasEJLootFrame:Hide();
 						else
