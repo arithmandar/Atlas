@@ -172,6 +172,7 @@ if L then
 	L["ATLAS_CLICK_TO_OPEN"] = "Click to open Atlas map window.";
 	L["ATLAS_OPEN_WOWMAP_WINDOW"] = "Click to open Adventure Journal Map window.";
 	L["ATLAS_OPEN_ATLASLOOT_WINDOW"] = "Click to open AtlasLoot window.";
+	L["ATLAS_ROPEN_ATLASLOOT_WINDOW"] = "Right-click to open AtlasLoot window.";
 	L["ATLAS_CLOSE_ATLASLOOT_WINDOW"] = "Right-click to close AtlasLoot window.";
 	L["ATLAS_COLLAPSE_BUTTON"] = "Click to close Atlas' legend panel.";
 	L["ATLAS_EXPAND_BUTTON"] = "Click to open Atlas' legend panel.";

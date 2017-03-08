@@ -55,7 +55,6 @@ function Atlas_EnableAtlasLootButton(base, zoneID)
 		local showbutton = false;
 		
 		if (modules[base.Module]) then
-			print(modules[base.Module]);
 			local enabled = GetAddOnEnableState(UnitName("player"), modules[base.Module]);
 			if (enabled > 0) then
 				showbutton = true;
@@ -89,9 +88,12 @@ function Atlas_AtlasLootButton_OnClick(self, button)
 			AtlasLoot.GUI.frame:Hide();
 		end
 	else
+		local db = AtlasLoot.db.GUI;
+
 		local instanceID = self.instanceID or nil;
 		local ALModule = modules[self.AtlasModule] or nil;
-		local bossID = self.bossID or 1;
+		local encounterID = self.encounterID or nil;
+		local bossID = self.bossID or nil;
 		
 		if (not instanceID) then return; end
 		if (not ALModule) then return; end
@@ -102,7 +104,9 @@ function Atlas_AtlasLootButton_OnClick(self, button)
 			AtlasLoot.GUI.frame:Show();
 		end
 		-- Set module
-		AtlasLoot.GUI.frame.moduleSelect:SetSelected(ALModule); -- this should also force AtlasLoot to load the module data
+		if (ALModule ~= db.selected[1]) then
+			AtlasLoot.GUI.frame.moduleSelect:SetSelected(ALModule); -- this should also force AtlasLoot to load the module data
+		end
 		
 		local moduleData = AtlasLoot.ItemDB:Get(ALModule);
 		local dataID;
@@ -118,10 +122,20 @@ function Atlas_AtlasLootButton_OnClick(self, button)
 			end
 		end
 		-- Set sub-category (instance)
-		AtlasLoot.GUI.frame.subCatSelect:SetSelected(dataID);
-		-- Set boss selection
-		AtlasLoot.GUI.frame.boss:SetSelected(bossID)
+		if (dataID ~= db.selected[2]) then
+			AtlasLoot.GUI.frame.subCatSelect:SetSelected(dataID);
+		end
 		
+		for count = 1, #moduleData[dataID].items do
+			if (encounterID and moduleData[dataID].items[count].EncounterJournalID and moduleData[dataID].items[count].EncounterJournalID == encounterID) then
+				bossID = count;
+			end
+		end
+		-- Set boss selection
+		if (bossID and bossID ~= db.selected[3]) then
+			AtlasLoot.GUI.frame.boss:SetSelected(bossID)
+		end
+--[[		
 		local difficulties = moduleData:GetDifficultys()
 		local difficultyID;
 		-- look for the 1st difficulty
@@ -132,7 +146,8 @@ function Atlas_AtlasLootButton_OnClick(self, button)
 			end
 		end
 		-- Set difficulty
-		AtlasLoot.GUI.frame.difficulty:SetSelected(difficultyID)
+		--AtlasLoot.GUI.frame.difficulty:SetSelected(difficultyID)
+]]
 		AtlasLoot.GUI.ItemFrame:Refresh(true);
 	end
 end

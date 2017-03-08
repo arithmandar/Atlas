@@ -168,6 +168,7 @@ if L then
 	L["ATLAS_CLICK_TO_OPEN"] = "按下以開啟 Atlas 地圖視窗。";
 	L["ATLAS_OPEN_WOWMAP_WINDOW"] = "按下以開啟冒險指南地圖視窗。";
 	L["ATLAS_OPEN_ATLASLOOT_WINDOW"] = "按下以開啟 AtlasLoot 視窗。";
+	L["ATLAS_ROPEN_ATLASLOOT_WINDOW"] = "右鍵點擊以開啟 AtlasLoot 視窗。";
 	L["ATLAS_CLOSE_ATLASLOOT_WINDOW"] = "右鍵點擊以關閉 AtlasLoot 視窗。";
 	L["ATLAS_COLLAPSE_BUTTON"] = "按下以收起 Atlas 的地圖說明窗格。";
 	L["ATLAS_EXPAND_BUTTON"] = "按下以展開 Atlas 的地圖說明窗格。";

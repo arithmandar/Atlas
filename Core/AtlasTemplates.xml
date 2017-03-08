@@ -47,6 +47,9 @@
 			</Anchors>
 		</HighlightTexture>
 		<Scripts>
+			<OnLoad>
+				self:RegisterForClicks("LeftButtonDown", "RightButtonDown");
+			</OnLoad>
 			<OnUpdate>
 				AtlasEntryTemplate_OnUpdate(self);
 			</OnUpdate>

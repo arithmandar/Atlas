@@ -221,10 +221,11 @@ local function Atlas_BossButtonCleanUp(button)
 	if (button.TaxiImage) then button.TaxiImage:SetTexture(nil); end
 end
 
-local function Atlas_BossButtonUpdate(button, encounterID, instanceID, b_iconImage)
+local function Atlas_BossButtonUpdate(button, encounterID, instanceID, b_iconImage, moduleData)
 	button:SetID(encounterID);
 	button.encounterID = encounterID;
 	button.instanceID = instanceID or nil;
+	button.AtlasModule = moduleData or nil;
 
 	local ejbossname, description, _, rootSectionID, link = EJ_GetEncounterInfo(encounterID);
 	if (ejbossname) then
@@ -305,6 +306,10 @@ function Atlas_SearchAndRefresh(text)
 end
 
 function Atlas_ScrollBar_Update()
+	local zoneID = ATLAS_DROPDOWNS[AtlasOptions.AtlasType][AtlasOptions.AtlasZone];
+	local mapdata = AtlasMaps;
+	local base = mapdata[zoneID];
+
 	GameTooltip:Hide();
 	local lineplusoffset;
 	FauxScrollFrame_Update(AtlasScrollBar,ATLAS_CUR_LINES,ATLAS_NUM_LINES,15);
@@ -318,7 +323,7 @@ function Atlas_ScrollBar_Update()
 			if (ATLAS_SCROLL_ID[lineplusoffset]) then
 				if (type(ATLAS_SCROLL_ID[lineplusoffset][1]) == "number") then
 					local id = ATLAS_SCROLL_ID[lineplusoffset][1];
-					Atlas_BossButtonUpdate(button, ATLAS_SCROLL_ID[lineplusoffset][1], ATLAS_SCROLL_ID[lineplusoffset][2]);
+					Atlas_BossButtonUpdate(button, ATLAS_SCROLL_ID[lineplusoffset][1], ATLAS_SCROLL_ID[lineplusoffset][2], false, base.Module);
 				elseif (type(ATLAS_SCROLL_ID[lineplusoffset][1]) == "string") then
 					local spos, epos = strfind(ATLAS_SCROLL_ID[lineplusoffset][1], "ac=");
 					if (spos) then
@@ -1274,12 +1279,12 @@ function Atlas_MapRefresh(mapID)
 		AtlasFrameAdventureJournalButton:Show();
 		AtlasFrameLargeAdventureJournalButton:Show();
 		AtlasFrameSmallAdventureJournalButton:Show();
-		--AtlasSetEJBackground(base.JournalInstanceID);
+		AtlasSetEJBackground(base.JournalInstanceID);
 	else
 		AtlasFrameAdventureJournalButton:Hide();
 		AtlasFrameLargeAdventureJournalButton:Hide();
 		AtlasFrameSmallAdventureJournalButton:Hide();
-		--AtlasSetEJBackground();
+		AtlasSetEJBackground();
 	end
 
 	-- Check if WorldMap ID is available, if so, show the map button
@@ -1861,6 +1866,10 @@ function AtlasEntryTemplate_OnUpdate(self)
 					if (not disabled) then
 						GameTooltip:AddLine(ATLAS_OPEN_ADVENTURE, 0.5, 0.5, 1, true);
 					end
+					local loadable = select(4, GetAddOnInfo("AtlasLoot"));
+					if (loadable) then 
+						GameTooltip:AddLine(ATLAS_ROPEN_ATLASLOOT_WINDOW, 0.5, 0.5, 1, true);
+					end
 				end
 				GameTooltip:SetScale(AtlasOptions["AtlasBossDescScale"] * AtlasOptions["AtlasScale"]);
 				GameTooltip:Show();
@@ -1874,10 +1883,14 @@ function AtlasEntry_OnClick(self, button)
 		if (IsModifiedClick("CHATLINK") and ChatEdit_GetActiveWindow()) then
 			ChatEdit_InsertLink(self.link);
 		end
-	elseif (self.instanceID and self.encounterID) then
-		Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID);
-	elseif (self.achievementID) then
-		Atlas_OpenAchievement(self.achievementID);
+	elseif (button == "RightButton") then
+		Atlas_AtlasLootButton_OnClick(self);
+	else
+		if (self.instanceID and self.encounterID) then
+			Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID);
+		elseif (self.achievementID) then
+			Atlas_OpenAchievement(self.achievementID);
+		end
 	end
 end
 
@@ -2301,22 +2314,22 @@ function Atlas_DungeonMinGearLevelToolTip(self)
 	end
 end
 
---[[
 -- In Development, this could be fun
 function AtlasSetEJBackground(instanceID)
-	local f = _G["AtlasEJBackground"];
+--[[	local f = _G["AtlasEJBackground"];
 	if (not f) then
 		f = CreateFrame("Frame", "AtlasEJBackground", AtlasFrame);
 	end
 	f:ClearAllPoints();
-	f:SetWidth(610);
-	f:SetHeight(610);
+	f:SetWidth(625);
+	f:SetHeight(471);
 	f:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", 530, -85);
 	--f:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", 550, -220);
 	if (instanceID) then
 		local t = f:CreateTexture(nil,"BACKGROUND");
 		local name, description, bgImage, buttonImage, loreImage, dungeonAreaMapID, link = EJ_GetInstanceInfo(instanceID)
 		t:SetTexture(bgImage);
+		t:SetTexCoord(0.1, 0.7, 0.1, 0.7)
 		t:SetAllPoints();
 		f.Texture = t;
 		f:Show()
@@ -2325,8 +2338,9 @@ function AtlasSetEJBackground(instanceID)
 		t:SetTexture(nil);
 		t:SetAllPoints();
 		f.Texture = t;
-		f:Hide()
+		--f:Hide()
+		t:SetColorTexture(0.5, 0.5, 0.5, 0.5);
 	end
-end
 ]]
+end
 
