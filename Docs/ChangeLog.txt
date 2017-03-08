@@ -15,6 +15,9 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.38.01 (Mar. xx, 2017)
+------------------------
+
 v1.38.00 (Mar. 08, 2017)
 ------------------------
 - Added highlight texture on legend panel when mouse hover the boss lines
