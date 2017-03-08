@@ -80,7 +80,7 @@ function Atlas_AchievementButtonUpdate(button, achievementID)
 		name = "      |CFF808080"..name;
 	end
 	button.Text:SetText(name);
-	button.tooltiptext = tooltiptext;
+	button.tooltiptext = tooltiptext.."\n|CFF8080FF"..L["ATLAS_OPEN_ACHIEVEMENT"].."|R";
 end
 
 function Atlas_OpenAchievement(achievementID)

@@ -1263,6 +1263,9 @@ function Atlas_MapRefresh(mapID)
 	end
 	AtlasText_MinGearLevel_Text:SetText(tMGL);
 
+	-- AtlasLoot supports
+	Atlas_EnableAtlasLootButton(base, zoneID);
+
 	-- Check if Journal Encounter Instance is available
 	if (base.JournalInstanceID) then
 		AtlasFrame.AdventureJournal.instanceID = base.JournalInstanceID;

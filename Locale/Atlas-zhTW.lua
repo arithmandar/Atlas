@@ -163,9 +163,12 @@ if L then
 	L["ATLAS_MISSING_MODULE"] = "Atlas 已偵測到遺失的模組／插件。\n\n這有可能是因為先前您有過期的模組／插件而被 Atlas 停用。\n如果您現在已經將所有的模組／插件安裝到最新版，請到插件列表裡確認是否所有的項目都已被啟用。\n\n如果您確認您不需要這些「遺失」的插件並且不想繼續看到這樣的通知，您可以到選項視窗去關閉通知。\n\n以下是遺失的模組／插件列表：\n";
 	L["ATLAS_OPEN_ADDON_LIST"] = "開啟插件列表";
 
+	L["ATLAS_OPEN_ACHIEVEMENT"] = "按下以開啟成就細節。";
 	L["ATLAS_OPEN_ADVENTURE"] = "按下以開啟冒險指南視窗。";
 	L["ATLAS_CLICK_TO_OPEN"] = "按下以開啟 Atlas 地圖視窗。";
 	L["ATLAS_OPEN_WOWMAP_WINDOW"] = "按下以開啟冒險指南地圖視窗。";
+	L["ATLAS_OPEN_ATLASLOOT_WINDOW"] = "按下以開啟 AtlasLoot 視窗。";
+	L["ATLAS_CLOSE_ATLASLOOT_WINDOW"] = "右鍵點擊以關閉 AtlasLoot 視窗。";
 	L["ATLAS_COLLAPSE_BUTTON"] = "按下以收起 Atlas 的地圖說明窗格。";
 	L["ATLAS_EXPAND_BUTTON"] = "按下以展開 Atlas 的地圖說明窗格。";
 	L["ATLAS_TOGGLE_LOOT"] = "右鍵點擊以開啟首領戰利品視窗。";
