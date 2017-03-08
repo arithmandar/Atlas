@@ -129,6 +129,7 @@ function Atlas_AtlasLootButton_OnClick(self, button)
 		for count = 1, #moduleData[dataID].items do
 			if (encounterID and moduleData[dataID].items[count].EncounterJournalID and moduleData[dataID].items[count].EncounterJournalID == encounterID) then
 				bossID = count;
+				break;
 			end
 		end
 		-- Set boss selection
