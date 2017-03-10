@@ -15,8 +15,15 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.38.01 (Mar. xx, 2017)
+v1.38.01 (Mar. 10, 2017)
 ------------------------
+- Performance enhancement:
+  - AtlasLoot integration
+  - Atlas Map's auto-selection
+  - AutoSelect_from_WorldMap
+  - Map path locating
+  - NPC button's tooltip handling
+  - Prev / Next map and map series' switching
 
 v1.38.00 (Mar. 08, 2017)
 ------------------------

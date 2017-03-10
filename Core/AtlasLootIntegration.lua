@@ -120,6 +120,7 @@ function Atlas_AtlasLootButton_OnClick(self, button)
 					end
 				end
 			end
+			if (dataID) then break; end
 		end
 		-- Set sub-category (instance)
 		if (dataID ~= db.selected[2]) then

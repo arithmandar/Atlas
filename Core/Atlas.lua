@@ -1344,8 +1344,10 @@ function Atlas_MapRefresh(mapID)
 						break;
 					end
 				end
+				if (AtlasMapPath) then break; end
 			end
 		end
+		if (AtlasMapPath) then break; end
 	end
 	AtlasMap:SetTexture(AtlasMapPath..zoneID);
 	AtlasMapSmall:SetTexture(AtlasMapPath..zoneID);
@@ -1611,6 +1613,7 @@ function AtlasMap_AddNPCButton()
 							button.tooltiptitle = strsub(tip_title, endpos+1);
 							buttonS.tooltiptitle = strsub(tip_title, endpos+1);
 						end
+						break;
 					end
 				end
 				button:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18, -info_y - 82 );
@@ -1722,6 +1725,7 @@ function AtlasMap_AddNPCButtonLarge()
 						if (endpos) then
 							button.tooltiptitle = strsub(tip_title, endpos+1);
 						end
+						break;
 					end
 				end
 
@@ -1807,13 +1811,14 @@ function AtlasPrevNextMap_OnClick(self)
 			if (v2 == mapID) then
 				AtlasOptions.AtlasType = k;
 				AtlasOptions.AtlasZone = k2;
-				break;
+
+				AtlasFrameDropDownType_OnShow();
+				AtlasFrameDropDown_OnShow();
+				Atlas_Refresh();
+				return;
 			end
 		end
 	end
-	AtlasFrameDropDownType_OnShow();
-	AtlasFrameDropDown_OnShow();
-	Atlas_Refresh();
 end
 
 -- Modifies the value of GetRealZoneText to account for some naming conventions
@@ -1928,13 +1933,14 @@ function AtlasSwitchDD_Set(index)
 			if (v2 == ATLAS_INST_ENT_DROPDOWN[index]) then
 				AtlasOptions.AtlasType = k;
 				AtlasOptions.AtlasZone = k2;
-				break;
+
+				AtlasFrameDropDownType_OnShow();
+				AtlasFrameDropDown_OnShow();
+				Atlas_Refresh();
+				return;
 			end
 		end
 	end
-	AtlasFrameDropDownType_OnShow();
-	AtlasFrameDropDown_OnShow();
-	Atlas_Refresh();
 end
 
 function AtlasSwitchDD_Sort(a, b)
@@ -2166,6 +2172,7 @@ function Atlas_AutoSelect()
 						break;
 					end
 				end
+				if (selected_map) then break; end
 			end
 		end
 		if (not selected_map) then
@@ -2255,8 +2262,6 @@ function Atlas_AutoSelect_from_WorldMap()
 				if (AtlasMapFaction and AtlasMapFaction == ATLAS_PLAYER_FACTION) then
 					AtlasOptions.AtlasType = type_k;
 					AtlasOptions.AtlasZone = zone_k;
-					Atlas_Refresh();
-					return;
 				else
 					if (dungeonLevel > 0 and AtlasMapDungeonLevel) then
 						if (AtlasMapDungeonLevel == dungeonLevel) then
@@ -2268,10 +2273,11 @@ function Atlas_AutoSelect_from_WorldMap()
 						AtlasOptions.AtlasZone = zone_k;
 					end
 				end
+				Atlas_Refresh();
+				return;
 			end
 		end
 	end
-	Atlas_Refresh();
 end
 
 function Atlas_AutoSelect_from_EncounterJournal()
