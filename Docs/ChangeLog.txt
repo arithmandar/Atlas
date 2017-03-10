@@ -15,6 +15,9 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.38.02 (Mar. xx, 2017)
+------------------------
+
 v1.38.01 (Mar. 10, 2017)
 ------------------------
 - Performance enhancement:
