@@ -82,6 +82,7 @@ L["ATLAS_STRING_MINLEVEL"] = "Niveau Minimum"
 L["ATLAS_OPTIONS_BUTTON"] = "Options"
 L["ATLAS_OPTIONS_SHOWBUT"] = "Afficher le bouton sur la mini-carte"
 L["ATLAS_OPTIONS_SHOWBUT_TIP"] = "Afficher le bouton Atlas autour de la mini-carte"
+--L["ATLAS_OPTIONS_SHOWWMBUT"] = "Show Button on World Map window."
 L["ATLAS_OPTIONS_AUTOSEL"] = "Sélection automatique de la carte"
 L["ATLAS_OPTIONS_AUTOSEL_TIP"] = "Sélection automatique de la carte, Atlas détectera votre localisation pour choisir votre instance à afficher."
 L["ATLAS_OPTIONS_BUTPOS"] = "Position du bouton"
@@ -198,12 +199,17 @@ Visitez notre site web pour plus de détail, et n'oubliez pas de le
 télécharger/installer séparément.]=]
 
 L["ATLAS_MISSING_MODULE"] = "Atlas a détecté des module(s)/plug-in(s) manquant : "
---L["ATLAS_OPEN_ADDON_LIST"] = "Open addon list"
+L["ATLAS_OPEN_ADDON_LIST"] = "Ouvrir la liste des addons"
+
 L["ATLAS_OPEN_ADVENTURE"] = "Cliquer pour ouvrir la fenêtre du Guilde de l'aventurier"
---L["ATLAS_CLICK_TO_OPEN"] = "Click to open Atlas map window."
+L["ATLAS_CLICK_TO_OPEN"] = "Cliquez pour ouvrir la fenêtre de carte Atlas."
 --L["ATLAS_OPEN_WOWMAP_WINDOW"] = "Click to open Adventure Journal Map window."
+--L["ATLAS_OPEN_ATLASLOOT_WINDOW"] = "Click to open AtlasLoot window."
+--L["ATLAS_ROPEN_ATLASLOOT_WINDOW"] = "Right-click to open AtlasLoot window."
+--L["ATLAS_CLOSE_ATLASLOOT_WINDOW"] = "Right-click to close AtlasLoot window."
 --L["ATLAS_COLLAPSE_BUTTON"] = "Click to close Atlas' legend panel."
 --L["ATLAS_EXPAND_BUTTON"] = "Click to open Atlas' legend panel."
+--L["ATLAS_TOGGLE_LOOT"] = "Right-click to toggle loot panel."
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
@@ -248,7 +254,6 @@ L["Back"] = "de derrière" -- Back de Back Door, trouver mieux
 L["Basement"] = "Sous-sol"
 L["Blacksmithing Plans"] = "Plans de forge"
 L["Child"] = "Enfant"
--- L["Click to open Dungeon Journal window."] = "Cliquer pour ouvrir la fenêtre du codex des donjons"
 L["Connection"] = "Connexion"
 L["Elevator"] = "Ascenseur"
 L["End"] = "Fin"
