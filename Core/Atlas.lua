@@ -2130,12 +2130,6 @@ function AtlasToggleFromWorldMap_OnClick(self)
 	Atlas_Toggle();
 end
 
-function AtlasToggleFromEncounterJournal_OnClick(self)
-	Atlas_AutoSelect_from_EncounterJournal();
-	ToggleFrame(EncounterJournal);
-	Atlas_Toggle();
-end
-
 -- Checks the player's current location against all Atlas maps
 -- If a match is found display that map right away
 -- update for Outland zones contributed by Drahcir

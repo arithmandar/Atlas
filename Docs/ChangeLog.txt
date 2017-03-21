@@ -15,9 +15,13 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.38.04 (Mar. xx, 2017)
+v1.38.04 (Mar. 21, 2017)
 ------------------------
-
+- Enhanced Atlas button on Adventure Journal when ElvUI is enabled
+- Translation update:
+  - Korean
+  - German
+  
 v1.38.03 (Mar. 16, 2017)
 ------------------------
 - Library update:
