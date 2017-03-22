@@ -1767,6 +1767,28 @@ function AtlasMap_AddNPCButtonLarge()
 						text:SetTextColor(unpack(ATLAS_FONT_COLORS[info_colortag]));
 						button:SetWidth(20);
 						button:SetHeight(20);
+					elseif (info_colortag == "HUNTER" or
+						info_colortag == "WARLOCK" or
+						info_colortag == "PRIEST" or
+						info_colortag == "PALADIN" or
+						info_colortag == "MAGE" or
+						info_colortag == "ROGUE" or
+						info_colortag == "DRUID" or
+						info_colortag == "SHAMAN" or
+						info_colortag == "WARRIOR" or
+						info_colortag == "DEATHKNIGHT" or
+						info_colortag == "MONK" or
+						info_colortag == "DEMONHUNTER") then
+						if (not text) then
+							text = button:CreateFontString(button:GetName().."_Text", "MEDIUM", "AtlasSystemFont_Large_Outline_Thick");
+						end
+						local color = RAID_CLASS_COLORS[info_colortag];
+						text:SetPoint("CENTER", button, "CENTER", 0, 0);
+						text:SetText(info_mark);
+						text:SetTextColor(color.r, color.g, color.b);
+						button:SetWidth(20);
+						button:SetHeight(20);
+
 					else
 						-- Do Nothing
 					end
