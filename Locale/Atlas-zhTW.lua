@@ -243,6 +243,7 @@ if L then
 	L["Orange"] = "橙";
 	L["Outside"] = "戶外";
 	L["Portal"] = "傳送門";
+	L["Portal to %s"] = "到%s的傳送門"
 	L["Protection Warrior"] = "防戰";
 	L["Purple"] = "紫";
 	L["Random"] = "隨機";
@@ -250,6 +251,7 @@ if L then
 	L["Repair"] = "修理";
 	L["Retribution Paladin"] = "懲戒聖騎";
 	L["Rewards"] = "獎勵";
+	L["Stairs to %s"] = "通往%s的階梯"
 	L["Second Stop"] = "第二停留點";
 	L["Shadow Priest"] = "暗影牧師";
 	L["Spawn Point"] = "生成點";
@@ -262,6 +264,7 @@ if L then
 	L["Tunnel"] = "通道";
 	L["Underwater"] = "水下";
 	L["Upper"] = "上層";
+	L["Upper floor"] = "上層"
 	L["Varies"] = "多處";
 	L["Wanders"] = "徘徊";
 	L["Wave 5"] = "第 5 波";
