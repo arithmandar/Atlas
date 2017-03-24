@@ -103,7 +103,17 @@ Atlas_DropDownLayouts = {
 			"UpperBlackrockSpire",		-- Draenor
 		},
 		[ATLAS_DDL_CONTINENT_EASTERN2] = {
-			-- "ReturntoKarazhan", 		-- Legion
+			"ReturntoKarazhanEnt", 		-- Legion
+			"ReturntoKarazhanA", 		-- Legion
+			"ReturntoKarazhanB", 		-- Legion
+			"ReturntoKarazhanC", 		-- Legion
+			"ReturntoKarazhanD", 		-- Legion
+			"ReturntoKarazhanE", 		-- Legion
+			"ReturntoKarazhanF", 		-- Legion
+			"ReturntoKarazhanG", 		-- Legion
+			"ReturntoKarazhanH", 		-- Legion
+			"ReturntoKarazhanI", 		-- Legion
+			"ReturntoKarazhanJ", 		-- Legion
 			"ShadowfangKeep",		-- Classic WoW, Catalysm
 			"TheDeadmines",			-- Classic WoW, Catalysm
 			"TheDeadminesEnt",		-- Classic WoW, Catalysm
@@ -531,7 +541,17 @@ Atlas_DropDownLayouts = {
 			"TheNightholdE",
 			"TheNightholdF",
 			"TheNightholdG",
-			-- "ReturntoKarazhan", 		-- Legion
+			"ReturntoKarazhanEnt", 		-- Legion
+			"ReturntoKarazhanA", 		-- Legion
+			"ReturntoKarazhanB", 		-- Legion
+			"ReturntoKarazhanC", 		-- Legion
+			"ReturntoKarazhanD", 		-- Legion
+			"ReturntoKarazhanE", 		-- Legion
+			"ReturntoKarazhanF", 		-- Legion
+			"ReturntoKarazhanG", 		-- Legion
+			"ReturntoKarazhanH", 		-- Legion
+			"ReturntoKarazhanI", 		-- Legion
+			"ReturntoKarazhanJ", 		-- Legion
 			"TrialofValorA",
 			"TrialofValorB",
 		},
@@ -636,7 +656,17 @@ Atlas_DropDownLayouts = {
 			"MawofSoulsA",		-- Legion
 			"MawofSoulsB",		-- Legion
 			"NeltharionsLair",	-- Legion
-			-- "ReturntoKarazhan", 		-- Legion
+			"ReturntoKarazhanEnt", 		-- Legion
+			"ReturntoKarazhanA", 		-- Legion
+			"ReturntoKarazhanB", 		-- Legion
+			"ReturntoKarazhanC", 		-- Legion
+			"ReturntoKarazhanD", 		-- Legion
+			"ReturntoKarazhanE", 		-- Legion
+			"ReturntoKarazhanF", 		-- Legion
+			"ReturntoKarazhanG", 		-- Legion
+			"ReturntoKarazhanH", 		-- Legion
+			"ReturntoKarazhanI", 		-- Legion
+			"ReturntoKarazhanJ", 		-- Legion
 		},
 		[ATLAS_DDL_PARTYSIZE_5_TZ] = {
 			"Uldaman",				-- Classic WoW
@@ -1044,7 +1074,17 @@ Atlas_DropDownLayouts = {
 			"TheNightholdE",
 			"TheNightholdF",
 			"TheNightholdG",
-			-- "ReturntoKarazhan", 		-- Legion
+			"ReturntoKarazhanEnt", 		-- Legion
+			"ReturntoKarazhanA", 		-- Legion
+			"ReturntoKarazhanB", 		-- Legion
+			"ReturntoKarazhanC", 		-- Legion
+			"ReturntoKarazhanD", 		-- Legion
+			"ReturntoKarazhanE", 		-- Legion
+			"ReturntoKarazhanF", 		-- Legion
+			"ReturntoKarazhanG", 		-- Legion
+			"ReturntoKarazhanH", 		-- Legion
+			"ReturntoKarazhanI", 		-- Legion
+			"ReturntoKarazhanJ", 		-- Legion
 			"TrialofValorA",
 			"TrialofValorB",
 		},
@@ -1202,7 +1242,17 @@ Atlas_DropDownLayouts = {
 			"TheNightholdE",		-- Legion
 			"TheNightholdF",		-- Legion
 			"TheNightholdG",		-- Legion
-			-- "ReturntoKarazhan", 		-- Legion
+			"ReturntoKarazhanEnt", 		-- Legion
+			"ReturntoKarazhanA", 		-- Legion
+			"ReturntoKarazhanB", 		-- Legion
+			"ReturntoKarazhanC", 		-- Legion
+			"ReturntoKarazhanD", 		-- Legion
+			"ReturntoKarazhanE", 		-- Legion
+			"ReturntoKarazhanF", 		-- Legion
+			"ReturntoKarazhanG", 		-- Legion
+			"ReturntoKarazhanH", 		-- Legion
+			"ReturntoKarazhanI", 		-- Legion
+			"ReturntoKarazhanJ", 		-- Legion
 		},
 		[ATLAS_DDL_TYPE_INSTANCE_TZ] = {
 			"Uldaman",			-- Classic WoW
@@ -1262,6 +1312,7 @@ Atlas_DropDownLayouts = {
 			"UlduarEnt",			-- WrathoftheLichKing
 			"TheArcwayEnt",			-- Legion
 			"TheNightholdEnt",		-- Legion
+			"ReturntoKarazhanEnt", 		-- Legion
 		},
 	},
 };

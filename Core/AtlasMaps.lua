@@ -922,6 +922,50 @@ Syntax:
 		ZoneName = { BZ["Neltharion's Lair"] };
 		Module = "Atlas_Legion";
 	};
+	ReturntoKarazhanEnt = {
+		ZoneName = { BZ["Return to Karazhan"]..L["L-Parenthesis"]..L["Entrance"]..L["R-Parenthesis"] };
+		Module = "Atlas_Legion";
+	};
+	ReturntoKarazhanA = {
+		ZoneName = { BZ["Return to Karazhan"]..L["MapA"] };
+		Module = "Atlas_Legion";
+	};
+	ReturntoKarazhanB = {
+		ZoneName = { BZ["Return to Karazhan"]..L["MapB"] };
+		Module = "Atlas_Legion";
+	};
+	ReturntoKarazhanC = {
+		ZoneName = { BZ["Return to Karazhan"]..L["MapC"] };
+		Module = "Atlas_Legion";
+	};
+	ReturntoKarazhanD = {
+		ZoneName = { BZ["Return to Karazhan"]..L["MapD"] };
+		Module = "Atlas_Legion";
+	};
+	ReturntoKarazhanE = {
+		ZoneName = { BZ["Return to Karazhan"]..L["MapE"] };
+		Module = "Atlas_Legion";
+	};
+	ReturntoKarazhanF = {
+		ZoneName = { BZ["Return to Karazhan"]..L["MapF"] };
+		Module = "Atlas_Legion";
+	};
+	ReturntoKarazhanG = {
+		ZoneName = { BZ["Return to Karazhan"]..L["MapG"] };
+		Module = "Atlas_Legion";
+	};
+	ReturntoKarazhanH = {
+		ZoneName = { BZ["Return to Karazhan"]..L["MapH"] };
+		Module = "Atlas_Legion";
+	};
+	ReturntoKarazhanI = {
+		ZoneName = { BZ["Return to Karazhan"]..L["MapI"] };
+		Module = "Atlas_Legion";
+	};
+	ReturntoKarazhanJ = {
+		ZoneName = { BZ["Return to Karazhan"]..L["MapJ"] };
+		Module = "Atlas_Legion";
+	};
 	TheArcway = {
 		ZoneName = { BZ["The Arcway"] };
 		Module = "Atlas_Legion";
