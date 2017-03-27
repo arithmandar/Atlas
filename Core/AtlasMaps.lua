@@ -882,6 +882,22 @@ Syntax:
 		ZoneName = { BZ["Black Rook Hold"]..L["MapC"] };
 		Module = "Atlas_Legion";
 	};
+	CathedralofEternalNightA = {
+		ZoneName = { BZ["Cathedral of Eternal Night"]..L["MapA"] };
+		Module = "Atlas_Legion";
+	};
+	CathedralofEternalNightB = {
+		ZoneName = { BZ["Cathedral of Eternal Night"]..L["MapB"] };
+		Module = "Atlas_Legion";
+	};
+	CathedralofEternalNightC = {
+		ZoneName = { BZ["Cathedral of Eternal Night"]..L["MapC"] };
+		Module = "Atlas_Legion";
+	};
+	CathedralofEternalNightD = {
+		ZoneName = { BZ["Cathedral of Eternal Night"]..L["MapD"] };
+		Module = "Atlas_Legion";
+	};
 	CourtofStarsA = {
 		ZoneName = { BZ["Court of Stars"]..L["MapA"] };
 		Module = "Atlas_Legion";
@@ -964,6 +980,34 @@ Syntax:
 	};
 	ReturntoKarazhanJ = {
 		ZoneName = { BZ["Return to Karazhan"]..L["MapJ"] };
+		Module = "Atlas_Legion";
+	};
+	TombofSargerasA = {
+		ZoneName = { BZ["Tomb of Sargeras"]..L["MapA"] };
+		Module = "Atlas_Legion";
+	};
+	TombofSargerasB = {
+		ZoneName = { BZ["Tomb of Sargeras"]..L["MapB"] };
+		Module = "Atlas_Legion";
+	};
+	TombofSargerasC= {
+		ZoneName = { BZ["Tomb of Sargeras"]..L["MapC"] };
+		Module = "Atlas_Legion";
+	};
+	TombofSargerasD = {
+		ZoneName = { BZ["Tomb of Sargeras"]..L["MapD"] };
+		Module = "Atlas_Legion";
+	};
+	TombofSargerasE = {
+		ZoneName = { BZ["Tomb of Sargeras"]..L["MapE"] };
+		Module = "Atlas_Legion";
+	};
+	TombofSargerasF = {
+		ZoneName = { BZ["Tomb of Sargeras"]..L["MapF"] };
+		Module = "Atlas_Legion";
+	};
+	TombofSargerasG = {
+		ZoneName = { BZ["Tomb of Sargeras"]..L["MapG"] };
 		Module = "Atlas_Legion";
 	};
 	TheArcway = {

@@ -122,6 +122,7 @@ function Atlas_AtlasLootButton_OnClick(self, button)
 			end
 			if (dataID) then break; end
 		end
+		dataID = dataID or db.selected[2];
 		-- Set sub-category (instance)
 		if (dataID ~= db.selected[2]) then
 			AtlasLoot.GUI.frame.subCatSelect:SetSelected(dataID);
