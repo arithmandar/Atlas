@@ -294,7 +294,7 @@ function Atlas_Search(text)
 		if (data[i][2] ~= nil) then
 			ATLAS_SCROLL_ID[i] = { data[i][2], base.JournalInstanceID or 0, data[i][3] or "", data[i][4] or ""};
 		else
-			ATLAS_SCROLL_ID[i] = { 0, nil, nil };
+			ATLAS_SCROLL_ID[i] = { 0, 0, "", "" };
 		end
 		i = i + 1;
 	end
@@ -333,6 +333,7 @@ function Atlas_ScrollBar_Update()
 						achievementID = tonumber(achievementID);
 						Atlas_AchievementButtonUpdate(button, achievementID);
 					end
+				else
 				end
 				
 				if (ATLAS_SCROLL_ID[lineplusoffset][3] and ATLAS_SCROLL_ID[lineplusoffset][3]~= "") then
@@ -1629,7 +1630,7 @@ function AtlasMap_AddNPCButton()
 
 				local tip_title;
 				for k, v in pairs(AtlasMaps[zoneID]) do
-					if (type(v[2] == "number")) then
+					if (type(v[2]) == "number") then
 						if (v[2] == info_id) then
 							tip_title = v[1];
 							if (v[3] and v[3] == "item") then
