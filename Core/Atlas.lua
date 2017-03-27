@@ -2207,7 +2207,7 @@ function AtlasFrameDropDown_Initialize()
 		end
 
 		local tooltipTitle, tooltipText;
-		if (instanceID) then
+		if (instanceID and EJ_GetInstanceInfo(instanceID)) then
 			instanceID = tonumber(instanceID);
 			EJ_SelectInstance(instanceID);
 			tooltipTitle, tooltipText = EJ_GetInstanceInfo();
