@@ -138,7 +138,6 @@ Atlas_DropDownLayouts = {
 			"ReturntoKarazhanG", 		-- Legion
 			"ReturntoKarazhanH", 		-- Legion
 			"ReturntoKarazhanI", 		-- Legion
-			"ReturntoKarazhanJ", 		-- Legion
 		},
 		[ATLAS_DDL_CONTINENT_KALIMDOR] = {
 			"CavernsOfTimeEnt",		-- Catalysm, Burning Crusade
@@ -576,7 +575,6 @@ Atlas_DropDownLayouts = {
 			"ReturntoKarazhanG", 		-- Legion
 			"ReturntoKarazhanH", 		-- Legion
 			"ReturntoKarazhanI", 		-- Legion
-			"ReturntoKarazhanJ", 		-- Legion
 			"TrialofValorA",
 			"TrialofValorB",
 			"TombofSargerasA",
@@ -676,17 +674,16 @@ Atlas_DropDownLayouts = {
 			"RagefireChasm",
 			"RazorfenDowns",
 			"RazorfenKraul",
+			"ReturntoKarazhanEnt",
 			"ReturntoKarazhanA",
 			"ReturntoKarazhanB",
 			"ReturntoKarazhanC",
 			"ReturntoKarazhanD",
 			"ReturntoKarazhanE",
-			"ReturntoKarazhanEnt",
 			"ReturntoKarazhanF",
 			"ReturntoKarazhanG",
 			"ReturntoKarazhanH",
 			"ReturntoKarazhanI",
-			"ReturntoKarazhanJ",
 			"ScarletHalls",
 			"ScarletMonastery",
 			"ScarletMonasteryEnt",
@@ -1125,7 +1122,6 @@ Atlas_DropDownLayouts = {
 			"ReturntoKarazhanG", 		-- Legion
 			"ReturntoKarazhanH", 		-- Legion
 			"ReturntoKarazhanI", 		-- Legion
-			"ReturntoKarazhanJ", 		-- Legion
 			"VaultoftheWardensA",
 			"VaultoftheWardensB",
 			"VaultoftheWardensC",
@@ -1325,7 +1321,6 @@ Atlas_DropDownLayouts = {
 			"ReturntoKarazhanG", 		-- Legion
 			"ReturntoKarazhanH", 		-- Legion
 			"ReturntoKarazhanI", 		-- Legion
-			"ReturntoKarazhanJ", 		-- Legion
 		},
 		[ATLAS_DDL_TYPE_INSTANCE_TZ] = {
 			"Uldaman",			-- Classic WoW

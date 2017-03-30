@@ -24,9 +24,26 @@
 
 --]]
 
+-- ----------------------------------------------------------------------------
+-- Localized Lua globals.
+-- ----------------------------------------------------------------------------
+-- Functions
+local _G = getfenv(0);
+-- Libraries
+local math = _G.math;
+-- ----------------------------------------------------------------------------
+-- AddOn namespace.
+-- ----------------------------------------------------------------------------
+local FOLDER_NAME, private = ...
+local LibStub = _G.LibStub
+local Atlas = LibStub("AceAddon-3.0"):GetAddon("Atlas")
+
+local profile;
+
 local function AtlasOptions_ResetDropdowns()
-	AtlasOptions.AtlasZone = 1;
-	AtlasOptions.AtlasType = 1;
+	profile.options.dropdowns.module = 1;
+	profile.options.dropdowns.zone = 1;
+
 	Atlas_PopulateDropdowns();
 	Atlas_Refresh();
 	AtlasFrameDropDownType_OnShow();
@@ -35,7 +52,7 @@ end
 
 --[[
 function AtlasOptions_Reset()
-	Atlas_FreshOptions();
+	Atlas:FreshOptions();
 	--AtlasOptions_ResetPosition(); --also calls AtlasOptions_Init()
 	AtlasOptions_ResetDropdowns(); --also calls Atlas_Refresh()
 	AtlasButton_Init();
@@ -54,8 +71,8 @@ function AtlasOptions_Toggle()
 end
 
 function AtlasOptions_ToggleWorldMapButton()
-	AtlasOptions.AtlasWorldMapButtonShown = not AtlasOptions.AtlasWorldMapButtonShown;
-	if (AtlasOptions.AtlasWorldMapButtonShown) then
+	profile.options.worldMapButton = not profile.options.worldMapButton;
+	if (profile.options.worldMapButton) then
 		AtlasToggleFromWorldMap:Show();
 	else
 		AtlasToggleFromWorldMap:Hide();
@@ -63,51 +80,50 @@ function AtlasOptions_ToggleWorldMapButton()
 end
 
 function AtlasOptions_ToggleAutoSelect()
-	AtlasOptions.AtlasAutoSelect = not AtlasOptions.AtlasAutoSelect;
+	profile.options.autoSelect = not profile.options.autoSelect;
 end
 
 function AtlasOptions_ToggleRightClick()
-	AtlasOptions.AtlasRightClick = not AtlasOptions.AtlasRightClick;
+	profile.options.frames.rightClick = not profile.options.frames.rightClick;
 end
 
 function AtlasOptions_ToggleAcronyms()
-	AtlasOptions.AtlasAcronyms = not AtlasOptions.AtlasAcronyms;
+	profile.options.frames.showAcronyms = not profile.options.frames.showAcronyms;
 	Atlas_Refresh();
 end
 
 function AtlasOptions_ToggleClamped()
-	AtlasOptions.AtlasClamped = not AtlasOptions.AtlasClamped;
-	AtlasFrame:SetClampedToScreen(AtlasOptions.AtlasClamped);
+	profile.options.frames.clamp = not profile.options.frames.clamp;
+	AtlasFrame:SetClampedToScreen(profile.options.frames.clamp);
 	Atlas_Refresh();
 end
 
 function AtlasOptions_ToggleCtrl()
-	AtlasOptions.AtlasCtrl = not AtlasOptions.AtlasCtrl;
+	profile.options.frames.controlClick = not profile.options.frames.controlClick;
 	Atlas_Refresh();
 end
 
 function AtlasOptions_ToggleLock()
-	AtlasOptions.AtlasLocked = not AtlasOptions.AtlasLocked;
+	profile.options.frames.lock = not profile.options.frames.lock;
 	Atlas_UpdateLock();
 	Atlas_Refresh();
 end
 
-function AtlasOptions_ToggleBossDesc()
-	AtlasOptions.AtlasBossDesc = not AtlasOptions.AtlasBossDesc;
+function AtlasOptions_ToggleBossPotrait()
+	profile.options.frames.showBossPotrait = not profile.options.frames.showBossPotrait;
 	Atlas_Refresh();
 end
 
 function AtlasOptions_ToggleCheckModule()
-	AtlasOptions.AtlasCheckModule = not AtlasOptions.AtlasCheckModule;
+	profile.options.checkMissingModules = not profile.options.checkMissingModules;
 	Atlas_Refresh();
 end
 
---[[
 function AtlasOptions_ToggleColoringDropDown()
-	AtlasOptions.AtlasColoringDropDown = not AtlasOptions.AtlasColoringDropDown;
+	profile.options.dropdowns.color = not profile.options.dropdowns.color;
 	Atlas_Refresh();
+	AtlasFrameDropDown_OnShow();
 end
-]]
 
 function AtlasOptions_OnLoad(panel)
 	panel.name = "Atlas";
@@ -119,29 +135,27 @@ function AtlasOptions_OnLoad(panel)
 end
 
 function AtlasOptions_OnShow(self)
-	AtlasOptionsFrameToggleButton:SetChecked(AtlasOptions.AtlasButtonShown);
-	AtlasOptionsFrameToggleWorldMapButton:SetChecked(AtlasOptions.AtlasWorldMapButtonShown);
-	AtlasOptionsFrameAutoSelect:SetChecked(AtlasOptions.AtlasAutoSelect);
-	AtlasOptionsFrameRightClick:SetChecked(AtlasOptions.AtlasRightClick);
-	AtlasOptionsFrameAcronyms:SetChecked(AtlasOptions.AtlasAcronyms);
-	AtlasOptionsFrameClamped:SetChecked(AtlasOptions.AtlasClamped);
-	AtlasOptionsFrameCtrl:SetChecked(AtlasOptions.AtlasCtrl);
-	AtlasOptionsFrameLock:SetChecked(AtlasOptions.AtlasLocked);
-	AtlasOptionsFrameBossDesc:SetChecked(AtlasOptions.AtlasBossDesc);
-	AtlasOptionsFrameCheckModule:SetChecked(AtlasOptions.AtlasCheckModule);
-	AtlasOptionsFrameColoringDropdown:SetChecked(AtlasOptions.AtlasColoringDropDown);
+	profile = Atlas.db.profile;
+	local options = profile.options;
+
+	AtlasOptionsFrameToggleButton:SetChecked(not profile.minimap.hide);
+	AtlasOptionsFrameToggleWorldMapButton:SetChecked(options.worldMapButton);
+	AtlasOptionsFrameAutoSelect:SetChecked(options.autoSelect);
+	AtlasOptionsFrameRightClick:SetChecked(options.frames.rightClick);
+	AtlasOptionsFrameAcronyms:SetChecked(options.frames.showAcronyms);
+	AtlasOptionsFrameClamped:SetChecked(options.frames.clamp);
+	AtlasOptionsFrameCtrl:SetChecked(options.frames.controlClick);
+	AtlasOptionsFrameLock:SetChecked(options.frames.lock);
+	AtlasOptionsFrameBossPotrait:SetChecked(options.frames.showBossPotrait);
+	AtlasOptionsFrameCheckModule:SetChecked(options.checkMissingModules);
+	AtlasOptionsFrameColoringDropdown:SetChecked(options.dropdowns.color);
 --	AtlasOptionsFrameSliderButtonPos:SetValue(AtlasOptions.AtlasButtonPosition);
 --	AtlasOptionsFrameSliderButtonRad:SetValue(AtlasOptions.AtlasButtonRadius);
-	AtlasOptionsFrameSliderAlpha:SetValue(AtlasOptions.AtlasAlpha);
-	AtlasOptionsFrameSliderScale:SetValue(AtlasOptions.AtlasScale);
-	AtlasOptionsFrameSliderBossDescScale:SetValue(AtlasOptions.AtlasBossDescScale);
-	--[[
-	if (not AtlasOptions["AtlasBossDesc"]) then
-		AtlasOptionsFrameSliderBossDescScale:Hide();
-	end
-	]]
+	AtlasOptionsFrameSliderAlpha:SetValue(options.frames.alpha);
+	AtlasOptionsFrameSliderScale:SetValue(options.frames.scale);
+	AtlasOptionsFrameSliderBossDescScale:SetValue(options.frames.boss_description_scale);
 	Lib_UIDropDownMenu_Initialize(AtlasOptionsFrameDropDownCats, AtlasOptionsFrameDropDownCats_Initialize);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasOptionsFrameDropDownCats, AtlasOptions.AtlasSortBy);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasOptionsFrameDropDownCats, options.dropdowns.menuType);
 	Lib_UIDropDownMenu_SetWidth(AtlasOptionsFrameDropDownCats, 160);
 end
 
@@ -167,7 +181,7 @@ function AtlasOptionsFrameDropDownCats_Initialize()
 		info.text = Atlas_DropDownLayouts_Order[i];
 		info.func = AtlasOptionsFrameDropDownCats_OnClick;
 		info.arg1 = i;
-		if (AtlasOptions.AtlasSortBy == i) then
+		if (profile.options.dropdowns.menuType == i) then
 			info.checked = true;
 		else
 			info.checked = nil;
@@ -179,7 +193,7 @@ end
 function AtlasOptionsFrameDropDownCats_OnClick(self)
 	local thisID = self:GetID();
 	Lib_UIDropDownMenu_SetSelectedID(AtlasOptionsFrameDropDownCats, thisID);
-	AtlasOptions.AtlasSortBy = thisID;
+	profile.options.dropdowns.menuType = thisID;
 	AtlasOptions_ResetDropdowns();
 end
 

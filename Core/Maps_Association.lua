@@ -814,7 +814,7 @@ Atlas_EntToInstMatches = {
 	["GnomereganEnt"] =			{"Gnomeregan"};
 	["HellfireCitadelEnt"] = 		{"HCBloodFurnace", "HCHellfireRamparts", "HCMagtheridonsLair", "HCTheShatteredHalls"};
 	["IcecrownEnt"] =			{"FHHallsOfReflection", "FHPitOfSaron", "FHTheForgeOfSouls", "IcecrownCitadelA", "IcecrownCitadelB", "IcecrownCitadelC"};
-	["KarazhanEnt"] =			{"KarazhanStart","KarazhanEnd","ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ"};
+	["KarazhanEnt"] =			{"KarazhanStart","KarazhanEnd","ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI"};
 	["MaraudonEnt"] =			{"Maraudon"};
 	["ScarletMonasteryEnt"] =		{"ScarletHalls","ScarletMonastery"};
 	["TempestKeepEnt"] = 			{"TempestKeepArcatraz", "TempestKeepBotanica", "TempestKeepMechanar", "TempestKeepTheEye"};
@@ -826,7 +826,7 @@ Atlas_EntToInstMatches = {
 	-- Legion
 	["TheArcwayEnt"] = 			{"TheArcway"};
  	["TheNightholdEnt"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF"--[[, "TheNightholdG" ]] };
-	["ReturntoKarazhanEnt"] =		{"KarazhanStart","KarazhanEnd","ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ"};
+	["ReturntoKarazhanEnt"] =		{"KarazhanStart","KarazhanEnd","ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI"};
 };
 
 -- Instance maps to entrance maps
@@ -910,7 +910,6 @@ Atlas_InstToEntMatches = {
 	["ReturntoKarazhanG"] = 		{"ReturntoKarazhanEnt"};
 	["ReturntoKarazhanH"] = 		{"ReturntoKarazhanEnt"};
 	["ReturntoKarazhanI"] = 		{"ReturntoKarazhanEnt"};
-	["ReturntoKarazhanJ"] = 		{"ReturntoKarazhanEnt"};
 };
 
 -- Defines the instance which have multiple maps
@@ -974,16 +973,15 @@ Atlas_MapSeries = {
 	["VaultoftheWardensA"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
 	["VaultoftheWardensB"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
 	["VaultoftheWardensC"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
-	["ReturntoKarazhanA"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ" };
-	["ReturntoKarazhanB"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ" };
-	["ReturntoKarazhanC"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ" };
-	["ReturntoKarazhanD"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ" };
-	["ReturntoKarazhanE"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ" };
-	["ReturntoKarazhanF"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ" };
-	["ReturntoKarazhanG"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ" };
-	["ReturntoKarazhanH"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ" };
-	["ReturntoKarazhanI"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ" };
-	["ReturntoKarazhanJ"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI", "ReturntoKarazhanJ" };
+	["ReturntoKarazhanA"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI" };
+	["ReturntoKarazhanB"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI" };
+	["ReturntoKarazhanC"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI" };
+	["ReturntoKarazhanD"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI" };
+	["ReturntoKarazhanE"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI" };
+	["ReturntoKarazhanF"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI" };
+	["ReturntoKarazhanG"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI" };
+	["ReturntoKarazhanH"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI" };
+	["ReturntoKarazhanI"] = 		{"ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI" };
 	["CathedralofEternalNightA"] = 		{"CathedralofEternalNightA", "CathedralofEternalNightB", "CathedralofEternalNightC", "CathedralofEternalNightD" };
 	["CathedralofEternalNightB"] = 		{"CathedralofEternalNightA", "CathedralofEternalNightB", "CathedralofEternalNightC", "CathedralofEternalNightD" };
 	["CathedralofEternalNightC"] = 		{"CathedralofEternalNightA", "CathedralofEternalNightB", "CathedralofEternalNightC", "CathedralofEternalNightD" };
@@ -1088,7 +1086,6 @@ Atlas_SubZoneAssoc = {
 	["ReturntoKarazhanG"] = 		BZ["Return to Karazhan"];
 	["ReturntoKarazhanH"] = 		BZ["Return to Karazhan"];
 	["ReturntoKarazhanI"] = 		BZ["Return to Karazhan"];
-	["ReturntoKarazhanJ"] = 		BZ["Return to Karazhan"];
 	["CathedralofEternalNightA"] = 		BZ["Cathedral of Eternal Night"];
 	["CathedralofEternalNightB"] = 		BZ["Cathedral of Eternal Night"];
 	["CathedralofEternalNightC"] = 		BZ["Cathedral of Eternal Night"];

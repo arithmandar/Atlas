@@ -26,6 +26,7 @@
 
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
+	<Script file="EJLoot.lua"/>
 
 	<!-- Tiled textures size=64,512-->
 	<Texture name="_FilterButtonUp-Mid" file="Interface\EncounterJournal\UI-EncounterJournalTextures_Tile" virtual="true" horizTile="true" >
@@ -212,6 +213,15 @@
 					</Anchors>
 					<Color r="0.25" g="0.1484375" b=".02" a="1"/>
 				</FontString>
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="1">
+				<Texture parentKey="IconBorder" file="Interface\Common\WhiteIconFrame" hidden="true">
+					<Size x="37" y="37"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.icon"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.icon"/>
+					</Anchors>
+				</Texture>
 			</Layer>
 		</Layers>
 		<Scripts>
@@ -407,8 +417,11 @@
 				-- HybridScrollFrame_CreateButtons(self.lootScroll, "AtlasEncounterItemTemplate", 0, 0);
 			</OnLoad>
 			<OnShow>
-				Atlas_EncounterJournal_OnShow();
+				Atlas_EncounterJournal_OnShow(self);
 			</OnShow>
+			<OnLeave>
+				Atlas_EncounterJournal_OnLeave(self);
+			</OnLeave>
 			<OnEvent function="Atlas_EncounterJournal_OnEvent"/>
 		</Scripts>
 	</Frame>

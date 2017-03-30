@@ -32,11 +32,13 @@ local _G = getfenv(0);
 -- Libraries
 local bit = _G.bit;
 
-local LibStub = _G.LibStub
-local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
+-- ----------------------------------------------------------------------------
+-- AddOn namespace.
+-- ----------------------------------------------------------------------------
 
 local FOLDER_NAME, private = ...
-private.addon_name = "Atlas"
+local LibStub = _G.LibStub
+local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 
 function Atlas_AchievementButtonUpdate(button, achievementID)
 	button.achievementID = achievementID;

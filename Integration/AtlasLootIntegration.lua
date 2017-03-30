@@ -29,14 +29,17 @@
 -- ----------------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0);
+local pairs = _G.pairs;
+local select = _G.select;
+local type = _G.type;
 -- Libraries
-local bit = _G.bit;
+-- ----------------------------------------------------------------------------
+-- AddOn namespace.
+-- ----------------------------------------------------------------------------
+local FOLDER_NAME, private = ...
 
 local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
-
-local FOLDER_NAME, private = ...
-private.addon_name = "Atlas"
 
 -- Atlas to AtlasLoot's module mapping
 local modules = {

@@ -24,15 +24,25 @@
 
 --]]
 
-
-local AL = LibStub("AceLocale-3.0"):GetLocale("Atlas");
+--[[
+-- ----------------------------------------------------------------------------
+-- Localized Lua globals.
+-- ----------------------------------------------------------------------------
+-- Functions
+local _G = getfenv(0);
+-- Libraries
+-- ----------------------------------------------------------------------------
+-- AddOn namespace.
+-- ----------------------------------------------------------------------------
+local FOLDER_NAME, private = ...
+local LibStub = _G.LibStub
+local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
+local addon = LibStub("AceAddon-3.0"):GetAddon("Atlas")
 
 -- Minimap button with LibDBIcon-1.0
---local addon = LibStub("AceAddon-3.0"):NewAddon("Atlas", "AceConsole-3.0")
-local addon = LibStub("AceAddon-3.0"):GetAddon("Atlas")
 local AtlasMiniMapLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Atlas", {
 	type = "launcher",
-	text = AL["ATLAS_TITLE"],
+	text = L["ATLAS_TITLE"],
 	icon = "Interface\\WorldMap\\WorldMap-Icon",
 	OnClick = function(self, button)
 		if button == "LeftButton" then
@@ -48,11 +58,9 @@ local AtlasMiniMapLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Atlas", {
 	end,
 })
 
-
 local AtlasMiniMapIcon = LibStub("LibDBIcon-1.0")
 
 function addon:OnInitialize()
-	-- Obviously you'll need a ##SavedVariables: BunniesDB line in your TOC, duh!
 	self.db = LibStub("AceDB-3.0"):New("AtlasDB", {
 		profile = {
 			minimap = {
@@ -81,4 +89,4 @@ function AtlasButton_Toggle()
 	addon:Toggle()
 end
 
-
+]]

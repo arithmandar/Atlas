@@ -28,6 +28,17 @@
 -- AtlasEJLootFrame.lootScroll to replace EncounterJournal.encounter.info.lootScroll
 -- ////////////////////////////////////////////////////////////////////////////////////////
 
+-- ----------------------------------------------------------------------------
+-- Localized Lua globals.
+-- ----------------------------------------------------------------------------
+-- Functions
+local _G = getfenv(0);
+-- Libraries
+-- ----------------------------------------------------------------------------
+-- AddOn namespace.
+-- ----------------------------------------------------------------------------
+local FOLDER_NAME, private = ...
+
 local NO_INV_TYPE_FILTER = 0;
 
 local ATLAS_EJ_DIFFICULTIES = 
@@ -71,13 +82,16 @@ local INSTANCE_LOOT_BUTTON_HEIGHT = 64;
 function Atlas_EncounterJournal_DisplayLoot(instanceID, encounterId)
 	AtlasEJLootFrame.instanceID = instanceID;
 	AtlasEJLootFrame.encounterID = encounterId;
+--	EncounterJournal.instanceID = instanceID;
+--	EncounterJournal.encounterID = encounterId;
+--	EJ_SelectInstance(instanceID);
 	AtlasEJLootFrame:Show();
 end
 
 function Atlas_EncounterJournal_OnLoad(self)
 --	EncounterJournalTitleText:SetText(ADVENTURE_JOURNAL);
 --	SetPortraitToTexture(EncounterJournalPortrait,"Interface\\EncounterJournal\\UI-EJ-PortraitIcon");
---	self:RegisterEvent("EJ_LOOT_DATA_RECIEVED");
+	self:RegisterEvent("EJ_LOOT_DATA_RECIEVED");
 	self:RegisterEvent("EJ_DIFFICULTY_UPDATE");
 --	self:RegisterEvent("UNIT_PORTRAIT_UPDATE");
 --	self:RegisterEvent("SEARCH_DB_LOADED");
@@ -144,6 +158,10 @@ function Atlas_EncounterJournal_OnLoad(self)
 
 	-- set the suggestion panel frame to open by default
 --	EJSuggestFrame_OpenFrame();
+end
+
+function Atlas_EncounterJournal_OnLeave(self)
+	self:UnregisterEvent("EJ_LOOT_DATA_RECIEVED");
 end
 
 function Atlas_EncounterJournal_HasChangedContext(instanceID, instanceType, difficultyID)
@@ -225,10 +243,10 @@ function Atlas_EncounterJournal_OnShow(self)
 end
 
 function Atlas_EncounterJournal_OnEvent(self, event, ...)
---	if  event == "EJ_LOOT_DATA_RECIEVED" then
---		local itemID = ...
---		if itemID and not EJ_IsLootListOutOfDate() then
---			Atlas_EncounterJournal_LootCallback(itemID);
+	if  event == "EJ_LOOT_DATA_RECIEVED" then
+		local itemID = ...
+		if itemID and not EJ_IsLootListOutOfDate() then
+			Atlas_EncounterJournal_LootCallback(itemID);
 --[[
 			if EncounterJournal.searchResults:IsShown() then
 				EncounterJournal_SearchUpdate();
@@ -238,9 +256,9 @@ function Atlas_EncounterJournal_OnEvent(self, event, ...)
 ]]
 --		else
 --			Atlas_EncounterJournal_LootUpdate();
---		end
---	elseif event == "EJ_DIFFICULTY_UPDATE" then
-	if event == "EJ_DIFFICULTY_UPDATE" then
+		end
+	elseif event == "EJ_DIFFICULTY_UPDATE" then
+--	if event == "EJ_DIFFICULTY_UPDATE" then
 		--fix the difficulty buttons
 		Atlas_EncounterJournal_UpdateDifficulty(...);
 --[[
@@ -286,6 +304,10 @@ function Atlas_EncounterJournal_SetLootButton(item)
 		elseif ( numEncounters > 2 ) then
 			item.boss:SetFormattedText(BOSS_INFO_STRING_MANY, EJ_GetEncounterInfo(encounterID));
 		end
+
+		local itemName, _, quality = GetItemInfo(link);
+		SetItemButtonQuality(item, quality, itemID);
+
 	else
 		item.name:SetText(RETRIEVING_ITEM_INFO);
 		item.icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark");
@@ -312,7 +334,7 @@ function Atlas_EncounterJournal_LootCallback(itemID)
 	end
 end
 
-function Atlas_EncounterJournal_LootUpdate(self)
+function Atlas_EncounterJournal_LootUpdate()
 	Atlas_EncounterJournal_UpdateFilterString();
 	local scrollFrame = AtlasEJLootFrame.lootScroll;
 	local offset = HybridScrollFrame_GetOffset(scrollFrame);

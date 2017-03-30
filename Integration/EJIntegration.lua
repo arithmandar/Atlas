@@ -25,97 +25,21 @@
 --]]
 
 -- Atlas JournalEncounter Integration
-
+-- ----------------------------------------------------------------------------
+-- Localized Lua globals.
+-- ----------------------------------------------------------------------------
+-- Functions
+local _G = getfenv(0);
+local pairs = _G.pairs;
+local select = _G.select;
+-- Libraries
+-- ----------------------------------------------------------------------------
+-- AddOn namespace.
+-- ----------------------------------------------------------------------------
+local FOLDER_NAME, private = ...
+local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0");
-
-function Atlas_AdventureJournalButton_OnClick(frame)
-	local instanceID = frame.instanceID;
-	local disabled = not C_AdventureJournal.CanBeShown();
-	if (disabled) then return; end
-	
-	if (not instanceID) then
-		return;
-	end
-
-	if (not EJ_GetInstanceInfo(instanceID)) then
-		return;
-	end
-
-	if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
-		ToggleEncounterJournal();
-	end
-	-- EncounterJournal_ListInstances();
-	NavBar_Reset(EncounterJournal.navBar);
-	EncounterJournal_DisplayInstance(instanceID);
-
-	Atlas_Toggle();
-	if (not EncounterJournal:IsShown()) then
-		EncounterJournal:Show();
-	else
-		EncounterJournal:Hide();
-		EncounterJournal:Show();
-	end
-end
-
-function Atlas_AdventureJournal_EncounterButton_OnClick(instanceID, encounterID, keepAtlas)
-	if (not instanceID or not encounterID) then return; end
-	
-	local disabled = not C_AdventureJournal.CanBeShown();
-	if (disabled) then return; end
-
-	if (not EJ_GetInstanceInfo(instanceID)) then
-		return;
-	end
-	if (not EJ_GetEncounterInfo(encounterID)) then
-		return;
-	end
-
-	if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
-		ToggleEncounterJournal();
-	end
-	-- EncounterJournal_ListInstances();
-	NavBar_Reset(EncounterJournal.navBar);
-	EncounterJournal_DisplayInstance(instanceID);
-	EncounterJournal_DisplayEncounter(encounterID);
-
-	if (not keepAtlas) then
-		Atlas_Toggle();
-	end
-	if (not EncounterJournal:IsShown()) then
-		EncounterJournal:Show();
-	else
-		EncounterJournal:Hide();
-		EncounterJournal:Show();
-	end
-end
-
-function AtlasFrameAdventureJournalButton_OnEnter(frame)
-	local instanceID = frame.instanceID;
-	if (not instanceID) then return; end
-
-	if (MouseIsOver(frame)) then
-		if (EJ_GetInstanceInfo(instanceID)) then
-			EJ_SelectInstance(instanceID);
-
-			local name, description = EJ_GetInstanceInfo();
-			local disabled = not C_AdventureJournal.CanBeShown();
-
-			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT");
-			GameTooltip:SetText(name);
-			GameTooltipTextLeft1:SetTextColor(1, 1, 1);
-			GameTooltip:AddLine(description, nil, nil, nil, true);
-			if (disabled) then
-				GameTooltip:AddLine(FEATURE_NOT_YET_AVAILABLE, 0.7, 0, 0, true);
-			else
-				GameTooltip:AddLine(L["ATLAS_OPEN_ADVENTURE"], 0.5, 0.5, 1, true);
-			end
-			GameTooltip:Show();
-		end
-	else
-		GameTooltip:Hide();
-	end
-end
 
 -- ------------------------------------------------------------
 -- Call this function to translate boss name
@@ -158,7 +82,95 @@ function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 	return bossname;
 end
 
-function AtlasFrameAdventureJournalMapButton_OnClick(frame)
+function Atlas_AdventureJournalButton_OnClick(frame)
+	local instanceID = frame.instanceID;
+	local disabled = not C_AdventureJournal.CanBeShown();
+	if (disabled) then return; end
+	
+	if (not instanceID) then
+		return;
+	end
+
+	if (not EJ_GetInstanceInfo(instanceID)) then
+		return;
+	end
+
+	if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
+		ToggleEncounterJournal();
+	end
+	-- EncounterJournal_ListInstances();
+	NavBar_Reset(EncounterJournal.navBar);
+	EncounterJournal_DisplayInstance(instanceID);
+
+	Atlas_Toggle();
+	if (not EncounterJournal:IsShown()) then
+		EncounterJournal:Show();
+	else
+		EncounterJournal:Hide();
+		EncounterJournal:Show();
+	end
+end
+
+function Atlas_AdventureJournalButton_OnEnter(frame)
+	local instanceID = frame.instanceID;
+	if (not instanceID) then return; end
+
+	if (MouseIsOver(frame)) then
+		if (EJ_GetInstanceInfo(instanceID)) then
+			EJ_SelectInstance(instanceID);
+
+			local name, description = EJ_GetInstanceInfo();
+			local disabled = not C_AdventureJournal.CanBeShown();
+
+			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT");
+			GameTooltip:SetText(name);
+			GameTooltipTextLeft1:SetTextColor(1, 1, 1);
+			GameTooltip:AddLine(description, nil, nil, nil, true);
+			if (disabled) then
+				GameTooltip:AddLine(FEATURE_NOT_YET_AVAILABLE, 0.7, 0, 0, true);
+			else
+				GameTooltip:AddLine(L["ATLAS_OPEN_ADVENTURE"], 0.5, 0.5, 1, true);
+			end
+			GameTooltip:Show();
+		end
+	else
+		GameTooltip:Hide();
+	end
+end
+
+function Atlas_AdventureJournal_EncounterButton_OnClick(instanceID, encounterID, keepAtlas)
+	if (not instanceID or not encounterID) then return; end
+	
+	local disabled = not C_AdventureJournal.CanBeShown();
+	if (disabled) then return; end
+
+	if (not EJ_GetInstanceInfo(instanceID)) then
+		return;
+	end
+	if (not EJ_GetEncounterInfo(encounterID)) then
+		return;
+	end
+
+	if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
+		ToggleEncounterJournal();
+	end
+	-- EncounterJournal_ListInstances();
+	NavBar_Reset(EncounterJournal.navBar);
+	EncounterJournal_DisplayInstance(instanceID);
+	EncounterJournal_DisplayEncounter(encounterID);
+
+	if (not keepAtlas) then
+		Atlas_Toggle();
+	end
+	if (not EncounterJournal:IsShown()) then
+		EncounterJournal:Show();
+	else
+		EncounterJournal:Hide();
+		EncounterJournal:Show();
+	end
+end
+
+function Atlas_AdventureJournal_MapButton_OnClick(frame)
 	local mapID = frame.mapID;
 	local dungeonLevel = frame.dungeonLevel;
 
@@ -178,13 +190,14 @@ function AtlasFrameAdventureJournalMapButton_OnClick(frame)
 	end
 end
 
-local function AtlasToggleFromEncounterJournal_OnClick(self)
+-- Encounter Journal's button bidding
+local function Atlas_ToggleFromEncounterJournal_OnClick(self)
 	Atlas_AutoSelect_from_EncounterJournal();
 	ToggleFrame(EncounterJournal);
 	Atlas_Toggle();
 end
 
-local function AtlasToggleFromEncounterJournal_OnShow(self)
+local function Atlas_ToggleFromEncounterJournal_OnShow(self)
 	local ElvUI = select(4, GetAddOnInfo("ElvUI"));
 
 	if (not ElvUI) then return; end
@@ -230,12 +243,28 @@ function Atlas_EncounterJournal_Binding()
 			GameTooltip:SetText(L["ATLAS_CLICK_TO_OPEN"], nil, nil, nil, nil, 1);
 		end);
 		button:SetScript("OnLeave", function(self) GameTooltip:Hide(); end);
-		button:SetScript("OnClick",AtlasToggleFromEncounterJournal_OnClick);
-		button:SetScript("OnShow",AtlasToggleFromEncounterJournal_OnShow);
+		button:SetScript("OnClick",Atlas_ToggleFromEncounterJournal_OnClick);
+		button:SetScript("OnShow",Atlas_ToggleFromEncounterJournal_OnShow);
 	end
 end
 
-function AtlasFrameLarge_OnShow(self)
-	AtlasMap_AddNPCButtonLarge();
+function Atlas_AutoSelect_from_EncounterJournal()
+	local instanceID = EncounterJournal.instanceID;
+	
+	if (not instanceID) then
+		return;
+	end
+
+	for type_k, type_v in pairs(ATLAS_DROPDOWNS) do
+		for zone_k, zone_v in pairs(type_v) do
+			if (AtlasMaps[zone_v].JournalInstanceID and tonumber(AtlasMaps[zone_v].JournalInstanceID) == instanceID) then
+				Atlas.db.profile.options.dropdowns.module = type_k;
+				Atlas.db.profile.options.dropdowns.zone = zone_k;
+				Atlas_Refresh();
+				return;
+			end
+		end
+	end
 end
+-- End of Encounter Journal's button bidding
 

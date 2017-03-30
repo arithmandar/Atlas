@@ -26,7 +26,7 @@
 
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
-	<Script file="AtlasOptions.lua"/>
+	<Script file="Options.lua"/>
 	<Frame name="AtlasOptionsFrame" hidden="true">
 		<Layers>
 			<Layer level="ARTWORK">
@@ -227,7 +227,8 @@
 					</OnLeave>
 				</Scripts>
 			</CheckButton>
-			<CheckButton name="$parentBossDesc" inherits="InterfaceOptionsSmallCheckButtonTemplate">
+<!-- temporary disable -->
+			<CheckButton name="$parentBossPotrait" inherits="InterfaceOptionsSmallCheckButtonTemplate" hide="true">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentLock">>
 						<Offset>
@@ -237,23 +238,20 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(ATLAS_OPTIONS_BOSS_DESC);
+						_G[self:GetName().."Text"]:SetText(ATLAS_OPTIONS_BOSS_POTRAIT);
 					</OnLoad>
 					<OnClick>
-						AtlasOptions_ToggleBossDesc();
+						AtlasOptions_ToggleBossPotrait();
 					</OnClick>
-					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
-						GameTooltip:SetText(ATLAS_OPTIONS_BOSS_DESC_TIP, nil, nil, nil, nil, 1);
-					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide();
 					</OnLeave>
 				</Scripts>
 			</CheckButton>
+
 			<CheckButton name="$parentCheckModule" inherits="InterfaceOptionsSmallCheckButtonTemplate">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parentBossDesc">>
+					<Anchor point="TOPLEFT" relativeTo="$parentBossPotrait">>
 						<Offset>
 							<AbsDimension x="0" y="-20"/>
 						</Offset>
@@ -288,13 +286,7 @@
 						_G[self:GetName().."Text"]:SetText(ATLAS_OPTIONS_COLORINGDROPDOWN);
 					</OnLoad>
 					<OnClick>
-						if (AtlasOptions.AtlasColoringDropDown) then
-							AtlasOptions.AtlasColoringDropDown = false;
-						else
-							AtlasOptions.AtlasColoringDropDown = true;
-						end
-						Atlas_Refresh();
-						AtlasFrameDropDown_OnShow();
+						AtlasOptions_ToggleColoringDropDown();
 					</OnClick>
 					<OnEnter>
 						GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
@@ -347,7 +339,7 @@
 					</OnLoad>
 					<OnValueChanged>
 						AtlasOptions_UpdateSlider(self, ATLAS_OPTIONS_TRANS);
-						AtlasOptions.AtlasAlpha = self:GetValue();
+						Atlas.db.profile.options.frames.alpha = self:GetValue();
 						Atlas_UpdateAlpha();
 					</OnValueChanged>
 					<OnMouseWheel>
@@ -375,7 +367,7 @@
 					</OnLoad>
 					<OnValueChanged>
 						AtlasOptions_UpdateSlider(self, ATLAS_OPTIONS_SCALE);
-						AtlasOptions.AtlasScale = self:GetValue();
+						Atlas.db.profile.options.frames.scale = self:GetValue();
 						Atlas_UpdateScale();
 					</OnValueChanged>
 					<OnMouseWheel>
@@ -403,7 +395,7 @@
 					</OnLoad>
 					<OnValueChanged>
 						AtlasOptions_UpdateSlider(self, ATLAS_OPTIONS_BOSS_DESC_SCALE);
-						AtlasOptions.AtlasBossDescScale = self:GetValue();
+						Atlas.db.profile.options.frames.boss_description_scale = self:GetValue();
 					</OnValueChanged>
 					<OnMouseWheel>
 						AtlasOptions_OnMouseWheel(self, delta)
