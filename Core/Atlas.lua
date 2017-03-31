@@ -77,54 +77,7 @@ function Atlas:OnInitialize()
 end
 
 function Atlas:OnEnable()
-	-- Make the Atlas window go all the way to the edge of the screen, exactly
-	AtlasFrame:SetClampRectInsets(12, 0, -12, 0);
-	AtlasFrameLarge:SetClampRectInsets(12, 0, -12, 0);
-	AtlasFrameSmall:SetClampRectInsets(12, 0, -12, 0);
 
-	-- Populate the dropdown lists...yeeeah this is so much nicer!
-	Atlas_PopulateDropdowns();
-	
-	if (not ATLAS_DROPDOWNS[profile.options.dropdowns.module]) then
-		ATLAS_OLD_TYPE = profile.options.dropdowns.module;
-		ATLAS_OLD_ZONE = profile.options.dropdowns.zone;
-		profile.options.dropdowns.module = 1;
-		profile.options.dropdowns.zone = 1;
-	end
-	-- Now that saved variables have been loaded, update everything accordingly
-	Atlas_Refresh();
-	Atlas_UpdateLock();
-	Atlas_UpdateAlpha();
-	AtlasFrame:SetClampedToScreen(profile.options.frames.clamp);
-	AtlasFrameLarge:SetClampedToScreen(profile.options.frames.clamp);
-	AtlasFrameSmall:SetClampedToScreen(profile.options.frames.clamp);
-	--AtlasButton_UpdatePosition();
-	--AtlasOptions_Init();
-	
-	-- Make an LDB object
-	LDB.OnClick = function(self, button)
-		if button == "LeftButton" then
-			Atlas_Toggle();
-		elseif button == "RightButton" then
-			AtlasOptions_Toggle();
-		end
-	end;
-	LDB.OnTooltipShow = function(tooltip)
-		if not tooltip or not tooltip.AddLine then return end
-		tooltip:AddLine("|cffffffff"..ATLAS_TITLE)
-		tooltip:AddLine(ATLAS_LDB_HINT)
-	end;
-	
-	Atlas_Check_Modules();
-	if (AtlasOptions["AtlasDontShowInfo_12201"]) then
-		Atlas_ShowInfo();
-	end
-
-	if (profile.options.worldMapButton) then
-		AtlasToggleFromWorldMap:Show();
-	else
-		AtlasToggleFromWorldMap:Hide();
-	end
 end
 
 function Atlas:Toggle()
@@ -601,9 +554,9 @@ function Atlas_OnEvent(self, event, ...)
 		end
 	end
 
---[[	if (event == "ADDON_LOADED" and arg1 == "Atlas") then
+	if (event == "ADDON_LOADED" and arg1 == "Atlas") then
 		Atlas:Init();
-	end]]
+	end
 	
 end
 
@@ -683,7 +636,7 @@ end
 
 -- Initializes everything relating to saved variables and data in other lua files
 -- This should be called ONLY when we're sure our variables are in memory
---[[function Atlas:Init() -- move to Atlas:OnEnable()
+function Atlas:Init() 
 	-- Make the Atlas window go all the way to the edge of the screen, exactly
 	AtlasFrame:SetClampRectInsets(12, 0, -12, 0);
 	AtlasFrameLarge:SetClampRectInsets(12, 0, -12, 0);
@@ -736,7 +689,7 @@ end
 		AtlasToggleFromWorldMap:Hide();
 	end
 end
-]]
+
 
 -- Parses slash commands
 -- If an un-recognized command is given, toggle Atlas

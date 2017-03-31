@@ -228,7 +228,7 @@
 				</Scripts>
 			</CheckButton>
 <!-- temporary disable -->
-			<CheckButton name="$parentBossPotrait" inherits="InterfaceOptionsSmallCheckButtonTemplate" hide="true">
+			<CheckButton name="$parentBossPotrait" inherits="InterfaceOptionsSmallCheckButtonTemplate" hidden="true">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentLock">>
 						<Offset>

@@ -232,6 +232,6 @@ constants.deprecatedList = {
 	{ "Atlas_Arena", 		"1.06.00" },
 	{ "Atlas_WorldEvents", 		"3.15" },
 	{ "AtlasLoot", 			"v8.02.24" },
-	{ "AtlasMajorCitiesEnhanced", 	"1.12" }, 	
+	{ "AtlasMajorCitiesEnhanced", 	"v1.13" }, 	
 	--{ "AtlasWorld", 		"3.3.5.25" }, 	-- updated July 14, 2010 -- comment out because this plugin is no longer maintained
 };
