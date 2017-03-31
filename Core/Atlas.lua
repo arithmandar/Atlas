@@ -128,6 +128,7 @@ end
 local function copyOptions()
 	local options = profile.options;
 	
+	if not AtlasOptions then return; end
 	options.autoSelect = AtlasOptions.AtlasAutoSelect;
 
 	options.frames.alpha = AtlasOptions.AtlasAlpha;
@@ -164,8 +165,10 @@ function Atlas:SetupOptions()
 	--	Atlas:FreshOptions();
 	--end
 	
-	if (profile.options_copied == false) then
+	if (AtlasOptions and profile.options_copied == false) then
 		copyOptions();
+		profile.options_copied = true;
+	else
 		profile.options_copied = true;
 	end
 end
@@ -679,10 +682,10 @@ function Atlas:Init()
 	end;
 	
 	Atlas_Check_Modules();
-	if (AtlasOptions["AtlasDontShowInfo_12201"]) then
+--[[	if (AtlasOptions["AtlasDontShowInfo_12201"]) then
 		Atlas_ShowInfo();
 	end
-
+]]
 	if (profile.options.worldMapButton) then
 		AtlasToggleFromWorldMap:Show();
 	else

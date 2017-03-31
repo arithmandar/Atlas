@@ -15,8 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.40.01 (Apr. xx, 2017)
+v1.40.01 (Apr. 01, 2017)
 ------------------------
+- Fixed the copyOption will through error for the new user who has no old AtlasOptions DB.
+- Disable AtlasDontShowInfo_12201 as there is no reason to show this one anymore.
 
 v1.40.00 (Mar. 31, 2017)
 ------------------------
