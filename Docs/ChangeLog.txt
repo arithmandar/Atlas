@@ -15,6 +15,9 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.40.01 (Apr. xx, 2017)
+------------------------
+
 v1.40.00 (Mar. 31, 2017)
 ------------------------
 - Re-organized maps of Return to Karazhan
