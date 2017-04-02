@@ -411,7 +411,7 @@
 			<OnEnter>
 				if (self.tooltiptitle) then
 					GameTooltip:SetOwner(self, "ANCHOR_LEFT");
-					GameTooltip:SetBackdropColor(0, 0, 0, 1 * AtlasOptions["AtlasAlpha"]);
+					GameTooltip:SetBackdropColor(0, 0, 0, 1 * Atlas.db.profile.options.frames.alpha);
 					GameTooltip:SetText(self.tooltiptitle, 1, 1, 1, nil, false);
 					GameTooltip:AddLine(self.tooltiptext, nil, nil, nil, true);
 					if (self.overviewDescription) then
@@ -428,7 +428,7 @@
 						end
 						GameTooltip:AddLine(ATLAS_TOGGLE_LOOT, 0.5, 0.5, 1, true);
 					end
-					GameTooltip:SetScale(AtlasOptions["AtlasBossDescScale"] * AtlasOptions["AtlasScale"]);
+					GameTooltip:SetScale(Atlas.db.profile.options.frames.boss_description_scale * Atlas.db.profile.options.frames.scale);
 					GameTooltip:Show();
 				end
 			</OnEnter>
