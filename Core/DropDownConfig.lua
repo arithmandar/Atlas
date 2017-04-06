@@ -318,8 +318,6 @@ Atlas_DropDownLayouts = {
 			"TheNightholdC",
 			"TheNightholdD",
 			"TheNightholdE",
-			"TheNightholdF",
-			"TheNightholdG",
 			"TrialofValorA",
 			"TrialofValorB",
 			"TombofSargerasA",
@@ -563,8 +561,6 @@ Atlas_DropDownLayouts = {
 			"TheNightholdC",
 			"TheNightholdD",
 			"TheNightholdE",
-			"TheNightholdF",
-			"TheNightholdG",
 			"ReturntoKarazhanEnt", 		-- Legion
 			"ReturntoKarazhanA", 		-- Legion
 			"ReturntoKarazhanB", 		-- Legion
@@ -770,14 +766,12 @@ Atlas_DropDownLayouts = {
 			"KarazhanStart",
 			"MoguShanVaults",
 			"Naxxramas",
+			"TheNightholdEnt",
 			"TheNightholdA",
 			"TheNightholdB",
 			"TheNightholdC",
 			"TheNightholdD",
 			"TheNightholdE",
-			"TheNightholdEnt",
-			"TheNightholdF",
-			"TheNightholdG",
 			"ObsidianSanctum",
 			"OnyxiasLair",
 			"RubySanctum",
@@ -859,14 +853,12 @@ Atlas_DropDownLayouts = {
 			"MoguShanVaults",
 			"MoltenCore",
 			"Naxxramas",
+			"TheNightholdEnt",
 			"TheNightholdA",
 			"TheNightholdB",
 			"TheNightholdC",
 			"TheNightholdD",
 			"TheNightholdE",
-			"TheNightholdEnt",
-			"TheNightholdF",
-			"TheNightholdG",
 			"ObsidianSanctum",
 			"OnyxiasLair",
 			"RubySanctum",
@@ -1141,8 +1133,6 @@ Atlas_DropDownLayouts = {
 			"TheNightholdC",
 			"TheNightholdD",
 			"TheNightholdE",
-			"TheNightholdF",
-			"TheNightholdG",
 			"TrialofValorA",
 			"TrialofValorB",
 			"TombofSargerasA",
@@ -1309,8 +1299,6 @@ Atlas_DropDownLayouts = {
 			"TheNightholdC",		-- Legion
 			"TheNightholdD",		-- Legion
 			"TheNightholdE",		-- Legion
-			"TheNightholdF",		-- Legion
-			"TheNightholdG",		-- Legion
 			"ReturntoKarazhanEnt", 		-- Legion
 			"ReturntoKarazhanA", 		-- Legion
 			"ReturntoKarazhanB", 		-- Legion

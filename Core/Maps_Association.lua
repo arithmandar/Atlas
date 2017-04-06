@@ -67,7 +67,7 @@ Atlas_AssocDefaults = {
 	[BZ["Halls of Valor"]] = 		"HallsofValorA";
 	[BZ["Maw of Souls"]] = 			"MawofSoulsA";
 	[BZ["The Emerald Nightmare"]] = 	"TheEmeraldNightmareA";
-	[BZ["The Nighthold"]] = 		"TheNightholdC";
+	[BZ["The Nighthold"]] = 		"TheNightholdA";
 	[BZ["Vault of the Wardens"]] = 		"VaultoftheWardensA";
 	[BZ["Trial of Valor"]] = 		"TrialofValorA";
 	[BZ["Karazhan"]] =			"ReturntoKarazhanEnt"; -- not sure if we should use "Return to Karazhan"
@@ -604,38 +604,32 @@ Atlas_SubZoneData = {
 			-- BZ["Dream Bough"],
 	},
 	[BZ["The Nighthold"]] = {
-		-- Skorpyron
+		-- Skorpyron, Chronomatic Anomaly, Trilliax
 		["TheNightholdA"] = {
 			BZ["Arcing Depths"],
 			BZ["Crystal Breach"],
-		},
-		-- Chronomatic Anomaly, Trilliax
-		["TheNightholdB"] = {
 			BZ["The Nightwell"],
 		},
-		-- Spellblade Aluriel, Krosus, High Botanist Tel'arn
-		["TheNightholdC"] = {
+		-- Spellblade Aluriel, Krosus, High Botanist Tel'arn, Gul'dan
+		["TheNightholdB"] = {
 			BZ["Shal'dorei Terrace"],
 			BZ["The Shattered Walkway"],
+			BZ["The Font of Night"],
+		},
+		-- Star Augur Etraeus
+		["TheNightholdC"] = {
+			BZ["Astromancer's Rise"],
+			BZ["Eternal Observatory"],
 		},
 		-- Tichondrius
 		["TheNightholdD"] = {
 			BZ["Captain's Quarters"],
 		},
-		-- Star Augur Etraeus
-		["TheNightholdE"] = {
-			BZ["Astromancer's Rise"],
-			BZ["Eternal Observatory"],
-		},
 		-- Grand Magistrix Elisande
-		["TheNightholdF"] = {
+		["TheNightholdE"] = {
 			BZ["Elisande's Reach"],
 			BZ["Elisande's Secret Quarters"],
 			BZ["The Nightspire"], -- upper floor
-		},
-		-- Gul'dan
-		["TheNightholdG"] = {
-			BZ["The Font of Night"],
 		},
 	},
 	[BZ["Vault of the Wardens"]] = {
@@ -797,7 +791,7 @@ Atlas_OutdoorZoneToAtlas = {
 	[BZ["Val'sharah"]] = 			"BlackRookHoldA";
 	[BZ["Highmountain"]] = 			"NeltharionsLair";
 	[BZ["Stormheim"]] = 			"HallsofValorA";
-	[BZ["Suramar"]] = 			"TheNightholdA";
+	[BZ["Suramar"]] = 			"TheNightholdEnt";
 	[BZ["Deadwind Pass"]] = 		"ReturntoKarazhanEnt";
 	[BZ["Broken Shore"]] = 			"CathedralofEternalNightA";
 };
@@ -825,7 +819,7 @@ Atlas_EntToInstMatches = {
 	["WailingCavernsEnt"] =			{"WailingCaverns"};
 	-- Legion
 	["TheArcwayEnt"] = 			{"TheArcway"};
- 	["TheNightholdEnt"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF"--[[, "TheNightholdG" ]] };
+ 	["TheNightholdEnt"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
 	["ReturntoKarazhanEnt"] =		{"KarazhanStart","KarazhanEnd","ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI"};
 };
 
@@ -899,8 +893,6 @@ Atlas_InstToEntMatches = {
 	["TheNightholdC"] = 			{"TheNightholdEnt"};
 	["TheNightholdD"] = 			{"TheNightholdEnt"};
 	["TheNightholdE"] = 			{"TheNightholdEnt"};
-	["TheNightholdF"] = 			{"TheNightholdEnt"};
-	["TheNightholdG"] = 			{"TheNightholdEnt"};
 	["ReturntoKarazhanA"] = 		{"ReturntoKarazhanEnt"};
 	["ReturntoKarazhanB"] = 		{"ReturntoKarazhanEnt"};
 	["ReturntoKarazhanC"] = 		{"ReturntoKarazhanEnt"};
@@ -961,13 +953,11 @@ Atlas_MapSeries = {
 	["TheEmeraldNightmareF"] = 		{"TheEmeraldNightmareA", "TheEmeraldNightmareB", "TheEmeraldNightmareC", "TheEmeraldNightmareD", "TheEmeraldNightmareE", "TheEmeraldNightmareF", "TheEmeraldNightmareG", "TheEmeraldNightmareH" };
 	["TheEmeraldNightmareG"] = 		{"TheEmeraldNightmareA", "TheEmeraldNightmareB", "TheEmeraldNightmareC", "TheEmeraldNightmareD", "TheEmeraldNightmareE", "TheEmeraldNightmareF", "TheEmeraldNightmareG", "TheEmeraldNightmareH" };
  	["TheEmeraldNightmareH"] = 		{"TheEmeraldNightmareA", "TheEmeraldNightmareB", "TheEmeraldNightmareC", "TheEmeraldNightmareD", "TheEmeraldNightmareE", "TheEmeraldNightmareF", "TheEmeraldNightmareG", "TheEmeraldNightmareH" };
-	["TheNightholdA"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
-	["TheNightholdB"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
-	["TheNightholdC"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
-	["TheNightholdD"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
-	["TheNightholdE"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
-	["TheNightholdF"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
- 	["TheNightholdG"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
+	["TheNightholdA"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
+	["TheNightholdB"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
+	["TheNightholdC"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
+	["TheNightholdD"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
+	["TheNightholdE"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
 	["TrialofValorA"] = 			{"TrialofValorA", "TrialofValorB"};
 	["TrialofValorB"] = 			{"TrialofValorA", "TrialofValorB"};
 	["VaultoftheWardensA"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
@@ -1070,8 +1060,6 @@ Atlas_SubZoneAssoc = {
 	["TheNightholdC"] = 			BZ["The Nighthold"];
 	["TheNightholdD"] = 			BZ["The Nighthold"];
 	["TheNightholdE"] = 			BZ["The Nighthold"];
-	["TheNightholdF"] = 			BZ["The Nighthold"];
- 	["TheNightholdG"] = 			BZ["The Nighthold"];
 	["TrialofValorA"] = 			BZ["Trial of Valor"];
 	["TrialofValorB"] = 			BZ["Trial of Valor"];
 	["VaultoftheWardensA"] = 		BZ["Vault of the Wardens"];
