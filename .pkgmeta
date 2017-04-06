@@ -47,8 +47,8 @@ externals:
     Libs/LibStub: 
         url: https://repos.wowace.com/wow/libstub/trunk
 # SVN
-    Libs/NoTaint_UIDropDownMenu: 
-        url: svn://svn.wowinterface.com/NoTaint_UIDropDownMenu_Update-1134/trunk
+#    Libs/NoTaint_UIDropDownMenu: 
+#        url: svn://svn.wowinterface.com/NoTaint_UIDropDownMenu_Update-1134/trunk
 
 ignore:
 #    - Libs/LibAboutPanel
