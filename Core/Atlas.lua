@@ -470,6 +470,11 @@ local function Atlas_Process_Deprecated()
 			local oldVersion = true;			
 			if (v[2] ~= nil and GetAddOnMetadata(v[1], "Version") >= v[2]) then
 				oldVersion = false;
+			elseif (v[3] ~= nil and GetAddOnMetadata(v[1], "Version") >= v[3]) then
+				oldVersion = false;
+			-- ignor those with working copy which set the version to @project-version@
+			elseif (GetAddOnMetadata(v[1], "Version") == "@project-version@") then
+				oldVersion = false;
 			end
 			if (oldVersion) then
 				table.insert(OldList, v[1]);
