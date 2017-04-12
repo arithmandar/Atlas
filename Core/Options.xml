@@ -55,7 +55,7 @@
 						_G[self:GetName().."Text"]:SetText(ATLAS_OPTIONS_SHOWBUT);
 					</OnLoad>
 					<OnClick>
-						AtlasButton_Toggle();
+						Atlas_ButtonToggle();
 					</OnClick>
 					<OnEnter>
 						GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");

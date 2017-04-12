@@ -69,7 +69,7 @@ function Atlas:OnInitialize()
 	profile = self.db.profile;
 	
 	minimapButton:Register("Atlas", LDB, self.db.profile.minimap);
-	self:RegisterChatCommand("atlasbutton", AtlasButton_Toggle);
+	self:RegisterChatCommand("atlasbutton", Atlas_ButtonToggle);
 	self:RegisterChatCommand("atlas", Atlas_Toggle);
 	self:RegisterChatCommand("atlas "..ATLAS_SLASH_OPTIONS, AtlasOptions_Toggle);
 	
@@ -91,7 +91,7 @@ function Atlas:Toggle()
 	end
 end
 
-function AtlasButton_Toggle()
+function Atlas_ButtonToggle()
 	Atlas:Toggle()
 end
 
@@ -480,11 +480,11 @@ local function Atlas_Process_Deprecated()
 		local textList = "";
 		for k, v in pairs(OldList) do
 			textList = textList.."\n"..v..", "..GetAddOnMetadata(v, "Version");
-			DisableAddOn(v);
+			--DisableAddOn(v);
 		end
 
 		LibDialog:Register("ATLAS_OLD_MODULES", {
-			text = L["ATLAS_DEP_MSG1"].."\n"..L["ATLAS_DEP_MSG2"].."\n"..L["ATLAS_DEP_MSG3"].."\n|cff6666ff"..textList.."|r\n\n"..L["ATLAS_DEP_MSG4"],
+			text = L["ATLAS_DEP_MSG1"].."\n"..L["ATLAS_DEP_MSG3"].."\n|cff6666ff"..textList.."|r\n\n"..L["ATLAS_DEP_MSG4"],
 			buttons = {
 				{
 					text = OKAY,
