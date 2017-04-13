@@ -509,9 +509,13 @@ local function Atlas_Process_Deprecated()
 				oldVersion = false;
 			elseif (v[3] ~= nil and GetAddOnMetadata(v[1], "Version") >= v[3]) then
 				oldVersion = false;
-			-- ignor those with working copy which set the version to @project-version@
+--@do-not-package@
+			-- ignore those with working copy which set the version to @project-version@
+			-- this will only work if user is also checking out Atlas's SVN as the working copy
+			-- this will not work once get package by CurseForge
 			elseif (GetAddOnMetadata(v[1], "Version") == "@project-version@") then
 				oldVersion = false;
+--@end-do-not-package@
 			end
 			if (oldVersion) then
 				table.insert(OldList, v[1]);
