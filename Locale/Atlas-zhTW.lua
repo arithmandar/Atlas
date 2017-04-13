@@ -98,6 +98,8 @@ L["ATLAS_OPTIONS_CHECKMODULE"] = "提醒我是否有遺失的模組或插件"
 L["ATLAS_OPTIONS_CHECKMODULE_TIP"] = "勾選以在每次登入 WoW 時檢查是否有遺失的 Atlas 模組或插件。"
 L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "副本清單以難易度色彩顯示"
 L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "依據副本建議的最低進入等級、以及玩家現今等級的差異，將副本清單以難易度色彩顯示。"
+L["ATLAS_OPTIONS_HEADER_DISPLAY"] = "顯示選項"
+L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "插件設定"
 
 L["ATLAS_BUTTON_CLOSE"] = "關閉"
 L["ATLAS_LDB_HINT"] = "左鍵開啟 Atlas。\n中鍵開啟 Atlas 選項。\n右鍵打開顯示選單。"
@@ -326,6 +328,7 @@ L["Wave 18"] = "第 18 波"
 L["MapsNotFound"] = "目前的副本找不到對應的地圖影像檔。\n\n請確認您是否有安裝 Atlas 相關的副本地圖模組。"
 L["PossibleMissingModule"] = "遺失的地圖應是來自以下的模組："
 L["Transport"] = "傳送"
+L["Profile Options"] = "設定檔選項"
 
 	--Map sections
 L["MapA"] = " [1]" -- For example: Shado-Pan Monastery [A]

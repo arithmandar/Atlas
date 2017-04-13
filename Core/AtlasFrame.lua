@@ -41,8 +41,8 @@ local string = _G.string;
 -- ----------------------------------------------------------------------------
 local FOLDER_NAME, private = ...
 local LibStub = _G.LibStub
-local Atlas = LibStub("AceAddon-3.0"):GetAddon("Atlas")
-local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
+local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 
 -- Simple function to toggle the Atlas frame's lock status and update it's appearance
 function Atlas_ToggleLock()
@@ -55,7 +55,7 @@ function Atlas_UpdateLock()
 	local btnLckDn = 	"Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Down";
 	local btnUlckUp = 	"Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Up";
 	local btnUnlckDn = 	"Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Down";
-	if (Atlas.db.profile.options.frames.lock) then
+	if (addon.db.profile.options.frames.lock) then
 		AtlasLockNorm:SetTexture(btnLckUp);
 		AtlasLockPush:SetTexture(btnLckDn);
 		AtlasLockLargeNorm:SetTexture(btnLckUp);
@@ -74,23 +74,23 @@ end
 
 -- Begin moving the Atlas frame if it's unlocked
 function Atlas_StartMoving(self)
-	if (not Atlas.db.profile.options.frames.lock) then
+	if (not addon.db.profile.options.frames.lock) then
 		self:StartMoving();
 	end
 end
 
 -- Sets the transparency of the Atlas frame based on AtlasAlpha
 function Atlas_UpdateAlpha()
-	AtlasFrame:SetAlpha(Atlas.db.profile.options.frames.alpha);
-	AtlasFrameLarge:SetAlpha(Atlas.db.profile.options.frames.alpha);
-	AtlasFrameSmall:SetAlpha(Atlas.db.profile.options.frames.alpha);
+	AtlasFrame:SetAlpha(addon.db.profile.options.frames.alpha);
+	AtlasFrameLarge:SetAlpha(addon.db.profile.options.frames.alpha);
+	AtlasFrameSmall:SetAlpha(addon.db.profile.options.frames.alpha);
 end
 
 -- Sets the scale of the Atlas frame based on AtlasScale
 function Atlas_UpdateScale()
-	AtlasFrame:SetScale(Atlas.db.profile.options.frames.scale);
-	AtlasFrameLarge:SetScale(Atlas.db.profile.options.frames.scale);
-	AtlasFrameSmall:SetScale(Atlas.db.profile.options.frames.scale);
+	AtlasFrame:SetScale(addon.db.profile.options.frames.scale);
+	AtlasFrameLarge:SetScale(addon.db.profile.options.frames.scale);
+	AtlasFrameSmall:SetScale(addon.db.profile.options.frames.scale);
 end
 
 function AtlasFrameLarge_OnShow(self)
@@ -104,8 +104,8 @@ function Atlas_PrevNextMap_OnClick(self)
 	for k, v in pairs(ATLAS_DROPDOWNS) do
 		for k2, v2 in pairs(v) do
 			if (v2 == mapID) then
-				Atlas.db.profile.options.dropdowns.module = k;
-				Atlas.db.profile.options.dropdowns.zone = k2;
+				addon.db.profile.options.dropdowns.module = k;
+				addon.db.profile.options.dropdowns.zone = k2;
 
 				AtlasFrameDropDownType_OnShow();
 				AtlasFrameDropDown_OnShow();
@@ -119,7 +119,7 @@ end
 function AtlasEntry_OnUpdate(self)
 	if (AtlasEJLootFrame:IsShown()) then return; end
 	if (MouseIsOver(self)) then
-		if (IsControlKeyDown() and Atlas.db.profile.options.frames.controlClick) then
+		if (IsControlKeyDown() and addon.db.profile.options.frames.controlClick) then
 			if (not GameTooltip:IsShown()) then
 				local str = _G[self:GetName().."_Text"]:GetText();
 				if (str) then
@@ -139,7 +139,7 @@ function AtlasEntry_OnUpdate(self)
 		else
 			if (self.tooltiptitle) then
 				GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
-				GameTooltip:SetBackdropColor(0, 0, 0, 1 * Atlas.db.profile.options.frames.alpha);
+				GameTooltip:SetBackdropColor(0, 0, 0, 1 * addon.db.profile.options.frames.alpha);
 				GameTooltip:SetText(self.tooltiptitle, 1, 1, 1, 1);
 				if (self.tooltiptext) then 
 					GameTooltip:AddLine(self.tooltiptext, nil, nil, nil, 1); 
@@ -161,7 +161,7 @@ function AtlasEntry_OnUpdate(self)
 						GameTooltip:AddLine(ATLAS_ROPEN_ATLASLOOT_WINDOW, 0.5, 0.5, 1, true);
 					end
 				end
-				GameTooltip:SetScale(Atlas.db.profile.options.frames.boss_description_scale * Atlas.db.profile.options.frames.scale);
+				GameTooltip:SetScale(addon.db.profile.options.frames.boss_description_scale * addon.db.profile.options.frames.scale);
 				GameTooltip:Show();
 			end			
 		end
@@ -187,7 +187,7 @@ end
 -- Function used to initialize the map type dropdown menu
 -- Cycle through Atlas_MapTypes to populate the dropdown
 function AtlasFrameDropDownType_Initialize()
-	local catName = Atlas_DropDownLayouts_Order[Atlas.db.profile.options.dropdowns.menuType];
+	local catName = Atlas_DropDownLayouts_Order[addon.db.profile.options.dropdowns.menuType];
 	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
 	for i = 1, getn(subcatOrder), 1 do
 		local info = Lib_UIDropDownMenu_CreateInfo();
@@ -210,15 +210,15 @@ end
 -- Called whenever the map type dropdown menu is shown
 function AtlasFrameDropDownType_OnShow()
 	Lib_UIDropDownMenu_Initialize(AtlasFrameDropDownType, AtlasFrameDropDownType_Initialize);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, Atlas.db.profile.options.dropdowns.module);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, addon.db.profile.options.dropdowns.module);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameDropDownType, ATLAS_DROPDOWN_WIDTH);
 
 	Lib_UIDropDownMenu_Initialize(AtlasFrameLargeDropDownType, AtlasFrameDropDownType_Initialize);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, Atlas.db.profile.options.dropdowns.module);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, addon.db.profile.options.dropdowns.module);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameLargeDropDownType, ATLAS_DROPDOWN_WIDTH);
 
 	Lib_UIDropDownMenu_Initialize(AtlasFrameSmallDropDownType, AtlasFrameDropDownType_Initialize);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, Atlas.db.profile.options.dropdowns.module);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, addon.db.profile.options.dropdowns.module);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameSmallDropDownType, ATLAS_DROPDOWN_WIDTH);
 end
 
@@ -226,20 +226,20 @@ end
 -- Sets the main dropdown menu contents to reflect the category of map selected
 function AtlasFrameDropDownType_OnClick(self)
 	local typeID = self:GetID();
-	local catName = Atlas_DropDownLayouts_Order[Atlas.db.profile.options.dropdowns.menuType];
+	local catName = Atlas_DropDownLayouts_Order[addon.db.profile.options.dropdowns.menuType];
 	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
-	local profile = Atlas.db.profile;
+	local profile = addon.db.profile;
 
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, typeID);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, typeID);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, typeID);
 
-	Atlas.db.profile.options.dropdowns.module = typeID;
+	addon.db.profile.options.dropdowns.module = typeID;
 	local dropdowns_catKey = subcatOrder[typeID] or Atlas_MapTypes[typeID - #subcatOrder];
 	if (profile.dropdowns[dropdowns_catKey]) then
-		Atlas.db.profile.options.dropdowns.zone = profile.dropdowns[dropdowns_catKey];
+		addon.db.profile.options.dropdowns.zone = profile.dropdowns[dropdowns_catKey];
 	else
-		Atlas.db.profile.options.dropdowns.zone = 1;
+		addon.db.profile.options.dropdowns.zone = 1;
 	end
 	AtlasFrameDropDown_OnShow();
 	Atlas_Refresh();
@@ -248,33 +248,33 @@ end
 -- Function used to initialize the main dropdown menu
 -- Looks at the status of AtlasType to determine how to populate the list
 function AtlasFrameDropDown_Initialize()
-	for k, v in pairs(ATLAS_DROPDOWNS[Atlas.db.profile.options.dropdowns.module]) do
+	for k, v in pairs(ATLAS_DROPDOWNS[addon.db.profile.options.dropdowns.module]) do
 		local colortag;
 		local info = Lib_UIDropDownMenu_CreateInfo();
 		local level = 1;
 		
-		if (Atlas.db.profile.options.dropdowns.color and AtlasMaps[v].DungeonID) then
+		if (addon.db.profile.options.dropdowns.color and AtlasMaps[v].DungeonID) then
 			local _, _, _, minLevel, _, _, minRecLevel = GetLFGDungeonInfo(AtlasMaps[v].DungeonID);
 			if (minRecLevel == 0) then 
 				minRecLevel = minLevel;
 			end
 			local dungeon_difficulty = Atlas_DungeonDifficultyColor(minRecLevel);
 			colortag = Atlas_FormatColor(dungeon_difficulty);
-		elseif (Atlas.db.profile.options.dropdowns.color and AtlasMaps[v].DungeonHeroicID) then
+		elseif (addon.db.profile.options.dropdowns.color and AtlasMaps[v].DungeonHeroicID) then
 			local _, _, _, minLevelH, _, _, minRecLevelH = GetLFGDungeonInfo(AtlasMaps[v].DungeonHeroicID);
 			if (minRecLevelH == 0) then 
 				minRecLevelH = minLevelH;
 			end
 			local dungeon_difficulty = Atlas_DungeonDifficultyColor(minRecLevelH);
 			colortag = Atlas_FormatColor(dungeon_difficulty);
-		elseif (Atlas.db.profile.options.dropdowns.color and AtlasMaps[v].DungeonMythicID) then
+		elseif (addon.db.profile.options.dropdowns.color and AtlasMaps[v].DungeonMythicID) then
 			local _, _, _, minLevelM, _, _, minRecLevelM = GetLFGDungeonInfo(AtlasMaps[v].DungeonMythicID);
 			if (minRecLevelM == 0) then 
 				minRecLevelM = minLevelM;
 			end
 			local dungeon_difficulty = Atlas_DungeonDifficultyColor(minRecLevelM);
 			colortag = Atlas_FormatColor(dungeon_difficulty);
-		elseif (Atlas.db.profile.options.dropdowns.color and AtlasMaps[v].MinLevel) then
+		elseif (addon.db.profile.options.dropdowns.color and AtlasMaps[v].MinLevel) then
 			if (type(AtlasMaps[v].MinLevel) == number) then
 				local dungeon_difficulty = Atlas_DungeonDifficultyColor(AtlasMaps[v].MinLevel);
 				colortag = Atlas_FormatColor(dungeon_difficulty);
@@ -411,15 +411,15 @@ end
 -- Called whenever the main dropdown menu is shown
 function AtlasFrameDropDown_OnShow()
 	Lib_UIDropDownMenu_Initialize(AtlasFrameDropDown, AtlasFrameDropDown_Initialize);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, Atlas.db.profile.options.dropdowns.zone);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, addon.db.profile.options.dropdowns.zone);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameDropDown, ATLAS_DROPDOWN_WIDTH);
 
 	Lib_UIDropDownMenu_Initialize(AtlasFrameLargeDropDown, AtlasFrameDropDown_Initialize);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, Atlas.db.profile.options.dropdowns.zone);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, addon.db.profile.options.dropdowns.zone);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameLargeDropDown, ATLAS_DROPDOWN_WIDTH);
 
 	Lib_UIDropDownMenu_Initialize(AtlasFrameSmallDropDown, AtlasFrameDropDown_Initialize);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, Atlas.db.profile.options.dropdowns.zone);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, addon.db.profile.options.dropdowns.zone);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameSmallDropDown, ATLAS_DROPDOWN_WIDTH);
 end
 
@@ -427,7 +427,7 @@ end
 -- Sets the newly selected map as current and refreshes the frame
 function AtlasFrameDropDown_OnClick(self)
 	local mapID = self:GetID();
-	local profile = Atlas.db.profile;
+	local profile = addon.db.profile;
 	local catName = Atlas_DropDownLayouts_Order[profile.options.dropdowns.menuType];
 	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
 
@@ -479,7 +479,7 @@ end
 -- When the switch button is clicked, we can basically assume that there's a match
 -- Find it, set it, then update menus and the maps
 function AtlasSwitchButton_OnClick()
-	local zoneID = ATLAS_DROPDOWNS[Atlas.db.profile.options.dropdowns.module][Atlas.db.profile.options.dropdowns.zone];
+	local zoneID = ATLAS_DROPDOWNS[addon.db.profile.options.dropdowns.module][addon.db.profile.options.dropdowns.zone];
 	if (getn(ATLAS_INST_ENT_DROPDOWN) == 1) then
 		-- One link, so we can just go there right away
 		AtlasSwitchDD_Set(1);
@@ -508,8 +508,8 @@ function AtlasSwitchDD_Set(index)
 	for k, v in pairs(ATLAS_DROPDOWNS) do
 		for k2, v2 in pairs(v) do
 			if (v2 == ATLAS_INST_ENT_DROPDOWN[index]) then
-				Atlas.db.profile.options.dropdowns.module = k;
-				Atlas.db.profile.options.dropdowns.zone = k2;
+				addon.db.profile.options.dropdowns.module = k;
+				addon.db.profile.options.dropdowns.zone = k2;
 
 				AtlasFrameDropDownType_OnShow();
 				AtlasFrameDropDown_OnShow();

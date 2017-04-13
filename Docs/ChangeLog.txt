@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.40.07 (Apr. xx, 2017)
+------------------------
+- Migrated option panel and settings to be managed via Ace3 libraries
+
 v1.40.06 (Apr. 13, 2017)
 ------------------------
 - Checking deprecated plugins now will recognize the alpha build's version 

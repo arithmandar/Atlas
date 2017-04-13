@@ -101,6 +101,8 @@ L["ATLAS_OPTIONS_CHECKMODULE"] = "Remind me for missing module(s) / plug-in(s)."
 L["ATLAS_OPTIONS_CHECKMODULE_TIP"] = "Enable to perform checking if any missing Atlas module / plug-in after WoW loaded."
 L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "Show instance dropdown in colors"
 L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "Based on the instance's recommended minimul level and player's level, to show the instance with difficulty colors."
+L["ATLAS_OPTIONS_HEADER_DISPLAY"] = "Display Options"
+L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "Addon Configurations"
 
 L["ATLAS_BUTTON_CLOSE"] = "Close"
 L["ATLAS_LDB_HINT"] = "Left-Click to open Atlas.\nRight-Click for Atlas options."
@@ -233,24 +235,24 @@ L["ATLAS_TOGGLE_LOOT"] = "Right-click to toggle loot panel."
 -- Zone Names, Acronyms, and Common Strings
 --************************************************
 
-	--Common strings
+--Common strings
 L["East"] = "East"
 L["North"] = "North"
 L["South"] = "South"
 L["West"] = "West"
 
-	--World Events, Festival
+--World Events, Festival
 L["Brewfest"] = "Brewfest"
 L["Hallow's End"] = "Hallow's End"
 L["Love is in the Air"] = "Love is in the Air"
 L["Lunar Festival"] = "Lunar Festival"
 L["Midsummer Festival"] = "Midsummer Festival"
 
-	--Instance Difficulties
+--Instance Difficulties
 L["Heroic_Symbol"] = "(H)"
 L["Mythic_Symbol"] = "(M)"
-	--Misc strings
-		--Symbols
+--Misc strings
+	--Symbols
 	L["Colon"] = ": " -- The colon symbol to be used in string, ex: "Zone: Firelands
 	L["Semicolon"] = " "
 	L["L-Parenthesis"] = " ("
@@ -331,8 +333,9 @@ L["Wave 18"] = "Wave 18"
 L["MapsNotFound"] = "The current selected instance does not have a \ncorresponding map image associated with. \n\nPlease make sure you have installed \nthe corresponding Atlas map module(s)."
 L["PossibleMissingModule"] = "It is likely this map is from this module: "
 L["Transport"] = "Transport"
+L["Profile Options"] = "Profile Options"
 
-	--Map sections
+--Map sections
 L["MapA"] = " [A]" -- For example: Shado-Pan Monastery [A]
 L["MapB"] = " [B]"
 L["MapC"] = " [C]"

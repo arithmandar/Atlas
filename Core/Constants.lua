@@ -34,8 +34,9 @@ local _G = getfenv(0);
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local FOLDER_NAME, private = ...
-local LibStub = _G.LibStub
 private.addon_name = "Atlas"
+
+local LibStub = _G.LibStub
 local constants = {}
 private.constants = constants
 
