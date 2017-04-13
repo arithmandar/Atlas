@@ -53,6 +53,7 @@ _G.Atlas = addon
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0");
 local LibDialog = LibStub("LibDialog-1.0");
+local AceDB = LibStub("AceDB-3.0")
 
 local profile;
 
@@ -66,7 +67,7 @@ local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("Atlas", {
 local minimapButton = LibStub("LibDBIcon-1.0");
 
 function addon:OnInitialize()
-	self.db = LibStub("AceDB-3.0"):New("AtlasDB", addon.constants.defaults, true)
+	self.db = AceDB:New("AtlasDB", addon.constants.defaults, true)
 	
 	profile = self.db.profile;
 	
@@ -93,9 +94,9 @@ function addon:Refresh()
 	Atlas_Refresh();
 	AtlasFrameDropDownType_OnShow();
 	AtlasFrameDropDown_OnShow();
-	Atlas_UpdateLock();
-	Atlas_UpdateAlpha();
-	Atlas_UpdateScale();
+	addon:UpdateLock();
+	addon:UpdateAlpha();
+	addon:UpdateScale();
 	AtlasFrame:SetClampedToScreen(profile.options.frames.clamp);
 	AtlasFrameLarge:SetClampedToScreen(profile.options.frames.clamp);
 	AtlasFrameSmall:SetClampedToScreen(profile.options.frames.clamp);
@@ -132,36 +133,6 @@ function Atlas_ButtonToggle()
 	end
 end
 
---[[
--- Code by Grayhoof (SCT)
-local function Atlas_CloneTable(tablein)	-- Return a copy of the table tablein
-	local new_table = {};			-- Create a new table
-	local ka, va = next(tablein, nil);	-- The ka is an index of tablein; va = tablein[ka]
-	while ka do
-		if type(va) == "table" then 
-			va = Atlas_CloneTable(va);
-		end 
-		new_table[ka] = va;
-		ka, va = next(tablein, ka);	-- Get next index
-	end
-	return new_table;
-end
-
-function addon:FreshOptions()
-	--AtlasOptions = Atlas_CloneTable(addon.constants.defaultoptions);
-end
-
--- function to check if user has all the options parameter, 
--- if not (due to some might be newly added), then add it with default value
-local function Atlas_UpdateOptions(player_options)
-	for k, v in pairs(addon.constants.defaultoptions) do
-		if (player_options[k] == nil) then
-			player_options[k] = v;
-		end
-	end
-end
-]]
-
 local function copyOptions()
 	local options = profile.options;
 	
@@ -187,29 +158,7 @@ local function copyOptions()
 	options.checkMissingModules = AtlasOptions.AtlasCheckModule;
 	options.disableUpdateNotification = AtlasOptions.AtlasDontShowInfo;
 end
---[[
-function addon:SetupOptions()
-	--local profile = addon.db.profile;
-	-- Init saved vars for a new install
-	--if ( AtlasOptions == nil ) then
-	--	addon:FreshOptions();
-	--end
 
-	--Atlas_UpdateOptions(AtlasOptions);
-
-	--saved options version check
-	--if (AtlasOptions["AtlasVersion"] ~= ATLAS_OLDEST_VERSION_SAME_SETTINGS) then
-	--	addon:FreshOptions();
-	--end
-	
-	if (AtlasOptions and profile.options_copied == false) then
-		copyOptions();
-		profile.options_copied = true;
-	else
-		profile.options_copied = true;
-	end
-end
-]]
 -- Adopted from EncounterJournal
 local EJ_HTYPE_OVERVIEW = 3;
 
@@ -401,7 +350,7 @@ function Atlas_ScrollBar_Update()
 					if (spos) then
 						local achievementID = strsub(ATLAS_SCROLL_ID[lineplusoffset][1], epos+1);
 						achievementID = tonumber(achievementID);
-						Atlas_AchievementButtonUpdate(button, achievementID);
+						addon:AchievementButtonUpdate(button, achievementID);
 					end
 				else
 				end
@@ -582,7 +531,6 @@ function Atlas_OnLoad(self)
 	-- Register the Atlas frame for the following events
 	self:RegisterEvent("PLAYER_LOGIN");
 	self:RegisterEvent("ADDON_LOADED");
-	self:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED");
 
 	-- Allows Atlas to be closed with the Escape key
 	tinsert(UISpecialFrames, "AtlasFrame");
@@ -599,7 +547,7 @@ function Atlas_OnEvent(self, event, ...)
 	if (event=="ADDON_LOADED" and (arg1=="Atlas" or arg1=="Blizzard_EncounterJournal")) then
 		--Blizzard_EncounterJournal
 		if (IsAddOnLoaded("Blizzard_EncounterJournal") and IsAddOnLoaded("Atlas")) then
-			Atlas_EncounterJournal_Binding();
+			addon:EncounterJournal_Binding();
 		end
 	end
 
@@ -622,9 +570,6 @@ end
 
 -- Detect if not all modules / plugins are installed
 function Atlas_Check_Modules()
---	if (AtlasOptions["AtlasCheckModule"] == nil) then
---		AtlasOptions["AtlasCheckModule"] = true;
---	end
 	if (not profile.options.checkMissingModules) then
 		return;
 	end
@@ -664,25 +609,6 @@ function Atlas_Check_Modules()
 	end
 end
 
--- Function to pop up a window to show the latest addon information
-function Atlas_ShowInfo()
-	if (AtlasOptions["AtlasDontShowInfo_12201"]) then
-		return;
-	else
-		AtlasInfoFrame:Show();
-		AtlasInfoFrameToggleButton:SetChecked(AtlasOptions.AtlasDontShowInfo_12201);
-	end
-end
-
-function Atlas_ShowInfo_Toggle()
-	if (AtlasOptions["AtlasDontShowInfo_12201"]) then
-		AtlasOptions["AtlasDontShowInfo_12201"] = false;
-	else
-		AtlasOptions["AtlasDontShowInfo_12201"] = true;
-	end
-	AtlasInfoFrameToggleButton:SetChecked(AtlasOptions.AtlasDontShowInfo_12201);
-end
-
 -- Initializes everything relating to saved variables and data in other lua files
 -- This should be called ONLY when we're sure our variables are in memory
 function addon:Init() 
@@ -711,8 +637,8 @@ function addon:Init()
 	
 	-- Now that saved variables have been loaded, update everything accordingly
 	Atlas_Refresh();
-	Atlas_UpdateLock();
-	Atlas_UpdateAlpha();
+	addon:UpdateLock();
+	addon:UpdateAlpha();
 	AtlasFrame:SetClampedToScreen(profile.options.frames.clamp);
 	AtlasFrameLarge:SetClampedToScreen(profile.options.frames.clamp);
 	AtlasFrameSmall:SetClampedToScreen(profile.options.frames.clamp);
@@ -734,27 +660,13 @@ function addon:Init()
 	end;
 	
 	Atlas_Check_Modules();
---[[	if (AtlasOptions["AtlasDontShowInfo_12201"]) then
-		Atlas_ShowInfo();
-	end
-]]
+
 	if (profile.options.worldMapButton) then
 		AtlasToggleFromWorldMap:Show();
 	else
 		AtlasToggleFromWorldMap:Hide();
 	end
 end
-
-
--- Parses slash commands
--- If an un-recognized command is given, toggle Atlas
---[[function Atlas_SlashCommand(msg)
-	if (msg == ATLAS_SLASH_OPTIONS) then
-		AtlasOptions_Toggle();
-	else
-		Atlas_Toggle();
-	end
-end]]
 
 -- Simple function to toggle the visibility of the Atlas frame
 function Atlas_Toggle()
@@ -1455,7 +1367,7 @@ function Atlas_MapRefresh(mapID)
 	AtlasText_MinGearLevel_Text:SetText(tMGL);
 
 	-- AtlasLoot supports
-	Atlas_EnableAtlasLootButton(base, zoneID);
+	addon:EnableAtlasLootButton(base, zoneID);
 
 	-- Check if Journal Encounter Instance is available
 	if (base.JournalInstanceID) then

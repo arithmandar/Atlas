@@ -25,6 +25,20 @@
 --]]
 
 -- Atlas Map Data
+-- ----------------------------------------------------------------------------
+-- Localized Lua globals.
+-- ----------------------------------------------------------------------------
+-- Functions
+local _G = getfenv(0);
+-- Libraries
+-- ----------------------------------------------------------------------------
+-- AddOn namespace.
+-- ----------------------------------------------------------------------------
+local FOLDER_NAME, private = ...
+local LibStub = _G.LibStub
+
+local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0");
+local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
 
 --[[
 # Structure of JournalInstance.dbc
@@ -81,23 +95,6 @@ Column	Field 		Type 		Notes
 14	expansion
 
 ]]
-local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0");
-local BF = Atlas_GetLocaleLibBabble("LibBabble-Faction-3.0");
-local L = LibStub("AceLocale-3.0"):GetLocale("Atlas");
-local ALIL = Atlas_IngameLocales;
-
-local BLUE = "|cff6666ff";
-local GREN = "|cff66cc33";
-local GREY = "|cff999999";
-local LBLU = "|cff33cccc";
-local _RED = "|cffcc3333";
-local ORNG = "|cffcc9933";
-local PINK = "|ccfcc33cc";
-local PURP = "|cff9900ff";
-local WHIT = "|cffffffff";
-local YLOW = "|cffcccc33";
-local INDENT = "      ";
-
 
 AtlasMaps = {
 --[[
@@ -141,60 +138,9 @@ Syntax:
 	};
 	BlackrockMountainEnt = {
 		ZoneName = { BZ["Blackrock Mountain"]..L["L-Parenthesis"]..L["Entrance"]..L["R-Parenthesis"] };
-		Location = { BZ["Searing Gorge"]..L["Slash"]..BZ["Burning Steppes"] };
-		LevelRange = "49-100+";
-		MinLevel = "47";
-		PlayerLimit = "5/10/25/40";
-		Acronym = L["BRM"];
-		{ BLUE.." A) "..BZ["Searing Gorge"], 10001 };
-		{ BLUE.." B) "..BZ["Burning Steppes"], 10002 };
-		{ BLUE.." C) "..BZ["Blackrock Depths"], 10003 };
-		{ BLUE.." D) "..BZ["Lower Blackrock Spire"], 10004 };
-		{ BLUE..INDENT..BZ["Upper Blackrock Spire"] };
-		{ GREN..INDENT..L["Bodley"]..L["L-Parenthesis"]..L["Ghost"]..L["R-Parenthesis"] };
-		{ BLUE.." E) "..BZ["The Molten Core"], 10005 };
-		{ GREN..INDENT..L["Lothos Riftwaker"] };
-		{ BLUE.." F) "..BZ["Blackwing Lair"], 10006 };
-		{ GREN..INDENT..L["Orb of Command"] };
-		{ BLUE.." G) "..BZ["Blackrock Caverns"], 10007 };
-		{ ORNG.." 1) "..L["Scarshield Quartermaster <Scarshield Legion>"]..L["L-Parenthesis"]..L["Upper"]..L["R-Parenthesis"], 10008 };
-		{ ORNG.." 2) "..L["The Behemoth"]..L["L-Parenthesis"]..L["Rare"]..L["Comma"]..L["Wanders"]..L["R-Parenthesis"], 10009 };
-		{ ORNG.." 3) "..Atlas_GetBossName("Overmaster Pyron")..L["L-Parenthesis"]..L["Wanders"]..L["R-Parenthesis"], 10010 };
-		{ GREN.." 1') "..L["Meeting Stone"]..L["L-Parenthesis"]..BZ["Blackrock Depths"]..L["R-Parenthesis"], 10011 };
-		{ GREN.." 2') "..L["Meeting Stone"]..L["L-Parenthesis"]..BZ["Lower Blackrock Spire"]..L["Comma"]..BZ["Upper Blackrock Spire"]..L["R-Parenthesis"], 10012 };
 	};
 	CavernsOfTimeEnt = {
 		ZoneName = { BZ["Caverns of Time"]..L["L-Parenthesis"]..L["Entrance"]..L["R-Parenthesis"] };
-		Location = { BZ["Tanaris"] };
-		LevelRange = "66-85+";
-		MinLevel = "66";
-		PlayerLimit = "5/10/25";
-		Acronym = L["CoT"];
-		{ BLUE.." A) "..L["Entrance"], 10001 };
-		{ BLUE.." B) "..BZ["Hyjal Summit"], 10002 };
-		{ BLUE.." C) "..BZ["Old Hillsbrad Foothills"], 10003 };
-		{ BLUE.." D) "..BZ["The Black Morass"], 10004 };
-		{ BLUE.." E) "..BZ["The Culling of Stratholme"], 10005 };
-		{ BLUE.." F) "..BZ["Dragon Soul"], 10006 };
-		{ BLUE.." G) "..BZ["End Time"], 10007 };
-		{ BLUE.." H) "..BZ["Well of Eternity"], 10008 };
-		{ BLUE.." I) "..BZ["Hour of Twilight"], 10009 };
-		{ GREN.." 1') "..L["Steward of Time <Keepers of Time>"], 10010 };
-		{ GREN.." 2') "..L["Alexston Chrome <Tavern of Time>"], 10011 };
-		{ GREN.." 3') "..L["Graveyard"], 10012 };
-		{ GREN.." 4') "..L["Yarley <Armorer>"], 10013 };
-		{ GREN.." 5') "..L["Bortega <Reagents & Poison Supplies>"], 10014 };
-		{ GREN..INDENT..L["Alurmi <Keepers of Time Quartermaster>"] };
-		{ GREN..INDENT..L["Galgrom <Provisioner>"] };
-		{ GREN.." 6') "..L["Zaladormu"], 10015 };
-		{ GREN..INDENT..L["Soridormi <The Scale of Sands>"]..L["L-Parenthesis"]..L["Wanders"]..L["R-Parenthesis"] };
-		{ GREN..INDENT..L["Arazmodu <The Scale of Sands>"]..L["L-Parenthesis"]..L["Wanders"]..L["R-Parenthesis"] };
-		{ GREN.." 7') "..L["Moonwell"], 10016 };
-		{ GREN.." 8') "..L["Andormu <Keepers of Time>"]..L["L-Parenthesis"]..L["Child"]..L["R-Parenthesis"], 10017 };
-		{ GREN..INDENT..L["Nozari <Keepers of Time>"]..L["L-Parenthesis"]..L["Child"]..L["R-Parenthesis"] };
-		{ GREN.." 9') "..L["Anachronos <Keepers of Time>"], 10018 };
-		{ GREN.."10') "..L["Andormu <Keepers of Time>"]..L["L-Parenthesis"]..L["Adult"]..L["R-Parenthesis"], 10019 };
-		{ GREN..INDENT..L["Nozari <Keepers of Time>"]..L["L-Parenthesis"]..L["Adult"]..L["R-Parenthesis"] };
 	};
 	CoTHyjalEnt = {
 		ZoneName = { BZ["Caverns of Time"]..L["Colon"]..BZ["Hyjal Summit"]..L["L-Parenthesis"]..L["Entrance"]..L["R-Parenthesis"] };

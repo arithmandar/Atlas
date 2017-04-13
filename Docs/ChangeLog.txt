@@ -9,15 +9,21 @@ Known Issues:
 ==============
 - User might see the boss loots are not fully loaded and showing item info 
   is retrieving. If that's the case, user will need to close and open the
-  loot window again.
+  loot window again. (this seems to be fixed since v1.40.00)
 
 ==============
 = Change Log =
 ==============
 
-v1.40.07 (Apr. xx, 2017)
+v1.41.00 (Apr. xx, 2017)
 ------------------------
 - Migrated option panel and settings to be managed via Ace3 libraries
+- Now you can disable the boss portait if you don't like it
+- Now you can select a default profile for all of your characters, or define
+  individual one for specific characters
+- Re-arranged most of the functions to be object-oriented
+- Re-ordered the code files' loading sequence in ToC
+- Drop AtlasOptions
 
 v1.40.06 (Apr. 13, 2017)
 ------------------------

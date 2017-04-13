@@ -37,12 +37,12 @@ local pairs = _G.pairs;
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local FOLDER_NAME, private = ...
-local Atlas = LibStub("AceAddon-3.0"):GetAddon("Atlas")
+local addon = LibStub("AceAddon-3.0"):GetAddon("Atlas")
 
 local function Atlas_AutoSelect_from_WorldMap()
 	local mapID, _ = GetCurrentMapAreaID();
 	local dungeonLevel = GetCurrentMapDungeonLevel();
-	local profile = Atlas.db.profile;
+	local profile = addon.db.profile;
 	
 	if (not mapID) then
 		return;

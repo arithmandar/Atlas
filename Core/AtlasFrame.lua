@@ -45,12 +45,14 @@ local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 
 -- Simple function to toggle the Atlas frame's lock status and update it's appearance
-function Atlas_ToggleLock()
-	AtlasOptions_ToggleLock();
+function addon:ToggleLock()
+	addon.db.profile.options.frames.lock = not addon.db.profile.options.frames.lock
+	addon:UpdateLock()
+	Atlas_Refresh()
 end
 
 -- Updates the appearance of the lock button based on the status of AtlasLocked
-function Atlas_UpdateLock()
+function addon:UpdateLock()
 	local btnLckUp = 	"Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Up";
 	local btnLckDn = 	"Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Down";
 	local btnUlckUp = 	"Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Up";
@@ -73,31 +75,29 @@ function Atlas_UpdateLock()
 end
 
 -- Begin moving the Atlas frame if it's unlocked
-function Atlas_StartMoving(self)
+function addon:StartMoving(self)
 	if (not addon.db.profile.options.frames.lock) then
 		self:StartMoving();
 	end
 end
 
 -- Sets the transparency of the Atlas frame based on AtlasAlpha
-function Atlas_UpdateAlpha()
-	AtlasFrame:SetAlpha(addon.db.profile.options.frames.alpha);
-	AtlasFrameLarge:SetAlpha(addon.db.profile.options.frames.alpha);
-	AtlasFrameSmall:SetAlpha(addon.db.profile.options.frames.alpha);
+function addon:UpdateAlpha()
+	local alpha = addon.db.profile.options.frames.alpha
+	AtlasFrame:SetAlpha(alpha);
+	AtlasFrameLarge:SetAlpha(alpha);
+	AtlasFrameSmall:SetAlpha(alpha);
 end
 
 -- Sets the scale of the Atlas frame based on AtlasScale
-function Atlas_UpdateScale()
-	AtlasFrame:SetScale(addon.db.profile.options.frames.scale);
-	AtlasFrameLarge:SetScale(addon.db.profile.options.frames.scale);
-	AtlasFrameSmall:SetScale(addon.db.profile.options.frames.scale);
+function addon:UpdateScale()
+	local scale = addon.db.profile.options.frames.scale
+	AtlasFrame:SetScale(scale);
+	AtlasFrameLarge:SetScale(scale);
+	AtlasFrameSmall:SetScale(scale);
 end
 
-function AtlasFrameLarge_OnShow(self)
-	Atlas_MapAddNPCButtonLarge();
-end
-
-function Atlas_PrevNextMap_OnClick(self)
+function addon:PrevNextMap_OnClick(self)
 	local mapID = self.mapID;
 	if not mapID then return; end
 
@@ -113,6 +113,38 @@ function Atlas_PrevNextMap_OnClick(self)
 				return;
 			end
 		end
+	end
+end
+
+function addon:ToggleWindowSize()
+	if ( AtlasFrameLarge:IsVisible() ) then
+		if (ATLAS_SMALLFRAME_SELECTED) then
+			HideUIPanel(AtlasFrameLarge);
+			ShowUIPanel(AtlasFrameSmall);
+		else
+			HideUIPanel(AtlasFrameLarge);
+			ShowUIPanel(AtlasFrame);
+		end
+	else
+		if (ATLAS_SMALLFRAME_SELECTED) then
+			HideUIPanel(AtlasFrameSmall);
+			ShowUIPanel(AtlasFrameLarge);
+		else
+			HideUIPanel(AtlasFrame);
+			ShowUIPanel(AtlasFrameLarge);
+		end
+	end
+end
+
+function addon:ToggleLegendPanel()
+	if ( AtlasFrameSmall:IsVisible() ) then
+		ATLAS_SMALLFRAME_SELECTED = false;
+		HideUIPanel(AtlasFrameSmall);
+		ShowUIPanel(AtlasFrame);
+	else
+		ATLAS_SMALLFRAME_SELECTED = true;
+		HideUIPanel(AtlasFrame);
+		ShowUIPanel(AtlasFrameSmall);
 	end
 end
 
@@ -174,12 +206,12 @@ function AtlasEntry_OnClick(self, button)
 			ChatEdit_InsertLink(self.link);
 		end
 	elseif (button == "RightButton") then
-		Atlas_AtlasLootButton_OnClick(self);
+		addon:AtlasLootButton_OnClick(self);
 	else
 		if (self.instanceID and self.encounterID) then
-			Atlas_AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID);
+			addon:AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID);
 		elseif (self.achievementID) then
-			Atlas_OpenAchievement(self.achievementID);
+			addon:OpenAchievement(self.achievementID);
 		end
 	end
 end
@@ -226,20 +258,20 @@ end
 -- Sets the main dropdown menu contents to reflect the category of map selected
 function AtlasFrameDropDownType_OnClick(self)
 	local typeID = self:GetID();
-	local catName = Atlas_DropDownLayouts_Order[addon.db.profile.options.dropdowns.menuType];
-	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
 	local profile = addon.db.profile;
+	local catName = Atlas_DropDownLayouts_Order[profile.options.dropdowns.menuType];
+	local subcatOrder = Atlas_DropDownLayouts_Order[catName];
 
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, typeID);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, typeID);
 	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, typeID);
 
-	addon.db.profile.options.dropdowns.module = typeID;
+	profile.options.dropdowns.module = typeID;
 	local dropdowns_catKey = subcatOrder[typeID] or Atlas_MapTypes[typeID - #subcatOrder];
 	if (profile.dropdowns[dropdowns_catKey]) then
-		addon.db.profile.options.dropdowns.zone = profile.dropdowns[dropdowns_catKey];
+		profile.options.dropdowns.zone = profile.dropdowns[dropdowns_catKey];
 	else
-		addon.db.profile.options.dropdowns.zone = 1;
+		profile.options.dropdowns.zone = 1;
 	end
 	AtlasFrameDropDown_OnShow();
 	Atlas_Refresh();
@@ -410,16 +442,17 @@ end
 
 -- Called whenever the main dropdown menu is shown
 function AtlasFrameDropDown_OnShow()
+	local zone = addon.db.profile.options.dropdowns.zone
 	Lib_UIDropDownMenu_Initialize(AtlasFrameDropDown, AtlasFrameDropDown_Initialize);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, addon.db.profile.options.dropdowns.zone);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, zone);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameDropDown, ATLAS_DROPDOWN_WIDTH);
 
 	Lib_UIDropDownMenu_Initialize(AtlasFrameLargeDropDown, AtlasFrameDropDown_Initialize);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, addon.db.profile.options.dropdowns.zone);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, zone);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameLargeDropDown, ATLAS_DROPDOWN_WIDTH);
 
 	Lib_UIDropDownMenu_Initialize(AtlasFrameSmallDropDown, AtlasFrameDropDown_Initialize);
-	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, addon.db.profile.options.dropdowns.zone);
+	Lib_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, zone);
 	Lib_UIDropDownMenu_SetWidth(AtlasFrameSmallDropDown, ATLAS_DROPDOWN_WIDTH);
 end
 
@@ -442,38 +475,6 @@ function AtlasFrameDropDown_OnClick(self)
 		profile.dropdowns[subcatOrder[profile.options.dropdowns.module]] = mapID;
 	end
 	Atlas_Refresh();
-end
-
-function AtlasFrame_ToggleWindowSize()
-	if ( AtlasFrameLarge:IsVisible() ) then
-		if (ATLAS_SMALLFRAME_SELECTED) then
-			HideUIPanel(AtlasFrameLarge);
-			ShowUIPanel(AtlasFrameSmall);
-		else
-			HideUIPanel(AtlasFrameLarge);
-			ShowUIPanel(AtlasFrame);
-		end
-	else
-		if (ATLAS_SMALLFRAME_SELECTED) then
-			HideUIPanel(AtlasFrameSmall);
-			ShowUIPanel(AtlasFrameLarge);
-		else
-			HideUIPanel(AtlasFrame);
-			ShowUIPanel(AtlasFrameLarge);
-		end
-	end
-end
-
-function AtlasFrame_ToggleLegendPanel()
-	if ( AtlasFrameSmall:IsVisible() ) then
-		ATLAS_SMALLFRAME_SELECTED = false;
-		HideUIPanel(AtlasFrameSmall);
-		ShowUIPanel(AtlasFrame);
-	else
-		ATLAS_SMALLFRAME_SELECTED = true;
-		HideUIPanel(AtlasFrame);
-		ShowUIPanel(AtlasFrameSmall);
-	end
 end
 
 -- When the switch button is clicked, we can basically assume that there's a match
@@ -524,5 +525,9 @@ function AtlasSwitchDD_Sort(a, b)
 	local aa = AtlasMaps[a].ZoneName[1];
 	local bb = AtlasMaps[b].ZoneName[1];
 	return aa < bb;
+end
+
+function AtlasFrameLarge_OnShow(self)
+	Atlas_MapAddNPCButtonLarge();
 end
 

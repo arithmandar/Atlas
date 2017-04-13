@@ -63,21 +63,30 @@
 
 Libs\Libs.xml
 Locale\Locales.xml
-Core\Constants.lua
+Data\Constants.lua
 
 Core\FontsTemplates.xml
 Core\Templates.xml
 Core\IngameLocales.lua
-Core\Maps_Association.lua
-Integration\EJIntegration.lua
-Core\Maps_DB.lua
-Core\Maps_NPC_DB.lua
-Core\DropDownConfig.lua
 
+# Map Configs
+Data\Maps_Association.lua
+Data\Maps_PreSetDB.lua
+Data\DropDownConfig.lua
+
+# Core
+Core\Atlas.lua
+Core\AtlasFrame.lua
+Core\Atlas.xml
+Core\Config.lua
+
+# Integration functions
+Integration\EJIntegration.lua
+Integration\EJLoot.xml
+Integration\WorldMapIntegration.xml
 Integration\Achievements.lua
 Integration\AtlasLootIntegration.lua
 
-Core\Atlas.xml
-Core\Config.lua
-Integration\EJLoot.xml
-Integration\WorldMapIntegration.xml
+# Data which is not part of any module
+Data\Maps.lua
+Data\Maps_NPC_DB.lua

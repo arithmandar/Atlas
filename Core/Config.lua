@@ -41,6 +41,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 
 local AceConfigReg = LibStub("AceConfigRegistry-3.0")
 local AceConfigDialog = LibStub("AceConfigDialog-3.0")
+local AceDBOptions = LibStub("AceDBOptions-3.0")
 
 local optGetter, optSetter
 do
@@ -162,7 +163,7 @@ local function getOptions()
 							order = 17,
 							type = "range",
 							name = L["ATLAS_OPTIONS_TRANS"],
-							min = 0, max = 1, bigStep = 0.01,
+							min = 0, max = 1, bigStep = 0.01, 
 							isPercent = true,
 							--width = "full",
 							get	= function()
@@ -170,7 +171,7 @@ local function getOptions()
 							end,
 							set	= function(info, value)
 								addon.db.profile.options.frames.alpha = value
-								Atlas_UpdateAlpha();
+								addon:UpdateAlpha();
 							end,
 						},
 						frames_scale = {
@@ -185,7 +186,7 @@ local function getOptions()
 							end,
 							set	= function(info, value)
 								addon.db.profile.options.frames.scale = value
-								Atlas_UpdateScale();
+								addon:UpdateScale();
 							end,
 						},
 						frames_boss_description_scale = {
@@ -275,10 +276,13 @@ local function getOptions()
 								return addon.db.profile.options.frames.lock
 							end,
 							set = function(info, value)
-								addon.db.profile.options.frames.lock = value
-								Atlas_UpdateLock()
-								Atlas_Refresh()
+								addon:ToggleLock()
 							end,
+						},
+						spacer2 = {
+							order = 26,
+							type = "description",
+							name = "",
 						},
 						dropdowns_menuType = {
 							order = 27,
@@ -306,7 +310,7 @@ local function getOptions()
 									[5] = ATLAS_DDL_TYPE,
 								}
 							end,
-							width = "double",
+							--width = "double",
 						},
 					},
 				},
@@ -320,20 +324,20 @@ local function getOptions()
 	return options
 end
 
-local function openoptions()
+local function openOptions()
 	-- open the profiles tab before, so the menu expands
 	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Profiles)
-	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Profiles)
+	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Profiles) -- yes, run twice to force the tre get expanded
 	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.General)
 	InterfaceOptionsFrame:Raise()
 end
 
 function addon:OpenOptions() 
-	openoptions()
+	openOptions()
 end
 
 local function giveProfiles()
-	return LibStub("AceDBOptions-3.0"):GetOptionsTable(addon.db)
+	return AceDBOptions:GetOptionsTable(addon.db)
 end
 
 function addon:SetupOptions()
@@ -350,7 +354,7 @@ function addon:SetupOptions()
 		self.optionsFrames["About"] = LibStub:GetLibrary("LibAboutPanel").new(private.addon_name, addon.Name)
 	end
 
-	self:RegisterChatCommand("atlas"..ATLAS_SLASH_OPTIONS, openoptions)
+	self:RegisterChatCommand("atlas"..ATLAS_SLASH_OPTIONS, openOptions)
 end
 
 -- Description: Function which extends our options table in a modular way
