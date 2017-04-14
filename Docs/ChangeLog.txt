@@ -15,7 +15,7 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.41.00 (Apr. xx, 2017)
+v1.41.00 (Apr. 14, 2017)
 ------------------------
 - Migrated option panel and settings to be managed via Ace3 libraries
 - Now you can disable the boss portait if you don't like it
