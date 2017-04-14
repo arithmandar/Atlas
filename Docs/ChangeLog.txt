@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.01 (Apr. 15, 2017)
+------------------------
+- Added new map data of the Nighthold
+
 v1.41.00 (Apr. 14, 2017)
 ------------------------
 - Migrated option panel and settings to be managed via Ace3 libraries

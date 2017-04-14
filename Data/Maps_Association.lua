@@ -615,6 +615,7 @@ Atlas_SubZoneData = {
 			BZ["Shal'dorei Terrace"],
 			BZ["The Shattered Walkway"],
 			BZ["The Font of Night"],
+			BZ["Elisande's Reach"],
 		},
 		-- Star Augur Etraeus
 		["TheNightholdC"] = {
@@ -625,9 +626,10 @@ Atlas_SubZoneData = {
 		["TheNightholdD"] = {
 			BZ["Captain's Quarters"],
 		},
+--		["TheNightholdE"] = {
+--		},
 		-- Grand Magistrix Elisande
-		["TheNightholdE"] = {
-			BZ["Elisande's Reach"],
+		["TheNightholdF"] = {
 			BZ["Elisande's Secret Quarters"],
 			BZ["The Nightspire"], -- upper floor
 		},
@@ -819,7 +821,7 @@ Atlas_EntToInstMatches = {
 	["WailingCavernsEnt"] =			{"WailingCaverns"};
 	-- Legion
 	["TheArcwayEnt"] = 			{"TheArcway"};
- 	["TheNightholdEnt"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
+ 	["TheNightholdEnt"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
 	["ReturntoKarazhanEnt"] =		{"KarazhanStart","KarazhanEnd","ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI"};
 };
 
@@ -893,6 +895,7 @@ Atlas_InstToEntMatches = {
 	["TheNightholdC"] = 			{"TheNightholdEnt"};
 	["TheNightholdD"] = 			{"TheNightholdEnt"};
 	["TheNightholdE"] = 			{"TheNightholdEnt"};
+	["TheNightholdF"] = 			{"TheNightholdEnt"};
 	["ReturntoKarazhanA"] = 		{"ReturntoKarazhanEnt"};
 	["ReturntoKarazhanB"] = 		{"ReturntoKarazhanEnt"};
 	["ReturntoKarazhanC"] = 		{"ReturntoKarazhanEnt"};
@@ -953,11 +956,12 @@ Atlas_MapSeries = {
 	["TheEmeraldNightmareF"] = 		{"TheEmeraldNightmareA", "TheEmeraldNightmareB", "TheEmeraldNightmareC", "TheEmeraldNightmareD", "TheEmeraldNightmareE", "TheEmeraldNightmareF", "TheEmeraldNightmareG", "TheEmeraldNightmareH" };
 	["TheEmeraldNightmareG"] = 		{"TheEmeraldNightmareA", "TheEmeraldNightmareB", "TheEmeraldNightmareC", "TheEmeraldNightmareD", "TheEmeraldNightmareE", "TheEmeraldNightmareF", "TheEmeraldNightmareG", "TheEmeraldNightmareH" };
  	["TheEmeraldNightmareH"] = 		{"TheEmeraldNightmareA", "TheEmeraldNightmareB", "TheEmeraldNightmareC", "TheEmeraldNightmareD", "TheEmeraldNightmareE", "TheEmeraldNightmareF", "TheEmeraldNightmareG", "TheEmeraldNightmareH" };
-	["TheNightholdA"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
-	["TheNightholdB"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
-	["TheNightholdC"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
-	["TheNightholdD"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
-	["TheNightholdE"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE" };
+	["TheNightholdA"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
+	["TheNightholdB"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
+	["TheNightholdC"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
+	["TheNightholdD"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
+	["TheNightholdE"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
+	["TheNightholdF"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
 	["TrialofValorA"] = 			{"TrialofValorA", "TrialofValorB"};
 	["TrialofValorB"] = 			{"TrialofValorA", "TrialofValorB"};
 	["VaultoftheWardensA"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
@@ -1060,6 +1064,7 @@ Atlas_SubZoneAssoc = {
 	["TheNightholdC"] = 			BZ["The Nighthold"];
 	["TheNightholdD"] = 			BZ["The Nighthold"];
 	["TheNightholdE"] = 			BZ["The Nighthold"];
+	["TheNightholdF"] = 			BZ["The Nighthold"];
 	["TrialofValorA"] = 			BZ["Trial of Valor"];
 	["TrialofValorB"] = 			BZ["Trial of Valor"];
 	["VaultoftheWardensA"] = 		BZ["Vault of the Wardens"];
