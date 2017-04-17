@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.02 (Apr. 17, 2017)
+------------------------
+- Library update: NoTaint_UIDropDownMenu
+
 v1.41.01 (Apr. 15, 2017)
 ------------------------
 - Added new map data of the Nighthold
