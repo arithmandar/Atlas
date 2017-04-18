@@ -319,6 +319,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",
 			"TheNightholdE",
 			"TheNightholdF",
+			"TheNightholdG",
 			"TrialofValorA",
 			"TrialofValorB",
 			"TombofSargerasA",
@@ -563,6 +564,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",
 			"TheNightholdE",
 			"TheNightholdF",
+			"TheNightholdG",
 			"ReturntoKarazhanEnt", 		-- Legion
 			"ReturntoKarazhanA", 		-- Legion
 			"ReturntoKarazhanB", 		-- Legion
@@ -775,6 +777,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",
 			"TheNightholdE",
 			"TheNightholdF",
+			"TheNightholdG",
 			"ObsidianSanctum",
 			"OnyxiasLair",
 			"RubySanctum",
@@ -863,6 +866,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",
 			"TheNightholdE",
 			"TheNightholdF",
+			"TheNightholdG",
 			"ObsidianSanctum",
 			"OnyxiasLair",
 			"RubySanctum",
@@ -1138,6 +1142,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",
 			"TheNightholdE",
 			"TheNightholdF",
+			"TheNightholdG",
 			"TrialofValorA",
 			"TrialofValorB",
 			"TombofSargerasA",
@@ -1305,6 +1310,7 @@ Atlas_DropDownLayouts = {
 			"TheNightholdD",		-- Legion
 			"TheNightholdE",		-- Legion
 			"TheNightholdF",
+			"TheNightholdG",
 			"ReturntoKarazhanEnt", 		-- Legion
 			"ReturntoKarazhanA", 		-- Legion
 			"ReturntoKarazhanB", 		-- Legion

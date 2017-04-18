@@ -52,6 +52,7 @@ _G.Atlas = addon
 
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0");
+local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0");
 local LibDialog = LibStub("LibDialog-1.0");
 local AceDB = LibStub("AceDB-3.0")
 
@@ -159,36 +160,36 @@ local function copyOptions()
 	options.disableUpdateNotification = AtlasOptions.AtlasDontShowInfo;
 end
 
--- Adopted from EncounterJournal
-local EJ_HTYPE_OVERVIEW = 3;
-
-local function Atlas_EncounterJournal_CheckForOverview(rootSectionID)
-	return select(3,EJ_GetSectionInfo(rootSectionID)) == EJ_HTYPE_OVERVIEW;
-end
-
--- Priority list for *not my spec*
-local overviewPriorities = {
-	[1] = "DAMAGER",
-	[2] = "HEALER",
-	[3] = "TANK",
-}
-
-local flagsByRole = {
-	["DAMAGER"] = 1,
-	["HEALER"] = 2,
-	["TANK"] = 0,
-}
-
-local rolesByFlag = {
-	[0] = "TANK",
-	[1] = "DAMAGER",
-	[2] = "HEALER"
-}
-
 local function debug(info)
 	if (ATLAS_DEBUGMODE) then
 		DEFAULT_CHAT_FRAME:AddMessage(L["ATLAS_TITLE"]..L["Colon"]..info);
 	end
+end
+
+-- get creature's name from server
+local cache_tooltip = CreateFrame("GameTooltip", "cacheToolTip", UIParent, "GameTooltipTemplate")
+local creature_cache
+local function getCreatureNamebyID(id)
+	if not id then return end
+
+	cache_tooltip:SetOwner(UIParent, "ANCHOR_NONE")
+	cache_tooltip:SetHyperlink(("unit:Creature-0-0-0-0-%d"):format(id))
+	creature_cache = _G["cacheToolTipTextLeft1"]:GetText()
+end
+
+function addon:GetCreatureName(creatureName, id)
+	if (not id) then return; end
+	
+	-- Lookup BabbleBoss first
+	if (BB[creatureName]) then
+		creatureName = BB[creatureName];
+	else
+		getCreatureNamebyID(id)
+		creatureName = creature_cache or creatureName
+		creature_cache = nil
+	end
+
+	return creatureName;
 end
 
 -- Below to temporarily create a table to store the core map's data
@@ -241,6 +242,12 @@ local function Atlas_BossButtonCleanUp(button)
 end
 
 local function Atlas_BossButtonUpdate(button, encounterID, instanceID, b_iconImage, moduleData)
+	local rolesByFlag = {
+		[0] = "TANK",
+		[1] = "DAMAGER",
+		[2] = "HEALER"
+	}
+
 	button:SetID(encounterID);
 	button.encounterID = encounterID;
 	if (instanceID and instanceID ~= 0) then
@@ -253,7 +260,7 @@ local function Atlas_BossButtonUpdate(button, encounterID, instanceID, b_iconIma
 		button.tooltiptitle = ejbossname;
 		button.tooltiptext = description;
 		button.link = link;
-		if (Atlas_EncounterJournal_CheckForOverview(rootSectionID)) then
+		if (addon:EncounterJournal_CheckForOverview(rootSectionID)) then
 			-- title, description, depth, abilityIcon, displayInfo, 
 			-- siblingID, nextSectionID, filteredByDifficulty, link, 
 			-- startsOpen, flag1, flag2, flag3, flag4 = EJ_GetSectionInfo(sectionID)
@@ -326,6 +333,15 @@ function Atlas_SearchAndRefresh(text)
 	Atlas_ScrollBar_Update();
 end
 
+local function parse_entry_strings(typeStr, id, preStr, index, lineplusoffset)
+	if (typeStr == "item") then
+		local itemID = id;
+		local itemName = GetItemInfo(itemID);
+		itemName = itemName or GetItemInfo(itemID) or preStr or "";
+		if (itemName) then _G["AtlasEntry"..index.."_Text"]:SetText(ATLAS_SCROLL_LIST[lineplusoffset]..itemName); end
+	end
+end
+
 function Atlas_ScrollBar_Update()
 	local zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone];
 	local mapdata = AtlasMaps;
@@ -356,12 +372,13 @@ function Atlas_ScrollBar_Update()
 				end
 				
 				if (ATLAS_SCROLL_ID[lineplusoffset][3] and ATLAS_SCROLL_ID[lineplusoffset][3]~= "") then
-					if (ATLAS_SCROLL_ID[lineplusoffset][3] == "item") then
+					parse_entry_strings(ATLAS_SCROLL_ID[lineplusoffset][3], ATLAS_SCROLL_ID[lineplusoffset][1], ATLAS_SCROLL_ID[lineplusoffset][4], i, lineplusoffset)
+--[[					if (ATLAS_SCROLL_ID[lineplusoffset][3] == "item") then
 						local itemID = ATLAS_SCROLL_ID[lineplusoffset][1];
 						local itemName = GetItemInfo(itemID);
 						itemName = itemName or GetItemInfo(itemID) or ATLAS_SCROLL_ID[lineplusoffset][4] or "";
 						if (itemName) then _G["AtlasEntry"..i.."_Text"]:SetText(ATLAS_SCROLL_LIST[lineplusoffset]..itemName); end
-					end
+					end]]
 				end
 			end
 			button:Show();

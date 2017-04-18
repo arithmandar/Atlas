@@ -42,6 +42,13 @@ local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0");
 
+-- Adopted from EncounterJournal
+local EJ_HTYPE_OVERVIEW = 3;
+
+function addon:EncounterJournal_CheckForOverview(rootSectionID)
+	return select(3,EJ_GetSectionInfo(rootSectionID)) == EJ_HTYPE_OVERVIEW;
+end
+
 -- ------------------------------------------------------------
 -- Call this function to translate boss name
 -- Syntax 1: Atlas_GetBossName(bossname);

@@ -15,6 +15,13 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.03 (Apr. 18, 2017)
+------------------------
+- Added map data of Gul'dan's chamber
+- Added feature to retrieve creature name from server and get displayed on 
+  map's legend panel and tooltip. 
+  This should improve the issue for those lack of translation
+
 v1.41.02 (Apr. 17, 2017)
 ------------------------
 - Library update: NoTaint_UIDropDownMenu

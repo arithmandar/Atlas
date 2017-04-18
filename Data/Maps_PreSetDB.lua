@@ -1020,6 +1020,10 @@ Syntax:
 		ZoneName = { BZ["The Nighthold"]..L["MapF"] };
 		Module = "Atlas_Legion";
 	};
+	TheNightholdG = {
+		ZoneName = { BZ["The Nighthold"]..L["MapG"] };
+		Module = "Atlas_Legion";
+	};
 	VaultoftheWardensA = {
 		ZoneName = { BZ["Vault of the Wardens"]..L["MapA"] };
 		Module = "Atlas_Legion";

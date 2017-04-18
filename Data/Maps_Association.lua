@@ -614,7 +614,6 @@ Atlas_SubZoneData = {
 		["TheNightholdB"] = {
 			BZ["Shal'dorei Terrace"],
 			BZ["The Shattered Walkway"],
-			BZ["The Font of Night"],
 			BZ["Elisande's Reach"],
 		},
 		-- Star Augur Etraeus
@@ -632,6 +631,9 @@ Atlas_SubZoneData = {
 		["TheNightholdF"] = {
 			BZ["Elisande's Secret Quarters"],
 			BZ["The Nightspire"], -- upper floor
+		},
+		["TheNightholdG"] = { --
+			BZ["The Font of Night"],
 		},
 	},
 	[BZ["Vault of the Wardens"]] = {
@@ -821,7 +823,7 @@ Atlas_EntToInstMatches = {
 	["WailingCavernsEnt"] =			{"WailingCaverns"};
 	-- Legion
 	["TheArcwayEnt"] = 			{"TheArcway"};
- 	["TheNightholdEnt"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
+ 	["TheNightholdEnt"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightholdG" };
 	["ReturntoKarazhanEnt"] =		{"KarazhanStart","KarazhanEnd","ReturntoKarazhanA", "ReturntoKarazhanB", "ReturntoKarazhanC", "ReturntoKarazhanD", "ReturntoKarazhanE", "ReturntoKarazhanF", "ReturntoKarazhanG", "ReturntoKarazhanH", "ReturntoKarazhanI"};
 };
 
@@ -896,6 +898,7 @@ Atlas_InstToEntMatches = {
 	["TheNightholdD"] = 			{"TheNightholdEnt"};
 	["TheNightholdE"] = 			{"TheNightholdEnt"};
 	["TheNightholdF"] = 			{"TheNightholdEnt"};
+	["TheNightholdG"] = 			{"TheNightholdEnt"};
 	["ReturntoKarazhanA"] = 		{"ReturntoKarazhanEnt"};
 	["ReturntoKarazhanB"] = 		{"ReturntoKarazhanEnt"};
 	["ReturntoKarazhanC"] = 		{"ReturntoKarazhanEnt"};
@@ -956,12 +959,13 @@ Atlas_MapSeries = {
 	["TheEmeraldNightmareF"] = 		{"TheEmeraldNightmareA", "TheEmeraldNightmareB", "TheEmeraldNightmareC", "TheEmeraldNightmareD", "TheEmeraldNightmareE", "TheEmeraldNightmareF", "TheEmeraldNightmareG", "TheEmeraldNightmareH" };
 	["TheEmeraldNightmareG"] = 		{"TheEmeraldNightmareA", "TheEmeraldNightmareB", "TheEmeraldNightmareC", "TheEmeraldNightmareD", "TheEmeraldNightmareE", "TheEmeraldNightmareF", "TheEmeraldNightmareG", "TheEmeraldNightmareH" };
  	["TheEmeraldNightmareH"] = 		{"TheEmeraldNightmareA", "TheEmeraldNightmareB", "TheEmeraldNightmareC", "TheEmeraldNightmareD", "TheEmeraldNightmareE", "TheEmeraldNightmareF", "TheEmeraldNightmareG", "TheEmeraldNightmareH" };
-	["TheNightholdA"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
-	["TheNightholdB"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
-	["TheNightholdC"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
-	["TheNightholdD"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
-	["TheNightholdE"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
-	["TheNightholdF"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF" };
+	["TheNightholdA"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightHoldG" };
+	["TheNightholdB"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightHoldG" };
+	["TheNightholdC"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightHoldG" };
+	["TheNightholdD"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightHoldG" };
+	["TheNightholdE"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightHoldG" };
+	["TheNightholdF"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightHoldG" };
+	["TheNightholdG"] = 			{"TheNightholdA", "TheNightholdB", "TheNightholdC", "TheNightholdD", "TheNightholdE", "TheNightholdF", "TheNightHoldG" };
 	["TrialofValorA"] = 			{"TrialofValorA", "TrialofValorB"};
 	["TrialofValorB"] = 			{"TrialofValorA", "TrialofValorB"};
 	["VaultoftheWardensA"] = 		{"VaultoftheWardensA", "VaultoftheWardensB", "VaultoftheWardensC" };
