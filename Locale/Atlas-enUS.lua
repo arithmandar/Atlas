@@ -230,6 +230,7 @@ L["ATLAS_CLOSE_ATLASLOOT_WINDOW"] = "Right-click to close AtlasLoot window."
 L["ATLAS_COLLAPSE_BUTTON"] = "Click to close Atlas' legend panel."
 L["ATLAS_EXPAND_BUTTON"] = "Click to open Atlas' legend panel."
 L["ATLAS_TOGGLE_LOOT"] = "Right-click to toggle loot panel."
+L["ATLAS_REOPEN_LOOT_AGAIN"] = "Please reopen the loot window to reload."
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
