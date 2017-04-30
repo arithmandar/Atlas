@@ -530,11 +530,13 @@ Atlas_SubZoneData = {
 		["BlackRookHoldB"] = {
 			BZ["The Grand Hall"],
 			BZ["Ravenswatch"],
+		},
+		["BlackRookHoldC"] = {
 			BZ["Ravenshold"],
 			BZ["Rook's Rise"],
 			BZ["Lord Ravencrest's Chamber"],
 		},
-		["BlackRookHoldC"] = {
+		["BlackRookHoldD"] = {
 			BZ["The Rook's Roost"],
 			BZ["The Raven's Crown"],
 		},
@@ -941,9 +943,10 @@ Atlas_MapSeries = {
 	["ThroneofThunderC"] = 			{"ThroneofThunderA", "ThroneofThunderB", "ThroneofThunderC", "ThroneofThunderD" };
 	["ThroneofThunderD"] = 			{"ThroneofThunderA", "ThroneofThunderB", "ThroneofThunderC", "ThroneofThunderD" };
 	-- Legion
-	["BlackRookHoldA"] = 			{"BlackRookHoldA", "BlackRookHoldB", "BlackRookHoldC" };
-	["BlackRookHoldB"] = 			{"BlackRookHoldA", "BlackRookHoldB", "BlackRookHoldC" };
-	["BlackRookHoldC"] = 			{"BlackRookHoldA", "BlackRookHoldB", "BlackRookHoldC" };
+	["BlackRookHoldA"] = 			{"BlackRookHoldA", "BlackRookHoldB", "BlackRookHoldC", "BlackRookHoldD" };
+	["BlackRookHoldB"] = 			{"BlackRookHoldA", "BlackRookHoldB", "BlackRookHoldC", "BlackRookHoldD" };
+	["BlackRookHoldC"] = 			{"BlackRookHoldA", "BlackRookHoldB", "BlackRookHoldC", "BlackRookHoldD" };
+	["BlackRookHoldD"] = 			{"BlackRookHoldA", "BlackRookHoldB", "BlackRookHoldC", "BlackRookHoldD" };
 	["CourtofStarsA"] = 			{"CourtofStarsA", "CourtofStarsB" };
 	["CourtofStarsB"] = 			{"CourtofStarsA", "CourtofStarsB" };
 	["HallsofValorA"] = 			{"HallsofValorA", "HallsofValorB", "HallsofValorC" };
@@ -1047,6 +1050,7 @@ Atlas_SubZoneAssoc = {
 	["BlackRookHoldA"] = 			BZ["Black Rook Hold"];
 	["BlackRookHoldB"] = 			BZ["Black Rook Hold"];
 	["BlackRookHoldC"] = 			BZ["Black Rook Hold"];
+	["BlackRookHoldD"] = 			BZ["Black Rook Hold"];
 	["CourtofStarsA"] = 			BZ["Court of Stars"];
 	["CourtofStarsB"] = 			BZ["Court of Stars"];
 	["HallsofValorA"] = 			BZ["Halls of Valor"];

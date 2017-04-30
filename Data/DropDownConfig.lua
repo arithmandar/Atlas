@@ -285,6 +285,7 @@ Atlas_DropDownLayouts = {
 			"BlackRookHoldA",
 			"BlackRookHoldB",
 			"BlackRookHoldC",
+			"BlackRookHoldD",
 			"CathedralofEternalNightA",
 			"CathedralofEternalNightB",
 			"CathedralofEternalNightC",
@@ -534,6 +535,7 @@ Atlas_DropDownLayouts = {
 			"BlackRookHoldA",
 			"BlackRookHoldB",
 			"BlackRookHoldC",
+			"BlackRookHoldD",
 			"VaultoftheWardensA",
 			"VaultoftheWardensB",
 			"VaultoftheWardensC",
@@ -607,6 +609,7 @@ Atlas_DropDownLayouts = {
 			"BlackRookHoldA",
 			"BlackRookHoldB",
 			"BlackRookHoldC",
+			"BlackRookHoldD",
 			"BloodmaulSlagMines",
 			"LowerBlackrockSpire",
 			"UpperBlackrockSpire",
@@ -1098,6 +1101,7 @@ Atlas_DropDownLayouts = {
 			"BlackRookHoldA",
 			"BlackRookHoldB",
 			"BlackRookHoldC",
+			"BlackRookHoldD",
 			"CathedralofEternalNightA",
 			"CathedralofEternalNightB",
 			"CathedralofEternalNightC",
@@ -1185,6 +1189,7 @@ Atlas_DropDownLayouts = {
 			"BlackRookHoldA",		-- Legion
 			"BlackRookHoldB",		-- Legion
 			"BlackRookHoldC",		-- Legion
+			"BlackRookHoldD",
 		},
 		[ATLAS_DDL_TYPE_INSTANCE_CF] = {
 			"TheDeadmines",			-- Classic WoW, Cayalysm
