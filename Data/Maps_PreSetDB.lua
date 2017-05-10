@@ -615,8 +615,12 @@ Syntax:
 		ZoneName = { BZ["The Bastion of Twilight"] };
 		Module = "Atlas_Cataclysm";
 	};
-	TheDeadmines = {
-		ZoneName = { BZ["The Deadmines"] };
+	TheDeadminesA = {
+		ZoneName = { BZ["The Deadmines"]..L["MapA"] };
+		Module = "Atlas_Cataclysm";
+	};
+	TheDeadminesB = {
+		ZoneName = { BZ["The Deadmines"]..L["MapB"] };
 		Module = "Atlas_Cataclysm";
 	};
 	TheStonecore = {
