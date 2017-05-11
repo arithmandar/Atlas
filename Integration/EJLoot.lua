@@ -155,7 +155,7 @@ function Atlas_EncounterJournal_OnLoad(self)
 	-- initialize tabs
 --	local instanceSelect = base.JournalInstanceID;
 --	local tierName = EJ_GetTierInfo(EJ_GetCurrentTier());
---	UIDropDownMenu_SetText(instanceSelect.tierDropDown, tierName);
+--	Lib_UIDropDownMenu_SetText(instanceSelect.tierDropDown, tierName);
 
 	-- check if tabs are active
 --	local dungeonInstanceID = EJ_GetInstanceByIndex(1, false);
@@ -460,7 +460,7 @@ function Atlas_EncounterJournal_DifficultyInit(self, level)
 	end
 end
 function Atlas_EncounterJournal_OnFilterChanged(self)
-	CloseDropDownMenus(1);
+	Lib_CloseDropDownMenus(1);
 	Atlas_EncounterJournal_LootUpdate();
 end
 

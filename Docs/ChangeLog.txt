@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.07 (May xx, 2017)
+------------------------
+- Fixed the function call of Lib_CloseDropDownMenus within EJLoot functions
+
 v1.41.06 (May 10, 2017)
 ------------------------
 - Updated map data for the Deadmines
