@@ -18,6 +18,7 @@ Known Issues:
 v1.41.07 (May xx, 2017)
 ------------------------
 - Fixed the function call of Lib_CloseDropDownMenus within EJLoot functions
+- Adjusted the loot panel's dropdown initialization
 
 v1.41.06 (May 10, 2017)
 ------------------------
