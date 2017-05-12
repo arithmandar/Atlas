@@ -149,8 +149,8 @@ function Atlas_EncounterJournal_OnLoad(self)
 	}
 ]]
 --	NavBar_Initialize(self.navBar, "NavButtonTemplate", homeData, self.navBar.home, self.navBar.overflow);
-	--Lib_UIDropDownMenu_Initialize(self.lootScroll.lootFilter, Atlas_EncounterJournal_InitLootFilter, "MENU");
-	--Lib_UIDropDownMenu_Initialize(self.lootScroll.lootSlotFilter, Atlas_EncounterJournal_InitLootSlotFilter, "MENU");
+	Lib_UIDropDownMenu_Initialize(self.lootScroll.lootFilter, Atlas_EncounterJournal_InitLootFilter, "MENU");
+	Lib_UIDropDownMenu_Initialize(self.lootScroll.lootSlotFilter, Atlas_EncounterJournal_InitLootSlotFilter, "MENU");
 
 	-- initialize tabs
 --	local instanceSelect = base.JournalInstanceID;
@@ -215,8 +215,8 @@ function Atlas_EncounterJournal_OnShow(self)
 	PlaySound("igCharacterInfoOpen");
 	Atlas_EncounterJournal_LootUpdate();
 	Atlas_EncounterJournal_UpdateDifficulty();
-	Lib_UIDropDownMenu_Initialize(self.lootScroll.lootFilter, Atlas_EncounterJournal_InitLootFilter, "MENU");
-	Lib_UIDropDownMenu_Initialize(self.lootScroll.lootSlotFilter, Atlas_EncounterJournal_InitLootSlotFilter, "MENU");
+	--Lib_UIDropDownMenu_Initialize(self.lootScroll.lootFilter, Atlas_EncounterJournal_InitLootFilter, "MENU");
+	--Lib_UIDropDownMenu_Initialize(self.lootScroll.lootSlotFilter, Atlas_EncounterJournal_InitLootSlotFilter, "MENU");
 
 --	local instanceSelect = EncounterJournal.instanceSelect;
 
