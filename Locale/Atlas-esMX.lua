@@ -48,7 +48,7 @@ end
 
 
 if L then
---@localization(locale="esMX", format="lua_additive_table")@
+--@localization(locale="esMX", format="lua_additive_table", handle-unlocalized="ignore")@
 --@do-not-package@
 --************************************************
 -- UI terms and common strings

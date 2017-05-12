@@ -297,5 +297,5 @@ L["West"] = "서쪽"
 L["Yarley <Armorer>"] = "야를리 <방어구 제작자>"
 L["Zaladormu"] = "잘라도르무"
 --@end-do-not-package@
---@localization(locale="koKR", format="lua_additive_table")@
+--@localization(locale="koKR", format="lua_additive_table", handle-unlocalized="ignore")@
 end

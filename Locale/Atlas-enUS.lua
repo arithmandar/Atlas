@@ -45,7 +45,7 @@ local L = AceLocale:NewLocale("Atlas", "enUS", true, true);
 
 
 if L then
---@localization(locale="enUS", format="lua_additive_table")@
+--@localization(locale="enUS", format="lua_additive_table", handle-unlocalized="ignore")@
 --@do-not-package@
 --************************************************
 -- UI terms and common strings
