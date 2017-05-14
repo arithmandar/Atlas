@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.08 (May 14, 2017)
+------------------------
+- Enhanced AtlasLoot integration feature
+
 v1.41.08 (May 12, 2017)
 ------------------------
 - Fixed issue in localization files

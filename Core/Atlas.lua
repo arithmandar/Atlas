@@ -360,7 +360,7 @@ function Atlas_ScrollBar_Update()
 			if (ATLAS_SCROLL_ID[lineplusoffset]) then
 				if (type(ATLAS_SCROLL_ID[lineplusoffset][1]) == "number") then
 					local id = ATLAS_SCROLL_ID[lineplusoffset][1];
-					Atlas_BossButtonUpdate(button, ATLAS_SCROLL_ID[lineplusoffset][1], ATLAS_SCROLL_ID[lineplusoffset][2], false, base.Module);
+					Atlas_BossButtonUpdate(button, ATLAS_SCROLL_ID[lineplusoffset][1], ATLAS_SCROLL_ID[lineplusoffset][2], false, base.Module or base.ALModule);
 				elseif (type(ATLAS_SCROLL_ID[lineplusoffset][1]) == "string") then
 					local spos, epos = strfind(ATLAS_SCROLL_ID[lineplusoffset][1], "ac=");
 					if (spos) then
