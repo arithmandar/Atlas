@@ -105,8 +105,11 @@ L["ATLAS_OPTIONS_HEADER_DISPLAY"] = "Options d'affichage"
 L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "Configuration de l'addon"
 
 L["ATLAS_BUTTON_CLOSE"] = "Fermer"
-L["ATLAS_LDB_HINT"] = "Clic-Gauche pour ouvrir Atlas.\nClic-Droit pour les options d'Atlas."
-L["ATLAS_MINIMAPLDB_HINT"] = "Clic-Gauche pour ouvrir Atlas.\nCLic-Droit pour ouvrir les options d'Atlas.\nClic-Gauche + glisser pour déplacer ce bouton."
+L["ATLAS_LDB_HINT"] = [=[Clic-Gauche pour ouvrir Atlas.
+Clic-Droit pour les options d'Atlas.]=]
+L["ATLAS_MINIMAPLDB_HINT"] = [=[Clic-Gauche pour ouvrir Atlas.
+CLic-Droit pour ouvrir les options d'Atlas.
+Clic-Gauche + glisser pour déplacer ce bouton.]=]
 
 L["ATLAS_OPTIONS_CATDD"] = "Trier les instances par :"
 L["ATLAS_DDL_CONTINENT"] = "Continent"	-- Sort Instance Maps by: Continent
@@ -241,6 +244,11 @@ L["East"] = "Est"
 L["North"] = "Nord"
 L["South"] = "Sud"
 L["West"] = "Ouest"
+--L["%s Instances"] = "%s Instances" 	-- Legion Instances
+--L["%s Dungeons"] = "%s Dungeons"	-- Legion Dungeons
+--L["%s Raids"] = "%s Raids"		-- Legion Raids
+--L[" 1/2"] = " 1/2"
+--L[" 2/2"] = " 2/2"
 
 --World Events, Festival
 L["Brewfest"] = "Fête des Brasseurs"

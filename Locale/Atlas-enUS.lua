@@ -105,8 +105,11 @@ L["ATLAS_OPTIONS_HEADER_DISPLAY"] = "Display Options"
 L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "Addon Configurations"
 
 L["ATLAS_BUTTON_CLOSE"] = "Close"
-L["ATLAS_LDB_HINT"] = "Left-Click to open Atlas.\nRight-Click for Atlas options."
-L["ATLAS_MINIMAPLDB_HINT"] = "Left-Click to open Atlas.\nRight-Click for Atlas options.\nLeft-click and drag to move this button."
+L["ATLAS_LDB_HINT"] = [=[Left-Click to open Atlas.
+Right-Click for Atlas options.]=]
+L["ATLAS_MINIMAPLDB_HINT"] = [=[Left-Click to open Atlas.
+Right-Click for Atlas options.
+Left-click and drag to move this button.]=]
 
 L["ATLAS_OPTIONS_CATDD"] = "Sort Instance Maps by:"
 L["ATLAS_DDL_CONTINENT"] = "Continent"	-- Sort Instance Maps by: Continent
@@ -241,6 +244,11 @@ L["East"] = "East"
 L["North"] = "North"
 L["South"] = "South"
 L["West"] = "West"
+L["%s Instances"] = "%s Instances" 	-- Legion Instances
+L["%s Dungeons"] = "%s Dungeons"	-- Legion Dungeons
+L["%s Raids"] = "%s Raids"		-- Legion Raids
+L[" 1/2"] = " 1/2"
+L[" 2/2"] = " 2/2"
 
 --World Events, Festival
 L["Brewfest"] = "Brewfest"
@@ -331,7 +339,11 @@ L["Wave 6"] = "Wave 6"
 L["Wave 10"] = "Wave 10"
 L["Wave 12"] = "Wave 12"
 L["Wave 18"] = "Wave 18"
-L["MapsNotFound"] = "The current selected instance does not have a \ncorresponding map image associated with. \n\nPlease make sure you have installed \nthe corresponding Atlas map module(s)."
+L["MapsNotFound"] = [=[The current selected instance does not have a 
+corresponding map image associated with. 
+
+Please make sure you have installed 
+the corresponding Atlas map module(s).]=]
 L["PossibleMissingModule"] = "It is likely this map is from this module: "
 L["Transport"] = "Transport"
 L["Profile Options"] = "Profile Options"
@@ -351,14 +363,14 @@ L["MapJ"] = " [J]"
 --************************************************
 -- Instance Entrance Maps
 --************************************************
-	--Blackrock Mountain (Entrance)
+--Blackrock Mountain (Entrance)
 L["Bodley"] = "Bodley"
 L["Lothos Riftwaker"] = "Lothos Riftwaker"
 L["Orb of Command"] = "Orb of Command"
 L["Scarshield Quartermaster <Scarshield Legion>"] = "Scarshield Quartermaster <Scarshield Legion>"
 L["The Behemoth"] = "The Behemoth"
 
-	--Caverns of Time (Entrance)
+--Caverns of Time (Entrance)
 L["Steward of Time <Keepers of Time>"] = "Steward of Time <Keepers of Time>"
 L["Alexston Chrome <Tavern of Time>"] = "Alexston Chrome <Tavern of Time>"
 L["Yarley <Armorer>"] = "Yarley <Armorer>"

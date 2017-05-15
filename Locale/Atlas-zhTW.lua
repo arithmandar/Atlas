@@ -102,8 +102,12 @@ L["ATLAS_OPTIONS_HEADER_DISPLAY"] = "顯示選項"
 L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "插件設定"
 
 L["ATLAS_BUTTON_CLOSE"] = "關閉"
-L["ATLAS_LDB_HINT"] = "左鍵開啟 Atlas。\n中鍵開啟 Atlas 選項。\n右鍵打開顯示選單。"
-L["ATLAS_MINIMAPLDB_HINT"] = "左鍵開啟 Atlas。\n右鍵開啟 Atlas 選項。\n左鍵並拖曳以移動圖示按鈕位置。"
+L["ATLAS_LDB_HINT"] = [=[左鍵開啟 Atlas。
+中鍵開啟 Atlas 選項。
+右鍵打開顯示選單。"]=]
+L["ATLAS_MINIMAPLDB_HINT"] = [=[左鍵開啟 Atlas。
+右鍵開啟 Atlas 選項。
+左鍵並拖曳以移動圖示按鈕位置。]=]
 
 L["ATLAS_OPTIONS_CATDD"] = "副本地圖分類方式:"
 L["ATLAS_DDL_CONTINENT"] = "依不同大陸分類"
@@ -225,6 +229,7 @@ L["ATLAS_CLOSE_ATLASLOOT_WINDOW"] = "右鍵點擊以關閉 AtlasLoot 視窗。"
 L["ATLAS_COLLAPSE_BUTTON"] = "按下以收起 Atlas 的地圖說明窗格。"
 L["ATLAS_EXPAND_BUTTON"] = "按下以展開 Atlas 的地圖說明窗格。"
 L["ATLAS_TOGGLE_LOOT"] = "右鍵點擊以開啟首領戰利品視窗。"
+L["ATLAS_REOPEN_LOOT_AGAIN"] = "請重新開啟首領戰利品視窗以重新載入物品資訊。"
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
@@ -235,19 +240,24 @@ L["East"] = "東"
 L["North"] = "北"
 L["South"] = "南"
 L["West"] = "西"
+L["%s Instances"] = "%s副本" 	-- Legion Instances
+L["%s Dungeons"] = "%s地城"		-- Legion Dungeons
+L["%s Raids"] = "%s團隊副本"	-- Legion Raids
+L[" 1/2"] = " 1/2"
+L[" 2/2"] = " 2/2"
 
-	--World Events, Festival
+--World Events, Festival
 L["Brewfest"] = "啤酒節"
 L["Hallow's End"] = "萬鬼節"
 L["Love is in the Air"] = "愛就在身邊"
 L["Lunar Festival"] = "新年慶典"
 L["Midsummer Festival"] = "仲夏節慶"
 
-	--Instance Difficulties
+--Instance Difficulties
 L["Heroic_Symbol"] = "（英雄）"
 L["Mythic_Symbol"] = "（傳奇）"
-	--Misc strings
-		--Symbols
+--Misc strings
+	--Symbols
 	L["Colon"] = "："
 	L["Semicolon"] = "；"
 	L["L-Parenthesis"] = "（"
@@ -325,12 +335,14 @@ L["Wave 6"] = "第 6 波"
 L["Wave 10"] = "第 10 波"
 L["Wave 12"] = "第 12 波"
 L["Wave 18"] = "第 18 波"	
-L["MapsNotFound"] = "目前的副本找不到對應的地圖影像檔。\n\n請確認您是否有安裝 Atlas 相關的副本地圖模組。"
+L["MapsNotFound"] = [=[目前的副本找不到對應的地圖影像檔。
+
+請確認您是否有安裝 Atlas 相關的副本地圖模組。]=]
 L["PossibleMissingModule"] = "遺失的地圖應是來自以下的模組："
 L["Transport"] = "傳送"
 L["Profile Options"] = "設定檔選項"
 
-	--Map sections
+--Map sections
 L["MapA"] = " [1]" -- For example: Shado-Pan Monastery [A]
 L["MapB"] = " [2]" -- 一, 二, 三...won't work as somehow it will be sorted as 一, 三, 二, 四. so need to change to digits
 L["MapC"] = " [3]"
@@ -365,6 +377,5 @@ L["Arazmodu <The Scale of Sands>"] = "阿拉斯莫杜 <流沙之鱗>"
 L["Andormu <Keepers of Time>"] = "安杜姆 <時光守望者>"
 L["Nozari <Keepers of Time>"] = "諾札瑞 <時光守望者>"
 L["Anachronos <Keepers of Time>"] = "安納克羅斯 <時光守望者>"
-
 --@end-do-not-package@
 end
