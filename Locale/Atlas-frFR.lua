@@ -41,7 +41,7 @@ if ( GetLocale() ==		"frFR" ) then
 		["The Temple of Atal'Hakkar"] = "Le temple d'Atal'Hakkar";
 	--	["Throne of Tides"] = "The Abyssal Maw: Throne of the Tides";
 	};
---end
+end
 
 
 if L then
