@@ -178,18 +178,13 @@ local function getCreatureNamebyID(id)
 end
 
 function addon:GetCreatureName(creatureName, id)
-	if (not id) then return; end
+	if (not creatureName) and (not id) then return end
 	
-	-- Lookup BabbleBoss first
-	if (BB[creatureName]) then
-		creatureName = BB[creatureName];
-	else
-		getCreatureNamebyID(id)
-		creatureName = creature_cache or creatureName
-		creature_cache = nil
-	end
+	getCreatureNamebyID(id)
+	creatureName = creature_cache or creatureName
+	creature_cache = nil
 
-	return creatureName;
+	return creatureName
 end
 
 -- Below to temporarily create a table to store the core map's data

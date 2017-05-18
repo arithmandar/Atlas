@@ -15,6 +15,16 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.10 (May 18, 2017)
+------------------------
+- Adjusted GetCreatureName function's lookup behavior to ignore BabbleBoss's looking up
+- Adjusted Dropdown menu's formatting
+- Localization update:
+  - Russian (BLizzatron)
+  - Simplified Chinese (ananhaid)
+- Library update:
+  - LibAboutPanel
+
 v1.41.09 (May 14, 2017)
 ------------------------
 - Enhanced AtlasLoot integration feature
@@ -184,6 +194,8 @@ v1.37.03 (Feb. 08, 2017)
 ------------------------
 - Added option to toggle Atlas button on World Map window
 - Updated KeyBindings' category
+- Localization update:
+  - Spanish (maqjav)
 
 v1.37.02 (Jan. 24, 2017)
 ------------------------
@@ -203,6 +215,8 @@ v1.37.00 (Jan. 22, 2017)
   mouse hover the boss button
 - Enhanced tooltip handling
 - Added boss overview's - character role's section details
+- Localization update:
+  - Spanish (Lawghter)
 
 v1.36.04 (Jan. 20, 2017)
 ------------------------
