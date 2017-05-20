@@ -15,6 +15,13 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.11 (May 20, 2017)
+------------------------
+- Lib update:
+  - NoTaint_UIDropDown
+- Localization update:
+  - German (pas06)
+  
 v1.41.10 (May 18, 2017)
 ------------------------
 - Adjusted GetCreatureName function's lookup behavior to ignore BabbleBoss's looking up
