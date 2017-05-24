@@ -15,6 +15,11 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.12 (May xx, 2017)
+------------------------
+- Lib update:
+  - Replace NoTaint_UIDropDownMenu with LibUIDropDownMenu
+
 v1.41.11 (May 20, 2017)
 ------------------------
 - Lib update:

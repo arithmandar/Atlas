@@ -29,14 +29,15 @@
 -- ----------------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0);
-local pairs = _G.pairs;
-local select = _G.select;
-local type = _G.type;
+local pairs, select, type, unpack = pairs, select, type, unpack
 -- Libraries
-local bit = _G.bit;
-local string = _G.string;
-local table = _G.table;
-local math = _G.math;
+local bit = bit
+local string = string
+local strfind, strsub, format = string.find, string.sub, string.format
+local table = table
+local getn, tinsert = table.getn, table.insert
+local math = math
+local tonumber = tonumber
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -1616,7 +1617,7 @@ function Atlas_Refresh(mapID)
 			AtlasSwitchButton:SetText(ATLAS_INSTANCE_BUTTON);
 		end
 		AtlasSwitchButton:Show();
-		Lib_UIDropDownMenu_Initialize(AtlasSwitchDD, AtlasSwitchDD_OnLoad);
+		L_UIDropDownMenu_Initialize(AtlasSwitchDD, AtlasSwitchDD_OnLoad);
 	else
 		AtlasSwitchButton:Hide();
 	end

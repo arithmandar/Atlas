@@ -368,7 +368,7 @@
 			</Layer>
 		</Layers>
 	</Button>
-	<Button name="AtlasFrameDropDownTypeTemplate" inherits="Lib_UIDropDownMenuTemplate" virtual="true">
+	<Button name="AtlasFrameDropDownTypeTemplate" inherits="L_UIDropDownMenuTemplate" virtual="true">
 		<Layers>
 			<Layer level="BACKGROUND">
 				<FontString name="$parentLabel" inherits="GameFontNormalSmall" text="ATLAS_STRING_SELECT_CAT">
@@ -390,7 +390,7 @@
 			</Anchor>
 		</Anchors>
 	</Button>
-	<Button name="AtlasFrameDropDownTemplate" inherits="Lib_UIDropDownMenuTemplate" virtual="true">
+	<Button name="AtlasFrameDropDownTemplate" inherits="L_UIDropDownMenuTemplate" virtual="true">
 		<Layers>
 			<Layer level="BACKGROUND">
 				<FontString name="$parentLabel" inherits="GameFontNormalSmall" text="ATLAS_STRING_SELECT_MAP">
