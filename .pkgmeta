@@ -47,4 +47,5 @@ externals:
 
 ignore:
     - Images/PSD
+    - Libs/NoTaint_UIDropDownMenu
 
