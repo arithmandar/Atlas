@@ -24,6 +24,7 @@
 
 --]]
 
+local setmetatable, rawget = setmetatable, rawget
 
 Atlas_IngameLocales = {
 	-- ######################################################################

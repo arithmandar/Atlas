@@ -29,8 +29,8 @@
 -- Localized Lua globals.
 -- ----------------------------------------------------------------------------
 -- Functions
-local _G = getfenv(0);
-local pairs = _G.pairs;
+local _G = getfenv(0)
+local pairs, tonumber = _G.pairs, _G.tonumber
 -- Libraries
 
 -- ----------------------------------------------------------------------------

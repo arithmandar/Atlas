@@ -31,6 +31,7 @@
 local _G = getfenv(0);
 -- Libraries
 local bit = _G.bit;
+local format = string.format
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.

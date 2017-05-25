@@ -28,10 +28,11 @@
 -- Localized Lua globals.
 -- ----------------------------------------------------------------------------
 -- Functions
-local _G = getfenv(0);
-local pairs = _G.pairs;
-local select = _G.select;
-local type = _G.type;
+local _G = getfenv(0)
+local pairs = _G.pairs
+local select = _G.select
+local type = _G.type
+local tonumber = _G.tonumber
 -- Libraries
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.

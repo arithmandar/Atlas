@@ -34,11 +34,14 @@
 -- Functions
 local _G = getfenv(0)
 local ipairs = _G.ipairs
-local pairs = _G.pairs;
--- Libraries
+local pairs = _G.pairs
+local select = _G.select
+local tonumber = _G.tonumber
 local string = _G.string
-local math = _G.math;
+local math = _G.math
+-- Libraries
 local floor = math.floor
+local format = string.format
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -451,7 +454,7 @@ function Atlas_EncounterJournal_DifficultyInit(self, level)
 		if EJ_IsValidInstanceDifficulty(entry.difficultyID) then
 			info.func = Atlas_EncounterJournal_SelectDifficulty;
 			if (entry.size) then
-				info.text = string.format(ENCOUNTER_JOURNAL_DIFF_TEXT, entry.size, entry.prefix);
+				info.text = format(ENCOUNTER_JOURNAL_DIFF_TEXT, entry.size, entry.prefix);
 			else
 				info.text = entry.prefix;
 			end
@@ -503,7 +506,7 @@ function Atlas_EncounterJournal_UpdateFilterString()
 	end
 
 	if name then
-		AtlasEJLootFrame.lootScroll.classClearFilter.text:SetText(string.format(EJ_CLASS_FILTER, name));
+		AtlasEJLootFrame.lootScroll.classClearFilter.text:SetText(format(EJ_CLASS_FILTER, name));
 		AtlasEJLootFrame.lootScroll.classClearFilter:Show();
 		AtlasEJLootFrame.lootScroll:SetHeight(360);
 	else
