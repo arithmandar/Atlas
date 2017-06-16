@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.16 (Jun. 16, 2017)
+------------------------
+- Fixed lib loading issue
+
 v1.41.15 (Jun. 16, 2017)
 ------------------------
 - Lib linking fixed
