@@ -231,6 +231,8 @@ L["ATLAS_EXPAND_BUTTON"] = "按下以展開 Atlas 的地圖說明窗格。"
 L["ATLAS_TOGGLE_LOOT"] = "右鍵點擊以開啟首領戰利品視窗。"
 L["ATLAS_REOPEN_LOOT_AGAIN"] = "請重新開啟首領戰利品視窗以重新載入物品資訊。"
 
+L["Scale and Transparency"] = "大小與透明度"
+
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************

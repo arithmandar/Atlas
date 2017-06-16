@@ -235,6 +235,8 @@ L["ATLAS_EXPAND_BUTTON"] = "Click to open Atlas' legend panel."
 L["ATLAS_TOGGLE_LOOT"] = "Right-click to toggle loot panel."
 L["ATLAS_REOPEN_LOOT_AGAIN"] = "Please reopen the loot window to reload."
 
+L["Scale and Transparency"] = "Scale and Transparency"
+
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************

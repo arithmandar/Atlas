@@ -15,6 +15,16 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.14 (Jun. 16, 2017)
+------------------------
+- Fixed no-lib version's lib setting. LibDataBroker-1.1 should be embedded anyway.
+- Re-organized option panel's layout
+
+v1.41.13 (Jun. 04, 2017)
+------------------------
+- Prevent from error popping up while clicking on boss button before Adventure 
+  Journal is available to current character.
+
 v1.41.12 (May 25, 2017)
 ------------------------
 - Lib update:
