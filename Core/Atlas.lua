@@ -418,15 +418,7 @@ local function Atlas_Process_Deprecated()
 	-- Check for outdated modules, build a list of them, then disable them and tell the player
 	local OldList = {};
 	for k, v in pairs(Deprecated_List) do
-		-- name, title, notes, loadable, reason, security, newVersion = GetAddOnInfo(index or "name")
-		--    loadable : Boolean - Indicates if the AddOn is loaded or eligible to be loaded, true if it is, false if it is not.
-		local loadable = select(4, GetAddOnInfo(v[1]));
-		-- GetAddOnEnableState("character", index): 
-		--	0: addon is disabled
-		--	1: partially enabled (only when querying all characters)
-		-- 	2: fully enabled
-		local enabled = GetAddOnEnableState(UnitName("player"), GetAddOnInfo(v[1]))
-		if ( (enabled > 0) and loadable ) then
+		if ( addon:CheckAddonStatus(GetAddOnInfo(v[1])) ) then
 			local oldVersion = true;			
 			if (v[2] ~= nil and GetAddOnMetadata(v[1], "Version") >= v[2]) then
 				oldVersion = false;
@@ -1775,6 +1767,23 @@ function Atlas_SetEJBackground(instanceID)
 		t:SetColorTexture(0.5, 0.5, 0.5, 0.5);
 	end
 ]]
+end
+
+function addon:CheckAddonStatus(addonName)
+	if not addonName then return nil end
+	-- name, title, notes, loadable, reason, security, newVersion = GetAddOnInfo(index or "name")
+	--    loadable : Boolean - Indicates if the AddOn is loaded or eligible to be loaded, true if it is, false if it is not.
+	local loadable = select(4, GetAddOnInfo(addonName))
+	-- GetAddOnEnableState("character", index): 
+	--	0: addon is disabled
+	--	1: partially enabled (only when querying all characters)
+	-- 	2: fully enabled
+	local enabled = GetAddOnEnableState(UnitName("player"), addonName)
+	if (enabled > 0 and loadable) then
+		return true
+	else
+		return false
+	end
 end
 
 -- ///////////////////////////////////////////////////////

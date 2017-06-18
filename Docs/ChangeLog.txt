@@ -15,6 +15,11 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.17 (Jun. 18, 2017)
+------------------------
+- Enhanced the addon loading status check for detecting AtlasLoot 
+  and other Atlas plugins
+
 v1.41.16 (Jun. 16, 2017)
 ------------------------
 - Fixed lib loading issue

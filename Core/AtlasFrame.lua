@@ -188,8 +188,7 @@ function AtlasEntry_OnUpdate(self)
 					if (not disabled) then
 						GameTooltip:AddLine(ATLAS_OPEN_ADVENTURE, 0.5, 0.5, 1, true);
 					end
-					local loadable = select(4, GetAddOnInfo("AtlasLoot"));
-					if (loadable) then 
+					if (addon:CheckAddonStatus("AtlasLoot")) then 
 						GameTooltip:AddLine(ATLAS_ROPEN_ATLASLOOT_WINDOW, 0.5, 0.5, 1, true);
 					end
 				end
