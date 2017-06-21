@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.41.18 (Jun. 21, 2017)
+------------------------
+- Enhanced msp'd auto-selecting to prevent from error popping-up
+
 v1.41.17 (Jun. 18, 2017)
 ------------------------
 - Enhanced the addon loading status check for detecting AtlasLoot 

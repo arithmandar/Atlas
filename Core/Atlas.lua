@@ -1650,7 +1650,7 @@ function Atlas_AutoSelect()
 		end
 		if (not selected_map) then
 			debug("No subzone matched, now checking if we should specify a default map.");
-			if (currentZone == Atlas_SubZoneAssoc[zoneID]) then
+			if (zoneID and currentZone == Atlas_SubZoneAssoc[zoneID]) then
 				debug("You're in the same instance as the former map. Doing nothing.");
 				return;
 			else
@@ -1665,6 +1665,7 @@ function Atlas_AutoSelect()
 					profile.options.dropdowns.module = k_DropDownType;
 					profile.options.dropdowns.zone = k_DropDownZone;
 					Atlas_Refresh();
+					zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone];
 					debug("Map selected! Type: "..k_DropDownType..", Zone: "..k_DropDownZone..", "..zoneID);
 					return;
 				end
@@ -1680,20 +1681,21 @@ function Atlas_AutoSelect()
 						profile.options.dropdowns.module = k_DropDownType;
 						profile.options.dropdowns.zone = k_DropDownZone;
 						Atlas_Refresh();
+						zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone];
 						debug("Map changed to the associated map: "..zoneID);
 						return;
 					end
 				end
 			end
 			debug("Checking if instance/entrance pair can be found.");
-		elseif (Atlas_InstToEntMatches[zoneID]) then
+		elseif (zoneID and Atlas_InstToEntMatches[zoneID]) then
 			for ka, va in pairs(Atlas_InstToEntMatches[zoneID]) do
 				if (currentZone == AtlasMaps[va].ZoneName[1]) then
 					debug("Instance/entrance pair found. Doing nothing.");
 					return;
 				end
 			end
-		elseif (Atlas_EntToInstMatches[zoneID]) then
+		elseif (zoneID and Atlas_EntToInstMatches[zoneID]) then
 			for ka, va in pairs(Atlas_EntToInstMatches[zoneID]) do
 				if (currentZone == AtlasMaps[va].ZoneName[1]) then
 					debug("Instance/entrance pair found. Doing nothing.");
