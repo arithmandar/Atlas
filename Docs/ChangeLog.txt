@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.42.01 (Jun. 29, 2017)
+------------------------
+- Fixed index error
+
 v1.42.00 (Jun. 29, 2017)
 ------------------------
 - Modulized Atlas' module data like map entries and association database. 
