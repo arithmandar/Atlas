@@ -309,7 +309,7 @@ local function getOptions()
 										addon.db.profile.options.dropdowns.module = 1
 										addon.db.profile.options.dropdowns.zone = 1
 
-										Atlas_PopulateDropdowns()
+										addon:PopulateDropdowns()
 										Atlas_Refresh()
 										AtlasFrameDropDownType_OnShow()
 										AtlasFrameDropDown_OnShow()
@@ -317,9 +317,9 @@ local function getOptions()
 									values = function()
 										return {
 											[1] = ATLAS_DDL_CONTINENT,
-											[2] = ATLAS_DDL_LEVEL,
-											[3] = ATLAS_DDL_PARTYSIZE,
-											[4] = ATLAS_DDL_EXPANSION,
+											[2] = ATLAS_DDL_EXPANSION,
+											[3] = ATLAS_DDL_LEVEL,
+											[4] = ATLAS_DDL_PARTYSIZE,
 											[5] = ATLAS_DDL_TYPE,
 										}
 									end,
