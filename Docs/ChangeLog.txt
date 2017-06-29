@@ -9,11 +9,18 @@ Known Issues:
 ==============
 - User might see the boss loots are not fully loaded and showing item info 
   is retrieving. If that's the case, user will need to close and open the
-  loot window again. (this seems to be fixed since v1.40.00)
+  loot window again. 
 
 ==============
 = Change Log =
 ==============
+
+v1.42.02 (Jun. xx, 2017)
+------------------------
+- Added option to customize maximum number of menu items
+- Added category icon to dropdown menu
+- Localization update:
+  - Simplified Chinese (ananhaid)
 
 v1.42.01 (Jun. 29, 2017)
 ------------------------

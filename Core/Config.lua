@@ -166,6 +166,21 @@ local function getOptions()
 										AtlasFrameDropDown_OnShow()
 									end,
 								},
+								dropdowns_size = {
+									order = 17, 
+									type = "range",
+									name = L["ATLAS_OPTIONS_MAXMENUITEMS"],
+									desc = L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"],
+									width = "full",
+									min = 5, max = 50, bigStep = 1, 
+									get	= function()
+										return addon.db.profile.options.dropdowns.maxItems
+									end,
+									set	= function(info, value)
+										addon.db.profile.options.dropdowns.maxItems = value
+										addon:Refresh()
+									end,
+								},
 							},
 						},
 						group2 = {
@@ -186,7 +201,7 @@ local function getOptions()
 									end,
 									set	= function(info, value)
 										addon.db.profile.options.frames.alpha = value
-										addon:UpdateAlpha();
+										addon:UpdateAlpha()
 									end,
 								},
 								frames_scale = {
@@ -201,7 +216,7 @@ local function getOptions()
 									end,
 									set	= function(info, value)
 										addon.db.profile.options.frames.scale = value
-										addon:UpdateScale();
+										addon:UpdateScale()
 									end,
 								},
 								frames_boss_description_scale = {

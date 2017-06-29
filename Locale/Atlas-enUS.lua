@@ -40,7 +40,7 @@ local L = AceLocale:NewLocale("Atlas", "enUS", true, true);
 		["Ahn'Qiraj"] = "Temple of Ahn'Qiraj";
 		["The Temple of Atal'Hakkar"] = "Sunken Temple";
 	--	["Throne of Tides"] = "The Abyssal Maw: Throne of the Tides";
-	};
+	}
 --end
 
 
@@ -103,6 +103,8 @@ L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "Show instance dropdown in colors"
 L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "Based on the instance's recommended minimul level and player's level, to show the instance with difficulty colors."
 L["ATLAS_OPTIONS_HEADER_DISPLAY"] = "Display Options"
 L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "Addon Configurations"
+L["ATLAS_OPTIONS_MAXMENUITEMS"] = "Maximum Number of Menu Items"
+L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"] = "Configure the maximum number of dropdown menu items to be displayed before spliting to another menu category."
 L["ATLAS_NO_MODULE_OR_PLUGIN"] = [=[|cffff66ffError:|r
 Atlas can not detect any of map module 
 or plugin installed and enabled.

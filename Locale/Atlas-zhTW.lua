@@ -100,6 +100,8 @@ L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "副本清單以難易度色彩顯示"
 L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "依據副本建議的最低進入等級、以及玩家現今等級的差異，將副本清單以難易度色彩顯示。"
 L["ATLAS_OPTIONS_HEADER_DISPLAY"] = "顯示選項"
 L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "插件設定"
+L["ATLAS_OPTIONS_MAXMENUITEMS"] = "選單最大值"
+L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"] = "設定下拉選單最大可顯示的地圖數量，超過後才分割至下一個地圖類別。"
 L["ATLAS_NO_MODULE_OR_PLUGIN"] = [=[|cffff66ff錯誤：|r
 Atlas 無法偵測到任何的地圖
 模組或插件被安裝且啟用。

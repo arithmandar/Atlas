@@ -483,7 +483,6 @@ function addon:PopulateDropdowns()
 			for k,v in pairs(subcatItems) do
 				local q1 = (k-(k%ATLAS_MAX_MENUITEMS))/ATLAS_MAX_MENUITEMS
 				if v then tinsert(ATLAS_DROPDOWNS[i+q1], v) end
-				--print(format("n: %d - %s, i:%d, q:%d, - k:%s, v:%s", n, subcatOrder[n], i, q1, k, v))
 			end
 	--		for p = 0, q do
 	--			tsort(ATLAS_DROPDOWNS[i+p], sortZonesAlpha)
@@ -1850,6 +1849,8 @@ local function initialization()
 	AtlasFrame:SetClampRectInsets(12, 0, -12, 0)
 	AtlasFrameLarge:SetClampRectInsets(12, 0, -12, 0)
 	AtlasFrameSmall:SetClampRectInsets(12, 0, -12, 0)
+	
+	ATLAS_MAX_MENUITEMS = profile.options.dropdowns.maxItems or ATLAS_MAX_MENUITEMS
 
 	-- Populate the dropdown lists...yeeeah this is so much nicer!
 	addon:PopulateDropdowns()
@@ -1918,6 +1919,7 @@ end
 function addon:Refresh()
 	profile = self.db.profile
 
+	ATLAS_MAX_MENUITEMS = profile.options.dropdowns.maxItems or ATLAS_MAX_MENUITEMS
 	addon:PopulateDropdowns()
 	Atlas_Refresh()
 	AtlasFrameDropDownType_OnShow()

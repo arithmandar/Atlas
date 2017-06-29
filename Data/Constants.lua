@@ -249,6 +249,7 @@ constants.defaults = {
 				menuType = 1,			-- AtlasSortBy
 				module = 1,			-- AtlasType
 				zone = 1,			-- AtlasZone
+				maxItems = 30,
 			},
 			worldMapButton = true,			-- AtlasWorldMapButtonShown
 			checkMissingModules = true,		-- AtlasCheckModule
