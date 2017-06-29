@@ -58,37 +58,41 @@ end
 -- ------------------------------------------------------------
 function addon:GetBossName(bossname, encounterID, creatureIndex)
 	if (encounterID) then
-		local encounter;
+		local encounter, _, iconImage
+		-- id, name, description, displayInfo, iconImage = EJ_GetCreatureInfo(index[, encounterID])
+		_, encounter, _, _, iconImage = EJ_GetCreatureInfo(creatureIndex or 1, encounterID)
+--[[
 		if (creatureIndex) then
 			if (EJ_GetCreatureInfo(creatureIndex, encounterID)) then
-				local _;
-				_, encounter = EJ_GetCreatureInfo(creatureIndex, encounterID);
+				local _
+				_, encounter = EJ_GetCreatureInfo(creatureIndex, encounterID)
 			end
 		else 
 			if (EJ_GetEncounterInfo(encounterID)) then
-				encounter, _, _, _, link = EJ_GetEncounterInfo(encounterID);
+				encounter, _, _, _, link = EJ_GetEncounterInfo(encounterID)
 			end
 		end
+]]
 		if (encounter == nil) then
 			if (bossname and BB[bossname]) then
-				bossname = BB[bossname];
+				bossname = BB[bossname]
 			elseif (bossname and L[bossname]) then
-				bossname = L[bossname];
+				bossname = L[bossname]
 			else
-				--bossname = bossname;
+				--bossname = bossname
 			end
 		else
-			bossname = encounter;
+			bossname = iconImage and format("|T%d:0:2.5|t%s", iconImage, encounter) or encounter
 		end
 	elseif (bossname and BB[bossname]) then
-		bossname = BB[bossname];
+		bossname = BB[bossname]
 	elseif (bossname and L[bossname]) then
-		bossname = L[bossname];
+		bossname = L[bossname]
 	else
-		--bossname = bossname;
+		--bossname = bossname
 	end
 
-	return bossname;
+	return bossname
 end
 
 function Atlas_GetBossName(bossname, encounterID, creatureIndex)

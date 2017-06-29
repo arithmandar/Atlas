@@ -19,6 +19,7 @@ v1.42.02 (Jun. xx, 2017)
 ------------------------
 - Added option to customize maximum number of menu items
 - Added category icon to dropdown menu
+- Added to show boss icon
 - Localization update:
   - Simplified Chinese (ananhaid)
 
