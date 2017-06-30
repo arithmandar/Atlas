@@ -164,7 +164,7 @@
 		<Size x="32" y="32"/>
 		<Scripts>
 			<OnClick>
-				PlaySound("igMainMenuOptionCheckBoxOn");
+				PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
 				Atlas:PrevNextMap_OnClick(self);
 			</OnClick>
 		</Scripts>

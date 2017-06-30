@@ -120,19 +120,19 @@ end
 function addon:ToggleWindowSize()
 	if ( AtlasFrameLarge:IsVisible() ) then
 		if (ATLAS_SMALLFRAME_SELECTED) then
-			HideUIPanel(AtlasFrameLarge);
-			ShowUIPanel(AtlasFrameSmall);
+			AtlasFrameLarge:Hide();
+			AtlasFrameSmall:Show();
 		else
-			HideUIPanel(AtlasFrameLarge);
-			ShowUIPanel(AtlasFrame);
+			AtlasFrameLarge:Hide();
+			AtlasFrame:Show();
 		end
 	else
 		if (ATLAS_SMALLFRAME_SELECTED) then
-			HideUIPanel(AtlasFrameSmall);
-			ShowUIPanel(AtlasFrameLarge);
+			AtlasFrameSmall:Hide();
+			AtlasFrameLarge:Show();
 		else
-			HideUIPanel(AtlasFrame);
-			ShowUIPanel(AtlasFrameLarge);
+			AtlasFrame:Hide();
+			AtlasFrameLarge:Show();
 		end
 	end
 end
@@ -140,12 +140,12 @@ end
 function addon:ToggleLegendPanel()
 	if ( AtlasFrameSmall:IsVisible() ) then
 		ATLAS_SMALLFRAME_SELECTED = false;
-		HideUIPanel(AtlasFrameSmall);
-		ShowUIPanel(AtlasFrame);
+		AtlasFrameSmall:Hide();
+		AtlasFrame:Show();
 	else
 		ATLAS_SMALLFRAME_SELECTED = true;
-		HideUIPanel(AtlasFrame);
-		ShowUIPanel(AtlasFrameSmall);
+		AtlasFrame:Hide();
+		AtlasFrameSmall:Show();
 	end
 end
 

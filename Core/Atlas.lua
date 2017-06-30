@@ -610,15 +610,15 @@ end
 function Atlas_Toggle()
 	if (ATLAS_SMALLFRAME_SELECTED) then
 		if (AtlasFrameSmall:IsVisible()) then
-			AtlasFrameSmall:Hide()
+			HideUIPanel(AtlasFrameSmall)
 		else
-			AtlasFrameSmall:Show()
+			ShowUIPanel(AtlasFrameSmall)
 		end
 	else
 		if (AtlasFrame:IsVisible()) then
-			AtlasFrame:Hide()
+			HideUIPanel(AtlasFrame)
 		else
-			AtlasFrame:Show()
+			ShowUIPanel(AtlasFrame)
 		end
 	end
 end

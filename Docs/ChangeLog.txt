@@ -15,13 +15,16 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.42.02 (Jun. xx, 2017)
+v1.42.02 (Jul. xx, 2017)
 ------------------------
 - Added option to customize maximum number of menu items
 - Added category icon to dropdown menu
 - Added to show boss icon
+- Lib Update: LibUIDropDownMenu
+- Updated PlaySound API's usage method to support both 7.2.5 and 7.3.0 of WoW clients
 - Localization update:
   - Simplified Chinese (ananhaid)
+  - German (pas06)
 
 v1.42.01 (Jun. 29, 2017)
 ------------------------
