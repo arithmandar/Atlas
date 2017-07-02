@@ -520,9 +520,9 @@ local function process_Deprecated()
 		if ( addon:CheckAddonStatus(GetAddOnInfo(v[1])) ) then
 			local outdated = false
 			local currVer = GetAddOnMetadata(v[1], "Version")
-			if (v[3] and currVer < v[3]) then
+			if (v[3] and (strsub(currVer, 1, 1) == "r") and currVer < v[3]) then
 				outdated = true
-			elseif (v[2] and currVer < v[2]) then
+			elseif (v[2] and (strsub(currVer, 1, 1) ~= "r") and currVer < v[2]) then
 				outdated = true
 			end
 --@do-not-package@
