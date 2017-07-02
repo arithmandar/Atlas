@@ -37,8 +37,6 @@ externals:
 #    Libs/!LibUIDropDownMenu: 
 #        url: https://repos.wowace.com/wow/libuidropdownmenu/trunk/LibUIDropDownMenu
 # Git
-    Libs/LibAboutPanel: 
-        url: https://repos.curseforge.com/wow/libaboutpanel
     Libs/LibDataBroker-1.1: 
         url: https://repos.wowace.com/wow/libdatabroker-1-1
 # HG
