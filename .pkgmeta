@@ -34,7 +34,7 @@ externals:
         url: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
     Libs/LibStub: 
         url: https://repos.wowace.com/wow/libstub/trunk
-    Libs/LibUIDropDownMenu: 
+    Libs/!LibUIDropDownMenu: 
         url: https://repos.wowace.com/wow/libuidropdownmenu/trunk/LibUIDropDownMenu
 # Git
     Libs/LibAboutPanel: 
@@ -48,4 +48,5 @@ externals:
 ignore:
     - Images/PSD
     - Libs/NoTaint_UIDropDownMenu
+    - Libs/LibUIDropDown
 
