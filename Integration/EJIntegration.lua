@@ -60,8 +60,13 @@ end
 function addon:GetBossName(bossname, encounterID, creatureIndex)
 	if (encounterID) then
 		local _, encounter, iconImage
-		-- id, name, description, displayInfo, iconImage = EJ_GetCreatureInfo(index[, encounterID])
-		_, encounter, _, _, iconImage = EJ_GetCreatureInfo(creatureIndex or 1, encounterID)
+		if (not creatureIndex) then
+			encounter = EJ_GetEncounterInfo(encounterID)
+			_, _, _, _, iconImage = EJ_GetCreatureInfo(1, encounterID)
+		else
+			-- id, name, description, displayInfo, iconImage = EJ_GetCreatureInfo(index[, encounterID])
+			_, encounter, _, _, iconImage = EJ_GetCreatureInfo(creatureIndex or 1, encounterID)
+		end
 
 		if (encounter == nil) then
 			if (bossname and BB[bossname]) then
