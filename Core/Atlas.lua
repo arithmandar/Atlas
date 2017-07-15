@@ -1667,9 +1667,17 @@ function Atlas_AutoSelect()
 		debug("SubZone data isn't relevant here. Checking if it's outdoor zone.")
 		if (addon.assocs.OutdoorZoneToAtlas[currentZone]) then
 			debug("This world zone "..currentZone.." is associated with a map.")
+			local targetZone = addon.assocs.OutdoorZoneToAtlas[currentZone]
+			-- handling exception for Dalaran
+			if addon:GetModule("WrathoftheLichKing") and select(1, GetCurrentMapAreaID()) == 504 then
+				targetZone = "VioletHold"
+			elseif addon:GetModule("Legion") and select(1, GetCurrentMapAreaID()) == 1014 then
+				targetZone = "AssaultonVioletHold"
+			end
+			
 			for k_DropDownType, v_DropDownType in pairs(ATLAS_DROPDOWNS) do
 				for k_DropDownZone, v_DropDownZone in pairs(v_DropDownType) do         
-					if (addon.assocs.OutdoorZoneToAtlas[currentZone] == v_DropDownZone) then
+					if (targetZone == v_DropDownZone) then
 						profile.options.dropdowns.module = k_DropDownType
 						profile.options.dropdowns.zone = k_DropDownZone
 						Atlas_Refresh()
