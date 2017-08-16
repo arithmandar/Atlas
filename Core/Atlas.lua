@@ -440,21 +440,21 @@ end
 -- For example: "The Deadmines" will become "Deadmines"
 -- Thus it will be sorted under D and not under T
 local function sanitizeName(text)
-   text = strlower(text)
-   if (AtlasSortIgnore) then
-	   for _, v in pairs(AtlasSortIgnore) do
-		   local fmatch; 
-		   if (strgmatch) then 
-			fmatch = strgmatch(text, v)()
-		   else 
-			fmatch = strgfind(text, v)()
-		   end
-		   if (fmatch) and ((strlen(text) - strlen(fmatch)) <= 4) then
-			   return fmatch
-		   end
-	   end
-   end
-   return text
+	text = strlower(text)
+	if (AtlasSortIgnore) then
+		for _, v in pairs(AtlasSortIgnore) do
+			local fmatch; 
+			if (strgmatch) then 
+				fmatch = strgmatch(text, v)()
+			else 
+				fmatch = strgfind(text, v)()
+			end
+			if (fmatch) and ((strlen(text) - strlen(fmatch)) <= 4) then
+				return fmatch
+			end
+		end
+	end
+	return text
 end
 
 -- Comparator function for alphabetic sorting of maps

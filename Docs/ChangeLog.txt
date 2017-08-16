@@ -15,10 +15,13 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.42.05 (Jul. xx, 2017)
+v1.42.05 (Aug. 16, 2017)
 ------------------------
 - Added exception handling for maps' auto-selection while player is in Dalaran. 
   If Dalaran is in Northrend, then the selection will be Violet Hold.
+- Lib update: Ace3
+- Localization update:
+  - Russian (BLizzatron)
 
 v1.42.04 (Jul. 15, 2017)
 ------------------------
