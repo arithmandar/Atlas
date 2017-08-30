@@ -24,12 +24,12 @@ externals:
         url: https://repos.wowace.com/wow/ace3/trunk/AceLocale-3.0
     Libs/CallbackHandler-1.0: 
         url: https://repos.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
-    Libs/LibBabble-Boss-3.0: 
-        url: https://repos.wowace.com/wow/libbabble-boss-3-0/trunk
-    Libs/LibBabble-SubZone-3.0: 
-        url: https://repos.wowace.com/wow/libbabble-subzone-3-0/trunk
-    Libs/LibBabble-Faction-3.0: 
-        url: https://repos.wowace.com/wow/libbabble-faction-3-0/trunk
+#    Libs/LibBabble-Boss-3.0: 
+#        url: https://repos.wowace.com/wow/libbabble-boss-3-0/trunk
+#    Libs/LibBabble-SubZone-3.0: 
+#        url: https://repos.wowace.com/wow/libbabble-subzone-3-0/trunk
+#    Libs/LibBabble-Faction-3.0: 
+#        url: https://repos.wowace.com/wow/libbabble-faction-3-0/trunk
     Libs/LibDBIcon-1.0: 
         url: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
     Libs/LibStub: 
