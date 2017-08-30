@@ -15,6 +15,11 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.43.00 (Aug. 30, 2017)
+------------------------
+- ToC update to support WoW 7.3.0
+- Libraries update: Aces, LibBabble-Boss, LibBabble-SubZone, LibUIDropDownMenu
+
 v1.42.05 (Aug. 16, 2017)
 ------------------------
 - Added exception handling for maps' auto-selection while player is in Dalaran. 
