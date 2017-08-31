@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.43.01 (Aug. 31, 2017)
+------------------------
+- Libraries updtae: LibUIDropDownMenu, LibDialog (temporary fixed)
+
 v1.43.00 (Aug. 30, 2017)
 ------------------------
 - ToC update to support WoW 7.3.0
