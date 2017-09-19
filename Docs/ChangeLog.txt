@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.43.02 (Sep. 19, 2017)
+------------------------
+- Updated LibDialog and fixed issue in PlaySound function call
+
 v1.43.01 (Aug. 31, 2017)
 ------------------------
 - Libraries updtae: LibUIDropDownMenu, LibDialog (temporary fixed)

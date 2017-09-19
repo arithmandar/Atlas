@@ -215,7 +215,7 @@ function Atlas_EncounterJournal_OnShow(self)
 	MicroButtonPulseStop(EJMicroButton);
 
 	UpdateMicroButtons();
-	PlaySound(PlaySoundKitID and "igCharacterInfoOpen" or 839);
+	PlaySound(839);
 	Atlas_EncounterJournal_LootUpdate();
 	Atlas_EncounterJournal_UpdateDifficulty();
 	--L_UIDropDownMenu_Initialize(self.lootScroll.lootFilter, Atlas_EncounterJournal_InitLootFilter, "MENU");
