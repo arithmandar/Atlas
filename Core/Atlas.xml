@@ -63,7 +63,7 @@
 						self:SetTextInsets(0, 8, 0, 0);
 					</OnLoad>
 					<OnEnterPressed>
-						addon:SearchAndRefresh(self:GetText());
+						Atlas:SearchAndRefresh(self:GetText());
 						self:ClearFocus();
 					</OnEnterPressed>
 				</Scripts>
@@ -99,7 +99,7 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						addon:SearchAndRefresh(AtlasSearchEditBox:GetText());
+						Atlas:SearchAndRefresh(AtlasSearchEditBox:GetText());
 						AtlasSearchEditBox:ClearFocus();
 					</OnClick>
 				</Scripts>
@@ -118,7 +118,7 @@
 				<Scripts>
 					<OnClick>
 						AtlasSearchEditBox:SetText("");
-						addon:SearchAndRefresh(AtlasSearchEditBox:GetText());
+						Atlas:SearchAndRefresh(AtlasSearchEditBox:GetText());
 						AtlasSearchEditBox:ClearFocus();
 					</OnClick>
 				</Scripts>
