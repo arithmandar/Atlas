@@ -15,6 +15,11 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.43.04 (Mar. 04, 2018)
+------------------------
+- Libs update: 
+  - LibDBIcon
+
 v1.43.04 (Feb. 22, 2018)
 ------------------------
 - Libs update: 
