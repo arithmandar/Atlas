@@ -40,44 +40,36 @@ local FOLDER_NAME, private = ...
 local addon = LibStub("AceAddon-3.0"):GetAddon("Atlas")
 
 local function Atlas_AutoSelect_from_WorldMap()
-	local mapID, _ = GetCurrentMapAreaID();
-	local dungeonLevel = GetCurrentMapDungeonLevel();
-	local profile = addon.db.profile;
+	--local mapID = C_Map.GetBestMapForUnit("player")
+	local mapID = WorldMapFrame:GetMapID()
+	local profile = addon.db.profile
 	
 	if (not mapID) then
-		return;
+		return
 	end
 
 	for type_k, type_v in pairs(ATLAS_DROPDOWNS) do
 		for zone_k, zone_v in pairs(type_v) do
-			local AtlasWorldMapID = tonumber(AtlasMaps[zone_v].WorldMapID);
-			local AtlasMapDungeonLevel = tonumber(AtlasMaps[zone_v].DungeonLevel);
-			local AtlasMapFaction = AtlasMaps[zone_v].Faction;
+			local AtlasWorldMapID = AtlasMaps[zone_v].WorldMapID
+			local AtlasMapFaction = AtlasMaps[zone_v].Faction
 			if (AtlasWorldMapID and AtlasWorldMapID == mapID) then
 				if (AtlasMapFaction and AtlasMapFaction == ATLAS_PLAYER_FACTION) then
-					profile.options.dropdowns.module = type_k;
-					profile.options.dropdowns.zone = zone_k;
+					profile.options.dropdowns.module = type_k
+					profile.options.dropdowns.zone = zone_k
 				else
-					if (dungeonLevel > 0 and AtlasMapDungeonLevel) then
-						if (AtlasMapDungeonLevel == dungeonLevel) then
-							profile.options.dropdowns.module = type_k;
-							profile.options.dropdowns.zone = zone_k;
-						end
-					else
-						profile.options.dropdowns.module = type_k;
-						profile.options.dropdowns.zone = zone_k;
-					end
+					profile.options.dropdowns.module = type_k
+					profile.options.dropdowns.zone = zone_k
 				end
-				Atlas_Refresh();
-				return;
+				Atlas_Refresh()
+				return
 			end
 		end
 	end
 end
 
 function AtlasToggleFromWorldMap_OnClick(self)
-	Atlas_AutoSelect_from_WorldMap();
-	ToggleFrame(WorldMapFrame);
-	Atlas_Toggle();
+	Atlas_AutoSelect_from_WorldMap()
+	ToggleFrame(WorldMapFrame)
+	Atlas_Toggle()
 end
 

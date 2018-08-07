@@ -286,7 +286,7 @@ constants.deprecatedList = {
 	-- For example, name it as 2.09 instead of 2.9
 	-- Most recent (working) versions of known modules at time of release
 	-- Atlas Modules
-	{ "Atlas_Legion",	 	"1.42.00", "r132" },
+	{ "Atlas_Legion",	 	"1.44.00", "r144" },
 	{ "Atlas_WarlordsofDraenor", 	"1.42.00", "r45" },
 	{ "Atlas_MistsofPandaria",	"1.42.00", "r22" },
 	{ "Atlas_Cataclysm", 		"1.42.00", "r27" },

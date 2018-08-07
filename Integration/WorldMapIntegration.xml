@@ -33,9 +33,9 @@
 			<AbsDimension x="32" y="32" />
 		</Size>
 		<Anchors>
-			<Anchor point="TOPRIGHT" relativeTo="WorldMapScrollFrame" relativePoint="TOPRIGHT">
+			<Anchor point="TOPRIGHT" relativeTo="WorldMapFrame" relativePoint="TOPRIGHT">
 				<Offset>
-					<AbsDimension x="-34" y="-3"/>
+					<AbsDimension x="-38" y="-68"/>
 				</Offset>
 			</Anchor>
 		</Anchors>

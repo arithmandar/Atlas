@@ -15,6 +15,13 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.44.00 (Aug. xx, 2018)
+------------------------
+- ToC update to support WoW 8.0.1
+- Libraries update
+- WorldMap integration fixed
+- Update EJ related functions
+
 v1.43.06 (Apr. 24, 2018)
 ------------------------
 - Library updtae: LibUIDropDownMenu

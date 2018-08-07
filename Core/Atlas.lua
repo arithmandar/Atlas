@@ -38,7 +38,7 @@ local strlen, strgfind = string.len, string.gfind
 local strtrim = strtrim
 local floor, fmod = math.floor, math.fmod
 local getn, tinsert, tsort = table.getn, table.insert, table.sort
-
+local GetAddOnInfo, GetAddOnEnableState = _G.GetAddOnInfo, _G.GetAddOnEnableState
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -254,6 +254,10 @@ local function bossButtonCleanUp(button)
 	button.tooltiptext = nil
 	button.link = nil
 	button.displayInfo = nil
+	button.name = nil
+	button.id = nil
+	button.description = nil
+	button.uiModelSceneID = nil
 	if (button.bgImage) then button.bgImage:SetTexture(nil) end
 	if (button.TaxiImage) then button.TaxiImage:SetTexture(nil) end
 end
@@ -277,12 +281,30 @@ local function bossButtonUpdate(button, encounterID, instanceID, b_iconImage, mo
 		button.tooltiptitle = ejbossname
 		button.tooltiptext = description
 		button.link = link
-		if (addon:EncounterJournal_CheckForOverview(rootSectionID)) then
-			-- title, description, depth, abilityIcon, displayInfo, 
-			-- siblingID, nextSectionID, filteredByDifficulty, link, 
-			-- startsOpen, flag1, flag2, flag3, flag4 = EJ_GetSectionInfo(sectionID)
-			local _, overviewDescription, _, _, _, _, nextSectionID = EJ_GetSectionInfo(rootSectionID)
-			button.overviewDescription = overviewDescription or nil
+
+		local sectionInfo = C_EncounterJournal.GetSectionInfo(rootSectionID)
+--[[
+      Name = "EncounterJournalSectionInfo",
+      Type = "Structure",
+      Fields =
+      {
+        { Name = "spellID", Type = "number", Nilable = false },
+        { Name = "title", Type = "string", Nilable = false },
+        { Name = "description", Type = "string", Nilable = true },
+        { Name = "headerType", Type = "number", Nilable = false },
+        { Name = "abilityIcon", Type = "number", Nilable = false },
+        { Name = "creatureDisplayID", Type = "number", Nilable = false },
+        { Name = "uiModelSceneID", Type = "number", Nilable = false },
+        { Name = "siblingSectionID", Type = "number", Nilable = true },
+        { Name = "firstChildSectionID", Type = "number", Nilable = true },
+        { Name = "filteredByDifficulty", Type = "bool", Nilable = false },
+        { Name = "link", Type = "string", Nilable = false },
+        { Name = "startsOpen", Type = "bool", Nilable = false },
+      },
+]]
+		if (sectionInfo and addon:EncounterJournal_IsHeaderTypeOverview(sectionInfo.headerType)) then
+			button.overviewDescription = sectionInfo.description or nil
+			local nextSectionID = sectionInfo.firstChildSectionID or nil
 
 			local spec, role
 
@@ -293,25 +315,30 @@ local function bossButtonUpdate(button, encounterID, instanceID, b_iconImage, mo
 				role = "DAMAGER"
 			end
 
-			local title, description, siblingID, filteredByDifficulty, flag1
+			local description
 			local i = 1
 			while nextSectionID do
-				title, description, _, _, _, siblingID, _, filteredByDifficulty, _, _, flag1 = EJ_GetSectionInfo(nextSectionID)
+				local flag1 = C_EncounterJournal.GetSectionIconFlags(nextSectionID)
+				sectionInfo = C_EncounterJournal.GetSectionInfo(nextSectionID)
 				if (role == rolesByFlag[flag1]) then
-					description = gsub(description, "$bullet;", "- ")
-					button.roleOverview = "|cffffffff"..title.."|r".."\n"..description
+					description = gsub(sectionInfo.description, "$bullet;", "- ")
+					button.roleOverview = "|cffffffff"..sectionInfo.title.."|r".."\n"..description
 					break
 				end
 				i = i + 1
-				nextSectionID = siblingID
+				nextSectionID = sectionInfo.firstChildSectionID
 			end
 		end
 		
 		if (b_iconImage) then
-			local _, _, _, displayInfo, iconImage = EJ_GetCreatureInfo(1, encounterID)
+			local id, name, description, displayInfo, iconImage, uiModelSceneID = EJ_GetCreatureInfo(1, encounterID)
+			button.name = name
+			button.id = id
 			button.displayInfo = displayInfo
+			button.description = description
+			button.uiModelSceneID = uiModelSceneID
 			if ( iconImage ) then
-				SetPortraitTexture(button.bgImage, displayInfo)
+				SetPortraitTextureFromCreatureDisplayID(button.bgImage, displayInfo)
 			end
 		end
 	end
