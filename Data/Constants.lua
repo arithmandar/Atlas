@@ -296,10 +296,10 @@ constants.deprecatedList = {
 	-- Atlas Plugins
 	{ "Atlas_Battlegrounds", 	"1.42.00", "r1549" },
 	{ "Atlas_DungeonLocs", 		"1.42.00", "r43" },
-	{ "Atlas_OutdoorRaids", 	"1.42.00", "r46" },
+	{ "Atlas_OutdoorRaids", 	"1.44.00", "r50" },
 	{ "Atlas_Transportation", 	"1.44.00", "r97" },
 	{ "Atlas_Scenarios", 		"1.44.00", "r53" },
-	{ "Atlas_ClassOrderHalls",	"1.42.00", "r112" },
+	{ "Atlas_ClassOrderHalls",	"1.44.00", "r116" },
 	-- 3rd parties plugins
 	{ "AtlasQuest", 		"4.10.25" },
 	{ "Atlas_Arena", 		"1.07.02", "r80" },
