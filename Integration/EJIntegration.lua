@@ -171,7 +171,7 @@ function addon:AdventureJournal_EncounterButton_OnClick(instanceID, encounterID,
 end
 
 function addon:AdventureJournal_MapButton_OnClick(frame)
-	local mapID = frame.mapID
+	local uiMapID = frame.mapID
 	local dungeonLevel = frame.dungeonLevel
 
 	HideUIPanel(AtlasFrame)
@@ -182,12 +182,12 @@ function addon:AdventureJournal_MapButton_OnClick(frame)
 		WorldMapFrame.fromJournal = true
 	end
 	ShowUIPanel(WorldMapFrame)
-	if (mapID) then
-		SetMapByID(mapID)
+	if (uiMapID) then
+		WorldMapFrame:SetMapID(uiMapID)
 	end
-	if (dungeonLevel) then
-		SetDungeonMapLevel(dungeonLevel)
-	end
+--	if (dungeonLevel) then
+--		SetDungeonMapLevel(dungeonLevel)
+--	end
 end
 
 local function autoSelect_from_EncounterJournal()

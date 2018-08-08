@@ -22,6 +22,7 @@ v1.44.00 (Aug. xx, 2018)
 - WorldMap integration fixed
 - Update EJ related functions
 - Splitting the development-used-only lib folder and release one
+- Update the function to bring up WoW's default map from Atlas
 
 v1.43.06 (Apr. 24, 2018)
 ------------------------

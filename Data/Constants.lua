@@ -297,13 +297,13 @@ constants.deprecatedList = {
 	{ "Atlas_Battlegrounds", 	"1.42.00", "r1549" },
 	{ "Atlas_DungeonLocs", 		"1.42.00", "r43" },
 	{ "Atlas_OutdoorRaids", 	"1.42.00", "r46" },
-	{ "Atlas_Transportation", 	"1.42.00", "r90" },
-	{ "Atlas_Scenarios", 		"1.42.00", "r42" },
+	{ "Atlas_Transportation", 	"1.44.00", "r97" },
+	{ "Atlas_Scenarios", 		"1.44.00", "r53" },
 	{ "Atlas_ClassOrderHalls",	"1.42.00", "r112" },
 	-- 3rd parties plugins
 	{ "AtlasQuest", 		"4.10.25" },
-	{ "Atlas_Arena", 		"1.07.00", "r75" },
-	{ "Atlas_WorldEvents", 		"3.22", "r102" },
+	{ "Atlas_Arena", 		"1.07.02", "r80" },
+	{ "Atlas_WorldEvents", 		"3.24", "r107" },
 	{ "AtlasLoot", 			"v8.03.02", "r4615" },
 	{ "AtlasMajorCitiesEnhanced", 	"v1.15" }, 	
 	--{ "AtlasWorld", 		"3.3.5.25" }, 	-- updated July 14, 2010 -- comment out because this plugin is no longer maintained
