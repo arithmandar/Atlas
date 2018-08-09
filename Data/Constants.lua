@@ -287,15 +287,15 @@ constants.deprecatedList = {
 	-- Most recent (working) versions of known modules at time of release
 	-- Atlas Modules
 	{ "Atlas_Legion",	 	"1.44.00", "r144" },
-	{ "Atlas_WarlordsofDraenor", 	"1.42.00", "r45" },
-	{ "Atlas_MistsofPandaria",	"1.42.00", "r22" },
-	{ "Atlas_Cataclysm", 		"1.42.00", "r27" },
-	{ "Atlas_WrathoftheLichKing", 	"1.42.00", "r25" },
-	{ "Atlas_BurningCrusade", 	"1.42.00", "r29" },
-	{ "Atlas_ClassicWoW", 		"1.42.00", "r24" },
+	{ "Atlas_WarlordsofDraenor", 	"1.44.00", "r49" },
+	{ "Atlas_MistsofPandaria",	"1.44.00", "r29" },
+	{ "Atlas_Cataclysm", 		"1.44.00", "r31" },
+	{ "Atlas_WrathoftheLichKing", 	"1.44.00", "r38" },
+	{ "Atlas_BurningCrusade", 	"1.44.00", "r38" },
+	{ "Atlas_ClassicWoW", 		"1.44.00", "r31" },
 	-- Atlas Plugins
-	{ "Atlas_Battlegrounds", 	"1.42.00", "r1549" },
-	{ "Atlas_DungeonLocs", 		"1.42.00", "r43" },
+	{ "Atlas_Battlegrounds", 	"1.44.00", "r1553" },
+	{ "Atlas_DungeonLocs", 		"1.44.00", "r48" },
 	{ "Atlas_OutdoorRaids", 	"1.44.00", "r50" },
 	{ "Atlas_Transportation", 	"1.44.00", "r97" },
 	{ "Atlas_Scenarios", 		"1.44.00", "r53" },
