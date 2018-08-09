@@ -1696,12 +1696,13 @@ function Atlas_AutoSelect()
 			debug("This world zone "..currentZone.." is associated with a map.")
 			local targetZone = addon.assocs.OutdoorZoneToAtlas[currentZone]
 			-- handling exception for Dalaran
+--[[ we don't need these exception handling since WoW 8.0.1 as mapID now changed to uiMapID
 			if addon:GetModule("WrathoftheLichKing") and select(1, GetCurrentMapAreaID()) == 504 then
 				targetZone = "VioletHold"
 			elseif addon:GetModule("Legion") and select(1, GetCurrentMapAreaID()) == 1014 then
 				targetZone = "AssaultonVioletHold"
 			end
-			
+]]			
 			for k_DropDownType, v_DropDownType in pairs(ATLAS_DROPDOWNS) do
 				for k_DropDownZone, v_DropDownZone in pairs(v_DropDownType) do         
 					if (targetZone == v_DropDownZone) then

@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.44.01 (Aug. 10, 2018)
+------------------------
+- Fixed old function call GetCurrentMapAreaID() and remove it as no longer needed
+
 v1.44.00 (Aug. 09, 2018)
 ------------------------
 - ToC update to support WoW 8.0.1

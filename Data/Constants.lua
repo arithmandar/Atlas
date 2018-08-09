@@ -132,28 +132,28 @@ AtlasMaps = {
 --[[
 Syntax: 
 	MapName = {
-		ZoneName = { "Map name" };
-		Location = { "Location of this map" };
-		LevelRange = "level range";
-		MinLevel = "minimum level";
-		PlayerLimit = "player limit";
-		Acronym = "acronym";
-		MinGearLevel = "minimum itel level to enter this instance";
-		JournalInstanceID = "journal instance ID"; 	-- ID can be found from JournalInstance.dbc, Column 1 is the dungeon ID, column 8 is dungeon name
-		DungeonID = "LFGDungeon ID"; 			-- ID can be fround from LFGDungeons.dbc.txt
-		DungeonHeoricID = "LFGDungeon ID for Heroic mode";
-		DungeonMythicID = "LFGDungeon ID for Mythic mode";
-		WorldMapID = "worldmap ID";
-		DungeonLevel = "level number of the dungeon map series";
-		Module = "map module name";
-		LargeMap = "large map's prefix name";
-		PrevMap = "previous map name";
-		NextMap = "next map name";
-		{ "list entry 1", id of list entry or encounter id };
-		{ "list entry 2", "achivement id by using the format of ac=12345" };
-		{ "list entry 3" item id, "item", "item's English name"};
-		{ "list entry 4" };
-	};
+		ZoneName = { "Map name" },
+		Location = { "Location of this map" },
+		LevelRange = "level range",
+		MinLevel = "minimum level",
+		PlayerLimit = "player limit",
+		Acronym = "acronym",
+		MinGearLevel = "minimum itel level to enter this instance",
+		JournalInstanceID = journal instance ID, 	-- ID can be found from JournalInstance.dbc, Column 1 is the dungeon ID, column 8 is dungeon name
+		DungeonID = LFGDungeon ID, 			-- ID can be fround from LFGDungeons.dbc.txt
+		DungeonHeoricID = LFGDungeon ID for Heroic mode,
+		DungeonMythicID = LFGDungeon ID for Mythic mode,
+		WorldMapID = uiMapID,
+		DungeonLevel = level number of the dungeon map series, 
+		Module = "map module name",
+		LargeMap = "large map's prefix name",
+		PrevMap = "previous map name",
+		NextMap = "next map name",
+		{ "list entry 1", id of list entry or encounter id },
+		{ "list entry 2", "achivement id by using the format of ac=12345" },
+		{ "list entry 3" item id, "item", "item's English name"},
+		{ "list entry 4" },
+	},
 ]]
 }
 
