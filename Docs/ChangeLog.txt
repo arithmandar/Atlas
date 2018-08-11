@@ -15,11 +15,13 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.44.01 (Aug. 10, 2018)
+v1.44.01 (Aug. 11, 2018)
 ------------------------
 - Fixed old function call GetCurrentMapAreaID() and remove it as no longer needed
 - Fixed issues when Atlas was previously loaded with more map modules and was selected in the later one 
   from the dropdown, but then less map modules were loaded in the fresh login
+- Libs update: 
+  - LibDBIcon
 
 v1.44.00 (Aug. 09, 2018)
 ------------------------
