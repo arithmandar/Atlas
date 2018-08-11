@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.44.03 (Aug. 12, 2018)
+------------------------
+- Lib Update: LibBabble-SubZone-3.0
+
 v1.44.02 (Aug. 11, 2018)
 ------------------------
 - Libs update: 
