@@ -537,7 +537,7 @@ function Atlas_EncounterJournal_InitLootFilter(self, level)
 	local info = UIDropDownMenu_CreateInfo();
 	info.keepShownOnClick = nil;
 
-	if (UIDropDownMenu_MENU_VALUE == CLASS_DROPDOWN) then
+	if (UIDROPDOWNMENU_MENU_VALUE == CLASS_DROPDOWN) then
 		info.text = ALL_CLASSES;
 		info.checked = (filterClassID == 0);
 		info.arg1 = 0;
