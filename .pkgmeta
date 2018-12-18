@@ -34,8 +34,8 @@ externals:
         url: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
     Libs-release/LibStub: 
         url: https://repos.wowace.com/wow/libstub/trunk
-    Libs-release/LibUIDropDownMenu: 
-        url: https://repos.wowace.com/wow/libuidropdownmenu/trunk/LibUIDropDownMenu
+#    Libs-release/LibUIDropDownMenu: 
+#        url: https://repos.wowace.com/wow/libuidropdownmenu/trunk/LibUIDropDownMenu
 # Git
     Libs-release/LibDataBroker-1.1: 
         url: https://repos.wowace.com/wow/libdatabroker-1-1
@@ -43,11 +43,10 @@ externals:
     Libs-release/LibDialog-1.0: 
         url: https://repos.wowace.com/wow/libdialog-1-0
 
-ignore:
-    - Images/PSD
-    - Libs/NoTaint_UIDropDownMenu
-
 move-folders:
     Atlas/Libs: Atlas/Libs-dev
     Atlas/Libs-release: Atlas/Libs
 
+ignore:
+    - Images/PSD
+    - Libs-dev

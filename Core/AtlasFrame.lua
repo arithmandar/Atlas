@@ -255,24 +255,24 @@ function AtlasFrameDropDownType_Initialize()
 	end
 	
 	for k = 1, #ATLAS_DROPDOWN_TYPES do
-		L_UIDropDownMenu_AddButton(ATLAS_DROPDOWN_TYPES[k])
+		UIDropDownMenu_AddButton(ATLAS_DROPDOWN_TYPES[k])
 	end
 end
 
 -- Called whenever the map type dropdown menu is shown
 function AtlasFrameDropDownType_OnShow()
 	local id = addon.db.profile.options.dropdowns.module or 1
-	L_UIDropDownMenu_Initialize(AtlasFrameDropDownType, AtlasFrameDropDownType_Initialize);
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, id);
-	L_UIDropDownMenu_SetWidth(AtlasFrameDropDownType, ATLAS_DROPDOWN_WIDTH);
+	UIDropDownMenu_Initialize(AtlasFrameDropDownType, AtlasFrameDropDownType_Initialize);
+	UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, id);
+	UIDropDownMenu_SetWidth(AtlasFrameDropDownType, ATLAS_DROPDOWN_WIDTH);
 
-	L_UIDropDownMenu_Initialize(AtlasFrameLargeDropDownType, AtlasFrameDropDownType_Initialize);
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, id);
-	L_UIDropDownMenu_SetWidth(AtlasFrameLargeDropDownType, ATLAS_DROPDOWN_WIDTH);
+	UIDropDownMenu_Initialize(AtlasFrameLargeDropDownType, AtlasFrameDropDownType_Initialize);
+	UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, id);
+	UIDropDownMenu_SetWidth(AtlasFrameLargeDropDownType, ATLAS_DROPDOWN_WIDTH);
 
-	L_UIDropDownMenu_Initialize(AtlasFrameSmallDropDownType, AtlasFrameDropDownType_Initialize);
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, id);
-	L_UIDropDownMenu_SetWidth(AtlasFrameSmallDropDownType, ATLAS_DROPDOWN_WIDTH);
+	UIDropDownMenu_Initialize(AtlasFrameSmallDropDownType, AtlasFrameDropDownType_Initialize);
+	UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, id);
+	UIDropDownMenu_SetWidth(AtlasFrameSmallDropDownType, ATLAS_DROPDOWN_WIDTH);
 end
 
 -- Called whenever an item in the map type dropdown menu is clicked
@@ -283,9 +283,9 @@ function AtlasFrameDropDownType_OnClick(self)
 	local catName = addon.dropdowns.DropDownLayouts_Order[profile.options.dropdowns.menuType]
 	local subcatOrder = addon.dropdowns.DropDownLayouts_Order[catName]
 
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, typeID)
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, typeID)
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, typeID)
+	UIDropDownMenu_SetSelectedID(AtlasFrameDropDownType, typeID)
+	UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDownType, typeID)
+	UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDownType, typeID)
 
 	profile.options.dropdowns.module = typeID
 	local dropdowns_catKey = self:GetText()
@@ -306,7 +306,7 @@ function AtlasFrameDropDown_Initialize()
 		for k, v in pairs(ATLAS_DROPDOWNS[addon.db.profile.options.dropdowns.module]) do
 			--if (not AtlasMaps[v]) then return end
 			local colortag;
-			local info = L_UIDropDownMenu_CreateInfo();
+			local info = UIDropDownMenu_CreateInfo();
 			local level = 1;
 			
 			if (addon.db.profile.options.dropdowns.color and AtlasMaps[v].DungeonID) then
@@ -460,7 +460,7 @@ function AtlasFrameDropDown_Initialize()
 				tooltipText = tooltipText,
 				tooltipOnButton = true,
 			};
-			L_UIDropDownMenu_AddButton(info);
+			UIDropDownMenu_AddButton(info);
 		end
 	end
 end
@@ -468,17 +468,17 @@ end
 -- Called whenever the main dropdown menu is shown
 function AtlasFrameDropDown_OnShow()
 	local id = addon.db.profile.options.dropdowns.zone or 1
-	L_UIDropDownMenu_Initialize(AtlasFrameDropDown, AtlasFrameDropDown_Initialize);
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, id);
-	L_UIDropDownMenu_SetWidth(AtlasFrameDropDown, ATLAS_DROPDOWN_WIDTH);
+	UIDropDownMenu_Initialize(AtlasFrameDropDown, AtlasFrameDropDown_Initialize);
+	UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, id);
+	UIDropDownMenu_SetWidth(AtlasFrameDropDown, ATLAS_DROPDOWN_WIDTH);
 
-	L_UIDropDownMenu_Initialize(AtlasFrameLargeDropDown, AtlasFrameDropDown_Initialize);
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, id);
-	L_UIDropDownMenu_SetWidth(AtlasFrameLargeDropDown, ATLAS_DROPDOWN_WIDTH);
+	UIDropDownMenu_Initialize(AtlasFrameLargeDropDown, AtlasFrameDropDown_Initialize);
+	UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, id);
+	UIDropDownMenu_SetWidth(AtlasFrameLargeDropDown, ATLAS_DROPDOWN_WIDTH);
 
-	L_UIDropDownMenu_Initialize(AtlasFrameSmallDropDown, AtlasFrameDropDown_Initialize);
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, id);
-	L_UIDropDownMenu_SetWidth(AtlasFrameSmallDropDown, ATLAS_DROPDOWN_WIDTH);
+	UIDropDownMenu_Initialize(AtlasFrameSmallDropDown, AtlasFrameDropDown_Initialize);
+	UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, id);
+	UIDropDownMenu_SetWidth(AtlasFrameSmallDropDown, ATLAS_DROPDOWN_WIDTH);
 end
 
 -- Called whenever an item in the main dropdown menu is clicked
@@ -487,9 +487,9 @@ function AtlasFrameDropDown_OnClick(self)
 	local mapID = self:GetID()
 	local profile = addon.db.profile
 	local typeID = profile.options.dropdowns.module
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, mapID)
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, mapID)
-	L_UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, mapID)
+	UIDropDownMenu_SetSelectedID(AtlasFrameDropDown, mapID)
+	UIDropDownMenu_SetSelectedID(AtlasFrameLargeDropDown, mapID)
+	UIDropDownMenu_SetSelectedID(AtlasFrameSmallDropDown, mapID)
 
 	profile.options.dropdowns.zone = mapID
 	profile.dropdowns[ATLAS_DROPDOWN_TYPES[typeID].text] = mapID
@@ -505,18 +505,18 @@ function AtlasSwitchButton_OnClick()
 		AtlasSwitchDD_Set(1);
 	else
 		-- More than one link, so it's dropdown menu time
-		L_ToggleDropDownMenu(1, nil, AtlasSwitchDD, "AtlasSwitchButton", 0, 0);
+		ToggleDropDownMenu(1, nil, AtlasSwitchDD, "AtlasSwitchButton", 0, 0);
 	end
 end
 
 function AtlasSwitchDD_OnLoad()
 	for k, v in pairs(ATLAS_INST_ENT_DROPDOWN) do
-		local info = L_UIDropDownMenu_CreateInfo();
+		local info = UIDropDownMenu_CreateInfo();
 		info = {
 			text = AtlasMaps[v].ZoneName[1],
 			func = AtlasSwitchDD_OnClick,
 		}
-		L_UIDropDownMenu_AddButton(info);
+		UIDropDownMenu_AddButton(info);
 	end
 end
 

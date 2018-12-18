@@ -15,6 +15,11 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.44.04 (Dec. 18, 2018)
+------------------------
+- ToC update to support WoW 8.0.1
+- Remove library: LibUIDropDownMenu
+
 v1.44.03 (Aug. 12, 2018)
 ------------------------
 - Lib Update: LibBabble-SubZone-3.0

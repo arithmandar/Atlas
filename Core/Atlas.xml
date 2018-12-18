@@ -68,7 +68,7 @@
 					</OnEnterPressed>
 				</Scripts>
 			</EditBox>
-			<Frame name="AtlasSwitchDD" inherits="L_UIDropDownMenuTemplate" />
+			<Frame name="AtlasSwitchDD" inherits="UIDropDownMenuTemplate" />
   			<Button name="AtlasSwitchButton" inherits="UIPanelButtonTemplate" parent="AtlasSearchEditBox">
 				<Size>
 					<AbsDimension x="120" y="24"/>

@@ -1589,7 +1589,7 @@ function Atlas_Refresh(mapID)
 			AtlasSwitchButton:SetText(ATLAS_INSTANCE_BUTTON)
 		end
 		AtlasSwitchButton:Show()
-		L_UIDropDownMenu_Initialize(AtlasSwitchDD, AtlasSwitchDD_OnLoad)
+		UIDropDownMenu_Initialize(AtlasSwitchDD, AtlasSwitchDD_OnLoad)
 	else
 		AtlasSwitchButton:Hide()
 	end
