@@ -15,9 +15,13 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.44.06 (Dec. 20, 2018)
+------------------------
+- Workaround to fix UIDropDownMenu's tainting issue
+
 v1.44.05 (Dec. 18, 2018)
 ------------------------
-Fixed case issue of UIDROPDOWNMENU_MENU_VALUE
+- Fixed case issue of UIDROPDOWNMENU_MENU_VALUE
 
 v1.44.04 (Dec. 18, 2018)
 ------------------------

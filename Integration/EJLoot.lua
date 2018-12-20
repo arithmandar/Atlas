@@ -42,6 +42,7 @@ local math = _G.math
 -- Libraries
 local floor = math.floor
 local format = string.format
+local UIDropDownMenu_Initialize, UIDropDownMenu_CreateInfo, UIDropDownMenu_AddButton = _G.UIDropDownMenu_Initialize, _G.UIDropDownMenu_CreateInfo, _G.UIDropDownMenu_AddButton
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
