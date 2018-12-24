@@ -40,7 +40,7 @@ local floor, fmod = math.floor, math.fmod
 local getn, tinsert, tsort = table.getn, table.insert, table.sort
 local GetAddOnInfo, GetAddOnEnableState = _G.GetAddOnInfo, _G.GetAddOnEnableState
 local hooksecurefunc = hooksecurefunc
-local UIDropDownMenu_Initialize = _G.UIDropDownMenu_Initialize
+local UIDropDownMenu_Initialize = L_UIDropDownMenu_Initialize
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -49,6 +49,7 @@ local FOLDER_NAME, private = ...
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceConsole-3.0")
 addon.constants = private.constants
+addon.Templates = private.Templates
 --addon.dropdowns. = private.dropdowns
 addon.constants.addon_name = private.addon_name
 addon.Name = FOLDER_NAME
@@ -109,7 +110,7 @@ local function round(num, idp)
 end
 
 -- get creature's name from server
-local cache_tooltip = CreateFrame("GameTooltip", "cacheToolTip", UIParent, "GameTooltipTemplate")
+local cache_tooltip = _G["cacheToolTip"] or CreateFrame("GameTooltip", "cacheToolTip", UIParent, "GameTooltipTemplate")
 local creature_cache
 local function getCreatureNamebyID(id)
 	if not id then return end
@@ -651,6 +652,10 @@ function Atlas_Toggle()
 			ShowUIPanel(AtlasFrame)
 		end
 	end
+end
+
+function addon:Toggle()
+	Atlas_Toggle()
 end
 
 local function checkInstanceHasGearLevel()
@@ -1931,7 +1936,6 @@ local function initialization()
 	end
 	
 	check_Modules()
-
 	if (profile.options.worldMapButton) then
 		AtlasToggleFromWorldMap:Show()
 	else
@@ -1983,46 +1987,4 @@ function addon:Refresh()
 	else
 		AtlasToggleFromWorldMap:Hide()
 	end
-
-end
-
--- ----------------------------------------------------------------------------
--- UIDropDownMenu's tainting workaround
--- credit https://www.townlong-yak.com/bugs/Kjq4hm-DisplayModeCommunitiesTaint
--- ----------------------------------------------------------------------------
-if (UIDROPDOWNMENU_VALUE_PATCH_VERSION or 0) < 2 then
-	UIDROPDOWNMENU_VALUE_PATCH_VERSION = 2
-	hooksecurefunc("UIDropDownMenu_InitializeHelper", function()
-		if UIDROPDOWNMENU_VALUE_PATCH_VERSION ~= 2 then
-			return
-		end
-		for i=1, UIDROPDOWNMENU_MAXLEVELS do
-			for j=1, UIDROPDOWNMENU_MAXBUTTONS do
-				local b = _G["DropDownList" .. i .. "Button" .. j]
-				if not (issecurevariable(b, "value") or b:IsShown()) then
-					b.value = nil
-					repeat
-						j, b["fx" .. j] = j+1
-					until issecurevariable(b, "value")
-				end
-			end
-		end
-	end)
-end
-
-if (UIDROPDOWNMENU_OPEN_PATCH_VERSION or 0) < 1 then
-	UIDROPDOWNMENU_OPEN_PATCH_VERSION = 1
-	hooksecurefunc("UIDropDownMenu_InitializeHelper", function(frame)
-		if UIDROPDOWNMENU_OPEN_PATCH_VERSION ~= 1 then
-			return
-		end
-		if UIDROPDOWNMENU_OPEN_MENU and UIDROPDOWNMENU_OPEN_MENU ~= frame
-		   and not issecurevariable(UIDROPDOWNMENU_OPEN_MENU, "displayMode") then
-			UIDROPDOWNMENU_OPEN_MENU = nil
-			local t, f, prefix, i = _G, issecurevariable, " \0", 1
-			repeat
-				i, t[prefix .. i] = i + 1
-			until f("UIDROPDOWNMENU_OPEN_MENU")
-		end
-	end)
 end

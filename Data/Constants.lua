@@ -36,7 +36,6 @@ local _G = getfenv(0)
 local FOLDER_NAME, private = ...
 private.addon_name = "Atlas"
 
-local LibStub = _G.LibStub
 local constants = { }
 private.constants = constants
 

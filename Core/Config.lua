@@ -271,6 +271,7 @@ local function getOptions()
 										end
 									end,
 								},
+
 								autoSelect = {
 									order = 23,
 									type = "toggle",

@@ -44,8 +44,8 @@
 				<PushedTexture name="AtlasLockPush"/>
 			</Button>
 			<Button name="$parentOptionsButton" inherits="AtlasFrameOptionsButtonTemplate"/>
-			<Button name="$parentDropDownType" inherits="AtlasFrameDropDownTypeTemplate"/>
-			<Button name="$parentDropDown" inherits="AtlasFrameDropDownTemplate"/>
+<!--			<Button name="$parentDropDownType" inherits="AtlasFrameDropDownTypeTemplate"/>
+			<Button name="$parentDropDown" inherits="AtlasFrameDropDownTemplate"/>-->
 			<EditBox name="AtlasSearchEditBox" inherits="InputBoxTemplate" letters="80">
 				<Size>
 					<AbsDimension x="150" y="32"/>
@@ -68,7 +68,7 @@
 					</OnEnterPressed>
 				</Scripts>
 			</EditBox>
-			<Frame name="AtlasSwitchDD" inherits="UIDropDownMenuTemplate" />
+<!--			<Frame name="AtlasSwitchDD" inherits="UIDropDownMenuTemplate" />-->
   			<Button name="AtlasSwitchButton" inherits="UIPanelButtonTemplate" parent="AtlasSearchEditBox">
 				<Size>
 					<AbsDimension x="120" y="24"/>
@@ -339,6 +339,9 @@
 		</Layers>
 		<Scripts>
 			<OnLoad>
+				Atlas.Templates.CreateFrameDropDownType(self:GetName().."DropDownType", self)
+				Atlas.Templates.CreateFrameDropDown(self:GetName().."DropDown", self)
+				L_Create_UIDropDownMenu("AtlasSwitchDD", self)
 				Atlas_OnLoad(self);
 			</OnLoad>
 			<OnEvent>
@@ -391,8 +394,8 @@
 				<PushedTexture name="AtlasLockLargePush"/>
 			</Button>
 			<Button name="$parentOptionsButton" inherits="AtlasFrameOptionsButtonTemplate"/>
-			<Button name="$parentDropDownType" inherits="AtlasFrameDropDownTypeTemplate"/>
-			<Button name="$parentDropDown" inherits="AtlasFrameDropDownTemplate"/>
+<!--			<Button name="$parentDropDownType" inherits="AtlasFrameDropDownTypeTemplate"/>
+			<Button name="$parentDropDown" inherits="AtlasFrameDropDownTemplate"/>-->
 			<Button name="$parentSizeDownButton" inherits="AtlasFrameSizeDownButtonTemplate"/>
 			<Button name="$parentNextMapButton" parentKey="NextMap" inherits="AtlasFrameNextMapButtonTemplate"/>
 			<Button name="$parentPrevMapButton" parentKey="PrevMap" inherits="AtlasFramePrevMapButtonTemplate"/>
@@ -762,6 +765,10 @@
 			</Layer>
 		</Layers>
 		<Scripts>
+			<OnLoad>
+				self.DropDownType = Atlas.Templates.CreateFrameDropDownType(self:GetName().."DropDownType", self)
+				self.DropDown = Atlas.Templates.CreateFrameDropDown(self:GetName().."DropDown", self)
+			</OnLoad>
 			<OnShow>
 				AtlasFrameLarge_OnShow(self)
 				PlaySound(844);
@@ -812,8 +819,8 @@
 				<PushedTexture name="AtlasLockSmallPush"/>
 			</Button>
 			<Button name="$parentOptionsButton" inherits="AtlasFrameOptionsButtonTemplate"/>
-			<Button name="$parentDropDownType" inherits="AtlasFrameDropDownTypeTemplate"/>
-			<Button name="$parentDropDown" inherits="AtlasFrameDropDownTemplate"/>
+<!--			<Button name="$parentDropDownType" inherits="AtlasFrameDropDownTypeTemplate"/>
+			<Button name="$parentDropDown" inherits="AtlasFrameDropDownTemplate"/>-->
 			<Button name="$parentNextMapButton" parentKey="NextMap" inherits="AtlasFrameNextMapButtonTemplate"/>
 			<Button name="$parentPrevMapButton" parentKey="PrevMap" inherits="AtlasFramePrevMapButtonTemplate"/>
 			<Button name="$parentAdventureJournalMapButton" parentKey="AdventureJournalMap" inherits="AtlasFrameAdventureJournalMapButtonTemplate"/>
@@ -919,6 +926,10 @@
 			</Layer>
 		</Layers>
 		<Scripts>
+			<OnLoad>
+				Atlas.Templates.CreateFrameDropDownType(self:GetName().."DropDownType", self)
+				Atlas.Templates.CreateFrameDropDown(self:GetName().."DropDown", self)
+			</OnLoad>
 			<OnShow>
 				ATLAS_SMALLFRAME_SELECTED = true;
 				PlaySound(844);

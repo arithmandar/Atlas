@@ -36,7 +36,7 @@ local pairs, select, wipe = _G.pairs, _G.select, _G.wipe
 local string = _G.string
 local table = _G.table
 local getn, tinsert, tsort = table.getn, table.insert, table.sort
-local UIDropDownMenu_AddButton, UIDropDownMenu_Initialize, UIDropDownMenu_SetSelectedID, UIDropDownMenu_SetWidth, UIDropDownMenu_CreateInfo, ToggleDropDownMenu = _G.UIDropDownMenu_AddButton, _G.UIDropDownMenu_Initialize, _G.UIDropDownMenu_SetSelectedID, _G.UIDropDownMenu_SetWidth, _G.UIDropDownMenu_CreateInfo, _G.ToggleDropDownMenu
+local UIDropDownMenu_AddButton, UIDropDownMenu_Initialize, UIDropDownMenu_SetSelectedID, UIDropDownMenu_SetWidth, UIDropDownMenu_CreateInfo, ToggleDropDownMenu = L_UIDropDownMenu_AddButton, L_UIDropDownMenu_Initialize, L_UIDropDownMenu_SetSelectedID, L_UIDropDownMenu_SetWidth, L_UIDropDownMenu_CreateInfo, L_ToggleDropDownMenu
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace

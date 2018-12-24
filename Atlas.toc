@@ -66,6 +66,7 @@ Locale\Locales.xml
 Data\Constants.lua
 
 Core\FontsTemplates.xml
+Core\Templates.lua
 Core\Templates.xml
 Core\IngameLocales.lua
 
@@ -81,6 +82,6 @@ Data\DropDownConfig.lua
 # Integration functions
 Integration\EJIntegration.lua
 Integration\EJLoot.xml
-Integration\WorldMapIntegration.xml
+Integration\WorldMap.lua
 Integration\Achievements.lua
 Integration\AtlasLootIntegration.lua

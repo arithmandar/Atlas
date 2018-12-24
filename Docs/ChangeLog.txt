@@ -15,6 +15,11 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.44.07 (Dec. 31, 2018)
+------------------------
+- Migrate to use LibUIDropDownMenu again with version 2.0
+  - Replace with L_UIDropDownMenuTemplate in XML with Lua function call L_Create_UIDropDownMenu()
+
 v1.44.06 (Dec. 20, 2018)
 ------------------------
 - Workaround to fix UIDropDownMenu's tainting issue

@@ -42,7 +42,7 @@ local math = _G.math
 -- Libraries
 local floor = math.floor
 local format = string.format
-local UIDropDownMenu_Initialize, UIDropDownMenu_CreateInfo, UIDropDownMenu_AddButton = _G.UIDropDownMenu_Initialize, _G.UIDropDownMenu_CreateInfo, _G.UIDropDownMenu_AddButton
+local UIDropDownMenu_Initialize, UIDropDownMenu_CreateInfo, UIDropDownMenu_AddButton = L_UIDropDownMenu_Initialize, L_UIDropDownMenu_CreateInfo, L_UIDropDownMenu_AddButton
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -538,7 +538,7 @@ function Atlas_EncounterJournal_InitLootFilter(self, level)
 	local info = UIDropDownMenu_CreateInfo();
 	info.keepShownOnClick = nil;
 
-	if (UIDROPDOWNMENU_MENU_VALUE == CLASS_DROPDOWN) then
+	if (L_UIDROPDOWNMENU_MENU_VALUE == CLASS_DROPDOWN) then
 		info.text = ALL_CLASSES;
 		info.checked = (filterClassID == 0);
 		info.arg1 = 0;
