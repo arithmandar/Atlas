@@ -43,6 +43,8 @@ local math = _G.math
 local floor = math.floor
 local format = string.format
 local UIDropDownMenu_Initialize, UIDropDownMenu_CreateInfo, UIDropDownMenu_AddButton = L_UIDropDownMenu_Initialize, L_UIDropDownMenu_CreateInfo, L_UIDropDownMenu_AddButton
+local WoWClassic = select(4, GetBuildInfo()) < 20000
+
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -95,6 +97,11 @@ local Atlas_EncounterJournalSlotFilters = {
 local BOSS_LOOT_BUTTON_HEIGHT = 45
 local INSTANCE_LOOT_BUTTON_HEIGHT = 64
 
+function Atlas_EJ_ResetLootFilter()
+	if WoWClassic then return end
+	EJ_ResetLootFilter()
+end
+
 function Atlas_EncounterJournal_DisplayLoot(instanceID, encounterId)
 	AtlasEJLootFrame.instanceID = instanceID
 	AtlasEJLootFrame.encounterID = encounterId
@@ -108,7 +115,9 @@ function Atlas_EncounterJournal_OnLoad(self)
 --	EncounterJournalTitleText:SetText(ADVENTURE_JOURNAL)
 --	SetPortraitToTexture(EncounterJournalPortrait,"Interface\\EncounterJournal\\UI-EJ-PortraitIcon")
 --	self:RegisterEvent("EJ_LOOT_DATA_RECIEVED")
-	self:RegisterEvent("EJ_DIFFICULTY_UPDATE")
+	if not WoWClassic then
+		self:RegisterEvent("EJ_DIFFICULTY_UPDATE")
+	end
 --	self:RegisterEvent("UNIT_PORTRAIT_UPDATE")
 --	self:RegisterEvent("SEARCH_DB_LOADED")
 --	self:RegisterEvent("UI_MODEL_SCENE_INFO_UPDATED")
@@ -459,11 +468,11 @@ function Atlas_EncounterJournal_SelectDifficulty(self, value)
 end
 
 function Atlas_EncounterJournal_DifficultyInit(self, level)
-	local currDifficulty = EJ_GetDifficulty();
+	local currDifficulty = EJ_GetDifficulty and EJ_GetDifficulty() or nil
 	local info = UIDropDownMenu_CreateInfo();
 	for i=1,#ATLAS_EJ_DIFFICULTIES do
 		local entry = ATLAS_EJ_DIFFICULTIES[i];
-		if EJ_IsValidInstanceDifficulty(entry.difficultyID) then
+		if EJ_IsValidInstanceDifficulty and EJ_IsValidInstanceDifficulty(entry.difficultyID) then
 			info.func = Atlas_EncounterJournal_SelectDifficulty;
 			if (entry.size) then
 				info.text = format(ENCOUNTER_JOURNAL_DIFF_TEXT, entry.size, entry.prefix);
@@ -532,7 +541,7 @@ end
 
 local CLASS_DROPDOWN = 1;
 function Atlas_EncounterJournal_InitLootFilter(self, level)
-	local filterClassID, filterSpecID = EJ_GetLootFilter();
+	local filterClassID, filterSpecID = EJ_GetLootFilter and EJ_GetLootFilter() or nil
 	local sex = UnitSex("player");
 	local classDisplayName, classTag, classID;
 	local info = UIDropDownMenu_CreateInfo();
@@ -609,7 +618,7 @@ function Atlas_EncounterJournal_InitLootFilter(self, level)
 end
 
 function Atlas_EncounterJournal_InitLootSlotFilter(self, level)
-	local slotFilter = EJ_GetSlotFilter();
+	local slotFilter = EJ_GetSlotFilter and EJ_GetSlotFilter() or nil;
 
 	local info = UIDropDownMenu_CreateInfo();
 	info.text = ALL_INVENTORY_SLOTS;

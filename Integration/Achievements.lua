@@ -33,6 +33,9 @@ local _G = getfenv(0)
 local bit, string = _G.bit, _G.string
 local format = string.format
 local GetAchievementInfo, GetAchievementNumCriteria, GetAchievementCriteriaInfo, GetAchievementLink = _G.GetAchievementInfo, _G.GetAchievementNumCriteria, _G.GetAchievementCriteriaInfo, _G.GetAchievementLink
+
+local WoWClassic = select(4, GetBuildInfo()) < 20000
+
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -42,6 +45,7 @@ local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 
 function addon:AchievementButtonUpdate(button, achievementID)
+	if WoWClassic then return end
 	button.achievementID = achievementID;
 	button.link = GetAchievementLink(achievementID) or nil;
 	-- id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = GetAchievementInfo(achievementID or categoryID, index)
@@ -89,6 +93,7 @@ function addon:AchievementButtonUpdate(button, achievementID)
 end
 
 function addon:OpenAchievement(achievementID)
+	if WoWClassic then return end
 	if not achievementID then return end
 	
 	if not IsAddOnLoaded("Blizzard_AchievementUI") then

@@ -344,7 +344,7 @@
 									</OnMouseUp>
 									<OnClick>
 										PlaySound(856);
-										EJ_ResetLootFilter();
+										Atlas_EJ_ResetLootFilter();
 										Atlas_EncounterJournal_LootUpdate();
 										self:GetParent():Hide();
 									</OnClick>

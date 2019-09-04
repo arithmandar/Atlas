@@ -429,7 +429,7 @@
 							GameTooltip:AddLine("\n"..self.roleOverview, nil, nil, nil, 1);
 						end
 					end
-					if (self.encounterID) then
+					if (self.encounterID and C_AdventureJournal) then
 						local disabled = not C_AdventureJournal.CanBeShown();
 						if (not disabled) then
 							GameTooltip:AddLine(ATLAS_OPEN_ADVENTURE, 0.5, 0.5, 1, true);
@@ -511,7 +511,7 @@
 					if (IsModifiedClick("CHATLINK") and ChatEdit_GetActiveWindow()) then
 						ChatEdit_InsertLink(self.link);
 					end
-				else
+				elseif (C_AdventureJournal) then
 					local disabled = not C_AdventureJournal.CanBeShown();
 					if (disabled) then return end
 					if (button == "RightButton") then
@@ -529,6 +529,7 @@
 						Atlas:AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID);
 					else
 					end
+				else
 				end
 			</OnClick>
 		</Scripts>

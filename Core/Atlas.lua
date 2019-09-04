@@ -41,6 +41,9 @@ local getn, tinsert, tsort = table.getn, table.insert, table.sort
 local GetAddOnInfo, GetAddOnEnableState = _G.GetAddOnInfo, _G.GetAddOnEnableState
 local hooksecurefunc = hooksecurefunc
 local UIDropDownMenu_Initialize = L_UIDropDownMenu_Initialize
+
+local WoWClassic = select(4, GetBuildInfo()) < 20000
+
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -266,6 +269,10 @@ local function bossButtonCleanUp(button)
 end
 
 local function bossButtonUpdate(button, encounterID, instanceID, b_iconImage, moduleData)
+	if WoWClassic then 
+		return
+	end
+	
 	local rolesByFlag = {
 		[0] = "TANK",
 		[1] = "DAMAGER",
@@ -659,6 +666,9 @@ function addon:Toggle()
 end
 
 local function checkInstanceHasGearLevel()
+	if not GetLFGDungeonInfo then
+		return false
+	end
 	local zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
 	if (not zoneID) then
 		return false
@@ -725,8 +735,13 @@ function addon:GetDungeonDifficultyColor(minRecLevel)
 end
 
 local function getGearItemLevelDiffColor(minGearLevel)
-	local lDiff = minGearLevel - GetAverageItemLevel()
-	local color
+	local color = {r = 1.00, g = 1.00, b = 1.00}
+	if (minGearLevel == nil) then return color end
+	local lDiff = minGearLevel
+	lDiff = tonumber(lDiff)
+	if (GetAverageItemLevel) then 
+		lDiff = minGearLevel - GetAverageItemLevel()
+	end
 	
 	if (lDiff >= 0) then
 		for i= 1.00, 0.10, -0.10 do
@@ -1105,7 +1120,9 @@ function Atlas_MapRefresh(mapID)
 	
 	if (base.DungeonID) then
 		-- name, typeID, subtypeID, minLevel, maxLevel, recLevel, minRecLevel, maxRecLevel, expansionLevel, groupID, textureFilename, difficulty, maxPlayers, description, isHoliday, bonusRepAmount, minPlayers, isTimeWalker, _, minGearLevel = GetLFGDungeonInfo(dungeonID)
-		_, typeID, subtypeID, minLevel, maxLevel, _, minRecLevel, maxRecLevel, _, _, _, _, maxPlayers, _, _, _, _, _, _, minGearLevel = GetLFGDungeonInfo(base.DungeonID)
+		if (GetLFGDungeonInfo) then
+			_, typeID, subtypeID, minLevel, maxLevel, _, minRecLevel, maxRecLevel, _, _, _, _, maxPlayers, _, _, _, _, _, _, minGearLevel = GetLFGDungeonInfo(base.DungeonID)
+		end
 
 		-- For some unknown reason, some of the dungeons do not have recommended level range
 		if (minRecLevel == 0) then 
@@ -1116,7 +1133,9 @@ function Atlas_MapRefresh(mapID)
 		end
 	end
 	if (base.DungeonHeroicID) then
-		_, typeIDH, subtypeIDH, minLevelH, maxLevelH, _, minRecLevelH, maxRecLevelH, _, _, _, _, maxPlayersH, _, _, _, _, _, _, minGearLevelH = GetLFGDungeonInfo(base.DungeonHeroicID)
+		if (GetLFGDungeonInfo) then
+			_, typeIDH, subtypeIDH, minLevelH, maxLevelH, _, minRecLevelH, maxRecLevelH, _, _, _, _, maxPlayersH, _, _, _, _, _, _, minGearLevelH = GetLFGDungeonInfo(base.DungeonHeroicID)
+		end
 
 		if (minRecLevelH == 0) then
 			minRecLevelH = minRecLevel
@@ -1126,7 +1145,9 @@ function Atlas_MapRefresh(mapID)
 		end
 	end
 	if (base.DungeonMythicID) then
-		_, typeIDM, subtypeIDM, minLevelM, maxLevelM, _, minRecLevelM, maxRecLevelM, _, _, _, _, maxPlayersM, _, _, _, _, _, _, minGearLevelM = GetLFGDungeonInfo(base.DungeonMythicID)
+		if (GetLFGDungeonInfo) then
+			_, typeIDM, subtypeIDM, minLevelM, maxLevelM, _, minRecLevelM, maxRecLevelM, _, _, _, _, maxPlayersM, _, _, _, _, _, _, minGearLevelM = GetLFGDungeonInfo(base.DungeonMythicID)
+		end
 
 		if (minRecLevelM == 0) then
 			minRecLevelM = minRecLevel
@@ -1358,10 +1379,12 @@ function Atlas_MapRefresh(mapID)
 		AtlasFrame.AdventureJournal.instanceID = base.JournalInstanceID
 		AtlasFrameLarge.AdventureJournal.instanceID = base.JournalInstanceID
 		AtlasFrameSmall.AdventureJournal.instanceID = base.JournalInstanceID
-		AtlasFrameAdventureJournalButton:Show()
-		AtlasFrameLargeAdventureJournalButton:Show()
-		AtlasFrameSmallAdventureJournalButton:Show()
-		Atlas_SetEJBackground(base.JournalInstanceID)
+		if not WoWClassic then
+			AtlasFrameAdventureJournalButton:Show()
+			AtlasFrameLargeAdventureJournalButton:Show()
+			AtlasFrameSmallAdventureJournalButton:Show()
+			Atlas_SetEJBackground(base.JournalInstanceID)
+		end
 	else
 		AtlasFrameAdventureJournalButton:Hide()
 		AtlasFrameLargeAdventureJournalButton:Hide()
@@ -1374,9 +1397,11 @@ function Atlas_MapRefresh(mapID)
 		AtlasFrame.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameLarge.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameSmall.AdventureJournalMap.mapID = base.WorldMapID
-		AtlasFrameAdventureJournalMapButton:Show()
-		AtlasFrameLargeAdventureJournalMapButton:Show()
-		AtlasFrameSmallAdventureJournalMapButton:Show()
+		if not WoWClassic then
+			AtlasFrameAdventureJournalMapButton:Show()
+			AtlasFrameLargeAdventureJournalMapButton:Show()
+			AtlasFrameSmallAdventureJournalMapButton:Show()
+		end
 	else
 		AtlasFrameAdventureJournalMapButton:Hide()
 		AtlasFrameLargeAdventureJournalMapButton:Hide()
@@ -1511,8 +1536,10 @@ function Atlas_Refresh(mapID)
 		end
 	end
 	
-	if (AtlasEJLootFrame:IsShown()) then
-		AtlasEJLootFrame:Hide()
+	if not WoWClassic then
+		if (AtlasEJLootFrame:IsShown()) then
+			AtlasEJLootFrame:Hide()
+		end
 	end
 	Atlas_MapRefresh()
 	
@@ -1758,6 +1785,7 @@ function Atlas_AutoSelect()
 end
 
 function addon:DungeonMinGearLevelToolTip(self)
+	if (WoWClassic) then return end
 	local currGearLevel = GetAverageItemLevel()
 	local str = format(ITEM_LEVEL, currGearLevel)
 

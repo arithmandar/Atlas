@@ -35,6 +35,9 @@ local select = _G.select
 local tonumber = _G.tonumber
 local GameTooltip = GameTooltip
 -- Libraries
+
+local WoWClassic = select(4, GetBuildInfo()) < 20000
+
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -58,7 +61,7 @@ end
 -- Syntax 2: Atlas_GetBossName(bossname, encounterID, creatureIndex);
 -- ------------------------------------------------------------
 function addon:GetBossName(bossname, encounterID, creatureIndex)
-	if (encounterID) then
+	if (encounterID and EJ_GetEncounterInfo) then
 		local _, encounter, iconImage
 		if (not creatureIndex) then
 			encounter = EJ_GetEncounterInfo(encounterID)
@@ -95,6 +98,7 @@ function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 end
 
 function addon:AdventureJournalButton_OnClick(frame)
+	if (WoWClassic) then return end
 	local instanceID = frame.instanceID
 	local disabled = not C_AdventureJournal.CanBeShown()
 	if (disabled) then return end
@@ -118,6 +122,7 @@ function addon:AdventureJournalButton_OnClick(frame)
 end
 
 function addon:AdventureJournalButton_OnEnter(frame)
+	if (WoWClassic) then return end
 	local instanceID = frame.instanceID
 	if (not instanceID) then return end
 
@@ -145,6 +150,7 @@ function addon:AdventureJournalButton_OnEnter(frame)
 end
 
 function addon:AdventureJournal_EncounterButton_OnClick(instanceID, encounterID, keepAtlas)
+	if (WoWClassic) then return end
 	if (not instanceID or not encounterID) then return end
 	
 	local disabled = not C_AdventureJournal.CanBeShown()
@@ -171,6 +177,7 @@ function addon:AdventureJournal_EncounterButton_OnClick(instanceID, encounterID,
 end
 
 function addon:AdventureJournal_MapButton_OnClick(frame)
+	if (WoWClassic) then return end
 	local uiMapID = frame.mapID
 	local dungeonLevel = frame.dungeonLevel
 

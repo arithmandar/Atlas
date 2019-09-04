@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.45.01 (Sep. 04, 2019)
+------------------------
+- Code changed to support both WoW 8.2 and classic server
+
 v1.45.00 (Sep. 04, 2019)
 ------------------------
 - ToC update to support WoW 8.2.0
