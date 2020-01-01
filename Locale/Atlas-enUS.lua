@@ -4,7 +4,7 @@
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
 	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
-	Copyright 2011 ~ 2019 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+	Copyright 2011 ~ 2020 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 	This file is part of Atlas.
 
@@ -131,6 +131,8 @@ L["ATLAS_DDL_CONTINENT_DRAENOR"] = "Draenor Instances"
 L["ATLAS_DDL_CONTINENT_BROKENISLES"] = "Broken Isles Instances"
 L["ATLAS_DDL_CONTINENT_BROKENISLES1"] = "Broken Isles Dungeons"
 L["ATLAS_DDL_CONTINENT_BROKENISLES2"] = "Broken Isles Raids"
+L["ATLAS_DDL_CONTINENT_KULTIRAS"] = "Kul Tiras Instances"
+L["ATLAS_DDL_CONTINENT_ZANDALAR"] = "Zandalar Instances"
 L["ATLAS_DDL_LEVEL"] = "Level"		-- Sort Instance Maps by: Level
 L["ATLAS_DDL_LEVEL_UNDER45"] = "Instances Under Level 45"
 L["ATLAS_DDL_LEVEL_45TO60"] = "Instances Level 45-60"
@@ -142,6 +144,10 @@ L["ATLAS_DDL_LEVEL_90TO100"] = "Instances Level 90-100"
 L["ATLAS_DDL_LEVEL_100PLUS"] = "Instances Level 100+"
 L["ATLAS_DDL_LEVEL_100TO110"] = "Instances Level 100-110"
 L["ATLAS_DDL_LEVEL_110PLUS"] = "Instances Level 110+"
+L["ATLAS_DDL_LEVEL_110TO120"] = "Instances Level 110-120"
+L["ATLAS_DDL_LEVEL_120PLUS"] = "Instances Level 120+"
+L["ATLAS_DDL_LEVEL_120TO130"] = "Instances Level 120-130"
+L["ATLAS_DDL_LEVEL_130PLUS"] = "Instances Level 130+"
 L["ATLAS_DDL_PARTYSIZE"] = "Party Size"	-- Sort Instance Maps by: Party Size
 L["ATLAS_DDL_PARTYSIZE_5"] = "Instances for 5 Players"
 L["ATLAS_DDL_PARTYSIZE_10"] = "Instances for 10 Players"
@@ -156,6 +162,7 @@ L["ATLAS_DDL_EXPANSION_WOD"] = "Warlords of Draenor Instances"
 L["ATLAS_DDL_EXPANSION_LEGION"] = "Legion Instances"
 L["ATLAS_DDL_EXPANSION_LEGION1"] = "Legion Dungeons"
 L["ATLAS_DDL_EXPANSION_LEGION2"] = "Legion Raids"
+L["ATLAS_DDL_EXPANSION_BFA"] = "Battle for Azeroth Instances"
 L["ATLAS_DDL_TYPE"] = "Type"			-- -- Sort Instance Maps by: Map Type
 L["ATLAS_DDL_TYPE_INSTANCE"] = "Instances"
 L["ATLAS_DDL_TYPE_ENTRANCE"] = "Entrances"
