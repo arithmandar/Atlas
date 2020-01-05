@@ -15,7 +15,11 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.46.001 (Jan. 04, 2020)
+v1.46.02 (Jan. 05, 2020)
+------------------------
+- Library update: LibBabble-SubZone
+
+v1.46.01 (Jan. 04, 2020)
 ------------------------
 - Library update: LibBabble-SubZone
 

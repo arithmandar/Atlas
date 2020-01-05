@@ -133,6 +133,7 @@ L["ATLAS_DDL_CONTINENT_BROKENISLES1"] = "Broken Isles Dungeons"
 L["ATLAS_DDL_CONTINENT_BROKENISLES2"] = "Broken Isles Raids"
 L["ATLAS_DDL_CONTINENT_KULTIRAS"] = "Kul Tiras Instances"
 L["ATLAS_DDL_CONTINENT_ZANDALAR"] = "Zandalar Instances"
+L["ATLAS_DDL_CONTINENT_NAZJATAR"] = "Nazjatar Instances"
 L["ATLAS_DDL_LEVEL"] = "Level"		-- Sort Instance Maps by: Level
 L["ATLAS_DDL_LEVEL_UNDER45"] = "Instances Under Level 45"
 L["ATLAS_DDL_LEVEL_45TO60"] = "Instances Level 45-60"

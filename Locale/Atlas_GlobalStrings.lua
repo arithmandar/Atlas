@@ -53,7 +53,7 @@ local icon_Draenor = "Interface\\ICONS\\Achievement_Zone_Draenor_01" -- Draenor
 local icon_BrokenIsles = "Interface\\ICONS\\Achievements_Zone_BrokenShore" -- BrokenIsles
 local icon_KulTiras = "Interface\\ICONS\\spell_arcane_portalkultiras" -- Kul Tiras
 local icon_Zandalar = "Interface\\ICONS\\spell_arcane_portalzandalar" -- Zandalar
-
+--local icon_Nazjatar = "Interface\\ICONS\\spell_arcane_portalzandalar" -- Nazjatar
 
 --[[
 ************************************************************************************************
@@ -149,6 +149,7 @@ else
 	ATLAS_DDL_CONTINENT_BROKENISLES2	= format("|T%s:0:0|t %s", icon_BrokenIsles, L["ATLAS_DDL_CONTINENT_BROKENISLES2"])
 	ATLAS_DDL_CONTINENT_KULTIRAS	= format("|T%s:0:0|t %s", icon_KulTiras, L["ATLAS_DDL_CONTINENT_KULTIRAS"])
 	ATLAS_DDL_CONTINENT_ZANDALAR	= format("|T%s:0:0|t %s", icon_Zandalar, L["ATLAS_DDL_CONTINENT_ZANDALAR"])
+	ATLAS_DDL_CONTINENT_NAZJATAR	= L["ATLAS_DDL_CONTINENT_NAZJATAR"]
 end
 -- Level
 ATLAS_DDL_LEVEL			= L["ATLAS_DDL_LEVEL"]
