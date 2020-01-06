@@ -51,6 +51,7 @@ local modules = {
 	Atlas_MistsofPandaria		= "AtlasLoot_MistsofPandaria",
 	Atlas_WarlordsofDraenor		= "AtlasLoot_WarlordsofDraenor",
 	Atlas_Legion			= "AtlasLoot_Legion",
+	Atlas_BattleforAzeroth		= "AtlasLoot_BattleforAzeroth",
 };
 
 function addon:EnableAtlasLootButton(base, zoneID)

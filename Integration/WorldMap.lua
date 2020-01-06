@@ -38,6 +38,7 @@ local GameTooltip = _G.GameTooltip
 -- ----------------------------------------------------------------------------
 local FOLDER_NAME, private = ...
 local addon = LibStub("AceAddon-3.0"):GetAddon("Atlas")
+local WoWClassic = select(4, GetBuildInfo()) < 20000
 
 local WorldMap = {}
 
@@ -54,13 +55,17 @@ local function createButton()
 	f:SetToplevel(true)
 	f:Hide()
 	f:ClearAllPoints()
-	f:SetPoint("TOPRIGHT", WorldMapFrame, "TOPRIGHT", -38, -68)
+	if (WoWClassic) then
+		f:SetPoint("TOPRIGHT", WorldMapFrame, "TOPRIGHT", -8, -70)
+	else
+		f:SetPoint("TOPRIGHT", WorldMapFrame, "TOPRIGHT", -38, -68)
 
-	f.Shadow = f:CreateTexture(name.."Shadow", "BACKGROUND")
-	f.Shadow:SetAtlas("MapCornerShadow-Right", true)
-	f.Shadow:SetPoint("TOPRIGHT", 4, 4)
-	f.Shadow:SetTexCoord(0, 1, 1, 0)
-	f.Shadow:SetDrawLayer("BACKGROUND", -1)
+		f.Shadow = f:CreateTexture(name.."Shadow", "BACKGROUND")
+		f.Shadow:SetAtlas("MapCornerShadow-Right", true)
+		f.Shadow:SetPoint("TOPRIGHT", 4, 4)
+		f.Shadow:SetTexCoord(0, 1, 1, 0)
+		f.Shadow:SetDrawLayer("BACKGROUND", -1)
+	end
 
 	f.Background = f:CreateTexture(name.."Background", "BACKGROUND")
 	f.Background:SetTexture("Interface\\Minimap\\UI-Minimap-Background")

@@ -15,6 +15,11 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.46.04 (Jan. 06, 2020)
+------------------------
+- WorldMap icon adjustment for WoW classic
+- Integration of AtlasLoot - Battle for Azeroth
+
 v1.46.03 (Jan. 06, 2020)
 ------------------------
 - Library update: LibBabble-SubZone
