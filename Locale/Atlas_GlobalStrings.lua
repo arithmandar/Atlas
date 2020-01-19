@@ -27,7 +27,6 @@
 local _G = getfenv(0)
 local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale("Atlas")
-local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0")
 local format = string.format
 
 local WoWClassic = select(4, GetBuildInfo()) < 20000

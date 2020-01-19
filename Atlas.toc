@@ -1,4 +1,4 @@
-﻿## Interface: 80205
+﻿## Interface: 80300
 #@non-debug@
 ## Title: @localization(locale="enUS", key="Title", namespace="ToC")@
 ## Title-deDE: @localization(locale="deDE", key="Title", namespace="ToC")@
@@ -61,9 +61,10 @@
 ## X-Website: http://www.atlasmod.com
 ## SavedVariables: AtlasDB
 
+Data\Constants.lua
+Data\AreaIDs.lua
 Libs\Libs.xml
 Locale\Locales.xml
-Data\Constants.lua
 
 Core\FontsTemplates.xml
 Core\Templates.lua
