@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.47.00 (Feb. 11, 2020)
+------------------------
+- Library update: LibBabble-SubZone
+
 v1.47.00 (Jan. 20, 2020)
 ------------------------
 - ToC update to support WoW 8.3.0
