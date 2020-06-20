@@ -15,6 +15,11 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.47.03 (Jun. 20, 2020)
+------------------------
+- Further fixed Atlas:GetBossName() to load the plugin's locale first and then BabbleBoss; require to pass module name:
+  Atlas:GetBossName(bossname, encounterID, creatureIndex, moduleName)
+
 v1.47.02 (Jun. 20, 2020)
 ------------------------
 - Adjusted Atlas:GetBossName() to load the plugin's locale first and then BabbleBoss
