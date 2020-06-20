@@ -82,10 +82,10 @@ function addon:GetBossName(bossname, encounterID, creatureIndex)
 		else
 			bossname = iconImage and format("|T%d:0:2.5|t%s", iconImage, encounter) or encounter
 		end
-	elseif (bossname and BB[bossname]) then
-		bossname = BB[bossname]
 	elseif (bossname and L[bossname]) then
 		bossname = L[bossname]
+	elseif (bossname and BB[bossname]) then
+		bossname = BB[bossname]
 	else
 		--bossname = bossname
 	end
