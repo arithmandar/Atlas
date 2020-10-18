@@ -17,7 +17,8 @@ Known Issues:
 
 v1.48.00 (Oct. 18, 2020)
 ------------------------
-- Codes update to support WoW 9.0 (Shadowlands)
+- Codes and TOC update to support WoW 9.0 (Shadowlands)
+- Updated AreaID to sync with Shadowlands
 
 v1.47.04 (Jul. 26, 2020)
 ------------------------
