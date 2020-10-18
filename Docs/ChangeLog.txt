@@ -15,7 +15,11 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.47.04 (Jul. 20, 2020)
+v1.48.00 (Oct. 18, 2020)
+------------------------
+- Codes update to support WoW 9.0 (Shadowlands)
+
+v1.47.04 (Jul. 26, 2020)
 ------------------------
 - Library update: LibBabble-SubZone
 

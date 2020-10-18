@@ -54,7 +54,7 @@ local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 
 local EJ_SetDifficulty, EJ_SetLootFilter = EJ_SetDifficulty, EJ_SetLootFilter
-local EJ_GetEncounterInfo, EJ_GetLootInfoByIndex, EJ_GetNumLoot = EJ_GetEncounterInfo, EJ_GetLootInfoByIndex, EJ_GetNumLoot
+local EJ_GetEncounterInfo, EJ_GetLootInfoByIndex, EJ_GetNumLoot = EJ_GetEncounterInfo, C_EncounterJournal.GetLootInfoByIndex, EJ_GetNumLoot
 
 local NO_INV_TYPE_FILTER = 0;
 
@@ -76,23 +76,24 @@ local ATLAS_EJ_DIFFICULTIES =
 	{ prefix = PLAYER_DIFFICULTY_TIMEWALKER, difficultyID = 33 },
 }
 
-local Atlas_EncounterJournalSlotFilters = {
-	{ invType = LE_ITEM_FILTER_TYPE_HEAD, invTypeName = INVTYPE_HEAD },
-	{ invType = LE_ITEM_FILTER_TYPE_NECK, invTypeName = INVTYPE_NECK },
-	{ invType = LE_ITEM_FILTER_TYPE_SHOULDER, invTypeName = INVTYPE_SHOULDER },
-	{ invType = LE_ITEM_FILTER_TYPE_CLOAK, invTypeName = INVTYPE_CLOAK },
-	{ invType = LE_ITEM_FILTER_TYPE_CHEST, invTypeName = INVTYPE_CHEST },
-	{ invType = LE_ITEM_FILTER_TYPE_WRIST, invTypeName = INVTYPE_WRIST },
-	{ invType = LE_ITEM_FILTER_TYPE_HAND, invTypeName = INVTYPE_HAND },
-	{ invType = LE_ITEM_FILTER_TYPE_WAIST, invTypeName = INVTYPE_WAIST },
-	{ invType = LE_ITEM_FILTER_TYPE_LEGS, invTypeName = INVTYPE_LEGS },
-	{ invType = LE_ITEM_FILTER_TYPE_FEET, invTypeName = INVTYPE_FEET },
-	{ invType = LE_ITEM_FILTER_TYPE_MAIN_HAND, invTypeName = INVTYPE_WEAPONMAINHAND },
-	{ invType = LE_ITEM_FILTER_TYPE_OFF_HAND, invTypeName = INVTYPE_WEAPONOFFHAND },
-	{ invType = LE_ITEM_FILTER_TYPE_FINGER, invTypeName = INVTYPE_FINGER },
-	{ invType = LE_ITEM_FILTER_TYPE_TRINKET, invTypeName = INVTYPE_TRINKET },
-	{ invType = LE_ITEM_FILTER_TYPE_ARTIFACT_RELIC, invTypeName = EJ_LOOT_SLOT_FILTER_ARTIFACT_RELIC },
+local SlotFilterToSlotName = {
+	[Enum.ItemSlotFilterType.Head] = INVTYPE_HEAD,
+	[Enum.ItemSlotFilterType.Neck] = INVTYPE_NECK,
+	[Enum.ItemSlotFilterType.Shoulder] = INVTYPE_SHOULDER,
+	[Enum.ItemSlotFilterType.Cloak] = INVTYPE_CLOAK,
+	[Enum.ItemSlotFilterType.Chest] = INVTYPE_CHEST,
+	[Enum.ItemSlotFilterType.Wrist] = INVTYPE_WRIST,
+	[Enum.ItemSlotFilterType.Hand] = INVTYPE_HAND,
+	[Enum.ItemSlotFilterType.Waist] = INVTYPE_WAIST,
+	[Enum.ItemSlotFilterType.Legs] = INVTYPE_LEGS,
+	[Enum.ItemSlotFilterType.Feet] = INVTYPE_FEET,
+	[Enum.ItemSlotFilterType.MainHand] = INVTYPE_WEAPONMAINHAND,
+	[Enum.ItemSlotFilterType.OffHand] = INVTYPE_WEAPONOFFHAND,
+	[Enum.ItemSlotFilterType.Finger] = INVTYPE_FINGER,
+	[Enum.ItemSlotFilterType.Trinket] = INVTYPE_TRINKET,
+	[Enum.ItemSlotFilterType.Other] = EJ_LOOT_SLOT_FILTER_OTHER,
 }
+
 
 local BOSS_LOOT_BUTTON_HEIGHT = 45
 local INSTANCE_LOOT_BUTTON_HEIGHT = 64
@@ -112,12 +113,11 @@ function Atlas_EncounterJournal_DisplayLoot(instanceID, encounterId)
 end
 
 function Atlas_EncounterJournal_OnLoad(self)
+	if WoWClassic then return end
 --	EncounterJournalTitleText:SetText(ADVENTURE_JOURNAL)
 --	SetPortraitToTexture(EncounterJournalPortrait,"Interface\\EncounterJournal\\UI-EJ-PortraitIcon")
 --	self:RegisterEvent("EJ_LOOT_DATA_RECIEVED")
-	if not WoWClassic then
-		self:RegisterEvent("EJ_DIFFICULTY_UPDATE")
-	end
+	self:RegisterEvent("EJ_DIFFICULTY_UPDATE")
 --	self:RegisterEvent("UNIT_PORTRAIT_UPDATE")
 --	self:RegisterEvent("SEARCH_DB_LOADED")
 --	self:RegisterEvent("UI_MODEL_SCENE_INFO_UPDATED")
@@ -223,7 +223,7 @@ function Atlas_EncounterJournal_OnShow(self)
 	if ( tonumber(GetCVar("advJournalLastOpened")) == 0 ) then
 		SetCVar("advJournalLastOpened", GetServerTime() );
 	end
-	EJMicroButtonAlert:Hide();
+	MainMenuMicroButton_HideAlert(EJMicroButton);
 	MicroButtonPulseStop(EJMicroButton);
 
 	UpdateMicroButtons();
@@ -325,26 +325,36 @@ function Atlas_EncounterJournal_UpdateDifficulty(newDifficultyID)
 end
 
 function Atlas_EncounterJournal_SetLootButton(item)
-	local itemID, encounterID, name, icon, slot, armorType, link = EJ_GetLootInfoByIndex(item.index);
-	if ( name ) then
-		item.name:SetText(name);
-		item.icon:SetTexture(icon);
-		item.slot:SetText(slot);
-		item.armorType:SetText(armorType);
+	local itemInfo = C_EncounterJournal.GetLootInfoByIndex(item.index);
+	if ( itemInfo and itemInfo.name ) then
+		item.name:SetText(WrapTextInColorCode(itemInfo.name, itemInfo.itemQuality));
+		item.icon:SetTexture(itemInfo.icon);
+		if itemInfo.handError then
+			item.slot:SetText(INVALID_EQUIPMENT_COLOR:WrapTextInColorCode(itemInfo.slot));
+		else
+			item.slot:SetText(itemInfo.slot);
+		end
+		if itemInfo.weaponTypeError then
+			item.armorType:SetText(INVALID_EQUIPMENT_COLOR:WrapTextInColorCode(itemInfo.armorType));
+		else
+			item.armorType:SetText(itemInfo.slot);
+		end
 
 		local numEncounters = EJ_GetNumEncountersForLootByIndex(item.index);
 		if (numEncounters == 1) then
-			item.boss:SetFormattedText(BOSS_INFO_STRING, EJ_GetEncounterInfo(encounterID));
+			item.boss:SetFormattedText(BOSS_INFO_STRING, EJ_GetEncounterInfo(itemInfo.encounterID));
 		elseif ( numEncounters == 2) then
-			local _, secondEncounterID = EJ_GetLootInfoByIndex(item.index, 2);
-			item.boss:SetFormattedText(BOSS_INFO_STRING_TWO, EJ_GetEncounterInfo(encounterID), EJ_GetEncounterInfo(secondEncounterID));
+			local itemInfoSecond = C_EncounterJournal.GetLootInfoByIndex(item.index, 2);
+			local secondEncounterID = itemInfoSecond and itemInfoSecond.encounterID;
+			if ( itemInfo.encounterID and secondEncounterID ) then
+				item.boss:SetFormattedText(BOSS_INFO_STRING_TWO, EJ_GetEncounterInfo(itemInfo.encounterID), EJ_GetEncounterInfo(secondEncounterID));
+			end
 		elseif ( numEncounters > 2 ) then
-			item.boss:SetFormattedText(BOSS_INFO_STRING_MANY, EJ_GetEncounterInfo(encounterID));
+			item.boss:SetFormattedText(BOSS_INFO_STRING_MANY, EJ_GetEncounterInfo(itemInfo.encounterID));
 		end
 
-		local itemName, _, quality = GetItemInfo(link);
-		SetItemButtonQuality(item, quality, itemID);
-
+		local itemName, _, quality = GetItemInfo(itemInfo.link);
+		SetItemButtonQuality(item, quality, itemInfo.link);
 	else
 		--item.name:SetText(RETRIEVING_ITEM_INFO);
 		item.name:SetText(L["ATLAS_REOPEN_LOOT_AGAIN"]);
@@ -353,12 +363,12 @@ function Atlas_EncounterJournal_SetLootButton(item)
 		item.armorType:SetText("");
 		item.boss:SetText("");
 	end
-	item.encounterID = encounterID;
-	item.itemID = itemID;
-	item.link = link;
+	item.encounterID = itemInfo and itemInfo.encounterID;
+	item.itemID = itemInfo and itemInfo.itemID;
+	item.link = itemInfo and itemInfo.link;
 	item:Show();
 	if item.showingTooltip then
-		Atlas_EncounterJournal_SetTooltip(link);
+		Atlas_EncounterJournal_SetTooltip(item.link);
 	end
 end
 
@@ -497,11 +507,11 @@ end
 
 function Atlas_EncounterJournal_RefreshSlotFilterText(self)
 	local text = ALL_INVENTORY_SLOTS;
-	local slotFilter = EJ_GetSlotFilter();
-	if slotFilter ~= NO_INV_TYPE_FILTER then
-		for _, slot in ipairs(Atlas_EncounterJournalSlotFilters) do
-			if ( slot.invType == slotFilter ) then
-				text = slot.invTypeName;
+	local slotFilter = C_EncounterJournal.GetSlotFilter();
+	if slotFilter ~= Enum.ItemSlotFilterType.NoFilter then
+		for _, filter in pairs(Enum.ItemSlotFilterType) do
+			if ( filter == slotFilter ) then
+				text = SlotFilterToSlotName[filter];
 				break;
 			end
 		end
@@ -511,7 +521,7 @@ function Atlas_EncounterJournal_RefreshSlotFilterText(self)
 end
 
 function Atlas_EncounterJournal_SetSlotFilter(self, slot)
-	EJ_SetSlotFilter(slot);
+	C_EncounterJournal.SetSlotFilter(slot);
 	Atlas_EncounterJournal_RefreshSlotFilterText(self);
 	Atlas_EncounterJournal_OnFilterChanged(self);
 end
@@ -618,20 +628,32 @@ function Atlas_EncounterJournal_InitLootFilter(self, level)
 end
 
 function Atlas_EncounterJournal_InitLootSlotFilter(self, level)
-	local slotFilter = EJ_GetSlotFilter and EJ_GetSlotFilter() or nil;
+	local slotFilter = C_EncounterJournal.GetSlotFilter();
 
 	local info = UIDropDownMenu_CreateInfo();
 	info.text = ALL_INVENTORY_SLOTS;
-	info.checked = slotFilter == NO_INV_TYPE_FILTER;
-	info.arg1 = NO_INV_TYPE_FILTER;
+	info.checked = slotFilter == Enum.ItemSlotFilterType.NoFilter;
+	info.arg1 = Enum.ItemSlotFilterType.NoFilter;
 	info.func = Atlas_EncounterJournal_SetSlotFilter;
 	UIDropDownMenu_AddButton(info);
 
-	for _, slot in ipairs(Atlas_EncounterJournalSlotFilters) do
-		info.text = slot.invTypeName;
-		info.checked = slotFilter == slot.invType;
-		info.arg1 = slot.invType;
-		UIDropDownMenu_AddButton(info);
+	C_EncounterJournal.ResetSlotFilter();
+	local isLootSlotPresent = {};
+	local numLoot = EJ_GetNumLoot();
+	for i = 1, numLoot do
+		local itemInfo = C_EncounterJournal.GetLootInfoByIndex(i);
+		local filterType = itemInfo and itemInfo.filterType;
+		if ( filterType ) then
+			isLootSlotPresent[filterType] = true;
+		end
+	end
+	C_EncounterJournal.SetSlotFilter(slotFilter);
+	for _, filter in pairs(Enum.ItemSlotFilterType) do
+		if ( (isLootSlotPresent[filter] or filter == slotFilter) and filter ~= Enum.ItemSlotFilterType.NoFilter ) then
+			info.text = SlotFilterToSlotName[filter];
+			info.checked = slotFilter == filter;
+			info.arg1 = filter;
+			UIDropDownMenu_AddButton(info);
+		end
 	end
 end
-
