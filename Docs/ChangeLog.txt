@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.48.02 (Oct. 26, 2020)
+------------------------
+- Library update: LibBabble-SubZone
+
 v1.48.01 (Oct. 18, 2020)
 ------------------------
 - Library update: LibUIDropDownMenu
