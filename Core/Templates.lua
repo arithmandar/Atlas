@@ -36,13 +36,17 @@ local _G = getfenv(0)
 -- ----------------------------------------------------------------------------
 local FOLDER_NAME, private = ...
 
+local LibStub = _G.LibStub
+-- UIDropDownMenu
+local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+
 local Templates = {}
 private.Templates = Templates
 
 -- //////////////////////////////////////////
 -- AtlasFrameDropDownTypeTemplate
 function Templates.CreateFrameDropDownType(name, parent)
-	local f = _G[name] or L_Create_UIDropDownMenu(name, parent)
+	local f = _G[name] or LibDD:Create_UIDropDownMenu(name, parent)
 	
 	f:SetPoint("TOPLEFT", parent, 60, -50)
 	
@@ -56,7 +60,7 @@ end
 -- //////////////////////////////////////////
 -- AtlasFrameDropDownTemplate
 function Templates.CreateFrameDropDown(name, parent)
-	local f = _G[name] or L_Create_UIDropDownMenu(name, parent)
+	local f = _G[name] or LibDD:Create_UIDropDownMenu(name, parent)
 	
 	local ref = parent and parent:GetName().."DropDownType" or nil
 	

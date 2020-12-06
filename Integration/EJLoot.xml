@@ -422,11 +422,12 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				self.lootScroll.difficultyDD = L_Create_UIDropDownMenu("AtlasEJLootFrameDifficultyDD", AtlasEJLootFrameLootScrollFrame)
-				L_UIDropDownMenu_Initialize(self.lootScroll.difficultyDD, Atlas_EncounterJournal_DifficultyInit, "MENU")
+				local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+				self.lootScroll.difficultyDD = LibDD:Create_UIDropDownMenu("AtlasEJLootFrameDifficultyDD", AtlasEJLootFrameLootScrollFrame)
+				LibDD:UIDropDownMenu_Initialize(self.lootScroll.difficultyDD, Atlas_EncounterJournal_DifficultyInit, "MENU")
 				
-				self.lootScroll.lootFilter = L_Create_UIDropDownMenu("AtlasEJLootFrameLootFilter", AtlasEJLootFrameLootScrollFrame)
-				self.lootScroll.lootSlotFilter = L_Create_UIDropDownMenu("AtlasEJLootFrameLootSlotFilter", AtlasEJLootFrameLootScrollFrame)
+				self.lootScroll.lootFilter = LibDD:Create_UIDropDownMenu("AtlasEJLootFrameLootFilter", AtlasEJLootFrameLootScrollFrame)
+				self.lootScroll.lootSlotFilter = LibDD:Create_UIDropDownMenu("AtlasEJLootFrameLootSlotFilter", AtlasEJLootFrameLootScrollFrame)
 				Atlas_EncounterJournal_OnLoad(self, encounterID);
 				-- HybridScrollFrame_CreateButtons(self.lootScroll, "AtlasEncounterItemTemplate", 0, 0);
 			</OnLoad>

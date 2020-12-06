@@ -78,6 +78,8 @@ local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0")
 local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local LibDialog = LibStub("LibDialog-1.0")
 local AceDB = LibStub("AceDB-3.0")
+-- UIDropDownMenu
+local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 
 local profile
 
@@ -1645,7 +1647,7 @@ function Atlas_Refresh(mapID)
 			AtlasSwitchButton:SetText(ATLAS_INSTANCE_BUTTON)
 		end
 		AtlasSwitchButton:Show()
-		L_UIDropDownMenu_Initialize(AtlasSwitchDD, AtlasSwitchDD_OnLoad)
+		LibDD:UIDropDownMenu_Initialize(AtlasSwitchDD, AtlasSwitchDD_OnLoad)
 	else
 		AtlasSwitchButton:Hide()
 	end

@@ -341,7 +341,8 @@
 			<OnLoad>
 				Atlas.Templates.CreateFrameDropDownType(self:GetName().."DropDownType", self)
 				Atlas.Templates.CreateFrameDropDown(self:GetName().."DropDown", self)
-				L_Create_UIDropDownMenu("AtlasSwitchDD", self)
+				local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+				LibDD:Create_UIDropDownMenu("AtlasSwitchDD", self)
 				Atlas_OnLoad(self);
 			</OnLoad>
 			<OnEvent>
