@@ -4,7 +4,7 @@
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
 	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
-	Copyright 2011 ~ 2020 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+	Copyright 2011 ~ 2021 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 	This file is part of Atlas.
 
@@ -42,13 +42,17 @@ local math = _G.math
 -- Libraries
 local floor = math.floor
 local format = string.format
-local WoWClassic, WoWRetail
+
+local WoWClassicEra, WoWClassicTBC, WoWRetail
 local wowtocversion  = select(4, GetBuildInfo())
-if wowtocversion < 19999 then
-	WoWClassic = true
+if wowtocversion < 20000 then
+	WoWClassicEra = true
+elseif wowtocversion > 19999 and wowtocversion < 90000 then 
+	WoWClassicTBC = true
 else
 	WoWRetail = true
 end
+
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -111,7 +115,7 @@ local BOSS_LOOT_BUTTON_HEIGHT = 45
 local INSTANCE_LOOT_BUTTON_HEIGHT = 64
 
 function Atlas_EJ_ResetLootFilter()
-	if WoWClassic then return end
+	if (WoWClassicEra or WoWClassicTBC) then return end
 	EJ_ResetLootFilter()
 end
 
@@ -125,7 +129,7 @@ function Atlas_EncounterJournal_DisplayLoot(instanceID, encounterId)
 end
 
 function Atlas_EncounterJournal_OnLoad(self)
-	if WoWClassic then return end
+	if (WoWClassicEra or WoWClassicTBC) then return end
 --	EncounterJournalTitleText:SetText(ADVENTURE_JOURNAL)
 --	SetPortraitToTexture(EncounterJournalPortrait,"Interface\\EncounterJournal\\UI-EJ-PortraitIcon")
 --	self:RegisterEvent("EJ_LOOT_DATA_RECIEVED")

@@ -4,7 +4,7 @@
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
 	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
-	Copyright 2011 ~ 2020 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+	Copyright 2011 ~ 2021 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 	This file is part of Atlas.
 
@@ -36,7 +36,15 @@ local tonumber = _G.tonumber
 local GameTooltip = GameTooltip
 -- Libraries
 
-local WoWClassic = select(4, GetBuildInfo()) < 20000
+local WoWClassicEra, WoWClassicTBC, WoWRetail
+local wowtocversion  = select(4, GetBuildInfo())
+if wowtocversion < 20000 then
+	WoWClassicEra = true
+elseif wowtocversion > 19999 and wowtocversion < 90000 then 
+	WoWClassicTBC = true
+else
+	WoWRetail = true
+end
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -100,7 +108,7 @@ function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 end
 
 function addon:AdventureJournalButton_OnClick(frame)
-	if (WoWClassic) then return end
+	if (WoWClassicEra or WoWClassicTBC) then return end
 	local instanceID = frame.instanceID
 	local disabled = not C_AdventureJournal.CanBeShown()
 	if (disabled) then return end
@@ -124,7 +132,7 @@ function addon:AdventureJournalButton_OnClick(frame)
 end
 
 function addon:AdventureJournalButton_OnEnter(frame)
-	if (WoWClassic) then return end
+	if (WoWClassicEra or WoWClassicTBC) then return end
 	local instanceID = frame.instanceID
 	if (not instanceID) then return end
 
