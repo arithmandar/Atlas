@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.49.01 (Jun. 14, 2021)
+------------------------
+- Library update: LibUIDropDownMenu
+
 v1.49.00 (May 20, 2021)
 ------------------------
 - TOC update to support WoW 9.0.5
