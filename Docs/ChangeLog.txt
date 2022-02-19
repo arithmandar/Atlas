@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.49.08 (Feb. 19, 2022)
+------------------------
+- Updated level section information
+
 v1.49.07 (Feb. 15, 2022)
 ------------------------
 - Library update: LibUIDropDownMenu
