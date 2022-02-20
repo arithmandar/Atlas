@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.49.09 (Feb. 20, 2022)
+------------------------
+- Library update: LibBabble-SubZone
+
 v1.49.08 (Feb. 19, 2022)
 ------------------------
 - Updated level section information
