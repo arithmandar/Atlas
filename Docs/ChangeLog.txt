@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.50.02 (Feb. 28, 2022)
+------------------------
+- Library update: LibUIDropDownMenu
+
 v1.50.01 (Feb. 23, 2022)
 ------------------------
 - Library update: LibBabble-SubZone
