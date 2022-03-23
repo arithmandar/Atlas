@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.50.03 (Feb. 28, 2022)
+------------------------
+- BCC ToC update to support WoW 2.5.4
+
 v1.50.02 (Feb. 28, 2022)
 ------------------------
 - Library update: LibUIDropDownMenu
