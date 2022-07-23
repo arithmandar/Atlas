@@ -25,6 +25,9 @@
 --]]
 
 local setmetatable, rawget = setmetatable, rawget
+local _G = getfenv(0)
+local GetItemInfo = _G.GetItemInfo
+
 
 Atlas_IngameLocales = {
 	-- ######################################################################

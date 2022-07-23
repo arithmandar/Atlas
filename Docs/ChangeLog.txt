@@ -15,6 +15,16 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.51.00 (Jul. 23, 2022)
+------------------------
+- Library update: LibUIDropDownMenu
+- Library update: LibBabble-SubZone
+- Retail ToC update to support WoW 9.2.5
+- Classic ToC update to support WoW 1.14.3
+- Added support for Wrath of the  Lich King Classic (WoW 3.4.0)
+- Updated retail's uiMapName to ID
+- Resolved when only plug-in is loaded, addon still throw warning message
+
 v1.50.04 (Mar. 23, 2022)
 ------------------------
 - Update level range for ClassicEra / BCC
