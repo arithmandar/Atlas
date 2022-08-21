@@ -39,6 +39,7 @@ local strtrim = strtrim
 local floor, fmod = math.floor, math.fmod
 local getn, tinsert, tsort = table.getn, table.insert, table.sort
 local GetAddOnInfo, GetAddOnEnableState, UnitLevel, GetBuildInfo = _G.GetAddOnInfo, _G.GetAddOnEnableState, _G.UnitLevel, _G.GetBuildInfo
+local GetLFGDungeonInfo = _G.GetLFGDungeonInfo
 local hooksecurefunc = hooksecurefunc
 
 -- Determine WoW TOC Version
@@ -439,6 +440,7 @@ function Atlas_ScrollBar_Update()
 					local id = ATLAS_SCROLL_ID[lineplusoffset][1]
 					bossButtonUpdate(button, ATLAS_SCROLL_ID[lineplusoffset][1], ATLAS_SCROLL_ID[lineplusoffset][2], false, base.Module or base.ALModule)
 				elseif (type(ATLAS_SCROLL_ID[lineplusoffset][1]) == "string") then
+					-- handling achievement
 					local spos, epos = strfind(ATLAS_SCROLL_ID[lineplusoffset][1], "ac=")
 					if (spos) then
 						local achievementID = strsub(ATLAS_SCROLL_ID[lineplusoffset][1], epos+1)
