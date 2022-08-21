@@ -35,7 +35,6 @@ local select = _G.select
 local tonumber = _G.tonumber
 -- Libraries
 local GameTooltip, GetBuildInfo = _G.GameTooltip, _G.GetBuildInfo
-local EJ_GetEncounterInfo, EJ_GetCreatureInfo, EJ_GetInstanceInfo, C_AdventureJournal, ToggleEncounterJournal, EncounterJournal_DisplayInstance, EncounterJournal_DisplayEncounter
 
 -- Determine WoW TOC Version
 local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail
@@ -48,9 +47,6 @@ elseif wowversion < 40000 then
 	WoWWOTLKC = true
 elseif wowversion > 90000 then
 	WoWRetail = true
-	
-	EJ_GetEncounterInfo, EJ_GetCreatureInfo, EJ_GetInstanceInfo = _G.EJ_GetEncounterInfo, _G.EJ_GetCreatureInfo. _G.EJ_GetInstanceInfo
-	C_AdventureJournal, ToggleEncounterJournal, EncounterJournal_DisplayInstance = _G.C_AdventureJournal, _G.ToggleEncounterJournal, _G.EncounterJournal_DisplayInstance
 else
 	-- n/a
 end
