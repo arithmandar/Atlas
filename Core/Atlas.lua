@@ -796,6 +796,10 @@ end
 
 -- Add boss / NPC button here so that we can add GameTooltip
 function addon:MapAddNPCButton()
+	if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then 
+		return
+	end
+	
 	local zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
 	local t = AtlasMaps_NPC_DB[zoneID]
 	local data = AtlasMaps
@@ -936,6 +940,10 @@ function addon:MapAddNPCButton()
 end
 
 function addon:MapAddNPCButtonLarge()
+	if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then 
+		return
+	end
+	
 	local zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
 	local t = AtlasMaps_NPC_DB[zoneID]
 	local data = AtlasMaps
