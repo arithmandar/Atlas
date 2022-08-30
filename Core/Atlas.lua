@@ -796,10 +796,6 @@ end
 
 -- Add boss / NPC button here so that we can add GameTooltip
 function addon:MapAddNPCButton()
-	if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then 
-		return
-	end
-	
 	local zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
 	local t = AtlasMaps_NPC_DB[zoneID]
 	local data = AtlasMaps
@@ -822,7 +818,7 @@ function addon:MapAddNPCButton()
 			if (info_x == nil) then info_x = -18; end
 			if (info_y == nil) then info_y = -18; end
 
-			if (info_id < 10000 and profile.options.frames.showBossPotrait) then
+			if (WoWRetail and info_id < 10000 and profile.options.frames.showBossPotrait) then
 				bossbutton = _G["AtlasMapBossButton"..bossindex]
 				if (not bossbutton) then
 					bossbutton = CreateFrame("Button", "AtlasMapBossButton"..bossindex, AtlasFrame, "AtlasFrameBossButtonTemplate")
@@ -940,10 +936,6 @@ function addon:MapAddNPCButton()
 end
 
 function addon:MapAddNPCButtonLarge()
-	if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then 
-		return
-	end
-	
 	local zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
 	local t = AtlasMaps_NPC_DB[zoneID]
 	local data = AtlasMaps
@@ -961,7 +953,7 @@ function addon:MapAddNPCButtonLarge()
 			local info_y 		= t[i][6]
 			local info_colortag	= t[i][7]
 
-			if (info_id < 10000 and info_x and info_y and profile.options.frames.showBossPotrait) then
+			if (WoWRetail and info_id < 10000 and info_x and info_y and profile.options.frames.showBossPotrait) then
 				bossbutton = _G["AtlasMapBossButtonL"..bossindex]
 				if (not bossbutton) then
 					bossbutton = CreateFrame("Button", "AtlasMapBossButtonL"..bossindex, AtlasFrameLarge, "AtlasFrameBossButtonTemplate")

@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.51.05 (Aug. 30, 2022)
+------------------------
+- Fixed maps' POI tooltip info was missing due to previous fix's side effect
+
 v1.51.04 (Aug. 22, 2022)
 ------------------------
 - Prevent from WOLTKC maps to have boss button
