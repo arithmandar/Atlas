@@ -581,9 +581,14 @@ local function process_Deprecated()
 	for k, v in pairs(Deprecated_List) do
 		if ( addon:CheckAddonStatus(GetAddOnInfo(v[1])) ) then
 			local outdated = false
+			local compatibleVer
 			local currVer = GetAddOnMetadata(v[1], "Version")
-			if (v[3] and (strsub(currVer, 1, 1) == "r") and currVer < v[3]) then
-				outdated = true
+			if (v[3] and (strsub(currVer, 1, 1) == "r")) then
+				compatibleVer = tonumber(string.sub(v[3], 2))
+				currVer = tonumber(string.sub(currVer, 2))
+				if (currVer < compatibleVer) then
+					outdated = true
+				end
 			elseif (v[2] and (strsub(currVer, 1, 1) ~= "r") and currVer < v[2]) then
 				outdated = true
 			end
