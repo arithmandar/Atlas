@@ -33,7 +33,7 @@
 		</Size>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name="$parent_Text" parentKey="Text" inherits="GameFontHighlight" wraponspaces="false" justifyH="LEFT">
+				<FontString name="$parent_Text" parentKey="Text" inherits="GameFontHighlight" nonspacewrap="true" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="440" y="15" />
 					</Size>
@@ -465,12 +465,14 @@
 						<Anchor point="TOPLEFT" x="0" y="0"/>
 					</Anchors>
 				</Texture>
+				<!--
 				<HighlightTexture name="$parentTaxiImageHightlight" parentKey="TaxiHighlight" alphaMode="ADD" setAllPoints="true">
 					<Size x="20" y="20"/>
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
 				</HighlightTexture>
+				-->
 				<Texture name="$parentLImage" parentKey="LetterImage">
 					<Size x="20" y="20"/>
 					<Anchors>

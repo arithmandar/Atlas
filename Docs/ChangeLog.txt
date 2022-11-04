@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.52.00 (Nov. XX, 2022)
+------------------------
+- Dragonflight implementation
+
 v1.51.06 (Aug. 31, 2022)
 ------------------------
 - Fixed error while checking if alpha build is outdated or not
