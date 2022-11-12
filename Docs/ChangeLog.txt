@@ -15,7 +15,7 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.52.01 (Nov. XX, 2022)
+v1.52.01 (Nov. 12, 2022)
 ------------------------
 - Migrate WorldMap Atlas button to use Krowi_WorldMapButtons
 
