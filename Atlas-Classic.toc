@@ -85,6 +85,7 @@ Data\DropDownConfig.lua
 # Integration functions
 Integration\EJIntegration.lua
 Integration\EJLoot.xml
+Integration\WorldMap.xml
 Integration\WorldMap.lua
 Integration\Achievements.lua
 Integration\AtlasLootIntegration.lua

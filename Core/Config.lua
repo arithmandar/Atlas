@@ -265,9 +265,9 @@ local function getOptions()
 									set = function(info, value)
 										addon.db.profile.options.worldMapButton = value
 										if (addon.db.profile.options.worldMapButton) then
-											AtlasToggleFromWorldMap:Show()
+											addon.WorldMap.Button:Show()
 										else
-											AtlasToggleFromWorldMap:Hide()
+											addon.WorldMap.Button:Hide()
 										end
 									end,
 								},

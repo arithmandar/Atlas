@@ -37,8 +37,10 @@ externals:
     Libs-release/LibUIDropDownMenu: 
         url: https://repos.wowace.com/wow/libuidropdownmenu/trunk/LibUIDropDownMenu
 # Git
-    Libs-release/LibDataBroker-1.1: 
+    Libs-release/Krowi_WorldMapButtons: 
         url: https://repos.wowace.com/wow/libdatabroker-1-1
+    Libs-release/LibDataBroker-1.1: 
+        url: https://github.com/TheKrowi/Krowi_WorldMapButtons
 # HG
     Libs-release/LibDialog-1.0: 
         url: https://repos.wowace.com/wow/libdialog-1-0

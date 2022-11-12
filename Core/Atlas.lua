@@ -2003,9 +2003,9 @@ local function initialization()
 	
 	check_Modules()
 	if (profile.options.worldMapButton) then
-		AtlasToggleFromWorldMap:Show()
+		addon.WorldMap.Button:Show()
 	else
-		AtlasToggleFromWorldMap:Hide()
+		addon.WorldMap.Button:Hide()
 	end
 end
 
@@ -2048,8 +2048,8 @@ function addon:Refresh()
 	AtlasFrameLarge:SetClampedToScreen(profile.options.frames.clamp)
 	AtlasFrameSmall:SetClampedToScreen(profile.options.frames.clamp)
 	if (profile.options.worldMapButton) then
-		AtlasToggleFromWorldMap:Show()
+		addon.WorldMap.Button:Show()
 	else
-		AtlasToggleFromWorldMap:Hide()
+		addon.WorldMap.Button:Hide()
 	end
 end
