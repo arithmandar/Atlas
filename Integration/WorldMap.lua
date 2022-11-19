@@ -32,7 +32,6 @@
 local _G = getfenv(0)
 local pairs, tonumber = _G.pairs, _G.tonumber
 -- Libraries
-local GameTooltip = _G.GameTooltip
 local GetBuildInfo = _G.GetBuildInfo
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
