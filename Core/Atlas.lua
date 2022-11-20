@@ -651,7 +651,8 @@ function Atlas_OnEvent(self, event, ...)
 	if (event=="ADDON_LOADED" and (arg1=="Atlas" or arg1=="Blizzard_EncounterJournal")) then
 		--Blizzard_EncounterJournal
 		if (IsAddOnLoaded("Blizzard_EncounterJournal") and IsAddOnLoaded("Atlas")) then
-			addon:EncounterJournal_Binding()
+			-- Added Atlas button to Encounter Journal
+			--addon:EncounterJournal_Binding()
 		end
 	end
 
