@@ -673,3 +673,8 @@ function Atlas_EncounterJournal_InitLootSlotFilter(self, level)
 		end
 	end
 end
+
+function Atlas_EncounterJournal_ButtonOnClick(self, object)
+	LibDD:ToggleDropDownMenu(1, nil, object, self, 5, 0);
+	PlaySound(852);
+end

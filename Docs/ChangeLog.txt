@@ -15,6 +15,10 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.52.05 (Dec. 03, 2022)
+------------------------
+- Fixed EJ loot window's file button issues
+
 v1.52.04 (Nov. 29, 2022)
 ------------------------
 - Library update: LibUIDropDownMenu
