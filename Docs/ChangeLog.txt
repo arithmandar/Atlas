@@ -17,7 +17,7 @@ Known Issues:
 
 v1.52.07 (Mar. 28, 2023)
 ------------------------
-- Disable WorldMap button if user is playing Classic Era
+- Classic Era's WorldMap button support fixed
 
 v1.52.06 (Mar. 20, 2023)
 ------------------------

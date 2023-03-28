@@ -60,8 +60,53 @@ local WorldMap = {}
 addon.WorldMap = WorldMap
 
 local function createButton()
-	if WoWClassicEra then
-		-- do nothing
+	if (WoWClassicEra) then
+		local name = "AtlasToggleFromWorldMap"
+		local f = _G[name]
+		if not f then f = CreateFrame("Button", "AtlasToggleFromWorldMap", WorldMapFrame) end
+		
+		f:SetWidth(32)
+		f:SetHeight(32)
+		f:SetFrameLevel(10)
+		f:SetToplevel(true)
+		f:Hide()
+		f:ClearAllPoints()
+		f:SetPoint("TOPRIGHT", WorldMapFrame, "TOPRIGHT", -8, -70)
+
+		f.Background = f:CreateTexture(name.."Background", "BACKGROUND")
+		f.Background:SetTexture("Interface\\Minimap\\UI-Minimap-Background")
+		f.Background:SetSize(25, 25)
+		f.Background:SetPoint("TOPLEFT", 2, -4)
+		f.Background:SetVertexColor(1, 1, 1, 1)
+		
+		f.Icon = f:CreateTexture(name.."Icon", "ARTWORK")
+		f.Icon:SetTexture("Interface\\WorldMap\\WorldMap-Icon")
+		f.Icon:SetSize(20, 20)
+		f.Icon:SetPoint("TOPLEFT", 6, -6)
+
+		f.Border = f:CreateTexture(name.."Border", "ARTWORK")
+		f.Border:SetTexture("Interface\\Minimap\\MiniMap-TrackingBorder")
+		f.Border:SetSize(54, 54)
+		f.Border:SetPoint("TOPLEFT")
+		
+		local highlightTexture = f:CreateTexture(nil, "HIGHLIGHT")
+		highlightTexture:SetTexture("Interface\\Buttons\\UI-Common-MouseHilight")
+		highlightTexture:SetBlendMode("ADD")
+		highlightTexture:SetAllPoints()
+		highlightTexture:SetSize(48, 48)
+		highlightTexture:SetPoint("CENTER")
+		f:SetHighlightTexture(highlightTexture)
+		
+		f:SetScript("OnEnter", function(self)
+			GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
+			GameTooltip:SetText(ATLAS_CLICK_TO_OPEN, nil, nil, nil, nil, 1)
+		end)
+		f:SetScript("OnLeave", function(self)
+			GameTooltip:Hide()
+		end)
+		f:SetScript("OnClick", function(self)
+			WorldMap.Button_OnClick(self)
+		end)
 	else
 		local KButtons = LibStub("Krowi_WorldMapButtons-1.4")
 		WorldMap.Button = KButtons:Add("AtlasWorldMapButtonTemplate", "BUTTON")
@@ -89,6 +134,12 @@ function addon:WorldMapButtonSelectMap()
 			end
 		end
 	end
+end
+
+function WorldMap.Button_OnClick(self)
+	addon:WorldMapButtonSelectMap()
+	ToggleFrame(WorldMapFrame)
+	addon:Toggle()
 end
 
 do
