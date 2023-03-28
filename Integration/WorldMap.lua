@@ -60,8 +60,12 @@ local WorldMap = {}
 addon.WorldMap = WorldMap
 
 local function createButton()
-	local KButtons = LibStub("Krowi_WorldMapButtons-1.4")
-	WorldMap.Button = KButtons:Add("AtlasWorldMapButtonTemplate", "BUTTON")
+	if WoWClassicEra then
+		-- do nothing
+	else
+		local KButtons = LibStub("Krowi_WorldMapButtons-1.4")
+		WorldMap.Button = KButtons:Add("AtlasWorldMapButtonTemplate", "BUTTON")
+	end
 end
 
 function addon:WorldMapButtonSelectMap()

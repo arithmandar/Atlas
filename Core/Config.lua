@@ -28,9 +28,11 @@
 -- Localized Lua globals.
 -- ----------------------------------------------------------------------------
 -- Functions
-local _G = getfenv(0);
+local _G = getfenv(0)
+local select = select
 local pairs = _G.pairs
 -- Libraries
+local GetBuildInfo = _G.GetBuildInfo
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -38,6 +40,21 @@ local FOLDER_NAME, private = ...
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
+
+-- Determine WoW TOC Version
+local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail
+local wowversion  = select(4, GetBuildInfo())
+if wowversion < 20000 then
+	WoWClassicEra = true
+elseif wowversion < 30000 then 
+	WoWClassicTBC = true
+elseif wowversion < 40000 then 
+	WoWWOTLKC = true
+elseif wowversion > 90000 then
+	WoWRetail = true
+else
+	-- n/a
+end
 
 local AceConfigReg = LibStub("AceConfigRegistry-3.0")
 local AceConfigDialog = LibStub("AceConfigDialog-3.0")
@@ -269,6 +286,9 @@ local function getOptions()
 										else
 											addon.WorldMap.Button:Hide()
 										end
+									end,
+									disabled = function() 
+										if WoWClassicEra then return true end
 									end,
 								},
 

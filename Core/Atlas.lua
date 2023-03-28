@@ -2003,10 +2003,14 @@ local function initialization()
 	end
 	
 	check_Modules()
-	if (profile.options.worldMapButton) then
-		addon.WorldMap.Button:Show()
+	if (WoWClassicEra) then
+		-- do nothing
 	else
-		addon.WorldMap.Button:Hide()
+		if (profile.options.worldMapButton) then
+			addon.WorldMap.Button:Show()
+		else
+			addon.WorldMap.Button:Hide()
+		end
 	end
 end
 
