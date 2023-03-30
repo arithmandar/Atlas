@@ -105,7 +105,9 @@ local function createButton()
 			GameTooltip:Hide()
 		end)
 		f:SetScript("OnClick", function(self)
-			WorldMap.Button_OnClick(self)
+			addon:WorldMapButtonSelectMap()
+			ToggleFrame(WorldMapFrame)
+			addon:Toggle()
 		end)
 	else
 		local KButtons = LibStub("Krowi_WorldMapButtons-1.4")
@@ -136,11 +138,6 @@ function addon:WorldMapButtonSelectMap()
 	end
 end
 
-function WorldMap.Button_OnClick(self)
-	addon:WorldMapButtonSelectMap()
-	ToggleFrame(WorldMapFrame)
-	addon:Toggle()
-end
 
 do
 	createButton()
