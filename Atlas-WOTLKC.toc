@@ -1,4 +1,4 @@
-﻿## Interface: 30401
+﻿## Interface: 30402
 #@non-debug@
 ## Title: @localization(locale="enUS", key="Title", namespace="ToC")@
 ## Title-deDE: @localization(locale="deDE", key="Title", namespace="ToC")@
@@ -47,18 +47,17 @@
 ## Notes-zhCN: |cff00CC33副本地图浏览器|r
 ## Notes-zhTW: Atlas 地圖集主程式
 #@end-debug@
-## Author: arith, dubcat
+## Author: arith
 ## Version: @project-version@
 ## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibBabble-Boss-3.0, LibBabble-SubZone-3.0, LibBabble-Faction-3.0, LibDBIcon-1.0, LibDialog-1.0, LibUIDropDownMenu
 ## X-Category: Map
-## X-Credits: Dan Gilbert, Lothaer, Dynaletik
+## X-Credits: Dan Gilbert, Lothaer, Dynaletik, dubcat
 ## X-Date: @project-date-iso@
 ## X-Donate: http://pledgie.com/campaigns/14729
 ## X-Email: atlas.addon at gmail dot com
-## X-Feedback: http://www.atlasmod.com/phpBB3/
 ## X-License: GPLv2
 ## X-Localizations: enUS, deDE, esES, esMX, frFR, ruRU, zhTW, zhCN, ptBR, koKR
-## X-Website: http://www.atlasmod.com
+
 ## SavedVariables: AtlasDB
 
 Data\Constants.lua
