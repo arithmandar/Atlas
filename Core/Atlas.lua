@@ -4,7 +4,7 @@
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
 	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
-	Copyright 2011 ~ 2023 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+	Copyright 2011 ~ 2026 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 	This file is part of Atlas.
 
@@ -34,31 +34,47 @@ local string, table, math, tonumber = string, table, math, tonumber
 -- Libraries
 local bit = bit
 local strfind, strsub, format, gsub, strlower, strgmatch = string.find, string.sub, string.format, string.gsub, string.lower, string.gmatch
-local strlen, strgfind = string.len, string.gfind
+local strlen = string.len
 local strtrim = strtrim
 local floor, fmod = math.floor, math.fmod
-local getn, tinsert, tsort = table.getn, table.insert, table.sort
-local GetAddOnInfo, GetAddOnEnableState, UnitLevel, GetBuildInfo = _G.GetAddOnInfo, _G.GetAddOnEnableState, _G.UnitLevel, _G.GetBuildInfo
+local tinsert, tsort = table.insert, table.sort
+
+local C_AddOns = _G.C_AddOns
+local GetAddOnInfo, GetAddOnMetadata, GetAddOnEnableState, IsAddOnLoaded = C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnMetadata, C_AddOns.GetAddOnEnableState, C_AddOns.IsAddOnLoaded
+
+local UnitLevel, GetBuildInfo = _G.UnitLevel, _G.GetBuildInfo
 local GetLFGDungeonInfo = _G.GetLFGDungeonInfo
 local hooksecurefunc = hooksecurefunc
 
--- Determine WoW TOC Version
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail
-local wowversion  = select(4, GetBuildInfo())
-if wowversion < 20000 then
-	WoWClassicEra = true
-elseif wowversion < 30000 then 
-	WoWClassicTBC = true
-elseif wowversion < 40000 then 
-	WoWWOTLKC = true
-elseif wowversion > 90000 then
-	WoWRetail = true
+-- Determine WoW client family
+local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWClassicCata, WoWClassicMists, WoWRetail
+local projectID = _G.WOW_PROJECT_ID
+if projectID and _G.WOW_PROJECT_MAINLINE then
+	WoWRetail = projectID == _G.WOW_PROJECT_MAINLINE
+	WoWClassicEra = projectID == _G.WOW_PROJECT_CLASSIC
+	WoWClassicTBC = projectID == _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+	WoWWOTLKC = projectID == _G.WOW_PROJECT_WRATH_CLASSIC
+	WoWClassicCata = projectID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
+	WoWClassicMists = projectID == _G.WOW_PROJECT_MISTS_CLASSIC
 else
-	-- n/a
+	local wowversion = select(4, GetBuildInfo())
+	if wowversion < 20000 then
+		WoWClassicEra = true
+	elseif wowversion < 30000 then
+		WoWClassicTBC = true
+	elseif wowversion < 40000 then
+		WoWWOTLKC = true
+	elseif wowversion < 50000 then
+		WoWClassicCata = true
+	elseif wowversion < 60000 then
+		WoWClassicMists = true
+	elseif wowversion > 90000 then
+		WoWRetail = true
+	end
 end
 
 local GetQuestGreenRange, UnitQuestTrivialLevelRange
-if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
+if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC or WoWClassicCata or WoWClassicMists) then
 	GetQuestGreenRange = _G.GetQuestGreenRange
 else
 	UnitQuestTrivialLevelRange = _G.UnitQuestTrivialLevelRange
@@ -84,12 +100,39 @@ _G.Atlas = addon
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0")
 local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0")
-local LibDialog = LibStub("LibDialog-1.0")
 local AceDB = LibStub("AceDB-3.0")
 -- UIDropDownMenu
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 
 local profile
+
+StaticPopupDialogs["ATLAS_OLD_MODULES"] = {
+	text = "%s",
+	button1 = OKAY,
+	preferredWidth = 550,
+	whileDead = false,
+	hideOnEscape = true,
+}
+
+StaticPopupDialogs["ATLAS_MISSING_MODULES"] = {
+	text = "%s",
+	button1 = CLOSE,
+	button2 = L["ATLAS_OPEN_ADDON_LIST"],
+	OnButton2 = AddonList_Show,
+	preferredWidth = 500,
+	whileDead = false,
+	hideOnEscape = true,
+}
+
+StaticPopupDialogs["ATLAS_NO_MODULE_OR_PLUGIN"] = {
+	text = "%s",
+	button1 = CLOSE,
+	button2 = L["ATLAS_OPEN_ADDON_LIST"],
+	OnButton2 = AddonList_Show,
+	preferredWidth = 400,
+	whileDead = false,
+	hideOnEscape = true,
+}
 
 -- Minimap button with LibDBIcon-1.0
 local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("Atlas", {
@@ -161,6 +204,7 @@ end
 -- core Atlas or plugins
 local Atlas_CoreMapsKey = {}
 local Atlas_CoreMapsKey_Index = 0
+local registeredModules = {}
 --[[ -- now being handled within Atlas:RegisterModule()
 for kc, vc in pairs(AtlasMaps) do
 	Atlas_CoreMapsKey[Atlas_CoreMapsKey_Index] = kc
@@ -170,7 +214,7 @@ end
 
 function addon:RegisterPlugin(name, myCategory, myData, myNPCData)
 	ATLAS_PLUGINS[name] = {}
-	local i = getn(Atlas_MapTypes) + 1
+	local i = #Atlas_MapTypes + 1
 	Atlas_MapTypes[i] = ATLAS_PLUGINS_COLOR..myCategory -- Plugin category name to be added with green color, and then added to array
 	
 	for k, v in pairs(myData) do
@@ -187,7 +231,7 @@ function addon:RegisterPlugin(name, myCategory, myData, myNPCData)
 		end
 	end
 	
-	if ( ATLAS_OLD_TYPE and ATLAS_OLD_TYPE <= ATLAS_MODULE_MENUS + getn(Atlas_MapTypes) ) then
+	if ( ATLAS_OLD_TYPE and ATLAS_OLD_TYPE <= ATLAS_MODULE_MENUS + #Atlas_MapTypes ) then
 		profile.options.dropdowns.module = ATLAS_OLD_TYPE
 		profile.options.dropdowns.zone = ATLAS_OLD_ZONE
 	end
@@ -197,8 +241,9 @@ function addon:RegisterPlugin(name, myCategory, myData, myNPCData)
 end
 
 local function registerModule(moduleKey)
+	if registeredModules[moduleKey] then return end
 	local module = addon:GetModule(moduleKey)
-	if not module and not module.db then return end
+	if not module or not module.db then return end
 	-- register module map tables
 	if (module.db.AtlasMaps) then
 		for k, v in pairs(module.db.AtlasMaps) do
@@ -269,6 +314,7 @@ local function registerModule(moduleKey)
 		end
 	end
 	ATLAS_MODULE_MENUS = ATLAS_MODULE_MENUS + 1
+	registeredModules[moduleKey] = true
 	addon:PopulateDropdowns()
 	Atlas_Refresh()
 end
@@ -482,11 +528,7 @@ local function simpleSearch(data, text)
 	n = i
 	while i do
 		if ( type(i) == "number" ) then
-			if ( strgmatch ) then 
 				fmatch = strgmatch(strlower(data[i][1]), search_text)()
-			else 
-				fmatch = strgfind(strlower(data[i][1]), search_text)(); 
-			end
 			if ( fmatch ) then
 				new[n] = {}
 				new[n][1] = data[i][1]
@@ -506,11 +548,7 @@ local function sanitizeName(text)
 	if (AtlasSortIgnore) then
 		for _, v in pairs(AtlasSortIgnore) do
 			local fmatch; 
-			if (strgmatch) then 
-				fmatch = strgmatch(text, v)()
-			else 
-				fmatch = strgfind(text, v)()
-			end
+			fmatch = strgmatch(text, v)()
 			if (fmatch) and ((strlen(text) - strlen(fmatch)) <= 4) then
 				return fmatch
 			end
@@ -533,7 +571,7 @@ function addon:PopulateDropdowns()
 	local subcatOrder = addon.dropdowns.DropDownLayouts_Order[catName]
 	if (subcatOrder and type(subcatOrder) == "table") then 
 		tsort(subcatOrder) 
-		for n = 1, getn(subcatOrder), 1 do
+		for n = 1, #subcatOrder, 1 do
 			local subcatItems = addon.dropdowns.DropDownLayouts[catName][subcatOrder[n]]
 			tsort(subcatItems, sortZonesAlpha)
 
@@ -605,25 +643,14 @@ local function process_Deprecated()
 			end
 		end
 	end
-	if table.getn(OldList) > 0 then
+	if #OldList > 0 then
 		local textList = ""
 		for k, v in pairs(OldList) do
 			textList = textList.."\n"..v..", "..GetAddOnMetadata(v, "Version")
 			--DisableAddOn(v)
 		end
 
-		LibDialog:Register("ATLAS_OLD_MODULES", {
-			text = L["ATLAS_DEP_MSG1"].."\n"..L["ATLAS_DEP_MSG3"].."\n|cff6666ff"..textList.."|r\n\n"..L["ATLAS_DEP_MSG4"],
-			buttons = {
-				{
-					text = OKAY,
-				},
-			},
-			width = 550,
-			show_while_dead = false,
-			hide_on_escape = true,
-		})
-		LibDialog:Spawn("ATLAS_OLD_MODULES")
+		StaticPopup_Show("ATLAS_OLD_MODULES", L["ATLAS_DEP_MSG1"].."\n"..L["ATLAS_DEP_MSG3"].."\n|cff6666ff"..textList.."|r\n\n"..L["ATLAS_DEP_MSG4"])
 	end
 end
 
@@ -648,6 +675,11 @@ end
 -- Main Atlas event handler
 function Atlas_OnEvent(self, event, ...)
 	local arg1 = ...
+	if (event == "ADDON_LOADED") then
+		for k in pairs(addon.modules) do
+			registerModule(k)
+		end
+	end
 	if (event=="ADDON_LOADED" and (arg1=="Atlas" or arg1=="Blizzard_EncounterJournal")) then
 		--Blizzard_EncounterJournal
 		if (IsAddOnLoaded("Blizzard_EncounterJournal") and IsAddOnLoaded("Atlas")) then
@@ -1095,7 +1127,7 @@ local function getPlayerText(maxPlayers, maxPlayersH, maxPlayersM, icontext_inst
 	local WHIT = "|cffffffff"
 	local playerText = L["ATLAS_STRING_PLAYERLIMIT"]..L["Colon"]..WHIT
 	local icontext_heroic 	= " |TInterface\\EncounterJournal\\UI-EJ-HeroicTextIcon:0:0|t"
-	local icontext_mythic 	= " |TInterface\\AddOns\\Atlas\\Images\\\UI-EJ-MythicTextIcon:0:0|t"
+	local icontext_mythic 	= " |TInterface\\AddOns\\Atlas\\Images\\UI-EJ-MythicTextIcon:0:0|t"
 
 	if ((maxPlayers and maxPlayers ~= 0) or (maxPlayersH and maxPlayersH ~= 0) or (maxPlayersM and maxPlayersM ~= 0)) then
 		if (maxPlayers and maxPlayers ~= 0) then 
@@ -1151,7 +1183,7 @@ function Atlas_MapRefresh(mapID)
 	local WHIT = "|cffffffff"
 	local colortag, dungeon_difficulty
 	local icontext_heroic 	= " |TInterface\\EncounterJournal\\UI-EJ-HeroicTextIcon:0:0|t"
-	local icontext_mythic 	= " |TInterface\\AddOns\\Atlas\\Images\\\UI-EJ-MythicTextIcon:0:0|t"
+	local icontext_mythic 	= " |TInterface\\AddOns\\Atlas\\Images\\UI-EJ-MythicTextIcon:0:0|t"
 	local icontext_dungeon 	= "|TInterface\\MINIMAP\\Dungeon:0:0|t"
 	local icontext_raid 	= "|TInterface\\MINIMAP\\Raid:0:0|t"
 	local icontext_instance
@@ -1507,7 +1539,7 @@ function Atlas_MapRefresh(mapID)
 	-- Check if the map image is available, if not replace with black and Map Not Found text
 	if (base.Module) then
 		local loadable = select(4, GetAddOnInfo(base.Module))
-		local enabled = GetAddOnEnableState(UnitName("player"), base.Module)
+		local enabled = GetAddOnEnableState(base.Module, UnitName("player"))
 		if ((enabled == 0) or (not loadable)) then
 			-- AtlasMap:SetTexture(0, 0, 0)
 			-- Legion changes: texture:SetTexture(r, g, b, a) changes into texture:SetColorTexture(r, g, b, a)
@@ -1881,11 +1913,11 @@ function addon:CheckAddonStatus(addonName)
 	-- name, title, notes, loadable, reason, security, newVersion = GetAddOnInfo(index or "name")
 	--    loadable : Boolean - Indicates if the AddOn is loaded or eligible to be loaded, true if it is, false if it is not.
 	local loadable = select(4, GetAddOnInfo(addonName))
-	-- GetAddOnEnableState("character", index): 
+	-- GetAddOnEnableState("name", character): 
 	--	0: addon is disabled
 	--	1: partially enabled (only when querying all characters)
 	-- 	2: fully enabled
-	local enabled = GetAddOnEnableState(UnitName("player"), addonName)
+	local enabled = GetAddOnEnableState(addonName, UnitName("player"))
 	if (enabled > 0 and loadable) then
 		return true
 	else
@@ -1904,54 +1936,24 @@ local function check_Modules()
 	local List = {}
 	for _, module in pairs(Module_List) do
 		local loadable = select(4, GetAddOnInfo(module))
-		local enabled = GetAddOnEnableState(UnitName("player"), module)
+		local enabled = GetAddOnEnableState(module, UnitName("player"))
 		if ( (enabled == 0) or (not loadable) ) then
 			tinsert(List, module)
 		end
 	end
-	if (table.getn(List) > 0) then
+	if (#List > 0) then
 		local textList = ""
 		for _, str in pairs(List) do
 			textList = textList.."\n"..str
 		end
 
-		LibDialog:Register("DetectMissing", {
-			text = L["ATLAS_MISSING_MODULE"].."\n|cff6666ff"..textList.."|r\n",
-			buttons = {
-				{
-					text = CLOSE,
-				},
-				{
-					text = L["ATLAS_OPEN_ADDON_LIST"],
-					on_click = AddonList_Show,
-				},
-			},
-			width = 500,
-			show_while_dead = false,
-			hide_on_escape = true,
-		})
-		LibDialog:Spawn("DetectMissing")
+		StaticPopup_Show("ATLAS_MISSING_MODULES", L["ATLAS_MISSING_MODULE"].."\n|cff6666ff"..textList.."|r\n")
 	end
 end
 
 function addon:isModuleOrPluginLoaded()
 	if (ATLAS_MODULE_MENUS == 0 and ATLAS_PLUGIN_MENUS == 0) then
-		LibDialog:Register("NeedModuleOrPlugin", {
-			text = L["ATLAS_NO_MODULE_OR_PLUGIN"],
-			buttons = {
-				{
-					text = CLOSE,
-				},
-				{
-					text = L["ATLAS_OPEN_ADDON_LIST"],
-					on_click = AddonList_Show,
-				},
-			},
-			width = 400,
-			show_while_dead = false,
-			hide_on_escape = true,
-		})
-		LibDialog:Spawn("NeedModuleOrPlugin")
+		StaticPopup_Show("ATLAS_NO_MODULE_OR_PLUGIN", L["ATLAS_NO_MODULE_OR_PLUGIN"])
 		
 		LDB.OnTooltipShow = function(tooltip)
 			if not tooltip or not tooltip.AddLine then return end
@@ -2003,18 +2005,10 @@ local function initialization()
 	end
 	
 	check_Modules()
-	if (WoWClassicEra) then
-		if (profile.options.worldMapButton) then
-			AtlasToggleFromWorldMap:Show()
-		else
-			AtlasToggleFromWorldMap:Hide()
-		end
+	if (profile.options.worldMapButton) then
+		addon.WorldMap.Button:Show()
 	else
-		if (profile.options.worldMapButton) then
-			addon.WorldMap.Button:Show()
-		else
-			addon.WorldMap.Button:Hide()
-		end
+		addon.WorldMap.Button:Hide()
 	end
 end
 

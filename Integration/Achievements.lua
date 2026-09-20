@@ -4,7 +4,7 @@
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
 	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
-	Copyright 2011 ~ 2023 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+	Copyright 2011 ~ 2026 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 	This file is part of Atlas.
 
@@ -32,20 +32,37 @@ local _G = getfenv(0)
 -- Libraries
 local bit, string = _G.bit, _G.string
 local format = string.format
+
+local C_AddOns = _G.C_AddOns
+local IsAddOnLoaded, LoadAddOn = C_AddOns.IsAddOnLoaded, C_AddOns.LoadAddOn
 local GetAchievementInfo, GetAchievementNumCriteria, GetAchievementCriteriaInfo, GetAchievementLink = _G.GetAchievementInfo, _G.GetAchievementNumCriteria, _G.GetAchievementCriteriaInfo, _G.GetAchievementLink
 local AchievementFrame_SelectAchievement = _G.AchievementFrame_SelectAchievement
 
 -- Determine WoW TOC Version
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail
-local wowversion  = select(4, GetBuildInfo())
-if wowversion < 20000 then
-	WoWClassicEra = true
-elseif wowversion < 30000 then 
-	WoWClassicTBC = true
-elseif wowversion < 40000 then 
-	WoWWOTLKC = true
-elseif wowversion > 90000 then
-	WoWRetail = true
+local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWClassicCata, WoWClassicMists, WoWRetail
+local projectID = _G.WOW_PROJECT_ID
+if projectID and _G.WOW_PROJECT_MAINLINE then
+	WoWRetail = projectID == _G.WOW_PROJECT_MAINLINE
+	WoWClassicEra = projectID == _G.WOW_PROJECT_CLASSIC
+	WoWClassicTBC = projectID == _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+	WoWWOTLKC = projectID == _G.WOW_PROJECT_WRATH_CLASSIC
+	WoWClassicCata = projectID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
+	WoWClassicMists = projectID == _G.WOW_PROJECT_MISTS_CLASSIC
+else
+	local wowversion = select(4, GetBuildInfo())
+	if wowversion < 20000 then
+		WoWClassicEra = true
+	elseif wowversion < 30000 then
+		WoWClassicTBC = true
+	elseif wowversion < 40000 then
+		WoWWOTLKC = true
+	elseif wowversion < 50000 then
+		WoWClassicCata = true
+	elseif wowversion < 60000 then
+		WoWClassicMists = true
+	elseif wowversion > 90000 then
+		WoWRetail = true
+	end
 end
 
 -- ----------------------------------------------------------------------------

@@ -4,7 +4,7 @@
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
 	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
-	Copyright 2011 ~ 2023 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+	Copyright 2011 ~ 2026 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 	This file is part of Atlas.
 
@@ -34,14 +34,30 @@ local select = _G.select
 local type = _G.type
 local tonumber = _G.tonumber
 -- Libraries
-local WoWClassicEra, WoWClassicTBC, WoWRetail
-local wowtocversion  = select(4, GetBuildInfo())
-if wowtocversion < 20000 then
-	WoWClassicEra = true
-elseif wowtocversion > 19999 and wowtocversion < 90000 then 
-	WoWClassicTBC = true
+local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWClassicCata, WoWClassicMists, WoWRetail
+local projectID = _G.WOW_PROJECT_ID
+if projectID and _G.WOW_PROJECT_MAINLINE then
+	WoWRetail = projectID == _G.WOW_PROJECT_MAINLINE
+	WoWClassicEra = projectID == _G.WOW_PROJECT_CLASSIC
+	WoWClassicTBC = projectID == _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+	WoWWOTLKC = projectID == _G.WOW_PROJECT_WRATH_CLASSIC
+	WoWClassicCata = projectID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
+	WoWClassicMists = projectID == _G.WOW_PROJECT_MISTS_CLASSIC
 else
-	WoWRetail = true
+	local wowversion = select(4, GetBuildInfo())
+	if wowversion < 20000 then
+		WoWClassicEra = true
+	elseif wowversion < 30000 then
+		WoWClassicTBC = true
+	elseif wowversion < 40000 then
+		WoWWOTLKC = true
+	elseif wowversion < 50000 then
+		WoWClassicCata = true
+	elseif wowversion < 60000 then
+		WoWClassicMists = true
+	elseif wowversion > 90000 then
+		WoWRetail = true
+	end
 end
 
 -- ----------------------------------------------------------------------------
@@ -81,7 +97,7 @@ function addon:EnableAtlasLootButton(base, zoneID)
 		local showbutton = false;
 		
 		if (modules[base.Module] or modules[base.ALModule]) then
-			local enabled = GetAddOnEnableState(UnitName("player"), modules[base.Module] or modules[base.ALModule]);
+			local enabled = GetAddOnEnableState(modules[base.Module] or modules[base.ALModule], UnitName("player"));
 			if (enabled > 0) then
 				showbutton = true;
 			end

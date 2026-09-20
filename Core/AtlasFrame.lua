@@ -4,7 +4,7 @@
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
 	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
-	Copyright 2011 ~ 2023 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+	Copyright 2011 ~ 2026 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 	This file is part of Atlas.
 
@@ -35,21 +35,33 @@ local pairs, select, wipe = _G.pairs, _G.select, _G.wipe
 -- Libraries
 local string = _G.string
 local table = _G.table
-local getn, tinsert, tsort = table.getn, table.insert, table.sort
+local tinsert, tsort = table.insert, table.sort
 
--- Determine WoW TOC Version
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail
-local wowversion  = select(4, GetBuildInfo())
-if wowversion < 20000 then
-	WoWClassicEra = true
-elseif wowversion < 30000 then 
-	WoWClassicTBC = true
-elseif wowversion < 40000 then 
-	WoWWOTLKC = true
-elseif wowversion > 90000 then
-	WoWRetail = true
+-- Determine WoW client family
+local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWClassicCata, WoWClassicMists, WoWRetail
+local projectID = _G.WOW_PROJECT_ID
+if projectID and _G.WOW_PROJECT_MAINLINE then
+	WoWRetail = projectID == _G.WOW_PROJECT_MAINLINE
+	WoWClassicEra = projectID == _G.WOW_PROJECT_CLASSIC
+	WoWClassicTBC = projectID == _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+	WoWWOTLKC = projectID == _G.WOW_PROJECT_WRATH_CLASSIC
+	WoWClassicCata = projectID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
+	WoWClassicMists = projectID == _G.WOW_PROJECT_MISTS_CLASSIC
 else
-	-- n/a
+	local wowversion = select(4, GetBuildInfo())
+	if wowversion < 20000 then
+		WoWClassicEra = true
+	elseif wowversion < 30000 then
+		WoWClassicTBC = true
+	elseif wowversion < 40000 then
+		WoWWOTLKC = true
+	elseif wowversion < 50000 then
+		WoWClassicCata = true
+	elseif wowversion < 60000 then
+		WoWClassicMists = true
+	elseif wowversion > 90000 then
+		WoWRetail = true
+	end
 end
 -- ----------------------------------------------------------------------------
 -- AddOn namespace
@@ -169,7 +181,7 @@ function AtlasEntry_OnUpdate(self)
 	if (WoWRetail) then
 		if( AtlasEJLootFrame:IsShown() ) then return; end
 	end
-	if (MouseIsOver(self)) then
+	if (self:IsMouseOver()) then
 		if (IsControlKeyDown() and addon.db.profile.options.frames.controlClick) then
 			if (not GameTooltip:IsShown()) then
 				local str = _G[self:GetName().."_Text"]:GetText()
@@ -243,7 +255,7 @@ function AtlasFrameDropDownType_Initialize()
 	local subcatOrder = addon.dropdowns.DropDownLayouts_Order[catName]
 	if (subcatOrder and type(subcatOrder) == "table") then 
 		tsort(subcatOrder) 
-		for n = 1, getn(subcatOrder), 1 do
+		for n = 1, #subcatOrder, 1 do
 			local subcatItems = addon.dropdowns.DropDownLayouts[catName][subcatOrder[n]]
 			local q = (#subcatItems-(#subcatItems%ATLAS_MAX_MENUITEMS))/ATLAS_MAX_MENUITEMS
 			
@@ -263,7 +275,7 @@ function AtlasFrameDropDownType_Initialize()
 			i = i + q + 1
 		end
 	end
-	for j = 1, getn(Atlas_MapTypes), 1 do
+	for j = 1, #Atlas_MapTypes, 1 do
 		ATLAS_DROPDOWN_TYPES[i] = {
 			text = Atlas_MapTypes[j],
 			value = Atlas_MapTypes[j],
@@ -382,7 +394,7 @@ function AtlasFrameDropDown_Initialize()
 			local typeIDM, subtypeIDM, minLevelM, maxLevelM, minRecLevelM, maxRecLevelM, maxPlayersM, minGearLevelM
 			local colortagL, dungeon_difficulty
 			local icontext_heroic 	= " |TInterface\\EncounterJournal\\UI-EJ-HeroicTextIcon:0:0|t"
-			local icontext_mythic 	= " |TInterface\\AddOns\\Atlas\\Images\\\UI-EJ-MythicTextIcon:0:0|t"
+			local icontext_mythic 	= " |TInterface\\AddOns\\Atlas\\Images\\UI-EJ-MythicTextIcon:0:0|t"
 			local icontext_dungeon 	= "|TInterface\\MINIMAP\\Dungeon:0:0|t"
 			local icontext_raid 	= "|TInterface\\MINIMAP\\Raid:0:0|t"
 			local icontext_instance
@@ -533,7 +545,7 @@ end
 -- Find it, set it, then update menus and the maps
 function AtlasSwitchButton_OnClick()
 	local zoneID = ATLAS_DROPDOWNS[addon.db.profile.options.dropdowns.module][addon.db.profile.options.dropdowns.zone]
-	if (getn(ATLAS_INST_ENT_DROPDOWN) == 1) then
+	if (#ATLAS_INST_ENT_DROPDOWN == 1) then
 		-- One link, so we can just go there right away
 		AtlasSwitchDD_Set(1)
 	else

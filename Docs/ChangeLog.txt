@@ -2,7 +2,7 @@ $Id$
 Atlas, a World of Warcraft instance map browser
 Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
 Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
-Copyright 2011 ~ 2023 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+Copyright 2011 ~ 2026 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 ==============
 Known Issues:
@@ -14,6 +14,14 @@ Known Issues:
 ==============
 = Change Log =
 ==============
+
+v1.53.00 (Sep. 19, 2026)
+------------------------
+- Fixed Retail compatibility issues with the AddOn enable-state API
+- Fixed map image detection incorrectly reporting missing images
+- Replaced removed MouseIsOver API usage
+- Fixed the Atlas options panel opening error
+- Updated WorldMap button's handling in Classic Era
 
 v1.52.08 (Jul. 29, 2023)
 ------------------------

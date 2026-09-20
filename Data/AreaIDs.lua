@@ -4,7 +4,7 @@
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
 	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
-	Copyright 2011 ~ 2023 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+	Copyright 2011 ~ 2026 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
 
 	This file is part of Atlas.
 
@@ -35,6 +35,16 @@ local _G = getfenv(0)
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local FOLDER_NAME, private = ...
+
+local projectID = _G.WOW_PROJECT_ID
+local isRetail
+if projectID and _G.WOW_PROJECT_MAINLINE then
+	isRetail = projectID == _G.WOW_PROJECT_MAINLINE
+else
+	local _, _, _, interface = _G.GetBuildInfo()
+	isRetail = interface >= 100000
+end
+if not isRetail then return end
 
 local MapData = {}
 

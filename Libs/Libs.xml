@@ -2,5 +2,5 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="LibDataBroker-1.1\LibDataBroker-1.1.lua"/>
-<Include file="Krowi_WorldMapButtons\Krowi_WorldMapButtons-1.4.xml"/>
+<Include file="Krowi_WorldMapButtons\Krowi_WorldMapButtons.xml"/>
 </Ui>
