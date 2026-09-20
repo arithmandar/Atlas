@@ -42,33 +42,6 @@ local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 ---@cast addon AtlasAddon
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 
--- Determine WoW client family
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWClassicCata, WoWClassicMists, WoWRetail
-local projectID = _G.WOW_PROJECT_ID
-if projectID and _G.WOW_PROJECT_MAINLINE then
-	WoWRetail = projectID == _G.WOW_PROJECT_MAINLINE
-	WoWClassicEra = projectID == _G.WOW_PROJECT_CLASSIC
-	WoWClassicTBC = projectID == _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-	WoWWOTLKC = projectID == _G.WOW_PROJECT_WRATH_CLASSIC
-	WoWClassicCata = projectID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
-	WoWClassicMists = projectID == _G.WOW_PROJECT_MISTS_CLASSIC
-else
-	local wowversion = select(4, GetBuildInfo())
-	if wowversion < 20000 then
-		WoWClassicEra = true
-	elseif wowversion < 30000 then
-		WoWClassicTBC = true
-	elseif wowversion < 40000 then
-		WoWWOTLKC = true
-	elseif wowversion < 50000 then
-		WoWClassicCata = true
-	elseif wowversion < 60000 then
-		WoWClassicMists = true
-	elseif wowversion > 90000 then
-		WoWRetail = true
-	end
-end
-
 local AceConfigReg = LibStub("AceConfigRegistry-3.0")
 local AceConfigDialog = LibStub("AceConfigDialog-3.0")
 local AceDBOptions = LibStub("AceDBOptions-3.0")
@@ -302,23 +275,12 @@ local function getOptions()
 									end,
 									set = function(info, value)
 										addon.db.profile.options.worldMapButton = value
-										if (WoWClassicEra) then
-											if (addon.db.profile.options.worldMapButton) then
-												AtlasToggleFromWorldMap:Show()
-											else
-												AtlasToggleFromWorldMap:Hide()
-											end
+										if (addon.db.profile.options.worldMapButton) then
+											addon.WorldMap.Button:Show()
 										else
-											if (addon.db.profile.options.worldMapButton) then
-												addon.WorldMap.Button:Show()
-											else
-												addon.WorldMap.Button:Hide()
-											end
+											addon.WorldMap.Button:Hide()
 										end
 									end,
---[[									disabled = function() 
-										if WoWClassicEra then return true end
-									end,]]
 								},
 
 								autoSelect = {

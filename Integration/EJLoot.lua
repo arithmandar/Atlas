@@ -43,31 +43,14 @@ local math = _G.math
 local floor = math.floor
 local format = string.format
 
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWClassicCata, WoWClassicMists, WoWRetail
-local projectID = _G.WOW_PROJECT_ID
-if projectID and _G.WOW_PROJECT_MAINLINE then
-	WoWRetail = projectID == _G.WOW_PROJECT_MAINLINE
-	WoWClassicEra = projectID == _G.WOW_PROJECT_CLASSIC
-	WoWClassicTBC = projectID == _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-	WoWWOTLKC = projectID == _G.WOW_PROJECT_WRATH_CLASSIC
-	WoWClassicCata = projectID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
-	WoWClassicMists = projectID == _G.WOW_PROJECT_MISTS_CLASSIC
-else
-	local wowversion = select(4, GetBuildInfo())
-	if wowversion < 20000 then
-		WoWClassicEra = true
-	elseif wowversion < 30000 then
-		WoWClassicTBC = true
-	elseif wowversion < 40000 then
-		WoWWOTLKC = true
-	elseif wowversion < 50000 then
-		WoWClassicCata = true
-	elseif wowversion < 60000 then
-		WoWClassicMists = true
-	elseif wowversion > 90000 then
-		WoWRetail = true
-	end
-end
+local wowversion = select(4, GetBuildInfo())
+
+local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
+local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
+local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
+local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
+
+if (isClassicEra or isAnniversaryTBC) then return end
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -79,12 +62,13 @@ local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 -- UIDropDownMenu
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 
-local EJ_SetDifficulty, EJ_SetLootFilter = EJ_SetDifficulty, EJ_SetLootFilter
-local EJ_GetLootInfoByIndex = EJ_GetLootInfoByIndex
-if WoWRetail then
-	EJ_GetLootInfoByIndex = C_EncounterJournal.GetLootInfoByIndex
-end
-local EJ_GetEncounterInfo, EJ_GetNumLoot = EJ_GetEncounterInfo, EJ_GetNumLoot
+local C_EncounterJournal = _G.C_EncounterJournal
+local EJ_SetDifficulty, EJ_SetLootFilter = _G.EJ_SetDifficulty, _G.EJ_SetLootFilter
+local GetLootInfoByIndex = _G.C_EncounterJournal.GetLootInfoByIndex
+local EJ_GetEncounterInfo, EJ_GetNumLoot = _G.EJ_GetEncounterInfo, _G.EJ_GetNumLoot
+
+local C_SpecializationInfo = _G.C_SpecializationInfo
+local GetNumSpecializationsForClassID = C_SpecializationInfo.GetNumSpecializationsForClassID
 
 local NO_INV_TYPE_FILTER = 0;
 
@@ -106,9 +90,7 @@ local ATLAS_EJ_DIFFICULTIES =
 	{ prefix = PLAYER_DIFFICULTY_TIMEWALKER, difficultyID = 33 },
 }
 
-local SlotFilterToSlotName = {}
-if WoWRetail then
-	SlotFilterToSlotName = {
+local SlotFilterToSlotName = {
 		[Enum.ItemSlotFilterType.Head] = INVTYPE_HEAD,
 		[Enum.ItemSlotFilterType.Neck] = INVTYPE_NECK,
 		[Enum.ItemSlotFilterType.Shoulder] = INVTYPE_SHOULDER,
@@ -125,13 +107,12 @@ if WoWRetail then
 		[Enum.ItemSlotFilterType.Trinket] = INVTYPE_TRINKET,
 		[Enum.ItemSlotFilterType.Other] = EJ_LOOT_SLOT_FILTER_OTHER,
 	}
-end
 
 local BOSS_LOOT_BUTTON_HEIGHT = 45
 local INSTANCE_LOOT_BUTTON_HEIGHT = 64
 
 function Atlas_EJ_ResetLootFilter()
-	if (WoWClassicEra or WoWClassicTBC) then return end
+	if (isClassicEra or isAnniversaryTBC) then return end
 	EJ_ResetLootFilter()
 end
 
@@ -145,7 +126,7 @@ function Atlas_EncounterJournal_DisplayLoot(instanceID, encounterId)
 end
 
 function Atlas_EncounterJournal_OnLoad(self)
-	if (WoWClassicEra or WoWClassicTBC) then return end
+	if (isClassicEra or isAnniversaryTBC) then return end
 --	EncounterJournalTitleText:SetText(ADVENTURE_JOURNAL)
 --	SetPortraitToTexture(EncounterJournalPortrait,"Interface\\EncounterJournal\\UI-EJ-PortraitIcon")
 --	self:RegisterEvent("EJ_LOOT_DATA_RECIEVED")
@@ -357,7 +338,7 @@ function Atlas_EncounterJournal_UpdateDifficulty(newDifficultyID)
 end
 
 function Atlas_EncounterJournal_SetLootButton(item)
-	local itemInfo = EJ_GetLootInfoByIndex(item.index);
+	local itemInfo = GetLootInfoByIndex(item.index);
 	if ( itemInfo and itemInfo.name ) then
 		item.name:SetText(WrapTextInColorCode(itemInfo.name, itemInfo.itemQuality));
 		item.icon:SetTexture(itemInfo.icon);
@@ -376,7 +357,7 @@ function Atlas_EncounterJournal_SetLootButton(item)
 		if (numEncounters == 1) then
 			item.boss:SetFormattedText(BOSS_INFO_STRING, EJ_GetEncounterInfo(itemInfo.encounterID));
 		elseif ( numEncounters == 2) then
-			local itemInfoSecond = EJ_GetLootInfoByIndex(item.index, 2);
+			local itemInfoSecond = GetLootInfoByIndex(item.index, 2);
 			local secondEncounterID = itemInfoSecond and itemInfoSecond.encounterID;
 			if ( itemInfo.encounterID and secondEncounterID ) then
 				item.boss:SetFormattedText(BOSS_INFO_STRING_TWO, EJ_GetEncounterInfo(itemInfo.encounterID), EJ_GetEncounterInfo(secondEncounterID));
@@ -673,7 +654,7 @@ function Atlas_EncounterJournal_InitLootSlotFilter(self, level)
 	local isLootSlotPresent = {};
 	local numLoot = EJ_GetNumLoot();
 	for i = 1, numLoot do
-		local itemInfo = EJ_GetLootInfoByIndex(i);
+		local itemInfo = GetLootInfoByIndex(i);
 		local filterType = itemInfo and itemInfo.filterType;
 		if ( filterType ) then
 			isLootSlotPresent[filterType] = true;

@@ -46,42 +46,16 @@ local GetItemInfo = C_Item.GetItemInfo
 
 local UnitLevel, GetBuildInfo = _G.UnitLevel, _G.GetBuildInfo
 local GetLFGDungeonInfo = _G.GetLFGDungeonInfo
+local GetAverageItemLevel = _G.GetAverageItemLevel
 local hooksecurefunc = hooksecurefunc
 
 -- Determine WoW client family
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWClassicCata, WoWClassicMists, WoWRetail
-local projectID = _G.WOW_PROJECT_ID
-if projectID and _G.WOW_PROJECT_MAINLINE then
-	WoWRetail = projectID == _G.WOW_PROJECT_MAINLINE
-	WoWClassicEra = projectID == _G.WOW_PROJECT_CLASSIC
-	WoWClassicTBC = projectID == _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-	WoWWOTLKC = projectID == _G.WOW_PROJECT_WRATH_CLASSIC
-	WoWClassicCata = projectID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
-	WoWClassicMists = projectID == _G.WOW_PROJECT_MISTS_CLASSIC
-else
-	local wowversion = select(4, GetBuildInfo())
-	if wowversion < 20000 then
-		WoWClassicEra = true
-	elseif wowversion < 30000 then
-		WoWClassicTBC = true
-	elseif wowversion < 40000 then
-		WoWWOTLKC = true
-	elseif wowversion < 50000 then
-		WoWClassicCata = true
-	elseif wowversion < 60000 then
-		WoWClassicMists = true
-	elseif wowversion > 90000 then
-		WoWRetail = true
-	end
-end
+local wowversion = select(4, GetBuildInfo())
 
-local GetQuestGreenRange, UnitQuestTrivialLevelRange
-if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC or WoWClassicCata or WoWClassicMists) then
-	GetQuestGreenRange = _G.GetQuestGreenRange
-else
-	UnitQuestTrivialLevelRange = _G.UnitQuestTrivialLevelRange
-end
-
+local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
+local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
+local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
+local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -390,7 +364,8 @@ local function bossButtonCleanUp(button)
 end
 
 local function bossButtonUpdate(button, encounterID, instanceID, b_iconImage, moduleData)
-	if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then 
+	-- Encounter Journal was introduced after 4.0 (Cataclysm)
+	if (isClassicEra or isAnniversaryTBC) then 
 		return
 	end
 	
@@ -820,6 +795,14 @@ function addon:FormatColor(color_array)
 	return colortag
 end
 
+local function Atlas_GetQuestLevelRange()
+	if (isRetail) then
+		return _G.UnitQuestTrivialLevelRange('player')
+	else
+		return _G.GetQuestGreenRange()
+	end
+end
+
 -- Calculate the dungeon difficulty based on the dungeon's level and player's level
 -- Codes adopted from FastQuest_Classic
 function addon:GetDungeonDifficultyColor(minRecLevel)
@@ -828,13 +811,7 @@ function addon:GetDungeonDifficultyColor(minRecLevel)
 		return color
 	end
 	
-	local greenLevel
-	if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
-		greenLevel = GetQuestGreenRange()
-	else
-		greenLevel = UnitQuestTrivialLevelRange('player')
-	end
-
+	local greenLevel = Atlas_GetQuestLevelRange()
 	local lDiff = minRecLevel - UnitLevel("player")
 	if (lDiff >= 0) then
 		for i= 1.00, 0.10, -0.10 do
@@ -907,7 +884,7 @@ function addon:MapAddNPCButton()
 			if (info_x == nil) then info_x = -18; end
 			if (info_y == nil) then info_y = -18; end
 
-			if (WoWRetail and info_id < 10000 and profile.options.frames.showBossPotrait) then
+			if ((isRetail or isProgressionClassic) and info_id < 10000 and profile.options.frames.showBossPotrait) then
 				bossbutton = _G["AtlasMapBossButton"..bossindex]
 				if (not bossbutton) then
 					bossbutton = CreateFrame("Button", "AtlasMapBossButton"..bossindex, AtlasFrame, "AtlasFrameBossButtonTemplate")
@@ -1042,7 +1019,7 @@ function addon:MapAddNPCButtonLarge()
 			local info_y 		= t[i][6]
 			local info_colortag	= t[i][7]
 
-			if (WoWRetail and info_id < 10000 and info_x and info_y and profile.options.frames.showBossPotrait) then
+			if ((isRetail or isProgressionClassic) and info_id < 10000 and info_x and info_y and profile.options.frames.showBossPotrait) then
 				bossbutton = _G["AtlasMapBossButtonL"..bossindex]
 				if (not bossbutton) then
 					bossbutton = CreateFrame("Button", "AtlasMapBossButtonL"..bossindex, AtlasFrameLarge, "AtlasFrameBossButtonTemplate")
@@ -1355,7 +1332,7 @@ function Atlas_MapRefresh(mapID)
 	AtlasText_LevelRange_Text:SetText(tLR)
 
 	-- Map's Recommended Level Range
-	if (WoWRetail) then
+	if (isRetail) then
 		local tRLR = ""
 		if (minRecLevel or minRecLevelH or minRecLevelM) then
 			local tmp_RLR = L["ATLAS_STRING_RECLEVELRANGE"]..L["Colon"]
@@ -1502,7 +1479,7 @@ function Atlas_MapRefresh(mapID)
 		AtlasFrame.AdventureJournal.instanceID = base.JournalInstanceID
 		AtlasFrameLarge.AdventureJournal.instanceID = base.JournalInstanceID
 		AtlasFrameSmall.AdventureJournal.instanceID = base.JournalInstanceID
-		if WoWRetail then
+		if isRetail then
 			AtlasFrameAdventureJournalButton:Show()
 			AtlasFrameLargeAdventureJournalButton:Show()
 			AtlasFrameSmallAdventureJournalButton:Show()
@@ -1520,7 +1497,7 @@ function Atlas_MapRefresh(mapID)
 		AtlasFrame.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameLarge.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameSmall.AdventureJournalMap.mapID = base.WorldMapID
-		if WoWRetail then
+		if isRetail then
 			AtlasFrameAdventureJournalMapButton:Show()
 			AtlasFrameLargeAdventureJournalMapButton:Show()
 			AtlasFrameSmallAdventureJournalMapButton:Show()
@@ -1659,7 +1636,7 @@ function Atlas_Refresh(mapID)
 		end
 	end
 	
-	if WoWRetail then
+	if isRetail then
 		if (AtlasEJLootFrame:IsShown()) then
 			AtlasEJLootFrame:Hide()
 		end
@@ -1908,7 +1885,8 @@ function Atlas_AutoSelect()
 end
 
 function addon:DungeonMinGearLevelToolTip(self)
-	if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then return end
+	--is this not support in classic??
+	--if (isClassicEra or isAnniversaryTBC) then return end
 	local currGearLevel = GetAverageItemLevel()
 	local str = format(ITEM_LEVEL, currGearLevel)
 
@@ -2101,7 +2079,8 @@ function addon:Refresh()
 	AtlasFrame:SetClampedToScreen(profile.options.frames.clamp)
 	AtlasFrameLarge:SetClampedToScreen(profile.options.frames.clamp)
 	AtlasFrameSmall:SetClampedToScreen(profile.options.frames.clamp)
-	if (WoWClassicEra) then
+--[[
+	if (isClassicEra) then
 		if (profile.options.worldMapButton) then
 			AtlasToggleFromWorldMap:Show()
 		else
@@ -2113,5 +2092,11 @@ function addon:Refresh()
 		else
 			addon.WorldMap.Button:Hide()
 		end
+	end
+]]
+	if (profile.options.worldMapButton) then
+		addon.WorldMap.Button:Show()
+	else
+		addon.WorldMap.Button:Hide()
 	end
 end

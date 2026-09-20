@@ -38,31 +38,13 @@ local table = _G.table
 local tinsert, tsort = table.insert, table.sort
 
 -- Determine WoW client family
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWClassicCata, WoWClassicMists, WoWRetail
-local projectID = _G.WOW_PROJECT_ID
-if projectID and _G.WOW_PROJECT_MAINLINE then
-	WoWRetail = projectID == _G.WOW_PROJECT_MAINLINE
-	WoWClassicEra = projectID == _G.WOW_PROJECT_CLASSIC
-	WoWClassicTBC = projectID == _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-	WoWWOTLKC = projectID == _G.WOW_PROJECT_WRATH_CLASSIC
-	WoWClassicCata = projectID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
-	WoWClassicMists = projectID == _G.WOW_PROJECT_MISTS_CLASSIC
-else
-	local wowversion = select(4, GetBuildInfo())
-	if wowversion < 20000 then
-		WoWClassicEra = true
-	elseif wowversion < 30000 then
-		WoWClassicTBC = true
-	elseif wowversion < 40000 then
-		WoWWOTLKC = true
-	elseif wowversion < 50000 then
-		WoWClassicCata = true
-	elseif wowversion < 60000 then
-		WoWClassicMists = true
-	elseif wowversion > 90000 then
-		WoWRetail = true
-	end
-end
+local wowversion = select(4, GetBuildInfo())
+
+local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
+local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
+local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
+local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
+
 -- ----------------------------------------------------------------------------
 -- AddOn namespace
 -- ----------------------------------------------------------------------------
@@ -178,7 +160,7 @@ function addon:ToggleLegendPanel()
 end
 
 function AtlasEntry_OnUpdate(self)
-	if (WoWRetail) then
+	if (isRetail or isProgressionClassic) then
 		if( AtlasEJLootFrame:IsShown() ) then return; end
 	end
 	if (self:IsMouseOver()) then
