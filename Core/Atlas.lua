@@ -41,6 +41,8 @@ local tinsert, tsort = table.insert, table.sort
 
 local C_AddOns = _G.C_AddOns
 local GetAddOnInfo, GetAddOnMetadata, GetAddOnEnableState, IsAddOnLoaded = C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnMetadata, C_AddOns.GetAddOnEnableState, C_AddOns.IsAddOnLoaded
+local C_Item = _G.C_Item
+local GetItemInfo = C_Item.GetItemInfo
 
 local UnitLevel, GetBuildInfo = _G.UnitLevel, _G.GetBuildInfo
 local GetLFGDungeonInfo = _G.GetLFGDungeonInfo
@@ -87,6 +89,55 @@ end
 local FOLDER_NAME, private = ...
 
 local LibStub = _G.LibStub
+---@class AtlasAddon : AceAddon
+---@field db table
+---@field constants table
+---@field Templates table
+---@field dropdowns table
+---@field assocs table
+---@field optionsFrames table
+---@field Name string
+---@field LocName string
+---@field Notes string
+---@field WorldMap table
+---@field AchievementButtonUpdate fun(self: AtlasAddon, button: table, achievementID: number)
+---@field AdventureJournal_EncounterButton_OnClick fun(self: AtlasAddon, instanceID: number, encounterID: number, keepAtlas: boolean?)
+---@field AdventureJournal_MapButton_OnClick fun(self: AtlasAddon, frame: table)
+---@field AdventureJournalButton_OnClick fun(self: AtlasAddon, frame: table)
+---@field AdventureJournalButton_OnEnter fun(self: AtlasAddon, frame: table)
+---@field AtlasLootButton_OnClick fun(self: AtlasAddon, frame: table, button: string?)
+---@field CheckAddonStatus fun(self: AtlasAddon, addonName: string): boolean
+---@field DungeonMinGearLevelToolTip fun(self: AtlasAddon, frame: table)
+---@field EnableAtlasLootButton fun(self: AtlasAddon, base: table, zoneID: string)
+---@field EncounterJournal_Binding fun(self: AtlasAddon)
+---@field EncounterJournal_IsHeaderTypeOverview fun(self: AtlasAddon, headerType: any): boolean
+---@field FormatColor fun(self: AtlasAddon, colorArray: table): string?
+---@field GetCreatureName fun(self: AtlasAddon, creatureName: string?, id: number?): string?
+---@field GetBossName fun(self: AtlasAddon, bossName: string?, encounterID: number?, creatureIndex: number?, moduleName: string?): string?
+---@field GetDungeonDifficultyColor fun(self: AtlasAddon, minimumLevel: number): table
+---@field isModuleOrPluginLoaded fun(self: AtlasAddon)
+---@field MapAddNPCButton fun(self: AtlasAddon)
+---@field MapAddNPCButtonLarge fun(self: AtlasAddon)
+---@field OpenAchievement fun(self: AtlasAddon, achievementID: number)
+---@field OpenOptions fun(self: AtlasAddon)
+---@field PopulateDropdowns fun(self: AtlasAddon)
+---@field PrevNextMap_OnClick fun(self: AtlasAddon, frame: table)
+---@field RegisterPlugin fun(self: AtlasAddon, name: string, myCategory: string, myData: table, myNPCData: table?)
+---@field RegisterModuleOptions fun(self: AtlasAddon, name: string, optionTable: any, displayName: string?)
+---@field Refresh fun(self: AtlasAddon)
+---@field SearchAndRefresh fun(self: AtlasAddon, text: string)
+---@field SetupOptions fun(self: AtlasAddon)
+---@field StartMoving fun(self: AtlasAddon, frame: table)
+---@field WorldMapButtonSelectMap fun(self: AtlasAddon)
+---@field Toggle fun(self: AtlasAddon)
+---@field ToggleLegendPanel fun(self: AtlasAddon)
+---@field ToggleLock fun(self: AtlasAddon)
+---@field ToggleWindowSize fun(self: AtlasAddon)
+---@field UpdateAlpha fun(self: AtlasAddon)
+---@field UpdateLock fun(self: AtlasAddon)
+---@field UpdateScale fun(self: AtlasAddon)
+---@field RegisterChatCommand fun(self: AtlasAddon, command: string, handler: function)
+---@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceConsole-3.0")
 addon.constants = private.constants
 addon.Templates = private.Templates

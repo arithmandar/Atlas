@@ -39,6 +39,7 @@ local GetBuildInfo = _G.GetBuildInfo
 local FOLDER_NAME, private = ...
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 
 -- Determine WoW client family
@@ -201,7 +202,9 @@ local function getOptions()
 									name = L["ATLAS_OPTIONS_MAXMENUITEMS"],
 									desc = L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"],
 									width = "full",
-									min = 5, max = 50, bigStep = 1, 
+									min = 5, 
+									max = 50, 
+									bigStep = 1, 
 									get	= function()
 										return addon.db.profile.options.dropdowns.maxItems
 									end,
@@ -222,7 +225,9 @@ local function getOptions()
 									order = 21,
 									type = "range",
 									name = L["ATLAS_OPTIONS_TRANS"],
-									min = 0, max = 1, bigStep = 0.01, 
+									min = 0, 
+									max = 1, 
+									bigStep = 0.01, 
 									isPercent = true,
 									--width = "full",
 									get	= function()
@@ -237,7 +242,9 @@ local function getOptions()
 									order = 22,
 									type = "range",
 									name = L["ATLAS_OPTIONS_SCALE"],
-									min = 0.01, max = 1.75, bigStep = 0.01,
+									min = 0.01, 
+									max = 1.75, 
+									bigStep = 0.01,
 									isPercent = true,
 									--width = "full",
 									get	= function()
@@ -252,7 +259,9 @@ local function getOptions()
 									order = 23,
 									type = "range",
 									name = L["ATLAS_OPTIONS_BOSS_DESC_SCALE"],
-									min = 0.01, max = 1.75, bigStep = 0.01,
+									min = 0.01, 
+									max = 1.75, 
+									bigStep = 0.01,
 									isPercent = true,
 									--width = "full",
 									get	= function()
@@ -400,7 +409,7 @@ local function openOptions()
 		-- AddToBlizOptions() returns a widget wrapper; the actual category ID Settings expects is its .name field
 		Settings.OpenToCategory(addon.optionsFrames.General.name)
 	else
-		AceConfigDialog:Open(addon.LocName, "general")
+		AceConfigDialog:Open(addon.LocName, nil, "general")
 	end
 end
 

@@ -39,6 +39,7 @@ local GetBuildInfo = _G.GetBuildInfo
 local FOLDER_NAME, private = ...
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon("Atlas")
+---@cast addon AtlasAddon
 
 local WorldMap = {}
 
