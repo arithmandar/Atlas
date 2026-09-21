@@ -45,8 +45,6 @@ local L = AceLocale:NewLocale("Atlas", "enUS", true, true);
 
 
 if L then
---@localization(locale="enUS", format="lua_additive_table", handle-unlocalized="ignore")@
---@do-not-package@
 --************************************************
 -- UI terms and common strings
 --************************************************
@@ -272,19 +270,19 @@ L["Midsummer Festival"] = "Midsummer Festival"
 L["Heroic_Symbol"] = "(H)"
 L["Mythic_Symbol"] = "(M)"
 --Misc strings
-	--Symbols
-	L["Colon"] = ": " -- The colon symbol to be used in string, ex: "Zone: Firelands
-	L["Semicolon"] = " "
-	L["L-Parenthesis"] = " ("
-	L["R-Parenthesis"] = ") "
-	L["Comma"] = ", "
-	L["Period"] = ". "
-	L["Hyphen"] = " - "
-	L["Slash"] = " / "
-	L["L-SBracket"] = "["
-	L["R-SBracket"] = "]"
-	L["L-DQuote"] = "\""
-	L["R-DQuote"] = "\""
+--Symbols
+L["Colon"] = ": " -- The colon symbol to be used in string, ex: "Zone: Firelands
+L["Semicolon"] = " "
+L["L-Parenthesis"] = " ("
+L["R-Parenthesis"] = ") "
+L["Comma"] = ", "
+L["Period"] = ". "
+L["Hyphen"] = " - "
+L["Slash"] = " / "
+L["L-SBracket"] = "["
+L["R-SBracket"] = "]"
+L["L-DQuote"] = "\""
+L["R-DQuote"] = "\""
 L["Adult"] = "Adult"
 L["AKA"] = "AKA" -- As Known As
 L["Arcane Container"] = "Arcane Container"
@@ -394,5 +392,4 @@ L["Arazmodu <The Scale of Sands>"] = "Arazmodu <The Scale of Sands>"
 L["Andormu <Keepers of Time>"] = "Andormu <Keepers of Time>"
 L["Nozari <Keepers of Time>"] = "Nozari <Keepers of Time>"
 L["Anachronos <Keepers of Time>"] = "Anachronos <Keepers of Time>"
---@end-do-not-package@
 end

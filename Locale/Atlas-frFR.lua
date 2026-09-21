@@ -45,8 +45,6 @@ end
 
 
 if L then
---@localization(locale="frFR", format="lua_additive_table", handle-unlocalized="ignore")@
---@do-not-package@
 --************************************************
 -- UI terms and common strings
 --************************************************
@@ -103,6 +101,9 @@ L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "Afficher les donjons de la liste par coul
 L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "Basé sur le niveau minimum recommandé par le donjon et le niveau du joueur, pour afficher le donjon avec des couleurs de difficulté."
 L["ATLAS_OPTIONS_HEADER_DISPLAY"] = "Options d'affichage"
 L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "Configuration de l'addon"
+L["ATLAS_OPTIONS_MAXMENUITEMS"] = "Nombre maximum d’éléments du menu"
+L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"] = "Configurez le nombre maximum d’éléments du menu déroulant à afficher avant de passer à une autre catégorie de menu"
+L["ATLAS_NO_MODULE_OR_PLUGIN"] = "|cffff66ffErreur :|r Atlas ne peut détecter aucun module ou plugin de carte installé et activé. Notez qu’Atlas lui-même est un navigateur de cartes ; vous devez installer au moins un module ou plugin de carte pour pouvoir consulter les cartes."
 
 L["ATLAS_BUTTON_CLOSE"] = "Fermer"
 L["ATLAS_LDB_HINT"] = [=[Clic-Gauche pour ouvrir Atlas.
@@ -123,9 +124,14 @@ L["ATLAS_DDL_CONTINENT_DRAENOR"] = "Instances de Draenor"
 L["ATLAS_DDL_CONTINENT_BROKENISLES"] = "Instances des Îles Brisées"
 L["ATLAS_DDL_CONTINENT_BROKENISLES1"] = "Donjons des Îles Brisées"
 L["ATLAS_DDL_CONTINENT_BROKENISLES2"] = "Raids des Îles Brisées"
+L["ATLAS_DDL_CONTINENT_KULTIRAS"] = "Instances de Kul Tiras."
+L["ATLAS_DDL_CONTINENT_ZANDALAR"] = "Instances de Zandalar"
+L["ATLAS_DDL_CONTINENT_NAZJATAR"] = "Instances de Nazjatar"
 L["ATLAS_DDL_LEVEL"] = "Niveau"		-- Sort Instance Maps by: Level
-L["ATLAS_DDL_LEVEL_UNDER45"] = "Instances avant Niveau 45"
-L["ATLAS_DDL_LEVEL_45TO60"] = "Instances Niveau 45-60"
+-- BCC / prior to new level range
+L["ATLAS_DDL_LEVEL_10TO20"] = "Instances Niveau 10-20"
+L["ATLAS_DDL_LEVEL_20TO40"] = "Instances Niveau 20-40"
+L["ATLAS_DDL_LEVEL_40TO60"] = "Instances Niveau 40-60"
 L["ATLAS_DDL_LEVEL_60TO70"] = "Instances Niveau 60-70"
 L["ATLAS_DDL_LEVEL_70TO80"] = "Instances Niveau 70-80"
 L["ATLAS_DDL_LEVEL_80TO85"] = "Instances Niveau 80-85"
@@ -134,6 +140,21 @@ L["ATLAS_DDL_LEVEL_90TO100"] = "Instances Niveau 90-100"
 L["ATLAS_DDL_LEVEL_100PLUS"] = "Instances Niveau 100+"
 L["ATLAS_DDL_LEVEL_100TO110"] = "Instances Niveaux 100-110"
 L["ATLAS_DDL_LEVEL_110PLUS"] = "Instances Niveau 110+"
+L["ATLAS_DDL_LEVEL_110TO120"] = "Instances Niveaux 110-120"
+L["ATLAS_DDL_LEVEL_120PLUS"] = "Instances Niveau 120+"
+L["ATLAS_DDL_LEVEL_120TO130"] = "Instances Niveaux 120-130"
+L["ATLAS_DDL_LEVEL_130PLUS"] = "Instances Niveau 130+"
+-- Retail / new level range
+L["ATLAS_DDL_LEVEL_UNDER30"] = "Instances avant Niveau 30"
+L["ATLAS_DDL_LEVEL_UNDER45"] = "Instances avant Niveau 45"
+L["ATLAS_DDL_LEVEL_10TO30"] = "Instances Niveau 10-30"
+L["ATLAS_DDL_LEVEL_30TO35"] = "Instances Niveau 30-35"
+L["ATLAS_DDL_LEVEL_35TO40"] = "Instances Niveau 35-40"
+L["ATLAS_DDL_LEVEL_40TO45"] = "Instances Niveau 40-45"
+L["ATLAS_DDL_LEVEL_45TO50"] = "Instances Niveau 45-50"
+L["ATLAS_DDL_LEVEL_45TO60"] = "Instances Niveau 45-60"
+L["ATLAS_DDL_LEVEL_50TO60"] = "Instances Niveau 50-60"
+L["ATLAS_DDL_LEVEL_60PLUS"] = "Instances Niveau 60+"
 L["ATLAS_DDL_PARTYSIZE"] = "Taille de groupe"	-- Sort Instance Maps by: Party Size
 L["ATLAS_DDL_PARTYSIZE_5"] = "Instances pour 5 Joueurs"
 L["ATLAS_DDL_PARTYSIZE_10"] = "Instances pour 10 Joueurs"
@@ -148,6 +169,8 @@ L["ATLAS_DDL_EXPANSION_WOD"] = "Instances de Warlords of Draenor"
 L["ATLAS_DDL_EXPANSION_LEGION"] = "Instances de Légion"
 L["ATLAS_DDL_EXPANSION_LEGION1"] = "Donjons de Légion"
 L["ATLAS_DDL_EXPANSION_LEGION2"] = "Raids de Légion"
+L["ATLAS_DDL_EXPANSION_BFA"] = "Instances de Bataille pour Azeroth."
+L["ATLAS_DDL_EXPANSION_SHADOWLANDS"] = "Instances de Shadowlands"
 L["ATLAS_DDL_TYPE"] = "Type"			-- -- Sort Instance Maps by: Map Type
 L["ATLAS_DDL_TYPE_INSTANCE"] = "Instances"
 L["ATLAS_DDL_TYPE_ENTRANCE"] = "Entrées"
@@ -225,11 +248,11 @@ L["East"] = "Est"
 L["North"] = "Nord"
 L["South"] = "Sud"
 L["West"] = "Ouest"
---L["%s Instances"] = "%s Instances" 	-- Legion Instances
---L["%s Dungeons"] = "%s Dungeons"	-- Legion Dungeons
---L["%s Raids"] = "%s Raids"		-- Legion Raids
---L[" 1/2"] = " 1/2"
---L[" 2/2"] = " 2/2"
+L["%s Instances"] = "Instances de %s" 	-- Legion Instances
+L["%s Dungeons"] = "Donjons de %s"	-- Legion Dungeons
+L["%s Raids"] = "Raids de %s"		-- Legion Raids
+L[" 1/2"] = "1/2"
+L[" 2/2"] = "2/2"
 
 --World Events, Festival
 L["Brewfest"] = "Fête des Brasseurs"
@@ -360,5 +383,4 @@ L["Arazmodu <The Scale of Sands>"] = "Arazmodu <La Balance des sables>"
 L["Andormu <Keepers of Time>"] = "Andormu <Les Gardiens du temps>"
 L["Nozari <Keepers of Time>"] = "Nozari <Les Gardiens du temps>"
 L["Anachronos <Keepers of Time>"] = "Anachronos <Les Gardiens du temps>"
---@end-do-not-package@
 end

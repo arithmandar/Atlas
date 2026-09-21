@@ -24,30 +24,17 @@
 
 --]]
 -- ----------------------------------------------------------------------------
--- Localized Lua globals.
--- ----------------------------------------------------------------------------
--- Functions
-local _G = getfenv(0)
-
--- Libraries
-
--- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local FOLDER_NAME, private = ...
 
-local projectID = _G.WOW_PROJECT_ID
-local isClassicEra
-if projectID and _G.WOW_PROJECT_CLASSIC then
-	isClassicEra = projectID == _G.WOW_PROJECT_CLASSIC
-else
-	local _, _, _, interface = _G.GetBuildInfo()
-	isClassicEra = interface < 20000
-end
+-- Area table for Classic Era. Source is from AreaID table.
+local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 if not isClassicEra then return end
 
 local MapData = {}
 
+-- updated to 1.5.19.69722
 MapData.AreaToID = {
 	["Dun Morogh"] = 1,
 	["Longshore"] = 2,
@@ -690,7 +677,7 @@ MapData.AreaToID = {
 	["TESTAzshara"] = 1218,
 	["Legash Encampment"] = 1219,
 	["Thalassian Base Camp"] = 1220,
-	["Ruins of Eldarath "] = 1221,
+	["Ruins of Eldarath"] = 1221,
 	["Hetaera's Clutch"] = 1222,
 	["Temple of Zin-Malor"] = 1223,
 	["Bear's Head"] = 1224,
@@ -841,8 +828,8 @@ MapData.AreaToID = {
 	["Dustfire Valley"] = 1959,
 	["Zul'Gurub"] = 1977,
 	["Misty Reed Post"] = 1978,
-	["Bloodvenom Post "] = 1997,
-	["Talonbranch Glade "] = 1998,
+	["Bloodvenom Post"] = 1997,
+	["Talonbranch Glade"] = 1998,
 	["Stratholme"] = 2017,
 	["UNUSEDShadowfang Keep 003"] = 2037,
 	["Scholomance"] = 2057,
@@ -1130,5 +1117,137 @@ MapData.AreaToID = {
 	["City"] = 3459,
 	["Gates of Ahn'Qiraj"] = 3478,
 	["Ravenholdt Manor"] = 3486,
+	["Test Dungeon"] = 13649,
+	["The Searing Basin"] = 15159,
+	["Demon Fall Canyon"] = 15475,
+	["The Tainted Scar"] = 15531,
+	["Storm Cliffs"] = 15532,
+	["Demon Fall Barrow"] = 15540,
+	["Elsewhen"] = 15793,
+	["Felwood"] = 15809,
+	["Bloodvenom Post"] = 15810,
+	["Bloodvenom Falls"] = 15811,
+	["Bloodvenom River"] = 15812,
+	["Jaedenar"] = 15813,
+	["Shatter Scar Vale"] = 15814,
+	["Ruins of Constellas"] = 15815,
+	["Grove of the Ancients"] = 15816,
+	["Wildbend River"] = 15817,
+	["Twilight Shore"] = 15818,
+	["Twilight Vale"] = 15819,
+	["The Master's Glaive"] = 15820,
+	["Ameth'Aran"] = 15821,
+	["Blackwood Den"] = 15822,
+	["The Crystal Vale"] = 15825,
+	["The Burning of Andorhal"] = 15828,
+	["Starfall Village"] = 15938,
+	["Azshara"] = 16003,
+	["Hyjal"] = 16004,
+	["Darkwhisper Gorge"] = 16005,
+	["Xavian"] = 16006,
+	["Satyrnaar"] = 16007,
+	["Bough Shadow"] = 16008,
+	["Forest Song"] = 16009,
+	["Warsong Lumber Camp"] = 16010,
+	["Southfury River"] = 16011,
+	["Nightsong Woods"] = 16012,
+	["Shadowsong Shrine"] = 16013,
+	["Southfury River"] = 16014,
+	["Haldarr Encampment"] = 16015,
+	["Talrendis Point"] = 16016,
+	["Desolace"] = 16017,
+	["Feralas"] = 16018,
+	["The Maul"] = 16019,
+	["Valley of Bones"] = 16020,
+	["Gelkis Village"] = 16021,
+	["Mannoroc Coven"] = 16022,
+	["Dream Bough"] = 16023,
+	["Jademir Lake"] = 16024,
+	["Ruins of Ravenwind"] = 16025,
+	["The Twin Colossals"] = 16026,
+	["Oneiros"] = 16027,
+	["Eastern Plaguelands"] = 16028,
+	["The Hinterlands"] = 16029,
+	["Lake Mereldar"] = 16030,
+	["The Undercroft"] = 16031,
+	["Scarlet Base Camp"] = 16032,
+	["Darrowshire"] = 16033,
+	["The Creeping Ruin"] = 16034,
+	["The Forbidding Sea"] = 16035,
+	["Skulk Rock"] = 16036,
+	["Seradane"] = 16037,
+	["The Overlook Cliffs"] = 16038,
+	["Agol'watha"] = 16039,
+	["Shaol'watha"] = 16040,
+	["Valorwind Lake"] = 16041,
+	["Karazhan Crypts"] = 16074,
+	["Temple of Ahn'Qiraj"] = 16076,
+	["Redridge Mountains"] = 16113,
+	["Deadwind Pass"] = 16114,
+	["Blasted Lands"] = 16115,
+	["Swamp of Sorrows"] = 16116,
+	["Stranglethorn Vale"] = 16117,
+	["Elwynn Forest"] = 16118,
+	["Duskwood"] = 16119,
+	["Lakeridge Highway"] = 16120,
+	["Three Corners"] = 16121,
+	["Deadman's Crossing"] = 16122,
+	["Sleeping Gorge"] = 16123,
+	["The Vice"] = 16124,
+	["Morgan's Plot"] = 16125,
+	["Karazhan"] = 16126,
+	["Ariden's Camp"] = 16127,
+	["Deadwind Ravine"] = 16128,
+	["Zul'Gurub"] = 16129,
+	["Ridgepoint Tower"] = 16130,
+	["Eastvale Logging Camp"] = 16131,
+	["Beggar's Haunt"] = 16132,
+	["Tranquil Gardens Cemetery"] = 16133,
+	["Darkshire"] = 16134,
+	["Brightwood Grove"] = 16135,
+	["Manor Mistmantle"] = 16136,
+	["The Darkened Bank"] = 16137,
+	["Misty Valley"] = 16138,
+	["Itharius's Cave"] = 16139,
+	["Splinterspear Junction"] = 16140,
+	["Altar of Storms"] = 16141,
+	["The Tainted Scar"] = 16142,
+	["Dreadmaul Hold"] = 16143,
+	["Elwynn Forest"] = 16147,
+	["Duskwood"] = 16148,
+	["Westfall"] = 16149,
+	["Jerod's Landing"] = 16150,
+	["Forest's Edge"] = 16151,
+	["The Stonefield Farm"] = 16152,
+	["The Maclure Vineyards"] = 16153,
+	["Tower of Azora"] = 16154,
+	["Fargodeep Mine"] = 16155,
+	["Brackwell Pumpkin Patch"] = 16156,
+	["The Hushed Bank"] = 16157,
+	["The Darkened Bank"] = 16158,
+	["Addle's Stead"] = 16159,
+	["Twilight Grove"] = 16160,
+	["Darkshire"] = 16161,
+	["Raven Hill Cemetery"] = 16162,
+	["The Yorgen Farmstead"] = 16163,
+	["Vul'Gol Ogre Mound"] = 16164,
+	["Forlorn Rowe"] = 16165,
+	["Brightwood Grove"] = 16166,
+	["The Rotting Orchard"] = 16167,
+	["Raven Hill"] = 16168,
+	["Ashenvale"] = 16169,
+	["Scarlet Enclave"] = 16236,
+	["The Scarab Dais"] = 16295,
+	["New Avalon"] = 16335,
+	["The Forbidding Sea"] = 16361,
+	["Shadow Hold"] = 16362,
+	["Prison"] = 16369,
+	["Tyr's Hand"] = 16370,
+	["New Avalon"] = 16371,
+	["The Forbidding Expanse"] = 16372,
+	["Mine"] = 16373,
+	["Arcane Sanctum"] = 16374,
+	["Naxxramas"] = 16394,
 }
+
 private.MapData = MapData

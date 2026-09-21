@@ -43,13 +43,11 @@ AtlasZoneSubstitutions = {
 	["Ahn'Qiraj"] = "Templo de Ahn'Qiraj",
 	["The Temple of Atal'Hakkar"] = "El Templo de Atal'Hakkar",
 --	["Throne of Tides"] = "Fauce Abisal: Trono de las Mareas"
-};
+}
 end
 
 
 if L then
---@localization(locale="esES", format="lua_additive_table", handle-unlocalized="ignore")@
---@do-not-package@
 --************************************************
 -- UI terms and common strings
 --************************************************
@@ -77,6 +75,7 @@ L["ATLAS_STRING_MINGEARLEVEL"] = "Nivel de equipo mínimo"
 L["ATLAS_OPTIONS_BUTTON"] = "Opciones"
 L["ATLAS_OPTIONS_SHOWBUT"] = "Mostrar botón en el minimapa"
 L["ATLAS_OPTIONS_SHOWBUT_TIP"] = "Muestra el botón de Atlas en el minimapa."
+L["ATLAS_OPTIONS_SHOWWMBUT"] = "Mostrar botón en la ventana del mapa del mundo."
 L["ATLAS_OPTIONS_AUTOSEL"] = "Auto-Seleccionar mazmorra"
 L["ATLAS_OPTIONS_AUTOSEL_TIP"] = "Auto seleccionar mapa de mazmorra. Atlas detectará tu posición y elegirá mostrarte el mapa mas idóneo."
 L["ATLAS_OPTIONS_BUTPOS"] = "Posición del icono"
@@ -90,6 +89,7 @@ L["ATLAS_OPTIONS_ACRONYMS"] = "Mostrar acrónimos"
 L["ATLAS_OPTIONS_ACRONYMS_TIP"] = "Muestra el acrónimo de la mazmorra en los detalles del mapa."
 L["ATLAS_OPTIONS_SCALE"] = "Escala"
 L["ATLAS_OPTIONS_BOSS_DESC"] = "Muestra la descripción del jefe cuando este disponible"
+L["ATLAS_OPTIONS_BOSS_POTRAIT"] = "Mostrar retrato del jefe cuando esté disponible"
 L["ATLAS_OPTIONS_BOSS_DESC_TIP"] = "Cuando pasas el ratón por encima del número del jefe, muestra la descripción del jefe si la información está disponible."
 L["ATLAS_OPTIONS_BOSS_DESC_SCALE"] = "Escala de las ventanitas con la descripción del jefe en el mapa"
 L["ATLAS_OPTIONS_BUTRAD"] = "Radio del botón"
@@ -102,6 +102,10 @@ L["ATLAS_OPTIONS_CHECKMODULE"] = "Recuérdame que módulo(s) / plug-in(s) falta(
 L["ATLAS_OPTIONS_CHECKMODULE_TIP"] = "Activar para comprobar si falta algún módulo / plug-in de Atlas después del inicio de WoW."
 L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "Mostrar listado de mazmorras con colores"
 L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "Muestra con colores el nivel de dificultad de la mazmorra, basándose en el nivel mínimo recomendado de la mazmorra y en el nivel del personaje. "
+L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "Configuraciones de addons"
+L["ATLAS_OPTIONS_MAXMENUITEMS"] = "Número máximo de elementos de menú"
+L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"] = "Configurar el número máximo de elementos del menú desplegable que se mostrarán antes de dividir a otra categoría de menú."
+L["ATLAS_NO_MODULE_OR_PLUGIN"] = "|cffff66ffError:|r Atlas no ha detectado ningún módulo de mapa o plugin instalado y habilitado. Ten en cuenta que Atlas es un explorador de mapas, debes instalar al menos un módulo de mapas o un plugin para explorar los mapas."
 
 L["ATLAS_BUTTON_CLOSE"] = "Cerrar"
 L["ATLAS_LDB_HINT"] = [=[Click izquierdo para abrir Atlas.
@@ -120,15 +124,40 @@ L["ATLAS_DDL_CONTINENT_NORTHREND"] = "Mazmorras de Rasganorte"
 L["ATLAS_DDL_CONTINENT_DEEPHOLM"] = "Mazmorras de Infralar"
 L["ATLAS_DDL_CONTINENT_PANDARIA"] = "Mazmorras de Pandaria"
 L["ATLAS_DDL_CONTINENT_DRAENOR"] = "Mazmorras de Draenor"
+L["ATLAS_DDL_CONTINENT_BROKENISLES"] = "Mazmorras de las Islas Abruptas"
+L["ATLAS_DDL_CONTINENT_BROKENISLES1"] = "Mazmorras de las Islas Quebradas"
+L["ATLAS_DDL_CONTINENT_BROKENISLES2"] = "Bandas de las Islas Quebradas"
+L["ATLAS_DDL_CONTINENT_KULTIRAS"] = "Estancias de Kul Tiras"
+L["ATLAS_DDL_CONTINENT_PANDARIA"] = "Mazmorras de Pandaria"
+L["ATLAS_DDL_CONTINENT_NAZJATAR"] = "Estancias de Nazjatar"
 L["ATLAS_DDL_LEVEL"] = "Nivel"
-L["ATLAS_DDL_LEVEL_UNDER45"] = "Mazmorras de nivel inferior a 45"
-L["ATLAS_DDL_LEVEL_45TO60"] = "Mazmorras de nivel 45-60"
+-- BCC / prior to new level range
+L["ATLAS_DDL_LEVEL_10TO20"] = "Mazmorras de nivel 10-20"
+L["ATLAS_DDL_LEVEL_20TO40"] = "Mazmorras de nivel 20-40"
+L["ATLAS_DDL_LEVEL_40TO60"] = "Mazmorras de nivel 40-60"
 L["ATLAS_DDL_LEVEL_60TO70"] = "Mazmorras de nivel 60-70"
 L["ATLAS_DDL_LEVEL_70TO80"] = "Mazmorras de nivel 70-80"
 L["ATLAS_DDL_LEVEL_80TO85"] = "Mazmorras de nivel 80-85"
 L["ATLAS_DDL_LEVEL_85TO90"] = "Mazmorras de nivel 85-90"
 L["ATLAS_DDL_LEVEL_90TO100"] = "Mazmorras de nivel 90-100"
 L["ATLAS_DDL_LEVEL_100PLUS"] = "Mazmorras de nivel 100+"
+L["ATLAS_DDL_LEVEL_100TO110"] = "Mazmorras de nivel 100-110"
+L["ATLAS_DDL_LEVEL_110PLUS"] = "Mazmorras de nivel 110+"
+L["ATLAS_DDL_LEVEL_110TO120"] = "Mazmorras de nivel 110-120"
+L["ATLAS_DDL_LEVEL_120PLUS"] = "Mazmorras de nivel 120+"
+L["ATLAS_DDL_LEVEL_120TO130"] = "Mazmorras de nivel 120-130"
+L["ATLAS_DDL_LEVEL_130PLUS"] = "Mazmorras de nivel 130+"
+-- Retail / new level range
+L["ATLAS_DDL_LEVEL_UNDER30"] = "Mazmorras de nivel inferior a 30"
+L["ATLAS_DDL_LEVEL_UNDER45"] = "Mazmorras de nivel inferior a 45"
+L["ATLAS_DDL_LEVEL_10TO30"] = "Mazmorras de nivel 10-30"
+L["ATLAS_DDL_LEVEL_30TO35"] = "Mazmorras de nivel 30-35"
+L["ATLAS_DDL_LEVEL_35TO40"] = "Mazmorras de nivel 35-40"
+L["ATLAS_DDL_LEVEL_40TO45"] = "Mazmorras de nivel 40-45"
+L["ATLAS_DDL_LEVEL_45TO50"] = "Mazmorras de nivel 45-50"
+L["ATLAS_DDL_LEVEL_45TO60"] = "Mazmorras de nivel 45-60"
+L["ATLAS_DDL_LEVEL_50TO60"] = "Mazmorras de nivel 50-60"
+L["ATLAS_DDL_LEVEL_60PLUS"] = "Mazmorras de nivel 60+"
 L["ATLAS_DDL_PARTYSIZE"] = "Tamaño del grupo"
 L["ATLAS_DDL_PARTYSIZE_5"] = "Mazmorras para 5 jugadores"
 L["ATLAS_DDL_PARTYSIZE_10"] = "Mazmorras para 10 jugadores"
@@ -140,6 +169,11 @@ L["ATLAS_DDL_EXPANSION_WOTLK"] = "Mazmorras Wrath of the Lich King"
 L["ATLAS_DDL_EXPANSION_CATA"] = "Mazmorras de Cataclysm"
 L["ATLAS_DDL_EXPANSION_MOP"] = "Mazmorras de Mists of Pandaria"
 L["ATLAS_DDL_EXPANSION_WOD"] = "Mazmorras de Warlords of Draenor"
+L["ATLAS_DDL_EXPANSION_LEGION"] = "Mazmorras de Legion"
+L["ATLAS_DDL_EXPANSION_LEGION1"] = "Mazmorras de Legion"
+L["ATLAS_DDL_EXPANSION_LEGION2"] = "Bandas de Legion"
+L["ATLAS_DDL_EXPANSION_BFA"] = "Estancias Batalla por Azeroth"
+L["ATLAS_DDL_EXPANSION_SHADOWLANDS"] = "Estancias de Las Tierras de las Sombras"
 L["ATLAS_DDL_TYPE"] = "Tipo"			-- -- Sort Instance Maps by: Map Type
 L["ATLAS_DDL_TYPE_INSTANCE"] = "Mazmorras"
 L["ATLAS_DDL_TYPE_ENTRANCE"] = "Entradas"
@@ -150,7 +184,6 @@ L["ATLAS_SEARCH_UNAVAIL"] = "Buscar no disponible"
 
 L["ATLAS_DEP_MSG1"] = "Atlas ha detectado uno o varios modulos sin actualizar."
 L["ATLAS_DEP_MSG2"] = "Se han sido desactivados para este personaje."
-L["ATLAS_DEP_MSG3"] = "Borralos de tu directorio AddOns."
 L["ATLAS_DEP_OK"] = "Vale"
 
 L["ATLAS_INFO"] = "Información de Atlas"
@@ -189,17 +222,20 @@ Lista de módulos / plug-ins faltantes:
 ]=]
 L["ATLAS_OPEN_ADDON_LIST"] = "Abrir lista de addons"
 
---L["ATLAS_OPEN_ACHIEVEMENT"] = "Click to open achievement details."
---L["ATLAS_OPEN_ADVENTURE"] = "Click to open Adventure Journal window."
+L["ATLAS_OPEN_ACHIEVEMENT"] = "Clic para abrir los detalles de los logros."
+L["ATLAS_OPEN_ADVENTURE"] = "Click para abrir la ventana de la Guía de mazmorras."
 L["ATLAS_CLICK_TO_OPEN"] = "Haz click para abrir el mapa de Atlas"
 L["ATLAS_OPEN_WOWMAP_WINDOW"] = "Haz click para abrir el Mapa del Diario de Aventuras."
---L["ATLAS_OPEN_ATLASLOOT_WINDOW"] = "Click to open AtlasLoot window."
---L["ATLAS_ROPEN_ATLASLOOT_WINDOW"] = "Right-click to open AtlasLoot window."
---L["ATLAS_CLOSE_ATLASLOOT_WINDOW"] = "Right-click to close AtlasLoot window."
+L["ATLAS_OPEN_ATLASLOOT_WINDOW"] = "Clic para abrir la ventana de AtlasLoot."
+L["ATLAS_ROPEN_ATLASLOOT_WINDOW"] = "Clic derecho para abrir la ventana de AtlasLoot."
+L["ATLAS_CLOSE_ATLASLOOT_WINDOW"] = "Clic derecho para cerrar la ventana de AtlasLoot."
 L["ATLAS_COLLAPSE_BUTTON"] = "Haz click para cerrar el panel de legendarios"
---L["ATLAS_EXPAND_BUTTON"] = "Click to open Atlas' legend panel."
---L["ATLAS_TOGGLE_LOOT"] = "Right-click to toggle loot panel."
---L["ATLAS_REOPEN_LOOT_AGAIN"] = "Please reopen the loot window to reload."
+L["ATLAS_EXPAND_BUTTON"] = "Click para abrir el panel con la leyenda de Atlas."
+L["ATLAS_TOGGLE_LOOT"] = "Click derecho para abrir/cerrar el panel de botín."
+L["ATLAS_REOPEN_LOOT_AGAIN"] = "Por favor, vuelve a abrir la ventana de botín para recargar."
+
+L["Scale and Transparency"] = "Escala y transparencia"
+
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************
@@ -209,6 +245,11 @@ L["East"] = "Este"
 L["North"] = "Norte"
 L["South"] = "Sur"
 L["West"] = "Oeste"
+L["%s Instances"] = "%s Estancias"
+L["%s Dungeons"] = "%s Mazmorras"
+L["%s Raids"] = "%s Bandas"
+L[" 1/2"] = "1/2"
+L[" 2/2"] = "2/2"
 
 --World Events, Festival
 L["Brewfest"] = "Festival de la cerveza"
@@ -217,9 +258,22 @@ L["Love is in the Air"] = "Amor en el aire"
 L["Lunar Festival"] = "Festival lunar"
 L["Midsummer Festival"] = "Festival del solsticio de verano"
 
+--Instance Difficulties
+L["Heroic_Symbol"] = "(H)"
+L["Mythic_Symbol"] = "(M)"
 --Misc strings
+	--Symbols
 L["Colon"] = ": " -- The colon symbol to be used in string, ex: "Zone: Firelands
-	L["Comma"] = ","
+L["L-Parenthesis"] = "("
+L["R-Parenthesis"] = ")"
+L["Comma"] = ","
+L["Period"] = "."
+L["Hyphen"] = "-"
+L["Slash"] = "/"
+L["L-SBracket"] = "["
+L["R-SBracket"] = "]"
+L["L-DQuote"] = "\""
+L["R-DQuote"] = "\""
 L["Adult"] = "Adulto"
 L["AKA"] = "Alias"
 L["Arcane Container"] = "Contenedor Arcano"	
@@ -255,6 +309,7 @@ L["Optional"] = "Opcional"
 L["Orange"] = "Naranja"
 L["Outside"] = "Fuera"
 L["Portal"] = "Portal"
+L["Portal to %s"] = "Portal a %s"
 L["Protection Warrior"] = "Guerrero Protección"
 L["Purple"] = "Morado"
 L["Random"] = "Aleatorio"
@@ -262,6 +317,8 @@ L["Rare"] = "Raro"
 L["Repair"] = "Reparar"
 L["Retribution Paladin"] = "Paladín Reprensión"
 L["Rewards"] = "Recompensas"
+L["Stairs"] = "Escaleras"
+L["Stairs to %s"] = "Escaleras a %s"
 L["Second Stop"] = "Segunda parada"
 L["Shadow Priest"] = "Sacerdote Sombras"
 L["Spawn Point"] = "Punto de aparición"
@@ -274,6 +331,7 @@ L["Top"] = "Arriba"
 L["Tunnel"] = "Túnel"
 L["Underwater"] = "Bajo el agua"
 L["Upper"] = "Arriba"
+L["Upper floor"] = "Piso superior"
 L["Varies"] = "Varios"
 L["Wanders"] = "Rondando"
 L["Wave 5"] = "Ola 5"
@@ -287,6 +345,8 @@ imagen de mapa correspondiente.
 Por favor, asegurate de tener instalado 
 el módulo(s) de mapas Atlas correspondiente.]=]
 L["PossibleMissingModule"] = "Posiblemente este mapa es de este módulo: "
+L["Transport"] = "Transporte"
+L["Profile Options"] = "Opciones de perfil"
 
 --Map sections
 L["MapA"] = " [A]" -- For example: Shado-Pan Monastery [A]
@@ -295,6 +355,10 @@ L["MapC"] = " [C]"
 L["MapD"] = " [D]"
 L["MapE"] = " [E]"
 L["MapF"] = " [F]"
+L["MapG"] = " [G]"
+L["MapH"] = " [H]"
+L["MapI"] = " [I]"
+L["MapJ"] = " [J]"
 
 --************************************************
 -- Instance Entrance Maps
@@ -319,5 +383,4 @@ L["Arazmodu <The Scale of Sands>"] = "Arazmodu <La Escama de las Arenas>"
 L["Andormu <Keepers of Time>"] = "Andormu <Vigilantes del Tiempo"
 L["Nozari <Keepers of Time>"] = "Nozari <Vigilantes del Tiempo>"
 L["Anachronos <Keepers of Time>"] = "Anacronos <Vigilantes del Tiempo>"
---@end-do-not-package@
 end

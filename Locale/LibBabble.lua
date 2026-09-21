@@ -31,6 +31,7 @@ local _G = getfenv(0)
 -- Libraries
 local pairs = _G.pairs
 local LibStub, C_Map = _G.LibStub, _G.C_Map
+local GetAreaInfo = C_Map.GetAreaInfo
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -43,7 +44,7 @@ local function getAreaInfo(zoneName)
 	local data = MapData.AreaToID
 
 	if (data[zoneName]) then
-		return C_Map.GetAreaInfo(data[zoneName])
+		return GetAreaInfo(data[zoneName])
 	else
 		return
 	end

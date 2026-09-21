@@ -45,7 +45,6 @@ end
 
 
 if L then
---@do-not-package@
 --************************************************
 -- UI terms and common strings
 --************************************************
@@ -87,6 +86,7 @@ L["ATLAS_OPTIONS_ACRONYMS"] = "약어 표시"
 L["ATLAS_OPTIONS_ACRONYMS_TIP"] = "지도 상세에 인스턴스의 약어를 표시합니다."
 L["ATLAS_OPTIONS_SCALE"] = "Atlas 프레임 크기"
 L["ATLAS_OPTIONS_BOSS_DESC"] = "가능한 경우 보스 설명 표시"
+L["ATLAS_OPTIONS_BOSS_POTRAIT"] = "가능한 경우 보스 초상화 표시"
 L["ATLAS_OPTIONS_BOSS_DESC_TIP"] = "마우스를 보스 번호 위에 올리면, 관련 정보를 이용할 수 있는 경우 보스 설명을 표시합니다."
 L["ATLAS_OPTIONS_BOSS_DESC_SCALE"] = "보스 설명 지도 툴팁 크기"
 L["ATLAS_OPTIONS_BUTRAD"] = "버튼 반지름"
@@ -99,6 +99,16 @@ L["ATLAS_OPTIONS_CHECKMODULE"] = "빠진 모듈 / 플러그인 알림."
 L["ATLAS_OPTIONS_CHECKMODULE_TIP"] = "WoW가 로드된 후 빠진 Atlas 모듈 / 플러그인이 있는지 검사를 수행할 수 있습니다."
 L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "던전 드롭다운 목록 색상 표시"
 L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "인스턴스의 최소 권장 레벨과 플레이어의 레벨에 따라, 인스턴스 난이도를 색상으로 표시합니다. "
+L["ATLAS_OPTIONS_HEADER_DISPLAY"] = "표시 옵션"
+L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "애드온 구성"
+L["ATLAS_OPTIONS_MAXMENUITEMS"] = "최대 메뉴 항목 수"
+L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"] = "다른 메뉴 범주로 나누기 전에 표시할 최대 드롭다운 메뉴 항목 수를 설정합니다."
+L["ATLAS_NO_MODULE_OR_PLUGIN"] = [=[|cffff66ff오류:|r
+Atlas는 설치 및 활성화 된 맵 모듈 또는 
+플러그인을 감지 할 수 없습니다.
+Atlas 자체는 맵 브라우저이므로 맵을 
+찾아 보려면 최소한 하나의 맵 모듈 또는 
+플러그인을 설치해야 합니다.]=]
 
 L["ATLAS_BUTTON_CLOSE"] = "닫기"
 L["ATLAS_LDB_HINT"] = [=[좌클릭 - Atlas 열기.
@@ -117,9 +127,16 @@ L["ATLAS_DDL_CONTINENT_DEEPHOLM"] = "심원의 영지 인스턴스"
 L["ATLAS_DDL_CONTINENT_PANDARIA"] = "판다리아 인스턴스"
 L["ATLAS_DDL_CONTINENT_DRAENOR"] = "드레노어 인스턴스"
 L["ATLAS_DDL_CONTINENT_BROKENISLES"] = "부서진 섬 인스턴스"
+L["ATLAS_DDL_CONTINENT_BROKENISLES1"] = "부서진 섬 던전"
+L["ATLAS_DDL_CONTINENT_BROKENISLES2"] = "부서진 섬 공격대"
+L["ATLAS_DDL_CONTINENT_KULTIRAS"] = "쿨 티라스 인스턴스"
+L["ATLAS_DDL_CONTINENT_ZANDALAR"] = "잔달라 인스턴스"
+L["ATLAS_DDL_CONTINENT_NAZJATAR"] = "나즈자타 인스턴스"
 L["ATLAS_DDL_LEVEL"] = "레벨"
-L["ATLAS_DDL_LEVEL_UNDER45"] = "인스턴스 레벨 45 아래"
-L["ATLAS_DDL_LEVEL_45TO60"] = "인스턴스 레벨 45-60"
+-- BCC / prior to new level range
+L["ATLAS_DDL_LEVEL_10TO20"] = "인스턴스 레벨 10-20"
+L["ATLAS_DDL_LEVEL_20TO40"] = "인스턴스 레벨 20-40"
+L["ATLAS_DDL_LEVEL_40TO60"] = "인스턴스 레벨 40-60"
 L["ATLAS_DDL_LEVEL_60TO70"] = "인스턴스 레벨 60-70"
 L["ATLAS_DDL_LEVEL_70TO80"] = "인스턴스 레벨 70-80"
 L["ATLAS_DDL_LEVEL_80TO85"] = "인스턴스 레벨 80-85"
@@ -128,15 +145,39 @@ L["ATLAS_DDL_LEVEL_90TO100"] = "인스턴스 레벨 90-100"
 L["ATLAS_DDL_LEVEL_100PLUS"] = "인스턴스 레벨 100+"
 L["ATLAS_DDL_LEVEL_100TO110"] = "인스턴스 레벨 100-110"
 L["ATLAS_DDL_LEVEL_110PLUS"] = "인스턴스 레벨 110+"
+L["ATLAS_DDL_LEVEL_110TO120"] = "인스턴스 레벨 110-120"
+L["ATLAS_DDL_LEVEL_120PLUS"] = "인스턴스 레벨 120+"
+L["ATLAS_DDL_LEVEL_120TO130"] = "인스턴스 레벨 120-130"
+L["ATLAS_DDL_LEVEL_130PLUS"] = "인스턴스 레벨 130+"
+-- Retail / new level range
+L["ATLAS_DDL_LEVEL_UNDER30"] = "인스턴스 레벨 30 아래"
+L["ATLAS_DDL_LEVEL_UNDER45"] = "인스턴스 레벨 45 아래"
+L["ATLAS_DDL_LEVEL_10TO30"] = "인스턴스 레벨 10-30"
+L["ATLAS_DDL_LEVEL_30TO35"] = "인스턴스 레벨 30-35"
+L["ATLAS_DDL_LEVEL_35TO40"] = "인스턴스 레벨 35-40"
+L["ATLAS_DDL_LEVEL_40TO45"] = "인스턴스 레벨 40-45"
+L["ATLAS_DDL_LEVEL_45TO50"] = "인스턴스 레벨 45-50"
+L["ATLAS_DDL_LEVEL_45TO60"] = "인스턴스 레벨 45-60"
+L["ATLAS_DDL_LEVEL_50TO60"] = "인스턴스 레벨 50-60"
+L["ATLAS_DDL_LEVEL_60PLUS"] = "인스턴스 레벨 60+"
 L["ATLAS_DDL_PARTYSIZE"] = "파티 크기"
+L["ATLAS_DDL_PARTYSIZE_5"] = "5인 인스턴스"
+L["ATLAS_DDL_PARTYSIZE_10"] = "10인 인스턴스"
+L["ATLAS_DDL_PARTYSIZE_20TO40"] = "20-40인 인스턴스"
 L["ATLAS_DDL_EXPANSION"] = "확장"
+L["ATLAS_DDL_EXPANSION_OLD"] = "구세계 인스턴스"
 L["ATLAS_DDL_EXPANSION_BC"] = "불타는 성전 인스턴스"
 L["ATLAS_DDL_EXPANSION_WOTLK"] = "리치왕의 분노 인스턴스"
 L["ATLAS_DDL_EXPANSION_CATA"] = "대격변 인스턴스"
 L["ATLAS_DDL_EXPANSION_MOP"] = "판다리아의 안개 인스턴스"
 L["ATLAS_DDL_EXPANSION_WOD"] = "드레노어의 군주 인스턴스"
 L["ATLAS_DDL_EXPANSION_LEGION"] = "군단 인스턴스"
+L["ATLAS_DDL_EXPANSION_LEGION1"] = "군단 던전"
+L["ATLAS_DDL_EXPANSION_LEGION2"] = "군단 공격대"
+L["ATLAS_DDL_EXPANSION_BFA"] = "격전의 아제로스 인스턴스"
+L["ATLAS_DDL_EXPANSION_SHADOWLANDS"] = "어둠땅 인스턴스"
 L["ATLAS_DDL_TYPE"] = "유형"
+L["ATLAS_DDL_TYPE_INSTANCE"] = "인스턴스"
 L["ATLAS_DDL_TYPE_ENTRANCE"] = "입구"
 L["ATLAS_INSTANCE_BUTTON"] = "인스턴스"
 L["ATLAS_ENTRANCE_BUTTON"] = "입구"
@@ -144,8 +185,10 @@ L["ATLAS_SEARCH_UNAVAIL"] = "검색 불가"
 
 L["ATLAS_DEP_MSG1"] = "Atlas가 오래된 모듈을 감지했습니다."
 L["ATLAS_DEP_MSG2"] = "이 캐릭터에 대해서 비활성화됨."
-L["ATLAS_DEP_MSG3"] = "AddOns 폴더에서 이들을 삭제하세요."
+L["ATLAS_DEP_MSG3"] = [=[AddOns 폴더에서 파일을 삭제하고 최신 버전을 설치하세요.
 
+오래된 플러그인/모듈/애드온 목록:]=]
+L["ATLAS_DEP_MSG4"] = "최신 버전을 설치했으면 애드온 목록에서 최신 버전을 활성화해야 합니다."
 L["ATLAS_DEP_OK"] = "확인"
 L["ATLAS_INFO"] = "Atlas 정보"
 
@@ -192,11 +235,20 @@ L["ATLAS_TOGGLE_LOOT"] = "전리품 패널을 켜고 끄려면 우클릭하세�
 
 --L["Scale and Transparency"] = "Scale and Transparency"
 
+--************************************************
+-- Zone Names, Acronyms, and Common Strings
+--************************************************
+
 --Common strings
 L["East"] = "동쪽"
 L["North"] = "북쪽"
 L["South"] = "남쪽"
 L["West"] = "서쪽"
+L["%s Instances"] = "%s 인스턴스"
+L["%s Dungeons"] = "%s 던전"
+L["%s Raids"] = "%s 공격대"
+L[" 1/2"] = " 1/2"
+L[" 2/2"] = " 2/2"
 
 --World Events, Festival
 L["Brewfest"] = "가을 축제"
@@ -226,6 +278,7 @@ L["Adult"] = "성인"
 L["AKA"] = "또는"
 L["Arcane Container"] = "마법 단지"
 L["Arms Warrior"] = "무기 전사"
+L["Attunement Required"] = "조율 필요"
 L["Back"] = "뒤쪽"
 L["Basement"] = "지하"
 L["Blacksmithing Plans"] = "대장기술 도면"
@@ -250,11 +303,13 @@ L["Imp"] = "임프"
 L["Key"] = "열쇠"
 L["Lower"] = "하층"
 L["Meeting Stone"] = "만남의 돌"
+L["Middle"] = "중앙"
 L["Moonwell"] = "달샘"
 L["Optional"] = "선택"
 L["Orange"] = "주황색"
 L["Outside"] = "야외"
 L["Portal"] = "차원문"
+L["Portal to %s"] = "%s|1으로;로; 통하는 차원문"
 L["Protection Warrior"] = "방어 전사"
 L["Purple"] = "보라색"
 L["Random"] = "무작위"
@@ -262,6 +317,8 @@ L["Rare"] = "희귀"
 L["Repair"] = "수리"
 L["Retribution Paladin"] = "징벌 기사"
 L["Rewards"] = "보상"
+L["Stairs"] = "계단"
+L["Stairs to %s"] = "%s까지의 계단"
 L["Second Stop"] = "두 번째 대기"
 L["Shadow Priest"] = "암흑 사제"
 L["Spawn Point"] = "스폰 장소"
@@ -276,12 +333,18 @@ L["Underwater"] = "수중"
 L["Upper"] = "상층"
 L["Upper floor"] = "상층"
 L["Varies"] = "위치 바뀜"
+L["Wanders"] = "떠돌이"
+L["Wave 5"] = "5 웨이브"
+L["Wave 6"] = "6 웨이브"
+L["Wave 10"] = "10 웨이브"
+L["Wave 12"] = "12 웨이브"
+L["Wave 18"] = "18 웨이브"
 L["MapsNotFound"] = [=[현재 선택된 던전에 해당하는 지도 이미지가 없습니다.
 
 관련 Atlas 지도 모듈을 설치했는지 확인 바랍니다.]=]
 L["PossibleMissingModule"] = "이 지도는 다음 모듈에 있습니다:"
---L["Transport"] = "Transport"
---L["Profile Options"] = "Profile Options"
+L["Transport"] = "운송"
+L["Profile Options"] = "프로필 옵션"
 
 --Map sections
 L["MapA"] = " [A]"
@@ -304,6 +367,7 @@ L["Lothos Riftwaker"] = "로소스 리프트웨이커"
 L["Orb of Command"] = "지배의 보주"
 L["Scarshield Quartermaster <Scarshield Legion>"] = "방패부대 병참장교 <방패 부대>"
 L["The Behemoth"] = "거수"
+
 --Caverns of Time (Entrance)
 L["Steward of Time <Keepers of Time>"] = "시간의 청지기 <시간의 수호자>"
 L["Alexston Chrome <Tavern of Time>"] = "알렉스턴 크롬 <시간의 선술집>"
@@ -317,6 +381,4 @@ L["Arazmodu <The Scale of Sands>"] = "아라즈모두 <시간의 중재자>"
 L["Andormu <Keepers of Time>"] = "안도르무 <시간의 수호자>"
 L["Nozari <Keepers of Time>"] = "노자리 <시간의 수호자>"
 L["Anachronos <Keepers of Time>"] = "아나크로노스 <시간의 수호자>"
---@end-do-not-package@
---@localization(locale="koKR", format="lua_additive_table", handle-unlocalized="ignore")@
 end

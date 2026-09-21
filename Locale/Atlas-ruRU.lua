@@ -48,227 +48,350 @@ end
 
 
 if L then
---@localization(locale="ruRU", format="lua_additive_table", handle-unlocalized="ignore")@
---@do-not-package@
 --************************************************
 -- UI terms and common strings
 --************************************************
-	L["ATLAS_TITLE"] = "Атлас";
+L["ATLAS_TITLE"] = "Atlas"
 
-	L["BINDING_HEADER_ATLAS_TITLE"] = "Сопоставления кнопок";
-	L["BINDING_NAME_ATLAS_TOGGLE"] = "Атлас";
-	L["BINDING_NAME_ATLAS_OPTIONS"] = "Настройки Атласа";
-	L["BINDING_NAME_ATLAS_AUTOSEL"] = "Авто-выбор поздемелья";
+L["BINDING_HEADER_ATLAS_TITLE"] = "Сопоставления кнопок"
+L["BINDING_NAME_ATLAS_TOGGLE"] = "Atlas"
+L["BINDING_NAME_ATLAS_OPTIONS"] = "Настройки Atlas"
+L["BINDING_NAME_ATLAS_AUTOSEL"] = "Авто-выбор подземелья"
 
-	L["ATLAS_SLASH"] = "/atlas";
-	L["ATLAS_SLASH_OPTIONS"] = "options";
+L["ATLAS_SLASH"] = "/atlas"
+L["ATLAS_SLASH_OPTIONS"] = "options"
 
-	L["ATLAS_STRING_LOCATION"] = "Расположение";
-	L["ATLAS_STRING_LEVELRANGE"] = "Уровень"; -- shorten from "Level Range" as we are running out of space
-	L["ATLAS_STRING_RECLEVELRANGE"] = "Реком. уровень"; -- abbrevation and shorten of "Recommended Level Range", the dungeon's recommended level range
-	L["ATLAS_STRING_PLAYERLIMIT"] = "Лимит игроков";
-	L["ATLAS_STRING_SELECT_CAT"] = "Выбор категории";
-	L["ATLAS_STRING_SELECT_MAP"] = "Выбор карты";
-	L["ATLAS_STRING_SEARCH"] = "Поиск";
-	L["ATLAS_STRING_CLEAR"] = "Сбросить";
-	L["ATLAS_STRING_MINLEVEL"] = "Минимальный уровень";
+L["ATLAS_STRING_LOCATION"] = "Расположение"
+L["ATLAS_STRING_LEVELRANGE"] = "Уровень"
+L["ATLAS_STRING_RECLEVELRANGE"] = "Реком. уровень"
+L["ATLAS_STRING_PLAYERLIMIT"] = "Лимит игроков"
+L["ATLAS_STRING_SELECT_CAT"] = "Выбор категории"
+L["ATLAS_STRING_SELECT_MAP"] = "Выбор карты"
+L["ATLAS_STRING_SEARCH"] = "Поиск"
+L["ATLAS_STRING_CLEAR"] = "Сбросить"
+L["ATLAS_STRING_MINLEVEL"] = "Минимальный уровень"
+L["ATLAS_STRING_MINGEARLEVEL"] = "Минимальный уровень вещей"
 
-	L["ATLAS_OPTIONS_BUTTON"] = "Настройки";
-	L["ATLAS_OPTIONS_SHOWBUT"] = "Показывать кнопку у мини-карты";
-	L["ATLAS_OPTIONS_SHOWBUT_TIP"] = "Отображать кнопку Атласа у мини-карты.";
-	L["ATLAS_OPTIONS_AUTOSEL"] = "Автоматический выбор поздемелья";
-	L["ATLAS_OPTIONS_AUTOSEL_TIP"] = "Автоматический выбор карты поздемелья, Атлас будет определить ваше местоположение, чтобы выбрать лучшую карту подземелья для вас.";
-	L["ATLAS_OPTIONS_BUTPOS"] = "Расположение кнопки";
-	L["ATLAS_OPTIONS_LOCK"] = "Закрепить окно Атласа";
-	L["ATLAS_OPTIONS_LOCK_TIP"] = "Закрепить / освободить окно Атласа.";
-	L["ATLAS_OPTIONS_TRANS"] = "Прозрачность";
-	L["ATLAS_OPTIONS_RCLICK"] = "[ПКМ] для карты мира";
-	L["ATLAS_OPTIONS_RCLICK_TIP"] = "Включает отображение мировой карты при нажатии ПКМ в окне Атласа.";
-	L["ATLAS_OPTIONS_RESETPOS"] = "Сбросить позиции";
-	L["ATLAS_OPTIONS_ACRONYMS"] = "Короткие названия";
-	L["ATLAS_OPTIONS_ACRONYMS_TIP"] = "Будут отображаться сокрощенные названия подземелий в информации о карте.";
-	L["ATLAS_OPTIONS_SCALE"] = "Размер";
-	L["ATLAS_OPTIONS_BOSS_DESC"] = "Показать описание босса (если доступно)";
-	L["ATLAS_OPTIONS_BOSS_DESC_TIP"] = "При наведении курсора мышки над номером босса, будет показано описание босса, если такая информация доступна.";
-	L["ATLAS_OPTIONS_BOSS_DESC_SCALE"] = "Размер подсказки описания босса на карте";
-	L["ATLAS_OPTIONS_BUTRAD"] = "Радиус расположения кнопки";
-	L["ATLAS_OPTIONS_CLAMPED"] = "Не заходить за размеры экрана";
-	L["ATLAS_OPTIONS_CLAMPED_TIP"] = "Фиксировать окно Атласа на экране, отключение позволит перемещать окно Атласа за пределы игрового экрана.";
-	L["ATLAS_OPTIONS_CTRL"] = "Удерживайте клавишу [CTRL] для сравнений";
-	L["ATLAS_OPTIONS_CTRL_TIP"] = "Включить/отключить отображение подсказки при удерживании клавиши CTRL и наведении курсора мышки на информационной карте. Полезно тогда, когда текст слишком длинный, для отображения в окне.";
-	L["ATLAS_OPTIONS_DONTSHOWAGAIN"] = "Не отображать одинаковую информацию снова.";
-	L["ATLAS_OPTIONS_CHECKMODULE"] = "Напоминать о недостоющих модулях / плагинах.";
-	L["ATLAS_OPTIONS_CHECKMODULE_TIP"] = "Выполнение проверки после загрузки WoW, на наличие недостающих модулей / плагинов Atlas'а.";
-	L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "Цвет ур. сложности подземелья";
-	L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "Полагаясь на предложенный минимальный уровень подземелья и уровень игрока, окрашивать названия подземелий с учетом их уровня сложности.";
+L["ATLAS_OPTIONS_BUTTON"] = "Настройки"
+L["ATLAS_OPTIONS_SHOWBUT"] = "Показывать кнопку возле миникарты"
+L["ATLAS_OPTIONS_SHOWBUT_TIP"] = "Показывает кнопку Atlas возле миникарты."
+L["ATLAS_OPTIONS_SHOWWMBUT"] = "Показать кнопку в окне карты мира."
+L["ATLAS_OPTIONS_AUTOSEL"] = "Автоматически выбирать подземелья"
+L["ATLAS_OPTIONS_AUTOSEL_TIP"] = "Atlas определит ваше местоположение, чтобы выбрать подходящую карту подземелья."
+L["ATLAS_OPTIONS_BUTPOS"] = "Расположение кнопки"
+L["ATLAS_OPTIONS_LOCK"] = "Закрепить окно Atlas"
+L["ATLAS_OPTIONS_LOCK_TIP"] = "Закрепляет / освобождает окно Atlas."
+L["ATLAS_OPTIONS_TRANS"] = "Прозрачность"
+L["ATLAS_OPTIONS_RCLICK"] = "[ПКМ] для показа карты мира"
+L["ATLAS_OPTIONS_RCLICK_TIP"] = "Включает показ карты мира при нажатии правой кнопки мыши в окне Atlas."
+L["ATLAS_OPTIONS_RESETPOS"] = "Сбросить положение"
+L["ATLAS_OPTIONS_ACRONYMS"] = "Сокращать названия"
+L["ATLAS_OPTIONS_ACRONYMS_TIP"] = "Показывает сокращённые названия подземелий в сведениях о карте."
+L["ATLAS_OPTIONS_SCALE"] = "Размер"
+L["ATLAS_OPTIONS_BOSS_DESC"] = "Показать описание босса (если доступно)"
+L["ATLAS_OPTIONS_BOSS_POTRAIT"] = "Показывать портрет босса, когда возможно"
+L["ATLAS_OPTIONS_BOSS_DESC_TIP"] = "При наведении курсора на номер босса, будет показано описание босса, если эта информация доступна."
+L["ATLAS_OPTIONS_BOSS_DESC_SCALE"] = "Размер подсказки описания босса на карте"
+L["ATLAS_OPTIONS_BUTRAD"] = "Радиус расположения кнопки"
+L["ATLAS_OPTIONS_CLAMPED"] = "Не заходить за пределы экрана"
+L["ATLAS_OPTIONS_CLAMPED_TIP"] = "Помещает окно Atlas в пределах, отключение позволит перемещать окно за пределы игрового экрана."
+L["ATLAS_OPTIONS_CTRL"] = "Удерживать клавишу Ctrl для подсказок"
+L["ATLAS_OPTIONS_CTRL_TIP"] = "Включает/отключает показ подсказки при удерживании клавиши Ctrl и наведении курсора на информационной карте. Полезно, когда текст слишком длинный для показа в окне."
+L["ATLAS_OPTIONS_DONTSHOWAGAIN"] = "Не показывать одну и ту же информацию повторно."
+L["ATLAS_OPTIONS_CHECKMODULE"] = "Напоминать об отсутствующих модулях / плагинах."
+L["ATLAS_OPTIONS_CHECKMODULE_TIP"] = "Выполнение проверки после загрузки WoW, на наличие отсутствующих модулей / плагинов Atlas."
+L["ATLAS_OPTIONS_COLORINGDROPDOWN"] = "Показать подземелья в выпадающим цветах"
+L["ATLAS_OPTIONS_COLORINGDROPDOWN_TIP"] = "Основываясь на подземелий, рекомендуемого минимального уровня, и уровня игрока, чтобы показать подземелье с цветами сложности."
+L["ATLAS_OPTIONS_HEADER_DISPLAY"] = "Параметры отображения"
+L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "Конфигурации аддона"
+L["ATLAS_OPTIONS_MAXMENUITEMS"] = "Максимальное число пунктов меню"
+L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"] = "Настройте максимальное количество выпадающих меню, которые будут отображаться перед разбиением на другую категорию меню."
+L["ATLAS_NO_MODULE_OR_PLUGIN"] = [=[|cffff66ffОшибка:|r
+Atlas не может обнаружить какой-либо модуль карты
+или плагин установлен и включен.
+Отметим, что сам Atlas представляет собой браузер карты 
+вам придется устанавливать как минимум один 
+картографический модуль или плагин, чтобы просматривать карты.]=]
 
-	L["ATLAS_BUTTON_CLOSE"] = "Закрыть";	
-	L["ATLAS_LDB_HINT"] = "[ЛКМ] - открывает Атлас.\n[ПКМ] - открывает настройки Атласа.";
-	L["ATLAS_MINIMAPLDB_HINT"] = "[ЛКМ] - открывает Атлас.\n[ПКМ] + открывает настройки Атласа.\n[ЛКМ] + [перемещение] - изменяет позицию кнопки.";
+L["ATLAS_BUTTON_CLOSE"] = "Закрыть"
+L["ATLAS_LDB_HINT"] = [=[[ЛКМ] - открывает Atlas.
+[ПКМ] - открывает настройки Atlas.]=]
+L["ATLAS_MINIMAPLDB_HINT"] = [=[[ЛКМ] - открывает Atlas.
+[ПКМ] + открывает настройки Atlas.
+[ЛКМ] + [перемещение] - изменяет положение кнопки.]=]
 
-	L["ATLAS_OPTIONS_CATDD"] = "Сортировать подземелья по:";
-	L["ATLAS_DDL_CONTINENT"] = "Континенту";
-	L["ATLAS_DDL_CONTINENT_EASTERN"] = "Подземелья Восточных королевств";
-	L["ATLAS_DDL_CONTINENT_KALIMDOR"] = "Подземелья Калимдора";
-	L["ATLAS_DDL_CONTINENT_OUTLAND"] = "Подземелья Запределья";
-	L["ATLAS_DDL_CONTINENT_NORTHREND"] = "Подземелья Нордскола";
-	L["ATLAS_DDL_CONTINENT_DEEPHOLM"] = "Подземелья Подземья";
-	L["ATLAS_DDL_CONTINENT_PANDARIA"] = "Подземелья Пандории";
-	L["ATLAS_DDL_CONTINENT_DRAENOR"] = "Подземелья Дренорский";
-	L["ATLAS_DDL_LEVEL"] = "Уровню";
-	L["ATLAS_DDL_LEVEL_UNDER45"] = "Подземелья уровня ниже 45";
-	L["ATLAS_DDL_LEVEL_45TO60"] = "Подземелья уровня 45-60";
-	L["ATLAS_DDL_LEVEL_60TO70"] = "Подземелья уровня 60-70";
-	L["ATLAS_DDL_LEVEL_70TO80"] = "Подземелья уровня 70-80";
-	L["ATLAS_DDL_LEVEL_80TO85"] = "Подземелья уровня 80-85";
-	L["ATLAS_DDL_LEVEL_85TO90"] = "Подземелья уровня 85-90";
-	L["ATLAS_DDL_LEVEL_90TO100"] = "Подземелья уровня 90-100";
-	L["ATLAS_DDL_LEVEL_100PLUS"] = "Подземелья уровня 100+";
-	L["ATLAS_DDL_PARTYSIZE"] = "Размеру группы";
-	L["ATLAS_DDL_PARTYSIZE_5"] = "Подземелья на 5 игроков";
-	L["ATLAS_DDL_PARTYSIZE_10"] = "Подземелья на 10 игроков";
-	L["ATLAS_DDL_PARTYSIZE_20TO40"] = "Подземелья на 20-40 игроков";
-	L["ATLAS_DDL_EXPANSION"] = "Дополнению";
-	L["ATLAS_DDL_EXPANSION_OLD"] = "Подземелья Старого Мира";
-	L["ATLAS_DDL_EXPANSION_BC"] = "Подземелья Пылающего Крестового Похода";
-	L["ATLAS_DDL_EXPANSION_WOTLK"] = "Подземелья Wrath of the Lich King";
-	L["ATLAS_DDL_EXPANSION_CATA"] = "Подземелья Cataclysm";
-	L["ATLAS_DDL_EXPANSION_MOP"] = "Подземелья Mists of Pandaria";
-	L["ATLAS_DDL_EXPANSION_WOD"] = "Подземелья Warlords of Draenor";
-	L["ATLAS_DDL_TYPE"] = "Типу";
-	L["ATLAS_DDL_TYPE_INSTANCE"] = "Подземелья";
-	L["ATLAS_DDL_TYPE_ENTRANCE"] = "Входы";
+L["ATLAS_OPTIONS_CATDD"] = "Сортировать подземелья по:"
+L["ATLAS_DDL_CONTINENT"] = "Континенту"	-- Sort Instance Maps by: Continent
+L["ATLAS_DDL_CONTINENT_EASTERN"] = "Подземелья Восточных королевств"
+L["ATLAS_DDL_CONTINENT_KALIMDOR"] = "Подземелья Калимдора"
+L["ATLAS_DDL_CONTINENT_OUTLAND"] = "Подземелья Запределья"
+L["ATLAS_DDL_CONTINENT_NORTHREND"] = "Подземелья Нордскола"
+L["ATLAS_DDL_CONTINENT_DEEPHOLM"] = "Подземелья Подземья"
+L["ATLAS_DDL_CONTINENT_PANDARIA"] = "Подземелья Пандарии"
+L["ATLAS_DDL_CONTINENT_DRAENOR"] = "Подземелья Дренора"
+L["ATLAS_DDL_CONTINENT_BROKENISLES"] = "Подземелья Расколотых островов"
+L["ATLAS_DDL_CONTINENT_BROKENISLES1"] = "Подземелья Расколотых островов"
+L["ATLAS_DDL_CONTINENT_BROKENISLES2"] = "Рейды Расколотых островов"
+L["ATLAS_DDL_CONTINENT_KULTIRAS"] = "Кул-Тирас подземелья"
+L["ATLAS_DDL_CONTINENT_ZANDALAR"] = "Зандалар подземелья"
+L["ATLAS_DDL_CONTINENT_NAZJATAR"] = "Назжатар подземелья"
+L["ATLAS_DDL_LEVEL"] = "Уровню"		-- Sort Instance Maps by: Level
+-- BCC / prior to new level range
+L["ATLAS_DDL_LEVEL_10TO20"] = "Подземелья и рейды 10-20 уровня"
+L["ATLAS_DDL_LEVEL_20TO40"] = "Подземелья и рейды 20-40 уровня"
+L["ATLAS_DDL_LEVEL_40TO60"] = "Подземелья и рейды 40-60 уровня"
+L["ATLAS_DDL_LEVEL_60TO70"] = "Подземелья уровня 60-70"
+L["ATLAS_DDL_LEVEL_70TO80"] = "Подземелья уровня 70-80"
+L["ATLAS_DDL_LEVEL_80TO85"] = "Подземелья уровня 80-85"
+L["ATLAS_DDL_LEVEL_85TO90"] = "Подземелья уровня 85-90"
+L["ATLAS_DDL_LEVEL_90TO100"] = "Подземелья уровня 90-100"
+L["ATLAS_DDL_LEVEL_100PLUS"] = "Подземелья уровня 100+"
+L["ATLAS_DDL_LEVEL_100TO110"] = "Подземелья уровня 100-110"
+L["ATLAS_DDL_LEVEL_110PLUS"] = "Подземелья уровня 110+"
+L["ATLAS_DDL_LEVEL_110TO120"] = "Уровень подземелья 110-120"
+L["ATLAS_DDL_LEVEL_120PLUS"] = "Уровень подземелья 120+"
+L["ATLAS_DDL_LEVEL_120TO130"] = "Уровень подземелья 120-130"
+L["ATLAS_DDL_LEVEL_130PLUS"] = "Уровень подземелья 130+"
+-- Retail / new level range
+L["ATLAS_DDL_LEVEL_UNDER30"] = "Подземелья и рейды ниже 30 уровня"
+L["ATLAS_DDL_LEVEL_UNDER45"] = "Подземелья уровня ниже 45"
+L["ATLAS_DDL_LEVEL_10TO30"] = "Подземелья и рейды 10-30 уровня"
+L["ATLAS_DDL_LEVEL_30TO35"] = "Подземелья и рейды 30-35 уровня"
+L["ATLAS_DDL_LEVEL_35TO40"] = "Подземелья и рейды 35-40 уровня"
+L["ATLAS_DDL_LEVEL_40TO45"] = "Подземелья и рейды 40-45 уровня"
+L["ATLAS_DDL_LEVEL_45TO50"] = "Подземелья и рейды 45-50 уровня"
+L["ATLAS_DDL_LEVEL_45TO60"] = "Подземелья уровня 45-60"
+L["ATLAS_DDL_LEVEL_50TO60"] = "Подземелья и рейды 50-60 уровня"
+L["ATLAS_DDL_LEVEL_60PLUS"] = "Подземелья и рейды уровня 60+"
+L["ATLAS_DDL_PARTYSIZE"] = "Размер группы"	-- Sort Instance Maps by: Party Size
+L["ATLAS_DDL_PARTYSIZE_5"] = "Подземелья на 5 игроков"
+L["ATLAS_DDL_PARTYSIZE_10"] = "Подземелья на 10 игроков"
+L["ATLAS_DDL_PARTYSIZE_20TO40"] = "Подземелья на 20-40 игроков"
+L["ATLAS_DDL_EXPANSION"] = "Дополнению"	-- Sort Instance Maps by: Expansion
+L["ATLAS_DDL_EXPANSION_OLD"] = "Подземелья Старого Мира"
+L["ATLAS_DDL_EXPANSION_BC"] = "Подземелья Burning Crusade"
+L["ATLAS_DDL_EXPANSION_WOTLK"] = "Подземелья Wrath of the Lich King"
+L["ATLAS_DDL_EXPANSION_CATA"] = "Подземелья Cataclysm"
+L["ATLAS_DDL_EXPANSION_MOP"] = "Подземелья Mists of Pandaria"
+L["ATLAS_DDL_EXPANSION_WOD"] = "Подземелья Warlords of Draenor"
+L["ATLAS_DDL_EXPANSION_LEGION"] = "Подземелья Legion"
+L["ATLAS_DDL_EXPANSION_LEGION1"] = "Подземелья Легиона"
+L["ATLAS_DDL_EXPANSION_LEGION2"] = "Рейды Легиона"
+L["ATLAS_DDL_EXPANSION_BFA"] = "Битва за Азерот подземелья"
+L["ATLAS_DDL_EXPANSION_SHADOWLANDS"] = "Подземелья и рейды Shadowlands"
+L["ATLAS_DDL_TYPE"] = "Типу"			-- -- Sort Instance Maps by: Map Type
+L["ATLAS_DDL_TYPE_INSTANCE"] = "Подземелья"
+L["ATLAS_DDL_TYPE_ENTRANCE"] = "Входы"
 
-	L["ATLAS_INSTANCE_BUTTON"] = "Подземелье";
-	L["ATLAS_ENTRANCE_BUTTON"] = "Вход";
-	L["ATLAS_SEARCH_UNAVAIL"] = "Поиск недоступен";
+L["ATLAS_INSTANCE_BUTTON"] = "Подземелье"
+L["ATLAS_ENTRANCE_BUTTON"] = "Вход"
+L["ATLAS_SEARCH_UNAVAIL"] = "Поиск недоступен"
 
-	L["ATLAS_DEP_MSG1"] = "Атлас обнаружил устаревший(е) модуль(и).";
-	L["ATLAS_DEP_MSG2"] = "Они будут отключены для данного персонажа.";
-	L["ATLAS_DEP_MSG3"] = "Удалите их из вашей папки аддонов.";
-	L["ATLAS_DEP_OK"] = "Ok";
+L["ATLAS_DEP_MSG1"] = "Atlas обнаружил устаревшие плагин(ы)/модуль(и)/аддон(ы)."
+L["ATLAS_DEP_MSG2"] = "Оно / они были отключены для этого персонажа."
+L["ATLAS_DEP_MSG3"] = [=[Удалите это из вашей папки AddOns и установите последнюю версию.
 
-	L["ATLAS_INFO"] = "Atlas информация";
-	L["ATLAS_INFO_12200"] = "Важное уведомление:\n\nВ связи с проблемой увеличение размеров файлов модификации, мы разделили\n модификацию на отдельные модули подземелий.\n\nПользователи, которые скачивают нашу модификацию с известных веб-сайтов,\n в основном получают только основное ядро, которое включает в себя все\n функции ядра Атласа и карты подземелий Cataclysm'а.\n\nПользователи, которые хотят загрузить все старые карты подземелий и все\n модули Атласа, сделанные нами, могут их скачать по отдельности.\n\nДля получения дополнительной информации прочтите следующий топик:\n|cff6666ffhttp://www.atlasmod.com/phpBB3/viewtopic.php?t=1522|cffffffff\n\nИли посетите наш сайт, чтобы узнать где скачать:\n|cff6666ffhttp://www.atlasmod.com/|cffffffff";
-	L["ATLAS_INFO_12201"] = "Обратите внимание, что мы создали новый плагин - |cff6666ffAtlas Сценарии|cffffffff, который \nобеспечивает совершенно новыми картыми сценарий, введенных в 5.0. \n\nДля более подробной информации посетите наш веб-сайт, и не забудьте скачать / \nустановить его отдельно.\n|cff6666ffhttp://www.atlasmod.com/|cffffffff";
+Список устаревших плагин(ов)/модуль(ей)/аддон(ов):]=]
+L["ATLAS_DEP_MSG4"] = [=[Если у вас есть последние из установленных,
+не забудьте включить их из списка списка аддонов.]=]
+L["ATLAS_DEP_OK"] = "ОК"
 
-	L["ATLAS_MISSING_MODULE"] = "Atlas обнаружил недостоющие модули / плагины: ";
---	L["Click to open Dungeon Journal window."] = "[ЛКМ] - открывает окно журнала подземелий.";
+L["ATLAS_INFO"] = "Информация об Atlas"
+
+L["ATLAS_INFO_12200"] = [=[Важное уведомление:
+
+Из-за увеличения размеров файлов модификации, мы разделили
+ модификацию на отдельные модули подземелий.
+
+Пользователи, которые загружают нашу модификацию с известных веб-сайтов,
+ получают только основное ядро, которое включает в себя все
+ функции ядра Atlas и карты подземелий Cataclysm.
+
+Пользователи, которые хотят загрузить все старые карты подземелий и все
+ модули Atlas, сделанные нами, могут их загрузить по отдельности.
+
+Для получения дополнительной информации прочтите следующий топик:
+|cff6666ffhttp://www.atlasmod.com/phpBB3/viewtopic.php?t=1522|cffffffff
+
+Или посетите наш сайт, чтобы узнать где загрузить:
+|cff6666ffhttp://www.atlasmod.com/|cffffffff]=]
+L["ATLAS_INFO_12201"] = [=[Обратите внимание, что мы создали новый плагин - |cff6666ffAtlas Сценарии|cffffffff, который 
+обеспечивает картами сценарии, добавленные в 5.0. 
+
+Для более подробной информации посетите наш веб-сайт, и не забудьте загрузить / 
+установить его отдельно.
+|cff6666ffhttp://www.atlasmod.com/|cffffffff]=]
+
+L["ATLAS_MISSING_MODULE"] = [=[Atlas обнаружил отсутствующие модули / плагины: 
+
+Возможно, у вас установлены устаревшие модули / плагины, которые Atlas отключил. 
+Если вы установили свежие версии, убедитесь, что они включены в списке модификаций. 
+
+Если вы уверены, что не нуждаетесь в этих "отсутствующих" модулях / плагинах, и не хотите больше видеть это сообщение, то отключите уведомление в панели настроек. 
+
+Список отсутствующих модулей / плагинов: ]=]
+L["ATLAS_OPEN_ADDON_LIST"] = "Открыть список аддона"
+
+L["ATLAS_OPEN_ACHIEVEMENT"] = "Щелкните, чтобы открыть подробную информацию о достижениях."
+L["ATLAS_OPEN_ADVENTURE"] = "[ЛКМ] - открывает журнал подземелий."
+L["ATLAS_CLICK_TO_OPEN"] = "[ЛКМ] - открывает карту Atlas."
+L["ATLAS_OPEN_WOWMAP_WINDOW"] = "[ЛКМ] - открывает карту из журнала подземелий."
+L["ATLAS_OPEN_ATLASLOOT_WINDOW"] = "Щелкните, чтобы открыть окно AtlasLoot."
+L["ATLAS_ROPEN_ATLASLOOT_WINDOW"] = "Щелкните правой кнопкой мыши, чтобы открыть окно AtlasLoot."
+L["ATLAS_CLOSE_ATLASLOOT_WINDOW"] = "Щелкните правой кнопкой мыши, чтобы закрыть окно AtlasLoot."
+L["ATLAS_COLLAPSE_BUTTON"] = "Кликните, чтобы закрыть окно подсказок"
+L["ATLAS_EXPAND_BUTTON"] = "Кликните, чтобы открыть окно подсказок"
+L["ATLAS_TOGGLE_LOOT"] = "Щелкните правой кнопкой мыши для переключения на панель добычи."
+L["ATLAS_REOPEN_LOOT_AGAIN"] = "Пожалуйста, откройте заново окно добычи для перезагрузки."
+
+L["Scale and Transparency"] = "Масштаб и прозрачность"
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************
 
-	--Common strings
-	L["East"] = "Восток";
-	L["North"] = "Север";
-	L["South"] = "Юг";
-	L["West"] = "Запад";
+--Common strings
+L["East"] = "Восток"
+L["North"] = "Север"
+L["South"] = "Юг"
+L["West"] = "Запад"
+L["%s Instances"] = "%s подземелья" 	-- Legion Instances
+L["%s Dungeons"] = "%s подземелья"	-- Legion Dungeons
+L["%s Raids"] = "%s рейды"		-- Legion Raids
+L[" 1/2"] = "1/2"
+L[" 2/2"] = "2/2"
 
-	--World Events, Festival
-	L["Brewfest"] = "Праздника пива";
-	L["Hallow's End"] = "Тыква";
-	L["Love is in the Air"] = "Любовная лихорадка";
-	L["Lunar Festival"] = "Лунный фестиваль";
-	L["Midsummer Festival"] = "Огненный солнцеворот";
+--World Events, Festival
+L["Brewfest"] = "Праздника пива"
+L["Hallow's End"] = "Тыква"
+L["Love is in the Air"] = "Любовная лихорадка"
+L["Lunar Festival"] = "Лунный фестиваль"
+L["Midsummer Festival"] = "Огненный солнцеворот"
 
-	--Misc strings
-	L["Colon"] = ": "; -- The colon symbol to be used in string, ex: "Zone: Firelands
-	L["Adult"] = "Взрослый";
-	L["AKA"] = "AKA";
-	L["Arcane Container"] = "Волшебный контейнер";
-	L["Arms Warrior"] = "Воин-Оружия";
-	L["Attunement Required"] = "Необходима подготавка";
-	L["Back"] = "Назад";
-	L["Basement"] = "Подвал";
-	L["Blacksmithing Plans"] = "Чертежи кузнечного дела";
-	L["Child"] = "Ребенок";
-	L["Connection"] = "Связан";
-	L["Elevator"] = "Лифт";
-	L["End"] = "Конец";
-	L["Engineer"] = "Инженер";
-	L["Entrance"] = "Вход";
-	L["Event"] = "Событие";
-	L["Exalted"] = "Превознесение";
-	L["Exit"] = "Выход";
-	L["Fourth Stop"] = "Четвертая остановка";
-	L["Front"] = "Передний";
-	L["Ghost"] = "Призрак";
-	L["Graveyard"] = "Кладбище";
-	L["Heroic"] = "Героический";
-	L["Holy Paladin"] = "Паладин-Света";
-	L["Holy Priest"] = "Жрец-Света";
-	L["Imp"] = "Бесс";
-	L["Key"] = "Ключ";
-	L["Lower"] = "Нижний";
-	L["Meeting Stone"] = "Камень встреч";
-	L["Middle"] = "Центр"; --???
-	L["Moonwell"] = "Лунный колодец";
-	L["Optional"] = "Необяз.";
-	L["Orange"] = "Оранжевый";
-	L["Outside"] = "Снаружи";
-	L["Portal"] = "Портал";
-	L["Protection Warrior"] = "Воин-Защиты";
-	L["Purple"] = "Пурпурный";
-	L["Random"] = "Случайный";
-	L["Rare"] = "Редкий";
-	L["Repair"] = "Починка";
-	L["Retribution Paladin"] = "Паладин-Возмездия";
-	L["Rewards"] = "Награды";
-	L["Second Stop"] = "Вторая остановка";
-	L["Shadow Priest"] = "Жрец-Темной магии";
-	L["Spawn Point"] = "Точка рождения";
-	L["Start"] = "Начало";
-	L["Summon"] = "Вызов";
-	L["Teleporter"] = "Телепорт";
-	L["Teleporter destination"] = "Назначение телепорта";
-	L["Third Stop"] = "Третья остановка";
-	L["Top"] = "Верхний";
-	L["Tunnel"] = "Туннель";
-	L["Underwater"] = "Подводный";
-	L["Upper"] = "Верхний";
-	L["Varies"] = "Изменяется";
-	L["Wanders"] = "Странник";
-	L["Wave 5"] = "5-ая волна";
-	L["Wave 6"] = "6-ая волна";
-	L["Wave 10"] = "10-ая волна";
-	L["Wave 12"] = "12-ая волна";
-	L["Wave 18"] = "18-ая волна";
-	L["MapsNotFound"] = "Текущее выбранное подземелье не имеет \nсоответствующего изображения карты. \n\nПожалуйста, убедитесь, что вы установили \nсоответствующий модуль(и) карт Atlas'а.";
-	L["PossibleMissingModule"] = "Вполне вероятно, эта карта из этого модуля: ";
+--Instance Difficulties
+L["Heroic_Symbol"] = "(Героик)"
+L["Mythic_Symbol"] = "(Мифик)"
+--Misc strings
+	--Symbols
+	L["Colon"] = ": " -- The colon symbol to be used in string, ex: "Zone: Firelands
+	L["Semicolon"] = "; "
+	L["L-Parenthesis"] = " ("
+	L["R-Parenthesis"] = ") "
+	L["Comma"] = ", "
+	L["Period"] = ". "
+	L["Hyphen"] = " - "
+	L["Slash"] = " / "
+	L["L-SBracket"] = "["
+	L["R-SBracket"] = "]"
+	L["L-DQuote"] = "\""
+	L["R-DQuote"] = "\""
+L["Adult"] = "Взрослый"
+L["AKA"] = "ИК" -- As Known As
+L["Arcane Container"] = "Волшебный контейнер"
+L["Arms Warrior"] = "Воин-Оружия"
+L["Attunement Required"] = "Необходима подготовка"
+L["Back"] = "Назад"
+L["Basement"] = "Подвал"
+L["Blacksmithing Plans"] = "Чертежи кузнечного дела"
+L["Child"] = "Ребенок"
+L["Connection"] = "Связан"
+L["Elevator"] = "Лифт"
+L["End"] = "Конец"
+L["Engineer"] = "Инженер"
+L["Entrance"] = "Вход"
+L["Event"] = "Событие"
+L["Exalted"] = "Превознесение"
+L["Exit"] = "Выход"
+L["Fourth Stop"] = "Четвертая остановка"
+L["Front"] = "Передний"
+L["Ghost"] = "Призрак"
+L["Graveyard"] = "Кладбище"
+L["Heroic"] = "Героический"
+L["Mythic"] = "Эпохальный"
+L["Holy Paladin"] = "Паладин-Света"
+L["Holy Priest"] = "Жрец-Света"
+L["Imp"] = "Бес"
+L["Key"] = "Ключ"
+L["Lower"] = "Нижний"
+L["Meeting Stone"] = "Камень встреч"
+L["Middle"] = "Центр"
+L["Moonwell"] = "Лунный колодец"
+L["Optional"] = "Необяз."
+L["Orange"] = "Оранжевый"
+L["Outside"] = "Снаружи"
+L["Portal"] = "Портал"
+L["Portal to %s"] = "Портал на %s"
+L["Protection Warrior"] = "Воин-Защиты"
+L["Purple"] = "Пурпурный"
+L["Random"] = "Случайный"
+L["Rare"] = "Редкий"
+L["Repair"] = "Починка"
+L["Retribution Paladin"] = "Паладин-Возмездия"
+L["Rewards"] = "Награды"
+L["Stairs"] = "Лестница"
+L["Stairs to %s"] = "Лестница на %s"
+L["Second Stop"] = "Вторая остановка"
+L["Shadow Priest"] = "Жрец-Темной магии"
+L["Spawn Point"] = "Точка рождения"
+L["Start"] = "Начало"
+L["Summon"] = "Вызов"
+L["Teleporter"] = "Телепорт"
+L["Teleporter destination"] = "Назначение телепорта"
+L["Third Stop"] = "Третья остановка"
+L["Top"] = "Верхний"
+L["Tunnel"] = "Туннель"
+L["Underwater"] = "Подводный"
+L["Upper"] = "Верхний"
+L["Upper floor"] = "Верхний этаж"
+L["Varies"] = "Изменяется"
+L["Wanders"] = "Странник"
+L["Wave 5"] = "5-ая волна"
+L["Wave 6"] = "6-ая волна"
+L["Wave 10"] = "10-ая волна"
+L["Wave 12"] = "12-ая волна"
+L["Wave 18"] = "18-ая волна"
+L["MapsNotFound"] = [=[Текущее выбранное подземелье не имеет 
+связанные с соответствующее изображения карты. 
 
-	--Map sections
---	L["MapA"] = " [A]"; -- For example: Shado-Pan Monastery [A]
---	L["MapB"] = " [B]";
---	L["MapC"] = " [C]";
---	L["MapD"] = " [D]";
---	L["MapE"] = " [E]";
---	L["MapF"] = " [F]";
+Пожалуйста, убедитесь, что у вас установлены
+соответствующие модуль(и) карт Atlas.]=]
+L["PossibleMissingModule"] = "Вполне вероятно, что эта карта из этого модуля: "
+L["Transport"] = "Транспорт"
+L["Profile Options"] = "Настройки профиля"
+
+--Map sections
+L["MapA"] = " [A]" -- For example: Shado-Pan Monastery [A]
+L["MapB"] = " [B]"
+L["MapC"] = " [C]"
+L["MapD"] = " [D]"
+L["MapE"] = " [E]"
+L["MapF"] = " [F]"
+L["MapG"] = " [G]"
+L["MapH"] = " [H]"
+L["MapI"] = " [I]"
+L["MapJ"] = " [J]"
 
 --************************************************
 -- Instance Entrance Maps
 --************************************************
-	--Blackrock Mountain (Entrance)
-	L["Bodley"] = "Бодли";
-	L["Lothos Riftwaker"] = "Лотос Хранитель Портала";
-	L["Orb of Command"] = "Сфера Приказа";
-	L["Scarshield Quartermaster <Scarshield Legion>"] = "Интендант из легиона Изрубленного Щита";
-	L["The Behemoth"] = "Чудище";
+--Blackrock Mountain (Entrance)
+L["Bodley"] = "Бодли"
+L["Lothos Riftwaker"] = "Лотос Хранитель Портала"
+L["Orb of Command"] = "Сфера Приказа"
+L["Scarshield Quartermaster <Scarshield Legion>"] = "Интендант из легиона Изрубленного Щита"
+L["The Behemoth"] = "Чудище"
 
-	--Caverns of Time (Entrance)
-	L["Steward of Time <Keepers of Time>"] = "Распорядитель времени <Хранители Времени>";
-	L["Alexston Chrome <Tavern of Time>"] = "Алекстон Хром <Таверна Времени>";
-	L["Yarley <Armorer>"] = "Ярли <Бронник>";
-	L["Bortega <Reagents & Poison Supplies>"] = "Бортега <Реагенты и яды>";
-	L["Alurmi <Keepers of Time Quartermaster>"] = "Алурми <Начальник снабжения Хранителей Времени>";
-	L["Galgrom <Provisioner>"] = "Гальгром <Поставщик>";
-	L["Zaladormu"] = "Заладорму";
-	L["Soridormi <The Scale of Sands>"] = "Соридорми <Песчаная Чешуя>";
-	L["Arazmodu <The Scale of Sands>"] = "Аразмоду <Песчаная Чешуя>";
-	L["Andormu <Keepers of Time>"] = "Андорму <Хранители Времени>";
-	L["Nozari <Keepers of Time>"] = "Нозари <Хранители Времени>";
-	L["Anachronos <Keepers of Time>"] = "Анахронос <Хранители Времени>";
-
---@end-do-not-package@
-
+--Caverns of Time (Entrance)
+L["Steward of Time <Keepers of Time>"] = "Распорядитель времени <Хранители Времени>"
+L["Alexston Chrome <Tavern of Time>"] = "Алекстон Хром <Таверна Времени>"
+L["Yarley <Armorer>"] = "Ярли <Бронник>"
+L["Bortega <Reagents & Poison Supplies>"] = "Бортега <Реагенты и яды>"
+L["Alurmi <Keepers of Time Quartermaster>"] = "Алурми <Начальник снабжения Хранителей Времени>"
+L["Galgrom <Provisioner>"] = "Гальгром <Поставщик>"
+L["Zaladormu"] = "Заладорму"
+L["Soridormi <The Scale of Sands>"] = "Соридорми <Песчаная Чешуя>"
+L["Arazmodu <The Scale of Sands>"] = "Аразмоду <Песчаная Чешуя>"
+L["Andormu <Keepers of Time>"] = "Андорму <Хранители Времени>"
+L["Nozari <Keepers of Time>"] = "Нозари <Хранители Времени>"
+L["Anachronos <Keepers of Time>"] = "Анахронос <Хранители Времени>"
 end

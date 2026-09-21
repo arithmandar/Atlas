@@ -56,6 +56,7 @@ local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
 local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
 local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
+local isClassicForever = (wowversion >= 10000 and wowversion < 20000)
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
