@@ -41,10 +41,11 @@ local AchievementFrame_SelectAchievement = _G.AchievementFrame_SelectAchievement
 -- Determine WoW TOC Version
 local wowversion = select(4, GetBuildInfo())
 
-local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
+local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and wowversion >= 120100)
 local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
 local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
+local isClassicForever = (wowversion >= 10000 and wowversion < 20000)
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -56,7 +57,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 
 function addon:AchievementButtonUpdate(button, achievementID)
 	-- WOLTKC starts to introduce achievement system, so we are only skipping this for Classic Era and TBC
-	if (isClassicEra or isAnniversaryTBC) then return end
+	if (isClassicEra or isAnniversaryTBC or isClassicForever) then return end
 	
 	button.achievementID = achievementID
 	button.link = GetAchievementLink(achievementID) or nil

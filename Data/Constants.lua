@@ -52,6 +52,7 @@ ATLAS_CUR_LINES = 0
 ATLAS_SCROLL_LIST = {}
 ATLAS_SCROLL_ID = {}
 ATLAS_DATA = {}
+---@type (fun(data: table, text: string): table)|nil
 ATLAS_SEARCH_METHOD = nil
 ATLAS_PLUGINS = {}
 ATLAS_PLUGIN_DATA = {}

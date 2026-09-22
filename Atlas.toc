@@ -1,29 +1,41 @@
-﻿## Interface: 11509, 20506, 50504, 120100
+﻿## Interface: 11509, 16001, 20506, 50504, 120100
 ## Title: Atlas
+## Notes: Core addon for Atlas map modules and plugins
 ## Title-deDE: Atlas
+## Notes-deDE: Kern-Add-on für Atlas-Kartenmodule und Plugins
 ## Title-esES: Atlas
+## Notes-esES: Complemento principal para los módulos de mapas y complementos de Atlas
 ## Title-esMX: Atlas
+## Notes-esMX: Complemento principal para los módulos de mapas y complementos de Atlas
 ## Title-frFR: Atlas
-## Title-koKR: Atlas
+## Notes-frFR: Extension principale pour les modules de cartes et les extensions d’Atlas
+## Title-itIT: Atlas
+## Notes-itIT: Addon principale per i moduli delle mappe e i plugin di Atlas
+## Title-koKR: 아틀라스
+## Notes-koKR: Atlas 지도 모듈과 플러그인을 위한 핵심 애드온
 ## Title-ptBR: Atlas
-## Title-ruRU: Atlas
-## Title-zhCN: Atlas |cFF0099FF[主程序]|r
-## Title-zhTW: |r|cFF0099FF[地圖]|rAtlas 地圖集 |cFF0099FF[主程式]|r
-## Notes: Instance Map Browser
-## Notes-deDE: Instanzkarten-Browser
-## Notes-esES: Navegador de Mapas de Mazmorras
-## Notes-esMX: Navegador de Mapas de Mazmorras
-## Notes-frFR: Navigateur de cartes d'instances
-## Notes-itIT: Navigatore Mappe Spedizioni
-## Notes-koKR: 인스턴스 던전 지도 탐색기
-## Notes-ptBR: Buscador de Mapas de Instância
-## Notes-ruRU: Обозреватель подземелий
-## Notes-zhCN: |cff00CC33副本地图浏览器|r
-## Notes-zhTW: Atlas 地圖集主程式
+## Notes-ptBR: Addon principal para os módulos de mapas e plugins do Atlas
+## Title-ruRU: Атлас
+## Notes-ruRU: Основной аддон для модулей карт и плагинов Atlas
+## Title-zhCN: Atlas 地图集
+## Notes-zhCN: Atlas 地图模块和插件的核心插件
+## Title-zhTW: Atlas 地圖集
+## Notes-zhTW: Atlas 地圖模組和插件的核心插件
 ## Author: arith
 ## Version: @project-version@
 ## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibBabble-Boss-3.0, LibBabble-SubZone-3.0, LibBabble-Faction-3.0, LibDBIcon-1.0, LibUIDropDownMenu
-## X-Category: Map
+## Category: Map
+## Category-deDE: Karte
+## Category-esES: Mapa
+## Category-esMX: Mapa
+## Category-frFR: Carte
+## Category-itIT: Mappa
+## Category-koKR: 지도
+## Category-ptBR: Mapa
+## Category-ruRU: Карта
+## Category-zhCN: 地图
+## Category-zhTW: 地圖
+## X-Category: Map & Minimap
 ## X-Credits: Dan Gilbert, Lothaer, Dynaletik, dubcat
 ## X-Date: @project-date-iso@
 ## X-Donate: https://www.patreon.com/cw/ArithonWoW

@@ -52,7 +52,7 @@ local hooksecurefunc = hooksecurefunc
 -- Determine WoW client family
 local wowversion = select(4, GetBuildInfo())
 
-local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
+local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and wowversion >= 120100)
 local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
 local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
@@ -93,6 +93,8 @@ local LibStub = _G.LibStub
 ---@field isModuleOrPluginLoaded fun(self: AtlasAddon)
 ---@field MapAddNPCButton fun(self: AtlasAddon)
 ---@field MapAddNPCButtonLarge fun(self: AtlasAddon)
+---@field OnInitialize fun(self: AtlasAddon)
+---@field OnEnable fun(self: AtlasAddon)
 ---@field OpenAchievement fun(self: AtlasAddon, achievementID: number)
 ---@field OpenOptions fun(self: AtlasAddon)
 ---@field PopulateDropdowns fun(self: AtlasAddon)
@@ -516,8 +518,9 @@ function Atlas_ScrollBar_Update()
 					-- handling achievement
 					local spos, epos = strfind(ATLAS_SCROLL_ID[lineplusoffset][1], "ac=")
 					if (spos) then
-						local achievementID = strsub(ATLAS_SCROLL_ID[lineplusoffset][1], epos+1)
-						achievementID = tonumber(achievementID)
+						local achievementID, achievementStr
+						achievementStr = strsub(ATLAS_SCROLL_ID[lineplusoffset][1], epos+1)
+						achievementID = tonumber(achievementStr)
 						addon:AchievementButtonUpdate(button, achievementID)
 					end
 				else
@@ -552,7 +555,7 @@ local function simpleSearch(data, text)
 	local fmatch
 
 	i, v = next(data, nil); -- The i is an index of data, v = data[i]
-	n = i
+	n = 1 -- sequential write index into new{}, unrelated to data's (possibly non-numeric) key order
 	while i do
 		if ( type(i) == "number" ) then
 				fmatch = strgmatch(strlower(data[i][1]), search_text)()
@@ -602,7 +605,7 @@ function addon:PopulateDropdowns()
 			local subcatItems = addon.dropdowns.DropDownLayouts[catName][subcatOrder[n]]
 			tsort(subcatItems, sortZonesAlpha)
 
-			local q = (#subcatItems-(#subcatItems%ATLAS_MAX_MENUITEMS))/ATLAS_MAX_MENUITEMS or 0
+			local q = ((#subcatItems-(#subcatItems%ATLAS_MAX_MENUITEMS))/ATLAS_MAX_MENUITEMS) or 0
 			for p=0, q do
 				ATLAS_DROPDOWNS[i+p] = {}
 			end
@@ -646,22 +649,23 @@ local function process_Deprecated()
 	for k, v in pairs(Deprecated_List) do
 		if ( addon:CheckAddonStatus(GetAddOnInfo(v[1])) ) then
 			local outdated = false
-			local compatibleVer
-			local currVer = GetAddOnMetadata(v[1], "Version")
-			if (v[3] and (strsub(currVer, 1, 1) == "r")) then
-				compatibleVer = tonumber(string.sub(v[3], 2))
-				currVer = tonumber(string.sub(currVer, 2))
-				if (currVer < compatibleVer) then
+			local compatibleVerNum
+			local currVerStr, currVerNum
+			currVerStr = GetAddOnMetadata(v[1], "Version")
+			if (v[3] and (strsub(currVerStr, 1, 1) == "r")) then
+				compatibleVerNum = tonumber(string.sub(v[3], 2))
+				currVerNum = tonumber(string.sub(currVerStr, 2))
+				if (currVerNum < compatibleVerNum) then
 					outdated = true
 				end
-			elseif (v[2] and (strsub(currVer, 1, 1) ~= "r") and currVer < v[2]) then
+			elseif (v[2] and (strsub(currVerStr, 1, 1) ~= "r") and currVerStr < v[2]) then
 				outdated = true
 			end
 --@do-not-package@
 			-- ignore those with working copy which set the version to @project-version@
 			-- this will only work if user is also checking out Atlas's SVN as the working copy
 			-- this will not work once get package by CurseForge
-			if (currVer == "@project-version@") then
+			if (currVerStr == "@project-version@") then
 				outdated = false
 			end
 --@end-do-not-package@
@@ -797,7 +801,8 @@ function addon:FormatColor(color_array)
 end
 
 local function Atlas_GetQuestLevelRange()
-	if (isRetail) then
+	-- classic forever is using the same function as retail for quest level range
+	if (isRetail or isClassicForever) then
 		return _G.UnitQuestTrivialLevelRange('player')
 	else
 		return _G.GetQuestGreenRange()
@@ -1333,7 +1338,7 @@ function Atlas_MapRefresh(mapID)
 	AtlasText_LevelRange_Text:SetText(tLR)
 
 	-- Map's Recommended Level Range
-	if (isRetail) then
+	if (isRetail or isClassicForever) then
 		local tRLR = ""
 		if (minRecLevel or minRecLevelH or minRecLevelM) then
 			local tmp_RLR = L["ATLAS_STRING_RECLEVELRANGE"]..L["Colon"]
@@ -1480,7 +1485,7 @@ function Atlas_MapRefresh(mapID)
 		AtlasFrame.AdventureJournal.instanceID = base.JournalInstanceID
 		AtlasFrameLarge.AdventureJournal.instanceID = base.JournalInstanceID
 		AtlasFrameSmall.AdventureJournal.instanceID = base.JournalInstanceID
-		if isRetail then
+		if isRetail or isProgressionClassic then
 			AtlasFrameAdventureJournalButton:Show()
 			AtlasFrameLargeAdventureJournalButton:Show()
 			AtlasFrameSmallAdventureJournalButton:Show()
@@ -1498,7 +1503,7 @@ function Atlas_MapRefresh(mapID)
 		AtlasFrame.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameLarge.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameSmall.AdventureJournalMap.mapID = base.WorldMapID
-		if isRetail then
+		if isRetail or isProgressionClassic then
 			AtlasFrameAdventureJournalMapButton:Show()
 			AtlasFrameLargeAdventureJournalMapButton:Show()
 			AtlasFrameSmallAdventureJournalMapButton:Show()
@@ -1637,7 +1642,7 @@ function Atlas_Refresh(mapID)
 		end
 	end
 	
-	if isRetail then
+	if isRetail or isProgressionClassic then
 		if (AtlasEJLootFrame:IsShown()) then
 			AtlasEJLootFrame:Hide()
 		end
@@ -1901,7 +1906,7 @@ function addon:DungeonMinGearLevelToolTip(self)
 	if (checkInstanceHasGearLevel() or base.MinGearLevel) then
 		GameTooltip:SetOwner(self, "ANCHOR_TOP")
 		GameTooltip.NineSlice:SetCenterColor(0, 0, 0, 1 * profile.options.frames.alpha)
-		GameTooltip:SetText(str, 1, 1, 1, nil, 1)
+		GameTooltip:SetText(str, 1, 1, 1, nil, true)
 		GameTooltip:AddLine(STAT_AVERAGE_ITEM_LEVEL_TOOLTIP)
 		GameTooltip:SetScale(profile.options.frames.boss_description_scale * profile.options.frames.scale)
 		GameTooltip:Show()
@@ -1939,7 +1944,7 @@ function Atlas_SetEJBackground(instanceID)
 end
 
 function addon:CheckAddonStatus(addonName)
-	if not addonName then return nil end
+	if not addonName then return false end
 	-- name, title, notes, loadable, reason, security, newVersion = GetAddOnInfo(index or "name")
 	--    loadable : Boolean - Indicates if the AddOn is loaded or eligible to be loaded, true if it is, false if it is not.
 	local loadable = select(4, GetAddOnInfo(addonName))

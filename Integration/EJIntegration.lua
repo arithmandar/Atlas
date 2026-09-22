@@ -41,12 +41,11 @@ local GetAddOnInfo = C_AddOns.GetAddOnInfo
 -- Determine WoW TOC Version
 local wowversion = select(4, GetBuildInfo())
 
-local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
+local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and wowversion >= 120100)
 local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
 local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
-
---if (isClassicEra or isAnniversaryTBC) then return end
+local isClassicForever = (wowversion >= 10000 and wowversion < 20000)
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -121,7 +120,7 @@ function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 end
 
 function addon:AdventureJournalButton_OnClick(frame)
-	if (isClassicEra or isAnniversaryTBC) then return end
+	if (isClassicEra or isAnniversaryTBC or isClassicForever) then return end
 	
 	local instanceID = frame.instanceID
 	local disabled = not C_AdventureJournal.CanBeShown()
@@ -146,7 +145,7 @@ function addon:AdventureJournalButton_OnClick(frame)
 end
 
 function addon:AdventureJournalButton_OnEnter(frame)
-	if (isClassicEra or isAnniversaryTBC) then return end
+	if (isClassicEra or isAnniversaryTBC or isClassicForever) then return end
 	
 	local instanceID = frame.instanceID
 	if (not instanceID) then return end
@@ -175,7 +174,7 @@ function addon:AdventureJournalButton_OnEnter(frame)
 end
 
 function addon:AdventureJournal_EncounterButton_OnClick(instanceID, encounterID, keepAtlas)
-	if (isClassicEra or isAnniversaryTBC) then return end
+	if (isClassicEra or isAnniversaryTBC or isClassicForever) then return end
 	
 	if (not instanceID or not encounterID) then return end
 	
@@ -203,7 +202,7 @@ function addon:AdventureJournal_EncounterButton_OnClick(instanceID, encounterID,
 end
 
 function addon:AdventureJournal_MapButton_OnClick(frame)
-	if (isClassicEra or isAnniversaryTBC) then return end
+	if (isClassicEra or isAnniversaryTBC or isClassicForever) then return end
 	
 	local uiMapID = frame.mapID
 	local dungeonLevel = frame.dungeonLevel
