@@ -29,8 +29,9 @@
 local FOLDER_NAME, private = ...
 
 -- Area table for WoW Anniversary Classic TBC. Source is from AreaID table.
-local wowversion = select(4, GetBuildInfo())
-local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
+local projectID = WOW_PROJECT_ID
+local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
 if not isAnniversaryTBC then return end
 
 local MapData = {}

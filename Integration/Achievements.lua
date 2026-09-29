@@ -38,15 +38,6 @@ local IsAddOnLoaded, LoadAddOn = C_AddOns.IsAddOnLoaded, C_AddOns.LoadAddOn
 local GetAchievementInfo, GetAchievementNumCriteria, GetAchievementCriteriaInfo, GetAchievementLink = _G.GetAchievementInfo, _G.GetAchievementNumCriteria, _G.GetAchievementCriteriaInfo, _G.GetAchievementLink
 local AchievementFrame_SelectAchievement = _G.AchievementFrame_SelectAchievement
 
--- Determine WoW TOC Version
-local wowversion = select(4, GetBuildInfo())
-
-local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and wowversion >= 120100)
-local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
-local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
-local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
-local isClassicForever = (wowversion >= 10000 and wowversion < 20000)
-
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -57,67 +48,69 @@ local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 
 function addon:AchievementButtonUpdate(button, achievementID)
 	-- WOLTKC starts to introduce achievement system, so we are only skipping this for Classic Era and TBC
-	if (isClassicEra or isAnniversaryTBC or isClassicForever) then return end
+	if (ATLAS_HAS_ACHIEVEMENTS) then 
 	
-	button.achievementID = achievementID
-	button.link = GetAchievementLink(achievementID) or nil
-	-- id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = GetAchievementInfo(achievementID or categoryID, index)
-	local _, name, _, completed, month, day, year, description, _, icon, _, _, _, earnedBy = GetAchievementInfo(achievementID)
-	if (name) then
-		button.tooltiptitle = format("|T%d:0:0|t |cFFFFFFFF%s|r", icon, name)
-		local tooltiptext = description
-		local numCriteria = GetAchievementNumCriteria(achievementID)
-		if (numCriteria and numCriteria > 0) then
-			for i = 1, numCriteria do
-				-- criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible =  GetAchievementCriteriaInfo(achievementID, criteriaIndex)
-				local criteriaString, criteriaType, criteriaCompleted, quantity, reqQuantity, _, flags, assetID, quantityString = GetAchievementCriteriaInfo(achievementID, i)
-				if (criteriaType) then
-					if (criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID) then
-						local _, aname, _, acompleted = GetAchievementInfo(assetID)
-						if (acompleted) then
-							tooltiptext = tooltiptext.."\n|CFFFFFFFF - "..aname
+		button.achievementID = achievementID
+		button.link = GetAchievementLink(achievementID) or nil
+		-- id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = GetAchievementInfo(achievementID or categoryID, index)
+		local _, name, _, completed, month, day, year, description, _, icon, _, _, _, earnedBy = GetAchievementInfo(achievementID)
+		if (name) then
+			button.tooltiptitle = format("|T%d:0:0|t |cFFFFFFFF%s|r", icon, name)
+			local tooltiptext = description
+			local numCriteria = GetAchievementNumCriteria(achievementID)
+			if (numCriteria and numCriteria > 0) then
+				for i = 1, numCriteria do
+					-- criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible =  GetAchievementCriteriaInfo(achievementID, criteriaIndex)
+					local criteriaString, criteriaType, criteriaCompleted, quantity, reqQuantity, _, flags, assetID, quantityString = GetAchievementCriteriaInfo(achievementID, i)
+					if (criteriaType) then
+						if (criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID) then
+							local _, aname, _, acompleted = GetAchievementInfo(assetID)
+							if (acompleted) then
+								tooltiptext = tooltiptext.."\n|CFFFFFFFF - "..aname
+							else
+								tooltiptext = tooltiptext.."\n|CFF808080 - "..aname
+							end
+						--elseif (criteriaString == "" or reqQuantity > 1) then
+						elseif (bit.band(flags, EVALUATION_TREE_FLAG_PROGRESS_BAR) == EVALUATION_TREE_FLAG_PROGRESS_BAR) then
+							if (quantity >= reqQuantity) then
+								tooltiptext = tooltiptext.."\n|CFFFFFFFF - "..quantityString
+							else
+								tooltiptext = tooltiptext.."\n|CFF808080 - "..quantityString
+							end
 						else
-							tooltiptext = tooltiptext.."\n|CFF808080 - "..aname
-						end
-					--elseif (criteriaString == "" or reqQuantity > 1) then
-					elseif (bit.band(flags, EVALUATION_TREE_FLAG_PROGRESS_BAR) == EVALUATION_TREE_FLAG_PROGRESS_BAR) then
-						if (quantity >= reqQuantity) then
-							tooltiptext = tooltiptext.."\n|CFFFFFFFF - "..quantityString
-						else
-							tooltiptext = tooltiptext.."\n|CFF808080 - "..quantityString
-						end
-					else
-						if (criteriaCompleted) then
-							tooltiptext = tooltiptext.."\n|CFFFFFFFF - "..criteriaString
-						else
-							tooltiptext = tooltiptext.."\n|CFF808080 - "..criteriaString
+							if (criteriaCompleted) then
+								tooltiptext = tooltiptext.."\n|CFFFFFFFF - "..criteriaString
+							else
+								tooltiptext = tooltiptext.."\n|CFF808080 - "..criteriaString
+							end
 						end
 					end
 				end
 			end
-		end
-		if (completed) then
-			name = format("      |T%d:0:0|t |CFFFFFFFF%s", icon, name)
-			tooltiptext = tooltiptext.."\n|CFF00FF00"..format(ACHIEVEMENT_TOOLTIP_COMPLETE, earnedBy, month, day, year)
+			if (completed) then
+				name = format("      |T%d:0:0|t |CFFFFFFFF%s", icon, name)
+				tooltiptext = tooltiptext.."\n|CFF00FF00"..format(ACHIEVEMENT_TOOLTIP_COMPLETE, earnedBy, month, day, year)
+			else
+				name = format("      |T%d:0:0|t |CFF808080%s", icon, name)
+			end
+			button.Text:SetText(name)
+			button.tooltiptext = tooltiptext--.."\n|CFF8080FF"..L["ATLAS_OPEN_ACHIEVEMENT"].."|R"
 		else
-			name = format("      |T%d:0:0|t |CFF808080%s", icon, name)
+			-- do nothing
 		end
-		button.Text:SetText(name)
-		button.tooltiptext = tooltiptext--.."\n|CFF8080FF"..L["ATLAS_OPEN_ACHIEVEMENT"].."|R"
-	else
-		-- do nothing
 	end
 end
 
 function addon:OpenAchievement(achievementID)
 	-- WOLTKC starts to introduce achievement system, so we are only skipping this for Classic Era and TBC
-	if (isClassicEra or isAnniversaryTBC) then return end
-	
-	if not achievementID then return end
-	
-	if not IsAddOnLoaded("Blizzard_AchievementUI") then
-		LoadAddOn("Blizzard_AchievementUI")
+	if (ATLAS_HAS_ACHIEVEMENTS) then 
+		
+		if not achievementID then return end
+		
+		if not IsAddOnLoaded("Blizzard_AchievementUI") then
+			LoadAddOn("Blizzard_AchievementUI")
+		end
+		--ShowUIPanel(AchievementFrame)
+		--AchievementFrame_SelectAchievement(achievementID, true)
 	end
-	--ShowUIPanel(AchievementFrame)
-	--AchievementFrame_SelectAchievement(achievementID, true)
 end

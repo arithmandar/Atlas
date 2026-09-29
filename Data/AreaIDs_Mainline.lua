@@ -29,8 +29,14 @@
 local FOLDER_NAME, private = ...
 
 -- Area IDs for the mainline version of World of Warcraft. Source is from AreaID table.
-local wowversion = select(4, GetBuildInfo())
-local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and wowversion >= 120000)
+local _, _, _, interfaceVersion = GetBuildInfo()
+local projectID = WOW_PROJECT_ID
+local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
+-- Beta-only fallback:
+-- Replace these bounds with values verified from the actual Forever client.
+local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
+local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
+
 if not isRetail then return end
 
 local MapData = {}

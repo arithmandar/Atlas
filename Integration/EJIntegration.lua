@@ -37,15 +37,12 @@ local tonumber = _G.tonumber
 local GameTooltip, GetBuildInfo = _G.GameTooltip, _G.GetBuildInfo
 local C_AddOns = _G.C_AddOns
 local GetAddOnInfo = C_AddOns.GetAddOnInfo
-
--- Determine WoW TOC Version
-local wowversion = select(4, GetBuildInfo())
-
-local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and wowversion >= 120100)
-local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
-local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
-local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
-local isClassicForever = (wowversion >= 10000 and wowversion < 20000)
+local C_AdventureJournal = _G.C_AdventureJournal
+local C_EncounterJournal = _G.C_EncounterJournal
+local EJ_GetEncounterInfo = _G.EJ_GetEncounterInfo
+local EJ_GetCreatureInfo = _G.EJ_GetCreatureInfo
+local EJ_GetInstanceInfo = _G.EJ_GetInstanceInfo
+local GetSectionInfo = C_EncounterJournal.GetSectionInfo
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -63,6 +60,27 @@ function addon:EncounterJournal_IsHeaderTypeOverview(headerType)
 	return headerType == EJ_HTYPE_OVERVIEW
 end
 
+-- Falls back to the Babble-Boss / Atlas locale tables to translate a boss name.
+local function TranslateBossNameFallback(bossname, LL, checkBBFirst)
+	if (not bossname) then return bossname end
+
+	if (checkBBFirst) then
+		if (BB[bossname]) then
+			return BB[bossname]
+		elseif (L[bossname]) then
+			return LL and LL[bossname] or bossname
+		end
+	else
+		if (L[bossname]) then
+			return LL and LL[bossname] or bossname
+		elseif (BB[bossname]) then
+			return BB[bossname]
+		end
+	end
+
+	return bossname
+end
+
 -- ------------------------------------------------------------
 -- Call this function to translate boss name
 -- Syntax 1: Atlas_GetBossName(bossname);
@@ -73,7 +91,7 @@ function addon:GetBossName(bossname, encounterID, creatureIndex, moduleName)
 	local LL
 	if (moduleName) then LL = LibStub("AceLocale-3.0"):GetLocale("Atlas_"..moduleName) end
 	
-	if (isRetail or isProgressionClassic) then
+	if (ATLAS_HAS_EJ) then
 		if (encounterID and EJ_GetEncounterInfo) then
 			local _, encounter, iconImage
 			if (not creatureIndex) then
@@ -85,31 +103,15 @@ function addon:GetBossName(bossname, encounterID, creatureIndex, moduleName)
 			end
 
 			if (encounter == nil) then
-				if (bossname and BB[bossname]) then
-					bossname = BB[bossname]
-				elseif (bossname and L[bossname]) then
-					bossname = LL and LL[bossname] or bossname
-				else
-					--bossname = bossname
-				end
+				bossname = TranslateBossNameFallback(bossname, LL, false)
 			else
 				bossname = iconImage and format("|T%d:0:2.5|t%s", iconImage, encounter) or encounter
 			end
-		elseif (bossname and L[bossname]) then
-			bossname = LL and LL[bossname] or bossname
-		elseif (bossname and BB[bossname]) then
-			bossname = BB[bossname]
 		else
-			--bossname = bossname
+			bossname = TranslateBossNameFallback(bossname, LL, false)
 		end
 	else
-		if (bossname and BB[bossname]) then
-			bossname = BB[bossname]
-		elseif (bossname and L[bossname]) then
-			bossname = LL and LL[bossname] or bossname	
-		else
-			--bossname = bossname
-		end
+		bossname = TranslateBossNameFallback(bossname, LL, true)
 	end
 
 	return bossname
@@ -119,112 +121,163 @@ function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 	return addon:GetBossName(bossname, encounterID, creatureIndex)
 end
 
-function addon:AdventureJournalButton_OnClick(frame)
-	if (isClassicEra or isAnniversaryTBC or isClassicForever) then return end
-	
-	local instanceID = frame.instanceID
-	local disabled = not C_AdventureJournal.CanBeShown()
-	if (disabled) then return end
-	
-	if (not instanceID) then
-		return
-	end
-
-	if (not EJ_GetInstanceInfo(instanceID)) then
-		return
-	end
-
-	if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
-		ToggleEncounterJournal()
-	end
-	-- EncounterJournal_ListInstances();
-	NavBar_Reset(EncounterJournal.navBar)
-	EncounterJournal_DisplayInstance(instanceID)
-
-	Atlas_Toggle()
-end
-
-function addon:AdventureJournalButton_OnEnter(frame)
-	if (isClassicEra or isAnniversaryTBC or isClassicForever) then return end
-	
-	local instanceID = frame.instanceID
-	if (not instanceID) then return end
-
-	if (frame:IsMouseOver()) then
-		if (EJ_GetInstanceInfo(instanceID)) then
-			EJ_SelectInstance(instanceID)
-
-			local name, description = EJ_GetInstanceInfo()
-			local disabled = not C_AdventureJournal.CanBeShown()
-
-			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
-			GameTooltip:SetText(name)
-			GameTooltipTextLeft1:SetTextColor(1, 1, 1)
-			GameTooltip:AddLine(description, nil, nil, nil, true)
-			if (disabled) then
-				GameTooltip:AddLine(FEATURE_NOT_YET_AVAILABLE, 0.7, 0, 0, true)
-			else
-				GameTooltip:AddLine(L["ATLAS_OPEN_ADVENTURE"], 0.5, 0.5, 1, true)
-			end
-			GameTooltip:Show()
+function addon:GetEJSectionTitle(bossname, sectionID, moduleName)
+	if (ATLAS_HAS_EJ) then
+		if not bossname or not sectionID then
+			return nil
 		end
+		local info = GetSectionInfo(sectionID)
+		return info and info.title or bossname
 	else
-		GameTooltip:Hide()
+		local LL
+		if (moduleName) then LL = LibStub("AceLocale-3.0"):GetLocale("Atlas_"..moduleName) end
+		return TranslateBossNameFallback(bossname, LL, true)
 	end
 end
 
-function addon:AdventureJournal_EncounterButton_OnClick(instanceID, encounterID, keepAtlas)
-	if (isClassicEra or isAnniversaryTBC or isClassicForever) then return end
+
+function Atlas_GetEJSectionTitle(bossname, sectionID)
+	return addon:GetEJSectionTitle(bossname, sectionID)
+end
+
+function addon:AdventureJournalButton_OnClick(frame)
+	if (ATLAS_HAS_EJ) then 
 	
-	if (not instanceID or not encounterID) then return end
-	
-	local disabled = not C_AdventureJournal.CanBeShown()
-	if (disabled) then return end
+		local instanceID = frame.instanceID
+		local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
+		--if (disabled) then return end
+		
+		if (not instanceID) then
+			return
+		end
 
-	if (not EJ_GetInstanceInfo(instanceID)) then
-		return
-	end
-	if (not EJ_GetEncounterInfo(encounterID)) then
-		return
-	end
+		if (not EJ_GetInstanceInfo(instanceID)) then
+			return
+		end
 
-	if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
-		ToggleEncounterJournal()
-	end
-	-- EncounterJournal_ListInstances();
-	NavBar_Reset(EncounterJournal.navBar)
-	EncounterJournal_DisplayInstance(instanceID)
-	EncounterJournal_DisplayEncounter(encounterID)
+		if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
+			ToggleEncounterJournal()
+		end
+		-- EncounterJournal_ListInstances();
+		NavBar_Reset(EncounterJournal.navBar)
+		EncounterJournal_DisplayInstance(instanceID)
 
-	if (not keepAtlas) then
 		Atlas_Toggle()
 	end
 end
 
-function addon:AdventureJournal_MapButton_OnClick(frame)
-	if (isClassicEra or isAnniversaryTBC or isClassicForever) then return end
+function addon:AdventureJournalButton_OnEnter(frame)
+	if (ATLAS_HAS_EJ) then
 	
-	local uiMapID = frame.mapID
-	local dungeonLevel = frame.dungeonLevel
+		local instanceID = frame.instanceID
+		if (not instanceID) then return end
 
-	HideUIPanel(AtlasFrame)
-	local disabled = not C_AdventureJournal.CanBeShown()
-	if (disabled) then 
-		WorldMapFrame.fromJournal = false
-	else
-		WorldMapFrame.fromJournal = true
+		if (frame:IsMouseOver()) then
+			if (EJ_GetInstanceInfo(instanceID)) then
+				EJ_SelectInstance(instanceID)
+
+				local name, description = EJ_GetInstanceInfo()
+				--local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
+
+				GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+				GameTooltip:SetText(name, 1, 1, 1)
+				GameTooltipTextLeft1:SetTextColor(1, 1, 1)
+				GameTooltip:AddLine(description, nil, nil, nil, true)
+				--if (disabled) then
+				--	GameTooltip:AddLine(FEATURE_NOT_YET_AVAILABLE, 0.7, 0, 0, true)
+				--else
+					GameTooltip:AddLine(L["ATLAS_OPEN_ADVENTURE"], 0.5, 0.5, 1, true)
+				--end
+				GameTooltip:Show()
+			end
+		else
+			GameTooltip:Hide()
+		end
 	end
-	ShowUIPanel(WorldMapFrame)
-	if (uiMapID) then
-		WorldMapFrame:SetMapID(uiMapID)
+end
+
+-- Shared OnClick handler for boss/encounter buttons (AtlasFrameBossButtonTemplate).
+function addon:BossButton_OnClick(self, button)
+	if (IsShiftKeyDown() and self.link) then
+		if (IsModifiedClick("CHATLINK") and ChatEdit_GetActiveWindow()) then
+			ChatEdit_InsertLink(self.link)
+		end
+		return
 	end
---	if (dungeonLevel) then
---		SetDungeonMapLevel(dungeonLevel)
---	end
+
+	if (not ATLAS_HAS_EJ) then return end
+
+	if (button == "RightButton") then
+		if (AtlasFrameSmall:IsVisible()) then
+			addon:ToggleLegendPanel()
+		end
+		if (AtlasEJLootFrame:IsShown()) then
+			AtlasEJLootFrame:Hide()
+		else
+			addon:AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID, true)
+			ToggleEncounterJournal()
+			Atlas_EncounterJournal_DisplayLoot(self.instanceID, self.encounterID)
+		end
+	elseif (button == "LeftButton") then
+		addon:AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID)
+	end
+end
+
+function addon:AdventureJournal_EncounterButton_OnClick(instanceID, encounterID, keepAtlas)
+	if (ATLAS_HAS_EJ) then 
+	
+		if (not instanceID or not encounterID) then return end
+		
+		local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
+		--if (disabled) then return end
+
+		if (not EJ_GetInstanceInfo(instanceID)) then
+			return
+		end
+		if (not EJ_GetEncounterInfo(encounterID)) then
+			return
+		end
+
+		if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
+			ToggleEncounterJournal()
+		end
+		-- EncounterJournal_ListInstances();
+		NavBar_Reset(EncounterJournal.navBar)
+		EncounterJournal_DisplayInstance(instanceID)
+		EncounterJournal_DisplayEncounter(encounterID)
+
+		if (not keepAtlas) then
+			Atlas_Toggle()
+		end
+	end
+end
+
+function addon:AdventureJournal_MapButton_OnClick(frame)
+	if (ATLAS_HAS_EJ) then 
+	
+		local uiMapID = frame.mapID
+		local dungeonLevel = frame.dungeonLevel
+
+		HideUIPanel(AtlasFrame)
+		local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
+		--if (disabled) then 
+		--	WorldMapFrame.fromJournal = false
+		--else
+			WorldMapFrame.fromJournal = true
+		--end
+		ShowUIPanel(WorldMapFrame)
+		if (uiMapID) then
+			WorldMapFrame:SetMapID(uiMapID)
+		end
+	--	if (dungeonLevel) then
+	--		SetDungeonMapLevel(dungeonLevel)
+	--	end
+	end
 end
 
 -- Added Atlas button to Encounter Journal
 function addon:EncounterJournal_Binding()
+	if (not ATLAS_HAS_EJ) then return end
 	local function autoSelect_from_EncounterJournal()
 		local instanceID = EncounterJournal.instanceID
 		
@@ -287,15 +340,15 @@ function addon:EncounterJournal_Binding()
 		button:SetWidth(32)
 		button:SetHeight(32)
 		
-		button:SetPoint("TOPRIGHT", EncounterJournalCloseButton, -23, 0, "TOPRIGHT") 
+		button:SetPoint("TOPRIGHT", EncounterJournalCloseButton, "TOPRIGHT", -23, 0 )
 		button:SetNormalTexture("Interface\\AddOns\\Atlas\\Images\\AtlasButton-Up")
 		button:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight", "ADD")
 
 		button:SetScript("OnEnter", function(self)
 			GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
-			GameTooltip:SetText(L["ATLAS_CLICK_TO_OPEN"], nil, nil, nil, nil, 1)
+			GameTooltip:SetText(L["ATLAS_CLICK_TO_OPEN"], 1.0, 0.82, 0.0, nil, true)
 		end)
-		button:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
+		button:SetScript("OnLeave", function() GameTooltip:Hide() end)
 		button:SetScript("OnClick", toggleFromEncounterJournal_OnClick)
 		button:SetScript("OnShow", toggleFromEncounterJournal_OnShow)
 	end

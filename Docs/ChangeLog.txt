@@ -19,6 +19,8 @@ v1.53.01 (Sep. xx, 2026)
 ------------------------
 - Tweaking the addon category, title, and description
 - Enhanced the version checking related to mainline and classic forever, preventing EJLoot from being loaded in unsupported versions
+- Added Atlas_GetEJSectionTitle(bossname, sectionID) so that we can pull out the section title from map data (usually for major encounter's participants)
+- Fixed issue with boss button click handling in the Adventure Journal especially not workin in Classic MoP
 
 v1.53.00 (Sep. 21, 2026)
 ------------------------

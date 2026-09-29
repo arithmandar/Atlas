@@ -34,12 +34,28 @@ local select = _G.select
 local type = _G.type
 local tonumber = _G.tonumber
 -- Libraries
-local wowversion = select(4, GetBuildInfo())
-local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and wowversion >= 120100)
-local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
-local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
-local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
-local isClassicForever = (wowversion >= 10000 and wowversion < 20000)
+-- Determine WoW client family
+local _, _, _, interfaceVersion = GetBuildInfo()
+local projectID = WOW_PROJECT_ID
+
+local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
+local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
+local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
+local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
+
+-- Beta-only fallback:
+-- Replace these bounds with values verified from the actual Forever client.
+local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
+
+local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
+local isClassicEra = projectID == PROJECT_CLASSIC
+local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
+local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
+local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
+local isProgressionClassic = isCataclysmClassic or isMistsClassic
+local isClassicForever = isForeverBeta
+local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic or isClassicForever
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -53,32 +69,38 @@ local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 local modules = {}
 if isClassicEra then
 	modules = {
-		Atlas_ClassicWoW		= "AtlasLoot_Classic",
+		Atlas_ClassicWoW			= "AtlasLoot_Classic",
 	}
 elseif isAnniversaryTBC then
 	modules = {
-		Atlas_ClassicWoW		= "AtlasLoot_Classic",
+		Atlas_ClassicWoW			= "AtlasLoot_Classic",
 		Atlas_BurningCrusade		= "AtlasLoot_BurningCrusade",
 	}
 elseif isProgressionClassic then
 	modules = {
-		Atlas_ClassicWoW		= "AtlasLoot_Classic",
+		Atlas_ClassicWoW			= "AtlasLoot_Classic",
 		Atlas_BurningCrusade		= "AtlasLoot_BurningCrusade",
 		Atlas_WrathoftheLichKing	= "AtlasLoot_WrathoftheLichKing",	
-		Atlas_Cataclysm			= "AtlasLoot_Cataclysm",
+		Atlas_Cataclysm				= "AtlasLoot_Cataclysm",
 		Atlas_MistsofPandaria		= "AtlasLoot_MistsofPandaria",
 	}
-else
+elseif isClassicForever then
 	modules = {
-		Atlas_ClassicWoW		= "AtlasLoot_Classic",
+		Atlas_ClassicWoW			= "AtlasLoot_Classic",
+	}
+elseif isRetail then
+	modules = {
+		Atlas_ClassicWoW			= "AtlasLoot_Classic",
 		Atlas_BurningCrusade		= "AtlasLoot_BurningCrusade",
 		Atlas_WrathoftheLichKing	= "AtlasLoot_WrathoftheLichKing",	
-		Atlas_Cataclysm			= "AtlasLoot_Cataclysm",
+		Atlas_Cataclysm				= "AtlasLoot_Cataclysm",
 		Atlas_MistsofPandaria		= "AtlasLoot_MistsofPandaria",
 		Atlas_WarlordsofDraenor		= "AtlasLoot_WarlordsofDraenor",
-		Atlas_Legion			= "AtlasLoot_Legion",
+		Atlas_Legion				= "AtlasLoot_Legion",
 		Atlas_BattleforAzeroth		= "AtlasLoot_BattleforAzeroth",
 	}
+else
+	-- N/A
 end
 
 function addon:EnableAtlasLootButton(base, zoneID)

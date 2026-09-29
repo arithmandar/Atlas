@@ -421,6 +421,7 @@
 			<OnLoad>
 				-- Encounter Journal loot is unavailable on Classic Era / Anniversary TBC / Classic Forever;
 				-- Atlas_EncounterJournal_OnLoad and friends are not defined there.
+<!--
 				if (Atlas_EncounterJournal_OnLoad) then
 					local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 					self.lootScroll.difficultyDD = LibDD:Create_UIDropDownMenu("AtlasEJLootFrameDifficultyDD", AtlasEJLootFrameLootScrollFrame)
@@ -429,8 +430,9 @@
 					self.lootScroll.lootFilter = LibDD:Create_UIDropDownMenu("AtlasEJLootFrameLootFilter", AtlasEJLootFrameLootScrollFrame)
 					self.lootScroll.lootSlotFilter = LibDD:Create_UIDropDownMenu("AtlasEJLootFrameLootSlotFilter", AtlasEJLootFrameLootScrollFrame)
 					Atlas_EncounterJournal_OnLoad(self, encounterID);
-					-- HybridScrollFrame_CreateButtons(self.lootScroll, "AtlasEncounterItemTemplate", 0, 0);
+					- HybridScrollFrame_CreateButtons(self.lootScroll, "AtlasEncounterItemTemplate", 0, 0);
 				end
+-->
 			</OnLoad>
 			<OnShow>
 				if (Atlas_EncounterJournal_OnShow) then

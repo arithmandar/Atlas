@@ -58,8 +58,9 @@ Only useable with LibBabble
 function Atlas_GetLocaleLibBabble(typ)
 
 	local rettab = {}
-	local tab = LibStub(typ):GetBaseLookupTable()
-	local loctab = LibStub(typ):GetUnstrictLookupTable()
+	local lib = LibStub(typ)
+	local tab = lib:GetBaseLookupTable()
+	local loctab = lib:GetUnstrictLookupTable()
 	for k,v in pairs(loctab) do
 		rettab[k] = v
 	end
@@ -71,6 +72,19 @@ function Atlas_GetLocaleLibBabble(typ)
 				rettab[k] = v
 			end
 		end
+	end
+	if typ == "LibBabble-SubZone-3.0" and lib.MapData then
+		local mapData = lib.MapData
+		for name in pairs(mapData.AreaToID or {}) do
+			if not rettab[name] then rettab[name] = lib:GetAreaInfo(name) or name end
+		end
+		for name in pairs(mapData.AreaNameToIDs or {}) do
+			if not rettab[name] then rettab[name] = lib:GetAreaInfo(name) or name end
+		end
+		for name in pairs(mapData.UiMapNameToIDs or {}) do
+			if not rettab[name] then rettab[name] = lib:GetAreaInfo(name) or name end
+		end
+		setmetatable(rettab, { __index = function(_, key) return key end })
 	end
 	return rettab
 end

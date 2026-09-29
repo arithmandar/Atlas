@@ -29,8 +29,14 @@
 local FOLDER_NAME, private = ...
 
 -- Area table for Classic Era. Source is from AreaID table.
-local wowversion = select(4, GetBuildInfo())
-local isClassicForever = (wowversion >= 10000 and wowversion < 20000)
+local _, _, _, interfaceVersion = GetBuildInfo()
+local projectID = WOW_PROJECT_ID
+local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
+-- Beta-only fallback:
+-- Replace these bounds with values verified from the actual Forever client.
+local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
+local isClassicForever = isForeverBeta
+
 if not isClassicForever then return end
 
 local MapData = {}

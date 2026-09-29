@@ -29,7 +29,7 @@ local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale("Atlas")
 local format = string.format
 local C_AddOns = _G.C_AddOns
-local  GetAddOnMetadata = C_AddOns.GetAddOnMetadata
+local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 
 -- Expansion Icons
 local icon_E0 = "Interface\\ICONS\\expansionicon_classic" -- Classic

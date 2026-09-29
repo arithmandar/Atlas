@@ -43,20 +43,14 @@ local C_AddOns = _G.C_AddOns
 local GetAddOnInfo, GetAddOnMetadata, GetAddOnEnableState, IsAddOnLoaded = C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnMetadata, C_AddOns.GetAddOnEnableState, C_AddOns.IsAddOnLoaded
 local C_Item = _G.C_Item
 local GetItemInfo = C_Item.GetItemInfo
+local C_EncounterJournal = _G.C_EncounterJournal
+local GetSectionInfo, GetSectionIconFlags = C_EncounterJournal.GetSectionInfo, C_EncounterJournal.GetSectionIconFlags
+local EJ_GetCreatureInfo = _G.EJ_GetCreatureInfo
 
 local UnitLevel, GetBuildInfo = _G.UnitLevel, _G.GetBuildInfo
 local GetLFGDungeonInfo = _G.GetLFGDungeonInfo
 local GetAverageItemLevel = _G.GetAverageItemLevel
 local hooksecurefunc = hooksecurefunc
-
--- Determine WoW client family
-local wowversion = select(4, GetBuildInfo())
-
-local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and wowversion >= 120100)
-local isClassicEra = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
-local isAnniversaryTBC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and wowversion >= 20000 and wowversion < 30000))
-local isProgressionClassic = (WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC)
-local isClassicForever = (wowversion >= 10000 and wowversion < 20000)
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -78,6 +72,7 @@ local LibStub = _G.LibStub
 ---@field AchievementButtonUpdate fun(self: AtlasAddon, button: table, achievementID: number)
 ---@field AdventureJournal_EncounterButton_OnClick fun(self: AtlasAddon, instanceID: number, encounterID: number, keepAtlas: boolean?)
 ---@field AdventureJournal_MapButton_OnClick fun(self: AtlasAddon, frame: table)
+---@field BossButton_OnClick fun(self: AtlasAddon, frame: table, button: string?)
 ---@field AdventureJournalButton_OnClick fun(self: AtlasAddon, frame: table)
 ---@field AdventureJournalButton_OnEnter fun(self: AtlasAddon, frame: table)
 ---@field AtlasLootButton_OnClick fun(self: AtlasAddon, frame: table, button: string?)
@@ -114,6 +109,9 @@ local LibStub = _G.LibStub
 ---@field UpdateLock fun(self: AtlasAddon)
 ---@field UpdateScale fun(self: AtlasAddon)
 ---@field RegisterChatCommand fun(self: AtlasAddon, command: string, handler: function)
+
+---@class AtlasDataModule
+---@field db table
 ---@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceConsole-3.0")
 addon.constants = private.constants
@@ -367,87 +365,86 @@ local function bossButtonCleanUp(button)
 end
 
 local function bossButtonUpdate(button, encounterID, instanceID, b_iconImage, moduleData)
-	-- Encounter Journal was introduced after 4.0 (Cataclysm)
-	if (isClassicEra or isAnniversaryTBC) then 
-		return
-	end
+	-- Mists Classic and Retail encounter journal handling
+	if (ATLAS_HAS_EJ) then 
+		-- Proceed with encounter journal handling
 	
-	local rolesByFlag = {
-		[0] = "TANK",
-		[1] = "DAMAGER",
-		[2] = "HEALER"
-	}
+		local rolesByFlag = {
+			[0] = "TANK",
+			[1] = "DAMAGER",
+			[2] = "HEALER"
+		}
 
-	button:SetID(encounterID)
-	button.encounterID = encounterID
-	if (instanceID and instanceID ~= 0) then
-		button.instanceID = instanceID
-	end
-	button.AtlasModule = moduleData or nil
-
-	local ejbossname, description, _, rootSectionID, link = EJ_GetEncounterInfo(encounterID)
-	if (ejbossname) then
-		button.tooltiptitle = ejbossname
-		button.tooltiptext = description
-		button.link = link
-
-		local sectionInfo = C_EncounterJournal.GetSectionInfo(rootSectionID)
---[[
-      Name = "EncounterJournalSectionInfo",
-      Type = "Structure",
-      Fields =
-      {
-        { Name = "spellID", Type = "number", Nilable = false },
-        { Name = "title", Type = "string", Nilable = false },
-        { Name = "description", Type = "string", Nilable = true },
-        { Name = "headerType", Type = "number", Nilable = false },
-        { Name = "abilityIcon", Type = "number", Nilable = false },
-        { Name = "creatureDisplayID", Type = "number", Nilable = false },
-        { Name = "uiModelSceneID", Type = "number", Nilable = false },
-        { Name = "siblingSectionID", Type = "number", Nilable = true },
-        { Name = "firstChildSectionID", Type = "number", Nilable = true },
-        { Name = "filteredByDifficulty", Type = "bool", Nilable = false },
-        { Name = "link", Type = "string", Nilable = false },
-        { Name = "startsOpen", Type = "bool", Nilable = false },
-      },
-]]
-		if (sectionInfo and addon:EncounterJournal_IsHeaderTypeOverview(sectionInfo.headerType)) then
-			button.overviewDescription = sectionInfo.description or nil
-			local nextSectionID = sectionInfo.firstChildSectionID or nil
-
-			local spec, role
-
-			spec = GetSpecialization()
-			if (spec) then
-				role = GetSpecializationRole(spec)
-			else
-				role = "DAMAGER"
-			end
-
-			local description
-			local i = 1
-			while nextSectionID do
-				local flag1 = C_EncounterJournal.GetSectionIconFlags(nextSectionID)
-				sectionInfo = C_EncounterJournal.GetSectionInfo(nextSectionID)
-				if (role == rolesByFlag[flag1]) then
-					description = gsub(sectionInfo.description, "$bullet;", "- ")
-					button.roleOverview = "|cffffffff"..sectionInfo.title.."|r".."\n"..description
-					break
-				end
-				i = i + 1
-				nextSectionID = sectionInfo.firstChildSectionID
-			end
+		button:SetID(encounterID)
+		button.encounterID = encounterID
+		if (instanceID and instanceID ~= 0) then
+			button.instanceID = instanceID
 		end
-		
-		if (b_iconImage) then
-			local id, name, description, displayInfo, iconImage, uiModelSceneID = EJ_GetCreatureInfo(1, encounterID)
-			button.name = name
-			button.id = id
-			button.displayInfo = displayInfo
-			button.description = description
-			button.uiModelSceneID = uiModelSceneID
-			if ( iconImage ) then
-				SetPortraitTextureFromCreatureDisplayID(button.bgImage, displayInfo)
+		button.AtlasModule = moduleData or nil
+
+		local ejbossname, description, _, rootSectionID, link = EJ_GetEncounterInfo(encounterID)
+		if (ejbossname) then
+			button.tooltiptitle = ejbossname
+			button.tooltiptext = description
+			button.link = link
+
+			local sectionInfo = GetSectionInfo(rootSectionID)
+	--[[
+		Name = "EncounterJournalSectionInfo",
+		Type = "Structure",
+		Fields =
+		{
+			{ Name = "spellID", Type = "number", Nilable = false },
+			{ Name = "title", Type = "string", Nilable = false },
+			{ Name = "description", Type = "string", Nilable = true },
+			{ Name = "headerType", Type = "number", Nilable = false },
+			{ Name = "abilityIcon", Type = "number", Nilable = false },
+			{ Name = "creatureDisplayID", Type = "number", Nilable = false },
+			{ Name = "uiModelSceneID", Type = "number", Nilable = false },
+			{ Name = "siblingSectionID", Type = "number", Nilable = true },
+			{ Name = "firstChildSectionID", Type = "number", Nilable = true },
+			{ Name = "filteredByDifficulty", Type = "bool", Nilable = false },
+			{ Name = "link", Type = "string", Nilable = false },
+			{ Name = "startsOpen", Type = "bool", Nilable = false },
+		},
+	]]
+			if (sectionInfo and addon:EncounterJournal_IsHeaderTypeOverview(sectionInfo.headerType)) then
+				button.overviewDescription = sectionInfo.description or nil
+				local nextSectionID = sectionInfo.firstChildSectionID or nil
+
+				local spec, role
+
+				spec = GetSpecialization()
+				if (spec) then
+					role = GetSpecializationRole(spec)
+				else
+					role = "DAMAGER"
+				end
+
+				local i = 1
+				while nextSectionID do
+					local flag1 = GetSectionIconFlags(nextSectionID)
+					sectionInfo = GetSectionInfo(nextSectionID)
+					if (role == rolesByFlag[flag1]) then
+						local str = gsub(sectionInfo.description, "$bullet;", "- ")
+						button.roleOverview = "|cffffffff"..sectionInfo.title.."|r".."\n"..str
+						break
+					end
+					i = i + 1
+					nextSectionID = sectionInfo.firstChildSectionID
+				end
+			end
+			
+			if (b_iconImage) then
+				local id, name, creature_description, displayInfo, iconImage, uiModelSceneID = EJ_GetCreatureInfo(1, encounterID)
+				button.name = name
+				button.id = id
+				button.displayInfo = displayInfo
+				button.description = creature_description
+				button.uiModelSceneID = uiModelSceneID
+				if ( iconImage ) then
+					SetPortraitTextureFromCreatureDisplayID(button.bgImage, displayInfo)
+				end
 			end
 		end
 	end
@@ -802,7 +799,7 @@ end
 
 local function Atlas_GetQuestLevelRange()
 	-- classic forever is using the same function as retail for quest level range
-	if (isRetail or isClassicForever) then
+	if (ATLAS_USES_MAINLINE_API) then
 		return _G.UnitQuestTrivialLevelRange('player')
 	else
 		return _G.GetQuestGreenRange()
@@ -890,7 +887,8 @@ function addon:MapAddNPCButton()
 			if (info_x == nil) then info_x = -18; end
 			if (info_y == nil) then info_y = -18; end
 
-			if ((isRetail or isProgressionClassic) and info_id < 10000 and profile.options.frames.showBossPotrait) then
+			-- Mists Classic already support EJ features, so we can have boss button added here
+			if (ATLAS_HAS_EJ and info_id < 10000 and profile.options.frames.showBossPotrait) then
 				bossbutton = _G["AtlasMapBossButton"..bossindex]
 				if (not bossbutton) then
 					bossbutton = CreateFrame("Button", "AtlasMapBossButton"..bossindex, AtlasFrame, "AtlasFrameBossButtonTemplate")
@@ -1025,7 +1023,8 @@ function addon:MapAddNPCButtonLarge()
 			local info_y 		= t[i][6]
 			local info_colortag	= t[i][7]
 
-			if ((isRetail or isProgressionClassic) and info_id < 10000 and info_x and info_y and profile.options.frames.showBossPotrait) then
+			-- Mists Classic already support EJ features, so we can have boss button added here
+			if (ATLAS_HAS_EJ and info_id < 10000 and info_x and info_y and profile.options.frames.showBossPotrait) then
 				bossbutton = _G["AtlasMapBossButtonL"..bossindex]
 				if (not bossbutton) then
 					bossbutton = CreateFrame("Button", "AtlasMapBossButtonL"..bossindex, AtlasFrameLarge, "AtlasFrameBossButtonTemplate")
@@ -1338,7 +1337,8 @@ function Atlas_MapRefresh(mapID)
 	AtlasText_LevelRange_Text:SetText(tLR)
 
 	-- Map's Recommended Level Range
-	if (isRetail or isClassicForever) then
+	-- To Check: Assuming Classic Forever also supports dungeon difficulty coloring
+	if (ATLAS_USES_MAINLINE_API) then
 		local tRLR = ""
 		if (minRecLevel or minRecLevelH or minRecLevelM) then
 			local tmp_RLR = L["ATLAS_STRING_RECLEVELRANGE"]..L["Colon"]
@@ -1485,7 +1485,8 @@ function Atlas_MapRefresh(mapID)
 		AtlasFrame.AdventureJournal.instanceID = base.JournalInstanceID
 		AtlasFrameLarge.AdventureJournal.instanceID = base.JournalInstanceID
 		AtlasFrameSmall.AdventureJournal.instanceID = base.JournalInstanceID
-		if isRetail or isProgressionClassic then
+		-- -- Mists Classic already support EJ features, so we can have boss button added here
+		if (ATLAS_HAS_EJ)  then
 			AtlasFrameAdventureJournalButton:Show()
 			AtlasFrameLargeAdventureJournalButton:Show()
 			AtlasFrameSmallAdventureJournalButton:Show()
@@ -1503,7 +1504,8 @@ function Atlas_MapRefresh(mapID)
 		AtlasFrame.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameLarge.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameSmall.AdventureJournalMap.mapID = base.WorldMapID
-		if isRetail or isProgressionClassic then
+		-- Mists Classic already support EJ features, so we can have boss button added here
+		if (ATLAS_HAS_EJ)  then
 			AtlasFrameAdventureJournalMapButton:Show()
 			AtlasFrameLargeAdventureJournalMapButton:Show()
 			AtlasFrameSmallAdventureJournalMapButton:Show()
@@ -1642,7 +1644,8 @@ function Atlas_Refresh(mapID)
 		end
 	end
 	
-	if isRetail or isProgressionClassic then
+	-- Mists Classic already support EJ features, so we can have boss button added here
+	if (ATLAS_HAS_EJ) then
 		if (AtlasEJLootFrame:IsShown()) then
 			AtlasEJLootFrame:Hide()
 		end
@@ -2085,21 +2088,7 @@ function addon:Refresh()
 	AtlasFrame:SetClampedToScreen(profile.options.frames.clamp)
 	AtlasFrameLarge:SetClampedToScreen(profile.options.frames.clamp)
 	AtlasFrameSmall:SetClampedToScreen(profile.options.frames.clamp)
---[[
-	if (isClassicEra) then
-		if (profile.options.worldMapButton) then
-			AtlasToggleFromWorldMap:Show()
-		else
-			AtlasToggleFromWorldMap:Hide()
-		end
-	else
-		if (profile.options.worldMapButton) then
-			addon.WorldMap.Button:Show()
-		else
-			addon.WorldMap.Button:Hide()
-		end
-	end
-]]
+
 	if (profile.options.worldMapButton) then
 		addon.WorldMap.Button:Show()
 	else

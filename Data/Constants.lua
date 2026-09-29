@@ -42,6 +42,29 @@ private.addon_name = "Atlas"
 local constants = { }
 private.constants = constants
 
+-- Determine WoW client family
+local _, _, _, interfaceVersion = GetBuildInfo()
+local projectID = WOW_PROJECT_ID
+
+local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
+local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
+local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
+local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
+
+-- Beta-only fallback:
+-- Replace these bounds with values verified from the actual Forever client.
+local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
+
+local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
+local isClassicEra = projectID == PROJECT_CLASSIC
+local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
+local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
+local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
+local isProgressionClassic = isCataclysmClassic or isMistsClassic
+local isClassicForever = isForeverBeta
+local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic or isClassicForever
+
 -- Initialization
 ATLAS_VERSION = GetAddOnMetadata(private.addon_name, "Version")
 ATLAS_PLAYER_FACTION = UnitFactionGroup("player")
@@ -69,6 +92,25 @@ ATLAS_PLUGIN_MENUS = 0
 ATLAS_DROPDOWN_TYPES = {}
 
 ATLAS_GAMETOOLTIP_ORIGINAL_SCALE = GameTooltip:GetScale()
+
+-- Define which clients have achievements available
+ATLAS_HAS_ACHIEVEMENTS = false
+if isRetail or isMistsClassic then
+	ATLAS_HAS_ACHIEVEMENTS = true
+end
+
+-- Defines which clients have the EJ features, this will also related to the boss button from EJ
+ATLAS_HAS_EJ = false
+if isRetail or isMistsClassic then
+	ATLAS_HAS_EJ = true
+end
+
+-- Defines which clients use mainline API calls
+ATLAS_USES_MAINLINE_API = false
+if isRetail or isClassicForever then
+	ATLAS_USES_MAINLINE_API = true
+end
+
 
 -- Only update this version number when the options have been revised and a force update is needed.
 ATLAS_OLDEST_VERSION_SAME_SETTINGS = "1.24.00" 
