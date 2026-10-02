@@ -15,7 +15,7 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.53.01 (Oct. xx, 2026)
+v1.53.01 (Oct. 02, 2026)
 ------------------------
 - Tweaking the addon category, title, and description
 - Enhanced the version checking related to mainline and classic forever, preventing EJLoot from being loaded in unsupported versions
@@ -23,6 +23,7 @@ v1.53.01 (Oct. xx, 2026)
 - Fixed issue with boss button click handling in the Adventure Journal especially not workin in Classic MoP
 - Fixed issue with boss button click did not bring to Adventure Journal's appropriate instance tab as WoW has introduced new Journey tab structure
 - Moved the UI and frame creation logic to Templates.lua and UI.lua for better modularity
+- Temporary disable the boss loot right-click feature in the Adventure Journal until the issue is resolved
 
 v1.53.00 (Sep. 21, 2026)
 ------------------------

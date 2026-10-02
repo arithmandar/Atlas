@@ -211,7 +211,10 @@ function addon:BossButton_OnClick(self, button)
 
 	if (not ATLAS_HAS_EJ) then return end
 
+	-- Right click to open boss loot
 	if (button == "RightButton") then
+		-- 2026/10/02 - disable for official release until we resolve the issue
+--@do-not-package@
 		if (AtlasFrameSmall:IsVisible()) then
 			addon:ToggleLegendPanel()
 		end
@@ -223,6 +226,7 @@ function addon:BossButton_OnClick(self, button)
 			EJ_ContentTab_SelectAppropriateInstanceTab(self.instanceID)
 			Atlas_EncounterJournal_DisplayLoot(self.instanceID, self.encounterID)
 		end
+--@end-do-not-package@
 	elseif (button == "LeftButton") then
 		addon:AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID)
 	end

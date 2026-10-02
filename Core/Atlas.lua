@@ -890,6 +890,7 @@ function addon:MapAddNPCButton()
 			if (info_y == nil) then info_y = -18; end
 
 			-- Mists Classic already support EJ features, so we can have boss button added here
+			-- We assume the info_id will be less than 10000 for boss encounters
 			if (ATLAS_HAS_EJ and info_id < 10000 and profile.options.frames.showBossPotrait) then
 				bossbutton = _G["AtlasMapBossButton"..bossindex]
 				if (not bossbutton) then
@@ -1548,9 +1549,9 @@ function Atlas_MapRefresh(mapID)
 	-- Check if selected map is from plugin
 	if (not AtlasMapPath) then
 		-- Searching for plugins
-		for ka,va in pairs(ATLAS_PLUGINS) do
+		for ka in pairs(ATLAS_PLUGINS) do
 			-- Searching for plugin's maps
-			for kb,vb in pairs(ATLAS_PLUGINS[ka]) do
+			for _, vb in pairs(ATLAS_PLUGINS[ka]) do
 				if (zoneID == vb) then
 					AtlasMapPath = "Interface\\AddOns\\"..ka.."\\Images\\"
 					break

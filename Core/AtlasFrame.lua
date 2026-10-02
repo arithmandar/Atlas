@@ -31,16 +31,16 @@
 -- ----------------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
-local pairs, select, wipe = _G.pairs, _G.select, _G.wipe
+local pairs, wipe = _G.pairs, _G.wipe
 -- Libraries
 local string = _G.string
 local table = _G.table
-local tinsert, tsort = table.insert, table.sort
+local tsort = table.sort
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
