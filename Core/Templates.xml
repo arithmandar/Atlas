@@ -26,7 +26,14 @@
 
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
-
+<!--
+	All templates that used to live in this file (AtlasHeaderTextTemplate,
+	AtlasSubHeaderTextTemplate, the AtlasFrame* button templates, AtlasMapButtonTemplate,
+	AtlasMapNPCButtonTemplate, AtlasFrameBossButtonTemplate, the Atlas_Letter_* marks and
+	AtlasPOI_Taxi* textures) have been migrated to Lua factory functions in Templates.lua
+	(see the Templates table assigned to private.Templates). This file is no longer
+	loaded by Atlas.toc and is kept only for historical reference.
+-->
 	<Button name="AtlasEntryTemplate" hidden="true" virtual="true" toplevel="false">
 		<Size>
 			<AbsDimension x="440" y="15" />
@@ -676,4 +683,5 @@
 		<Size x="20" y="20"/>								
 		<TexCoords left="0.62500000" right="0.93750000" top="0.00000000" bottom="0.31250000"/>
 	</Texture>
+
 </Ui>

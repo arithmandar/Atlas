@@ -121,6 +121,7 @@ function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 	return addon:GetBossName(bossname, encounterID, creatureIndex)
 end
 
+-- To get encounter's participant names, they appears as part of section title
 function addon:GetEJSectionTitle(bossname, sectionID, moduleName)
 	if (ATLAS_HAS_EJ) then
 		if not bossname or not sectionID then
@@ -157,9 +158,12 @@ function addon:AdventureJournalButton_OnClick(frame)
 
 		if ( not EncounterJournal or not EncounterJournal:IsShown() ) then
 			ToggleEncounterJournal()
+			--EJ_ContentTab_Select(EncounterJournal.dungeonsTab:GetID())
+			
 		end
 		-- EncounterJournal_ListInstances();
 		NavBar_Reset(EncounterJournal.navBar)
+		EJ_ContentTab_SelectAppropriateInstanceTab(instanceID);
 		EncounterJournal_DisplayInstance(instanceID)
 
 		Atlas_Toggle()
@@ -196,7 +200,7 @@ function addon:AdventureJournalButton_OnEnter(frame)
 	end
 end
 
--- Shared OnClick handler for boss/encounter buttons (AtlasFrameBossButtonTemplate).
+-- Shared OnClick handler for boss/encounter buttons (see Templates.CreateBossButton).
 function addon:BossButton_OnClick(self, button)
 	if (IsShiftKeyDown() and self.link) then
 		if (IsModifiedClick("CHATLINK") and ChatEdit_GetActiveWindow()) then
@@ -216,6 +220,7 @@ function addon:BossButton_OnClick(self, button)
 		else
 			addon:AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID, true)
 			ToggleEncounterJournal()
+			EJ_ContentTab_SelectAppropriateInstanceTab(self.instanceID)
 			Atlas_EncounterJournal_DisplayLoot(self.instanceID, self.encounterID)
 		end
 	elseif (button == "LeftButton") then
@@ -243,6 +248,7 @@ function addon:AdventureJournal_EncounterButton_OnClick(instanceID, encounterID,
 		end
 		-- EncounterJournal_ListInstances();
 		NavBar_Reset(EncounterJournal.navBar)
+		EJ_ContentTab_SelectAppropriateInstanceTab(instanceID);
 		EncounterJournal_DisplayInstance(instanceID)
 		EncounterJournal_DisplayEncounter(encounterID)
 

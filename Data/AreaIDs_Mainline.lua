@@ -27,6 +27,7 @@
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local FOLDER_NAME, private = ...
+local GetBuildInfo = _G.GetBuildInfo
 
 -- Area IDs for the mainline version of World of Warcraft. Source is from AreaID table.
 local _, _, _, interfaceVersion = GetBuildInfo()

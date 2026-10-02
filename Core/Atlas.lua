@@ -62,6 +62,7 @@ local LibStub = _G.LibStub
 ---@field db table
 ---@field constants table
 ---@field Templates table
+---@field Fonts table
 ---@field dropdowns table
 ---@field assocs table
 ---@field optionsFrames table
@@ -116,6 +117,7 @@ local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceConsole-3.0")
 addon.constants = private.constants
 addon.Templates = private.Templates
+addon.Fonts = private.Fonts
 --addon.dropdowns. = private.dropdowns
 addon.constants.addon_name = private.addon_name
 addon.Name = FOLDER_NAME
@@ -891,14 +893,14 @@ function addon:MapAddNPCButton()
 			if (ATLAS_HAS_EJ and info_id < 10000 and profile.options.frames.showBossPotrait) then
 				bossbutton = _G["AtlasMapBossButton"..bossindex]
 				if (not bossbutton) then
-					bossbutton = CreateFrame("Button", "AtlasMapBossButton"..bossindex, AtlasFrame, "AtlasFrameBossButtonTemplate")
+					bossbutton = private.Templates.CreateBossButton("AtlasMapBossButton"..bossindex, AtlasFrame)
 				end
 				bossButtonCleanUp(bossbutton)
 				bossButtonUpdate(bossbutton, info_id, base.JournalInstanceID, true)
 				
 				bossbuttonS = _G["AtlasMapBossButtonS"..bossindexS]
 				if (not bossbuttonS) then
-					bossbuttonS = CreateFrame("Button", "AtlasMapBossButtonS"..bossindexS, AtlasFrameSmall, "AtlasFrameBossButtonTemplate")
+					bossbuttonS = private.Templates.CreateBossButton("AtlasMapBossButtonS"..bossindexS, AtlasFrameSmall)
 				end
 				bossButtonCleanUp(bossbuttonS)
 				bossButtonUpdate(bossbuttonS, info_id, base.JournalInstanceID, true)
@@ -918,11 +920,11 @@ function addon:MapAddNPCButton()
 			else
 				button = _G["AtlasMapNPCButton"..buttonindex]
 				if (not button) then
-					button = CreateFrame("Button", "AtlasMapNPCButton"..buttonindex, AtlasFrame, "AtlasMapNPCButtonTemplate")
+					button = private.Templates.CreateMapNPCButton("AtlasMapNPCButton"..buttonindex, AtlasFrame)
 				end
 				buttonS = _G["AtlasMapNPCButtonS"..buttonindexS]
 				if (not buttonS) then
-					buttonS = CreateFrame("Button", "AtlasMapNPCButtonS"..buttonindexS, AtlasFrameSmall, "AtlasMapNPCButtonTemplate")
+					buttonS = private.Templates.CreateMapNPCButton("AtlasMapNPCButtonS"..buttonindexS, AtlasFrameSmall)
 				end
 
 				local tip_title
@@ -1027,7 +1029,7 @@ function addon:MapAddNPCButtonLarge()
 			if (ATLAS_HAS_EJ and info_id < 10000 and info_x and info_y and profile.options.frames.showBossPotrait) then
 				bossbutton = _G["AtlasMapBossButtonL"..bossindex]
 				if (not bossbutton) then
-					bossbutton = CreateFrame("Button", "AtlasMapBossButtonL"..bossindex, AtlasFrameLarge, "AtlasFrameBossButtonTemplate")
+					bossbutton = private.Templates.CreateBossButton("AtlasMapBossButtonL"..bossindex, AtlasFrameLarge)
 				end
 				bossButtonCleanUp(bossbutton)
 				bossButtonUpdate(bossbutton, info_id, base.JournalInstanceID, true)
@@ -1039,7 +1041,7 @@ function addon:MapAddNPCButtonLarge()
 			elseif (info_x and info_y) then
 				button = _G["AtlasMapNPCButtonL"..buttonindex]
 				if (not button) then
-					button = CreateFrame("Button", "AtlasMapNPCButtonL"..buttonindex, AtlasFrameLarge, "AtlasMapNPCButtonTemplate")
+					button = private.Templates.CreateMapNPCButton("AtlasMapNPCButtonL"..buttonindex, AtlasFrameLarge)
 				end
 				local text = _G[button:GetName().."_Text"]
 				if (text) then
@@ -1676,7 +1678,8 @@ function Atlas_Refresh(mapID)
 	-- Create and align any new entry buttons that we need
 	for i = 1, ATLAS_CUR_LINES do
 		if (not _G["AtlasEntry"..i]) then
-			local f = CreateFrame("Button", "AtlasEntry"..i, AtlasFrame, "AtlasEntryTemplate")
+			--local f = CreateFrame("Button", "AtlasEntry"..i, AtlasFrame, "AtlasEntryTemplate")
+			local f = addon.Templates.CreateEntry("AtlasEntry"..i, AtlasFrame)
 			if i == 1 then
 				f:SetPoint("TOPLEFT", "AtlasScrollBar", "TOPLEFT", 16, -2)
 			else

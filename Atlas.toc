@@ -1,4 +1,4 @@
-﻿## Interface: 11509, 16001, 20506, 50504, 120100
+## Interface: 11509, 16001, 20506, 50504, 120100
 ## Title: Atlas
 ## Notes: Core addon for Atlas map modules and plugins
 ## Title-deDE: Atlas
@@ -51,15 +51,14 @@ Data\AreaIDs.xml
 Libs\Libs.xml
 Locale\Locales.xml
 
-Core\FontsTemplates.xml
+Core\FontsTemplates.lua
 Core\Templates.lua
-Core\Templates.xml
 Core\IngameLocales.lua
 
 # Core
 Core\Atlas.lua
 Core\AtlasFrame.lua
-Core\Atlas.xml
+Core\UI.lua
 Core\Config.lua
 
 Data\Maps_Association.lua

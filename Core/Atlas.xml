@@ -26,6 +26,10 @@
 
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
+<!-- 
+	All UI are now defined in UI.lua.
+	This file is no longer actively used or loaded by Atlas.toc and is kept only for historical reference.
+-->
 	<Frame name="AtlasFrame" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true">
 		<Size>
 			<AbsDimension x="1023" y="631"/>
@@ -44,8 +48,10 @@
 				<PushedTexture name="AtlasLockPush"/>
 			</Button>
 			<Button name="$parentOptionsButton" inherits="AtlasFrameOptionsButtonTemplate"/>
-<!--			<Button name="$parentDropDownType" inherits="AtlasFrameDropDownTypeTemplate"/>
-			<Button name="$parentDropDown" inherits="AtlasFrameDropDownTemplate"/>-->
+<!--
+			<Button name="$parentDropDownType" inherits="AtlasFrameDropDownTypeTemplate"/>
+			<Button name="$parentDropDown" inherits="AtlasFrameDropDownTemplate"/>
+-->
 			<EditBox name="AtlasSearchEditBox" inherits="InputBoxTemplate" letters="80">
 				<Size>
 					<AbsDimension x="150" y="32"/>

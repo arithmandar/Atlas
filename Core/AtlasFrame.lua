@@ -220,6 +220,12 @@ function AtlasEntry_OnClick(self, button)
 	end
 end
 
+function AtlasEntry_OnLeave()
+	GameTooltip:Hide()
+	GameTooltip:SetScale(ATLAS_GAMETOOLTIP_ORIGINAL_SCALE)
+end
+
+
 -- Function used to initialize the map type dropdown menu
 -- Cycle through Atlas_MapTypes to populate the dropdown
 function AtlasFrameDropDownType_Initialize()
