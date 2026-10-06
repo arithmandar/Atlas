@@ -24,6 +24,9 @@
 ## Author: arith
 ## Version: @project-version@
 ## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibBabble-Boss-3.0, LibBabble-SubZone-3.0, LibBabble-Faction-3.0, LibDBIcon-1.0, LibUIDropDownMenu
+## AddonCompartmentFunc: Atlas_Toggle
+## IconTexture: Interface\WorldMap\WorldMap-Icon
+## SavedVariables: AtlasDB
 ## Category: Map
 ## Category-deDE: Karte
 ## Category-esES: Mapa
@@ -38,13 +41,12 @@
 ## X-Category: Map & Minimap
 ## X-Credits: Dan Gilbert, Lothaer, Dynaletik, dubcat
 ## X-Date: @project-date-iso@
-## X-Donate: https://www.patreon.com/cw/ArithonWoW
 ## X-Email: atlas.addon at gmail dot com
 ## X-License: GPLv2
 ## X-Localizations: enUS, deDE, esES, esMX, frFR, ruRU, zhTW, zhCN, ptBR, koKR
-## AddonCompartmentFunc: Atlas_Toggle
-## IconTexture: Interface\WorldMap\WorldMap-Icon
-## SavedVariables: AtlasDB
+## X-Website: https://www.curseforge.com/wow/addons/atlas
+## X-Curse-Project-ID: 301
+## X-WoWI-ID: 3896
 
 Data\Constants.lua
 Data\AreaIDs.xml

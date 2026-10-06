@@ -6,46 +6,45 @@ manual-changelog:
     
 enable-nolib-creation: no
 
+# configs for WowInterface
+wowi-archive-previous: yes
+wowi-create-changelog: no
+
 externals:
 # SVN
-    Libs-release/AceAddon-3.0: 
-        url: https://repos.wowace.com/wow/ace3/trunk/AceAddon-3.0
-    Libs-release/AceDB-3.0: 
-        url: https://repos.wowace.com/wow/ace3/trunk/AceDB-3.0
-    Libs-release/AceConsole-3.0: 
-        url: https://repos.wowace.com/wow/ace3/trunk/AceConsole-3.0
-    Libs-release/AceGUI-3.0: 
-        url: https://repos.wowace.com/wow/ace3/trunk/AceGUI-3.0
-    Libs-release/AceConfig-3.0: 
-        url: https://repos.wowace.com/wow/ace3/trunk/AceConfig-3.0
-    Libs-release/AceDBOptions-3.0: 
-        url: https://repos.wowace.com/wow/ace3/trunk/AceDBOptions-3.0
-    Libs-release/AceLocale-3.0: 
-        url: https://repos.wowace.com/wow/ace3/trunk/AceLocale-3.0
-    Libs-release/CallbackHandler-1.0: 
-        url: https://repos.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
-    Libs-release/LibBabble-Boss-3.0: 
-        url: https://repos.wowace.com/wow/libbabble-boss-3-0/trunk
-    Libs-release/LibBabble-SubZone-3.0: 
-        url: https://repos.wowace.com/wow/libbabble-subzone-3-0/trunk
-    Libs-release/LibBabble-Faction-3.0: 
-        url: https://repos.wowace.com/wow/libbabble-faction-3-0/trunk
-    Libs-release/LibDBIcon-1.0: 
-        url: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
-    Libs-release/LibStub: 
-        url: https://repos.wowace.com/wow/libstub/trunk
-    Libs-release/LibUIDropDownMenu: 
-        url: https://repos.wowace.com/wow/libuidropdownmenu/trunk/LibUIDropDownMenu
+    Libs/AceAddon-3.0: 
+        url: https://repos.curseforge.com/wow/ace3/trunk/AceAddon-3.0
+    Libs/AceDB-3.0: 
+        url: https://repos.curseforge.com/wow/ace3/trunk/AceDB-3.0
+    Libs/AceConsole-3.0: 
+        url: https://repos.curseforge.com/wow/ace3/trunk/AceConsole-3.0
+    Libs/AceGUI-3.0: 
+        url: https://repos.curseforge.com/wow/ace3/trunk/AceGUI-3.0
+    Libs/AceConfig-3.0: 
+        url: https://repos.curseforge.com/wow/ace3/trunk/AceConfig-3.0
+    Libs/AceDBOptions-3.0: 
+        url: https://repos.curseforge.com/wow/ace3/trunk/AceDBOptions-3.0
+    Libs/AceLocale-3.0: 
+        url: https://repos.curseforge.com/wow/ace3/trunk/AceLocale-3.0
+    Libs/CallbackHandler-1.0: 
+        url: https://repos.curseforge.com/wow/callbackhandler/trunk/CallbackHandler-1.0
+    Libs/LibBabble-Boss-3.0: 
+        url: https://repos.curseforge.com/wow/libbabble-boss-3-0/trunk
+    Libs/LibBabble-SubZone-3.0: 
+        url: https://repos.curseforge.com/wow/libbabble-subzone-3-0/trunk
+    Libs/LibBabble-Faction-3.0: 
+        url: https://repos.curseforge.com/wow/libbabble-faction-3-0/trunk
+    Libs/LibDBIcon-1.0: 
+        url: https://repos.curseforge.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
+    Libs/LibStub: 
+        url: https://repos.curseforge.com/wow/libstub/trunk
+    Libs/LibUIDropDownMenu: 
+        url: https://repos.curseforge.com/wow/libuidropdownmenu/trunk/LibUIDropDownMenu
 # Git
-    Libs-release/Krowi_WorldMapButtons: 
+    Libs/Krowi_WorldMapButtons: 
         url: https://github.com/TheKrowi/Krowi_WorldMapButtons
-    Libs-release/LibDataBroker-1.1: 
-        url: https://repos.wowace.com/wow/libdatabroker-1-1
-
-move-folders:
-    Atlas/Libs: Atlas/Libs-dev
-    Atlas/Libs-release: Atlas/Libs
+    Libs/LibDataBroker-1.1: 
+        url: https://repos.curseforge.com/wow/libdatabroker-1-1
 
 ignore:
     - Images/PSD
-    - Libs-dev
