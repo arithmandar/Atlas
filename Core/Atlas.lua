@@ -1,10 +1,9 @@
--- $Id$
 --[[
 
 	Atlas, a World of Warcraft instance map browser
 	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
 	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
-	Copyright 2011 ~ 2026 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+	Copyright 2011 ~ 2026 - Arith Hsu, Atlas Team
 
 	This file is part of Atlas.
 
@@ -32,11 +31,10 @@ local _G = getfenv(0)
 local pairs, select, type, unpack, next = pairs, select, type, unpack, next
 local string, table, math, tonumber = string, table, math, tonumber
 -- Libraries
-local bit = bit
 local strfind, strsub, format, gsub, strlower, strgmatch = string.find, string.sub, string.format, string.gsub, string.lower, string.gmatch
 local strlen = string.len
 local strtrim = strtrim
-local floor, fmod = math.floor, math.fmod
+local floor = math.floor
 local tinsert, tsort = table.insert, table.sort
 
 local C_AddOns = _G.C_AddOns
@@ -47,10 +45,9 @@ local C_EncounterJournal = _G.C_EncounterJournal
 local GetSectionInfo, GetSectionIconFlags = C_EncounterJournal.GetSectionInfo, C_EncounterJournal.GetSectionIconFlags
 local EJ_GetCreatureInfo = _G.EJ_GetCreatureInfo
 
-local UnitLevel, GetBuildInfo = _G.UnitLevel, _G.GetBuildInfo
+local UnitLevel = _G.UnitLevel
 local GetLFGDungeonInfo = _G.GetLFGDungeonInfo
 local GetAverageItemLevel = _G.GetAverageItemLevel
-local hooksecurefunc = hooksecurefunc
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -576,8 +573,7 @@ local function sanitizeName(text)
 	text = strlower(text)
 	if (AtlasSortIgnore) then
 		for _, v in pairs(AtlasSortIgnore) do
-			local fmatch; 
-			fmatch = strgmatch(text, v)()
+			local fmatch = gmatch(text, v)()
 			if (fmatch) and ((strlen(text) - strlen(fmatch)) <= 4) then
 				return fmatch
 			end
