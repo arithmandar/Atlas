@@ -30,12 +30,12 @@
 local _G = getfenv(0)
 -- Libraries
 local C_AddOns = _G.C_AddOns
-local GetAddOnInfo, GetAddOnMetadata = C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnMetadata
+local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 private.addon_name = "Atlas"
 
 local constants = { }
@@ -50,18 +50,15 @@ local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
 local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
 local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
+local PROJECT_FOREVER = WOW_PROJECT_CAMELOT
 
--- Beta-only fallback:
--- Replace these bounds with values verified from the actual Forever client.
-local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
-
-local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
+local isRetail = projectID == PROJECT_MAINLINE
 local isClassicEra = projectID == PROJECT_CLASSIC
 local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
 local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
 local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
 local isProgressionClassic = isCataclysmClassic or isMistsClassic
-local isClassicForever = isForeverBeta
+local isClassicForever = projectID == PROJECT_FOREVER
 local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic or isClassicForever
 
 -- Initialization
@@ -323,10 +320,9 @@ constants.moduleList = {
 
 constants.deprecatedList = {
 	-- List of deprecated Atlas modules.
-	-- First value is the addon name
-	-- Second value is the version
+	-- { "Addon Name", "Version", "revision" }
 	-- Nil version means NO version will EVER be loaded!
-	-- Non-nil version mean ONLY IT OR NEWER versions will be loaded!
+	-- Non-nil version means ONLY IT OR NEWER versions will be loaded!
 	-- Note that 2.10 isn't greater than 2.9 (2.10 >= 2.9 will fail), so the addon version number must be with the same digits
 	-- For example, name it as 2.09 instead of 2.9
 	-- Most recent (working) versions of known modules at time of release

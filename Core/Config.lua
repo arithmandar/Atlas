@@ -28,14 +28,11 @@
 -- ----------------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
-local select = select
 local pairs = _G.pairs
--- Libraries
-local GetBuildInfo = _G.GetBuildInfo
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 ---@cast addon AtlasAddon

@@ -118,13 +118,12 @@ addon.Fonts = private.Fonts
 --addon.dropdowns. = private.dropdowns
 addon.constants.addon_name = private.addon_name
 addon.Name = FOLDER_NAME
-addon.LocName = select(2, GetAddOnInfo(addon.Name))
-addon.Notes = select(3, GetAddOnInfo(addon.Name))
+local _, locName, notes = GetAddOnInfo(addon.Name)
+addon.LocName = locName
+addon.Notes = notes
 _G.Atlas = addon
 
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
-local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0")
-local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local AceDB = LibStub("AceDB-3.0")
 -- UIDropDownMenu
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
