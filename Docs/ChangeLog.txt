@@ -14,6 +14,11 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.53.03 (Oct. 07, 2026)
+------------------------
+- Codes optimization for repeated codes in MapRefresh and AtlasFrameDropDown_Initialize
+- Enhance the WoW client's detection
+
 v1.53.02 (Oct. 06, 2026)
 ------------------------
 - Forever client now has its own WOW_PROJECT_ID which is WOW_PROJECT_CAMELOT

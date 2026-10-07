@@ -33,7 +33,7 @@ local pairs = _G.pairs
 local select = _G.select
 local tonumber = _G.tonumber
 -- Libraries
-local GameTooltip, GetBuildInfo = _G.GameTooltip, _G.GetBuildInfo
+local GameTooltip = _G.GameTooltip
 local C_AddOns = _G.C_AddOns
 local GetAddOnInfo = C_AddOns.GetAddOnInfo
 local C_AdventureJournal = _G.C_AdventureJournal
@@ -144,7 +144,7 @@ function addon:AdventureJournalButton_OnClick(frame)
 	if (ATLAS_HAS_EJ) then 
 	
 		local instanceID = frame.instanceID
-		local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
+		--local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
 		--if (disabled) then return end
 		
 		if (not instanceID) then
@@ -236,7 +236,7 @@ function addon:AdventureJournal_EncounterButton_OnClick(instanceID, encounterID,
 	
 		if (not instanceID or not encounterID) then return end
 		
-		local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
+		--local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
 		--if (disabled) then return end
 
 		if (not EJ_GetInstanceInfo(instanceID)) then
@@ -267,8 +267,8 @@ function addon:AdventureJournal_MapButton_OnClick(frame)
 		local uiMapID = frame.mapID
 		local dungeonLevel = frame.dungeonLevel
 
-		HideUIPanel(AtlasFrame)
-		local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
+		--HideUIPanel(AtlasFrame)
+		--local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
 		--if (disabled) then 
 		--	WorldMapFrame.fromJournal = false
 		--else

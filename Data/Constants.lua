@@ -38,28 +38,33 @@ local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local _, private = ...
 private.addon_name = "Atlas"
 
+-- Determine WoW client family
+-- Determine WoW client family
+local projectID = WOW_PROJECT_ID
+
+local function IsProject(id)
+    return id ~= nil and projectID == id
+end
+
+local Client = {
+    projectID = projectID,
+
+    isRetail = IsProject(WOW_PROJECT_MAINLINE),
+    isClassicEra = IsProject(WOW_PROJECT_CLASSIC),
+    isTBCClassic = IsProject(WOW_PROJECT_BURNING_CRUSADE_CLASSIC),
+    isCataclysmClassic = IsProject(WOW_PROJECT_CATACLYSM_CLASSIC),
+    isMistsClassic = IsProject(WOW_PROJECT_MISTS_CLASSIC),
+    isForever = IsProject(WOW_PROJECT_CAMELOT),
+}
+
+Client.isProgressionClassic = Client.isCataclysmClassic or Client.isMistsClassic
+Client.isAnyClassic = Client.isClassicEra or Client.isTBCClassic or Client.isProgressionClassic
+Client.isKnownProject = Client.isRetail or Client.isAnyClassic or Client.isForever
+private.Client = Client
+
 local constants = { }
 private.constants = constants
 
--- Determine WoW client family
-local _, _, _, interfaceVersion = GetBuildInfo()
-local projectID = WOW_PROJECT_ID
-
-local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
-local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
-local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
-local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
-local PROJECT_FOREVER = WOW_PROJECT_CAMELOT
-
-local isRetail = projectID == PROJECT_MAINLINE
-local isClassicEra = projectID == PROJECT_CLASSIC
-local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
-local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
-local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
-local isProgressionClassic = isCataclysmClassic or isMistsClassic
-local isClassicForever = projectID == PROJECT_FOREVER
-local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic or isClassicForever
 
 -- Initialization
 ATLAS_VERSION = GetAddOnMetadata(private.addon_name, "Version")
@@ -91,23 +96,36 @@ ATLAS_GAMETOOLTIP_ORIGINAL_SCALE = GameTooltip:GetScale()
 
 -- Define which clients have achievements available
 ATLAS_HAS_ACHIEVEMENTS = false
-if isRetail or isMistsClassic then
+if Client.isRetail or Client.isMistsClassic then
 	ATLAS_HAS_ACHIEVEMENTS = true
 end
 
 -- Defines which clients have the EJ features, this will also related to the boss button from EJ
 ATLAS_HAS_EJ = false
-if isRetail or isMistsClassic then
+if Client.isRetail or Client.isMistsClassic then
 	ATLAS_HAS_EJ = true
 end
 
 -- Defines which clients use mainline API calls
 ATLAS_USES_MAINLINE_API = false
-if isRetail or isClassicForever then
+if Client.isRetail or Client.isForever then
 	ATLAS_USES_MAINLINE_API = true
 end
 
+-- Lock button texture
+constants.LockButtonTex = {
+	LockUp = "Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Up",
+	LockDown = "Interface\\AddOns\\Atlas\\Images\\LockButton-Locked-Down",
+	UnLockUp = "Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Up",
+	UnLockDown = "Interface\\AddOns\\Atlas\\Images\\LockButton-Unlocked-Down"
+}
 
+constants.dungeonIcon = {
+	heroic = " |TInterface\\EncounterJournal\\UI-EJ-HeroicTextIcon:0:0|t",
+	mythic = " |TInterface\\AddOns\\Atlas\\Images\\UI-EJ-MythicTextIcon:0:0|t",
+	dungeon = "|TInterface\\MINIMAP\\Dungeon:0:0|t",
+	raid = "|TInterface\\MINIMAP\\Raid:0:0|t",
+}
 -- Only update this version number when the options have been revised and a force update is needed.
 ATLAS_OLDEST_VERSION_SAME_SETTINGS = "1.24.00" 
 
