@@ -32,18 +32,22 @@ local pairs, select, type, unpack, next = pairs, select, type, unpack, next
 local string, table, math, tonumber = string, table, math, tonumber
 -- Libraries
 local strfind, strsub, format, gsub, strlower, strgmatch = string.find, string.sub, string.format, string.gsub, string.lower, string.gmatch
-local strlen = string.len
-local strtrim = strtrim
+local strlen, strtrim = string.len, string.trim
 local floor = math.floor
 local tinsert, tsort = table.insert, table.sort
 
 local C_AddOns = _G.C_AddOns
-local GetAddOnInfo, GetAddOnMetadata, GetAddOnEnableState, IsAddOnLoaded = C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnMetadata, C_AddOns.GetAddOnEnableState, C_AddOns.IsAddOnLoaded
+local GetAddOnInfo, GetAddOnMetadata, GetAddOnEnableState, IsAddOnLoaded = 
+	C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnMetadata, C_AddOns.GetAddOnEnableState, C_AddOns.IsAddOnLoaded
 local C_Item = _G.C_Item
 local GetItemInfo = C_Item.GetItemInfo
 local C_EncounterJournal = _G.C_EncounterJournal
 local GetSectionInfo, GetSectionIconFlags = C_EncounterJournal.GetSectionInfo, C_EncounterJournal.GetSectionIconFlags
 local EJ_GetCreatureInfo = _G.EJ_GetCreatureInfo
+
+local C_SpecializationInfo = _G.C_SpecializationInfo
+local GetSpecialization = C_SpecializationInfo.GetSpecialization
+local GetSpecializationRole = _G.GetSpecializationRole
 
 local UnitLevel = _G.UnitLevel
 local GetLFGDungeonInfo = _G.GetLFGDungeonInfo
@@ -58,6 +62,7 @@ local LibStub = _G.LibStub
 ---@class AtlasAddon : AceAddon
 ---@field db table
 ---@field constants table
+---@field Client table
 ---@field Templates table
 ---@field Fonts table
 ---@field dropdowns table
@@ -113,6 +118,7 @@ local LibStub = _G.LibStub
 ---@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceConsole-3.0")
 addon.constants = private.constants
+addon.Client = private.Client
 addon.Templates = private.Templates
 addon.Fonts = private.Fonts
 --addon.dropdowns. = private.dropdowns
@@ -924,7 +930,7 @@ function addon:MapAddNPCButton()
 				end
 
 				local tip_title
-				for k, v in pairs(AtlasMaps[zoneID]) do
+				for _, v in pairs(AtlasMaps[zoneID]) do
 					if (type(v[2]) == "number") then
 						if (v[2] == info_id) then
 							tip_title = v[1]
@@ -1159,41 +1165,36 @@ local function getPlayerText(maxPlayers, maxPlayersH, maxPlayersM, icontext_inst
 	local playerText = L["ATLAS_STRING_PLAYERLIMIT"]..L["Colon"]..WHIT
 	local icontext_heroic 	= " |TInterface\\EncounterJournal\\UI-EJ-HeroicTextIcon:0:0|t"
 	local icontext_mythic 	= " |TInterface\\AddOns\\Atlas\\Images\\UI-EJ-MythicTextIcon:0:0|t"
+	local parts = {}
 
 	if ((maxPlayers and maxPlayers ~= 0) or (maxPlayersH and maxPlayersH ~= 0) or (maxPlayersM and maxPlayersM ~= 0)) then
 		if (maxPlayers and maxPlayers ~= 0) then 
-			playerText = playerText..maxPlayers..icontext_instance
+			parts[#parts + 1] = maxPlayers..icontext_instance
 		end
 		if (maxPlayersH and maxPlayersH ~= 0) then
-			local slash = maxPlayers and L["Slash"] or ""
-			playerText = playerText..slash..maxPlayersH..icontext_heroic
+			parts[#parts + 1] = maxPlayersH..icontext_heroic
 		end
 		if (maxPlayersM and maxPlayersM ~= 0) then
-			local slash = maxPlayersH and L["Slash"] or ""
-			playerText = playerText..slash..maxPlayersM..icontext_mythic
+			parts[#parts + 1] = maxPlayersM..icontext_mythic
 		end
+		return playerText..table.concat(parts, L["Slash"])
 	else
 		if not players or type(players) ~= "table" then return end
 		
 		if #players == 1 then
-			playerText = format("%s%d", playerText, players[1])
+			parts[1] = format("%d", players[1])
 		elseif #players > 1 then
-			local text
 			for i=1, #players do
-				if i == 1 then
-					text = format("%d", players[i])
-				else
-					text = format("%s%s%d", text, L["Slash"], players[i])
-				end
+				parts[i] = format("%d", players[i])
 			end
-			playerText = playerText..text
 		else
 			return
 		end
 	end
 	
-	return playerText
+	return playerText..table.concat(parts, L["Slash"])
 end
+
 
 function Atlas_MapRefresh(mapID)
 	local zoneID = mapID or ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
@@ -1206,65 +1207,44 @@ function Atlas_MapRefresh(mapID)
 		return
 	end
 
-	local _
-	local typeID, subtypeID, minLevel, maxLevel, minRecLevel, maxRecLevel, maxPlayers, minGearLevel
-	local typeIDH, subtypeIDH, minLevelH, maxLevelH, minRecLevelH, maxRecLevelH, maxPlayersH, minGearLevelH
-	local typeIDM, subtypeIDM, minLevelM, maxLevelM, minRecLevelM, maxRecLevelM, maxPlayersM, minGearLevelM
+	local dungeonID = base.DungeonID
+	local dungeonHeroicID = base.DungeonHeroicID
+	local dungeonMythicID = base.DungeonMythicID
+
+	local normalInfo = addon:GetDungeonData(dungeonID)
+	local heroicInfo = addon:GetDungeonData(dungeonHeroicID, normalInfo and normalInfo.minRecLevel, normalInfo and normalInfo.maxRecLevel)
+	local mythicInfo = addon:GetDungeonData(dungeonMythicID, normalInfo and normalInfo.minRecLevel, normalInfo and normalInfo.maxRecLevel)
+
 	local _RED = "|cffcc3333"
 	local WHIT = "|cffffffff"
-	local colortag, dungeon_difficulty
-	local icontext_heroic 	= " |TInterface\\EncounterJournal\\UI-EJ-HeroicTextIcon:0:0|t"
-	local icontext_mythic 	= " |TInterface\\AddOns\\Atlas\\Images\\UI-EJ-MythicTextIcon:0:0|t"
-	local icontext_dungeon 	= "|TInterface\\MINIMAP\\Dungeon:0:0|t"
-	local icontext_raid 	= "|TInterface\\MINIMAP\\Raid:0:0|t"
-	local icontext_instance
-	
-	if (base.DungeonID) then
-		-- name, typeID, subtypeID, minLevel, maxLevel, recLevel, minRecLevel, maxRecLevel, expansionLevel, groupID, textureFilename, difficulty, maxPlayers, description, isHoliday, bonusRepAmount, minPlayers, isTimeWalker, _, minGearLevel = GetLFGDungeonInfo(dungeonID)
-		if (GetLFGDungeonInfo) then
-			_, typeID, subtypeID, minLevel, maxLevel, _, minRecLevel, maxRecLevel, _, _, _, _, maxPlayers, _, _, _, _, _, _, minGearLevel = GetLFGDungeonInfo(base.DungeonID)
-		end
+	local icontext_heroic 	= addon.constants.dungeonIcon.heroic
+	local icontext_mythic 	= addon.constants.dungeonIcon.mythic
+	local icontext_dungeon 	= addon.constants.dungeonIcon.dungeon
+	local icontext_raid 	= addon.constants.dungeonIcon.raid
+	local icontext_instance = (addon:IsRaidInfo(normalInfo) or addon:IsRaidInfo(heroicInfo) or addon:IsRaidInfo(mythicInfo)) and icontext_raid or icontext_dungeon
+	local dungeonInfos = {
+		{ data = normalInfo, icon = icontext_instance },
+		{ data = heroicInfo, icon = icontext_heroic },
+		{ data = mythicInfo, icon = icontext_mythic },
+	}
 
-		-- For some unknown reason, some of the dungeons do not have recommended level range
-		if (minRecLevel == 0) then 
-			minRecLevel = minLevel
+	local function formatDungeonValues(label, minField, maxField, fallback)
+		local parts = {}
+		for _, entry in ipairs(dungeonInfos) do
+			local info = entry.data
+			local minValue = info and info[minField]
+			if (minValue ~= nil) then
+				parts[#parts + 1] = addon:FormatDungeonLevelRange(minValue, maxField and info[maxField], entry.icon)
+			end
 		end
-		if (maxRecLevel == 0) then
-			maxRecLevel = maxLevel
+		if (#parts > 0) then
+			return label..L["Colon"]..table.concat(parts, L["Slash"])
+		elseif (fallback) then
+			return label..L["Colon"]..WHIT..fallback
 		end
+		return ""
 	end
-	if (base.DungeonHeroicID) then
-		if (GetLFGDungeonInfo) then
-			_, typeIDH, subtypeIDH, minLevelH, maxLevelH, _, minRecLevelH, maxRecLevelH, _, _, _, _, maxPlayersH, _, _, _, _, _, _, minGearLevelH = GetLFGDungeonInfo(base.DungeonHeroicID)
-		end
 
-		if (minRecLevelH == 0) then
-			minRecLevelH = minRecLevel
-		end
-		if (maxRecLevelH == 0) then
-			maxRecLevelH = maxRecLevel
-		end
-	end
-	if (base.DungeonMythicID) then
-		if (GetLFGDungeonInfo) then
-			_, typeIDM, subtypeIDM, minLevelM, maxLevelM, _, minRecLevelM, maxRecLevelM, _, _, _, _, maxPlayersM, _, _, _, _, _, _, minGearLevelM = GetLFGDungeonInfo(base.DungeonMythicID)
-		end
-
-		if (minRecLevelM == 0) then
-			minRecLevelM = minRecLevel
-		end
-		if (maxRecLevelM == 0) then
-			maxRecLevelM = maxRecLevel
-		end
-	end
-	
-	if ((typeID and typeID == 2) or (typeIDH and typeIDH == 2) or (typeIDM and typeIDM == 2)) then
-		icontext_instance = icontext_raid
-	elseif ((typeID and typeID == 1 and subtypeID == 3) or (typeIDH and typeIDH == 1 and subtypeIDH == 3) or (typeIDM and typeIDM == 1 and subtypeIDM == 3)) then
-		icontext_instance = icontext_raid
-	else
-		icontext_instance = icontext_dungeon
-	end
 
 	-- Zone Name and Acronym
 	local tName = base.ZoneName[1]
@@ -1286,184 +1266,43 @@ function Atlas_MapRefresh(mapID)
 	AtlasText_Location_Text:SetText(tLoc)
 
 	-- Map's Level Range
-	local tLR = ""
-	if (minLevel or minLevelH or minLevelM) then
-		local tmp_LR = L["ATLAS_STRING_LEVELRANGE"]..L["Colon"]
-		if (minLevel) then 
-			dungeon_difficulty = addon:GetDungeonDifficultyColor(minLevel)
-			colortag = addon:FormatColor(dungeon_difficulty)
-			if (minLevel ~= maxLevel) then
-				tmp_LR = tmp_LR..colortag..minLevel.."-"..maxLevel..icontext_instance
-			else
-				tmp_LR = tmp_LR..colortag..minLevel..icontext_instance
-			end
-		end
-		if (minLevelH) then
-			dungeon_difficulty = addon:GetDungeonDifficultyColor(minLevelH)
-			colortag = addon:FormatColor(dungeon_difficulty)
-			local slash
-			if (minLevel) then
-				slash = L["Slash"]
-			else
-				slash = ""
-			end
-			if (minLevelH ~= maxLevelH) then
-				tmp_LR = tmp_LR..slash..colortag..minLevelH.."-"..maxLevelH..icontext_heroic
-			else
-				tmp_LR = tmp_LR..slash..colortag..minLevelH..icontext_heroic
-			end
-		end
-		if (minLevelM) then
-			dungeon_difficulty = addon:GetDungeonDifficultyColor(minLevelM)
-			colortag = addon:FormatColor(dungeon_difficulty)
-			local slash
-			if (minLevelH) then
-				slash = L["Slash"]
-			else
-				slash = ""
-			end
-			if (minLevelM ~= maxLevelM) then
-				tmp_LR = tmp_LR..slash..colortag..minLevelM.."-"..maxLevelM..icontext_mythic
-			else
-				tmp_LR = tmp_LR..slash..colortag..minLevelM..icontext_mythic
-			end
-		end
-		tLR = tmp_LR
-	elseif (base.LevelRange) then
-		tLR = L["ATLAS_STRING_LEVELRANGE"]..L["Colon"]..WHIT..base.LevelRange
-	end
+	local tLR = formatDungeonValues(L["ATLAS_STRING_LEVELRANGE"], "minLevel", "maxLevel", base.LevelRange)
 	AtlasText_LevelRange_Text:SetText(tLR)
 
 	-- Map's Recommended Level Range
 	-- To Check: Assuming Classic Forever also supports dungeon difficulty coloring
 	if (ATLAS_USES_MAINLINE_API) then
-		local tRLR = ""
-		if (minRecLevel or minRecLevelH or minRecLevelM) then
-			local tmp_RLR = L["ATLAS_STRING_RECLEVELRANGE"]..L["Colon"]
-			if (minRecLevel) then 
-				dungeon_difficulty = addon:GetDungeonDifficultyColor(minRecLevel)
-				colortag = addon:FormatColor(dungeon_difficulty)
-				if (minRecLevel ~= maxRecLevel) then
-					tmp_RLR = tmp_RLR..colortag..minRecLevel.."-"..maxRecLevel..icontext_instance
-				else
-					tmp_RLR = tmp_RLR..colortag..minRecLevel..icontext_instance
-				end
-			end
-			if (minRecLevelH) then
-				dungeon_difficulty = addon:GetDungeonDifficultyColor(minRecLevelH)
-				colortag = addon:FormatColor(dungeon_difficulty)
-				local slash
-				if (minRecLevel) then
-					slash = L["Slash"]
-				else
-					slash = ""
-				end
-				if (minRecLevelH ~= maxRecLevelH) then
-					tmp_RLR = tmp_RLR..slash..colortag..minRecLevelH.."-"..maxRecLevelH..icontext_heroic
-				else
-					tmp_RLR = tmp_RLR..slash..colortag..minRecLevelH..icontext_heroic
-				end
-			end
-			if (minRecLevelM) then
-				dungeon_difficulty = addon:GetDungeonDifficultyColor(minRecLevelM)
-				colortag = addon:FormatColor(dungeon_difficulty)
-				local slash
-				if (minRecLevelH) then
-					slash = L["Slash"]
-				else
-					slash = ""
-				end
-				if (minRecLevelM ~= maxRecLevelM) then
-					tmp_RLR = tmp_RLR..slash..colortag..minRecLevelM.."-"..maxRecLevelM..icontext_mythic
-				else
-					tmp_RLR = tmp_RLR..slash..colortag..minRecLevelM..icontext_mythic
-				end
-			end
-			tRLR = tmp_RLR
-		elseif (base.LevelRange) then
-			tRLR = L["ATLAS_STRING_RECLEVELRANGE"]..L["Colon"]..WHIT..base.LevelRange
-		end
+		local tRLR = formatDungeonValues(L["ATLAS_STRING_RECLEVELRANGE"], "minRecLevel", "maxRecLevel", base.LevelRange)
 		AtlasText_RecommendedRange_Text:SetText(tRLR)
 	end
 
 	-- Map's Minimum Level
-	local tML = ""
-	if (minLevel or minLevelH or minLevelM) then
-		tML = L["ATLAS_STRING_MINLEVEL"]..L["Colon"]
-		if (minLevel) then 
-			dungeon_difficulty = addon:GetDungeonDifficultyColor(minLevel)
-			colortag = addon:FormatColor(dungeon_difficulty)
-			tML = tML..colortag..minLevel..icontext_instance
-		end
-		if (minLevelH) then
-			dungeon_difficulty = addon:GetDungeonDifficultyColor(minLevelH)
-			colortag = addon:FormatColor(dungeon_difficulty)
-			local slash
-			if (minLevel) then
-				slash = L["Slash"]
-			else
-				slash = ""
-			end
-			tML = tML..slash..colortag..minLevelH..icontext_heroic
-		end
-		if (minLevelM) then
-			dungeon_difficulty = addon:GetDungeonDifficultyColor(minLevelM)
-			colortag = addon:FormatColor(dungeon_difficulty)
-			local slash
-			if (minLevelH) then
-				slash = L["Slash"]
-			else
-				slash = ""
-			end
-			tML = tML..slash..colortag..minLevelM..icontext_mythic
-		end
-	elseif (base.MinLevel) then
-		tML = L["ATLAS_STRING_MINLEVEL"]..L["Colon"]..WHIT..base.MinLevel
-	end
+	local tML = formatDungeonValues(L["ATLAS_STRING_MINLEVEL"], "minLevel", nil, base.MinLevel)
 	AtlasText_MinLevel_Text:SetText(tML)
 
 	-- Player Limit
-	local tPL = getPlayerText(maxPlayers, maxPlayersH, maxPlayersM, icontext_instance, base.PlayerLimit) or ""
+	local tPL = getPlayerText(
+		normalInfo and normalInfo.maxPlayers,
+		heroicInfo and heroicInfo.maxPlayers,
+		mythicInfo and mythicInfo.maxPlayers,
+		icontext_instance,
+		base.PlayerLimit
+	) or ""
 
 	AtlasText_PlayerLimit_Text:SetText(tPL)
 	
 	-- Map's Minimum Gear Level for player
 	local tMGL = ""
-	local iLFGhasGearInfo = checkInstanceHasGearLevel()
-
-	if (iLFGhasGearInfo ) then
-		tMGL = L["ATLAS_STRING_MINGEARLEVEL"]..L["Colon"]
-		if ( minGearLevel and minGearLevel ~= 0 ) then 
-			local itemDiff, gearcolortag
-
-			itemDiff = getGearItemLevelDiffColor(minGearLevel)
-			gearcolortag = addon:FormatColor(itemDiff)
-			tMGL = tMGL..gearcolortag..minGearLevel..icontext_instance
+	local gearParts = {}
+	for _, entry in ipairs(dungeonInfos) do
+		local gearLevel = entry.data and entry.data.minGearLevel
+		if (gearLevel and gearLevel ~= 0) then
+			local itemDiff = getGearItemLevelDiffColor(gearLevel)
+			gearParts[#gearParts + 1] = addon:FormatColor(itemDiff)..gearLevel..entry.icon
 		end
-		if ( minGearLevelH and minGearLevelH ~= 0 ) then
-			local itemDiff, gearcolortag, slash
-
-			itemDiff = getGearItemLevelDiffColor(minGearLevelH)
-			gearcolortag = addon:FormatColor(itemDiff)
-			if ( base.DungeonID and minGearLevel ~= 0 ) then 
-				slash = L["Slash"]
-			else
-				slash = ""
-			end
-			tMGL = tMGL..WHIT..slash..gearcolortag..minGearLevelH..icontext_heroic
-		end
-		if ( minGearLevelM and minGearLevelM ~= 0 ) then
-			local itemDiff, gearcolortag, slash
-
-			itemDiff = getGearItemLevelDiffColor(minGearLevelM)
-			gearcolortag = addon:FormatColor(itemDiff)
-			if ( (base.DungeonID and minGearLevel ~= 0) or (base.DungeonHeroicID and minGearLevelH ~= 0) ) then 
-				slash = L["Slash"]
-			else
-				slash = ""
-			end
-			tMGL = tMGL..WHIT..slash..gearcolortag..minGearLevelM..icontext_mythic
-		end
+	end
+	if (#gearParts > 0) then
+		tMGL = L["ATLAS_STRING_MINGEARLEVEL"]..L["Colon"]..table.concat(gearParts, WHIT..L["Slash"])
 	else
 		if (base.MinGearLevel) then
 			local itemDiff, gearcolortag
@@ -1648,7 +1487,7 @@ function Atlas_Refresh(mapID)
 			AtlasEJLootFrame:Hide()
 		end
 	end
-	Atlas_MapRefresh()
+	Atlas_MapRefresh(zoneID)
 	
 	ATLAS_DATA = base
 	ATLAS_SEARCH_METHOD = data.Search
@@ -1721,7 +1560,7 @@ function Atlas_Refresh(mapID)
 	-- Set the button's text, populate the dropdown menu, and show or hide the button
 	if (matchFound[1]) then
 		ATLAS_INST_ENT_DROPDOWN = {}
-		for k, v in pairs(matchFound) do
+		for _, v in pairs(matchFound) do
 			tinsert(ATLAS_INST_ENT_DROPDOWN, v)
 		end
 		tsort(ATLAS_INST_ENT_DROPDOWN, AtlasSwitchDD_Sort)
@@ -1798,8 +1637,8 @@ function Atlas_AutoSelect()
 		debug("currentZone: "..currentZone.." matched the one defined in AssocDefaults{}.")
 		local selected_map
 		if (addon.assocs.SubZoneData[currentZone]) then
-			for k_instance_map, v_instance_map in pairs(addon.assocs.SubZoneData[currentZone]) do
-				for k_subzone, v_subzone in pairs(addon.assocs.SubZoneData[currentZone][k_instance_map]) do
+			for k_instance_map in pairs(addon.assocs.SubZoneData[currentZone]) do
+				for _, v_subzone in pairs(addon.assocs.SubZoneData[currentZone][k_instance_map]) do
 					if (v_subzone == currentSubZone) then
 						selected_map = k_instance_map
 						debug("currentSubZone: "..currentSubZone.." matched found, now we will use map: \""..selected_map.."\" for instance: "..currentZone)
@@ -1859,14 +1698,14 @@ function Atlas_AutoSelect()
 			end
 			debug("Checking if instance/entrance pair can be found.")
 		elseif (zoneID and addon.assocs.InstToEntMatches[zoneID]) then
-			for ka, va in pairs(addon.assocs.InstToEntMatches[zoneID]) do
+			for _, va in pairs(addon.assocs.InstToEntMatches[zoneID]) do
 				if (currentZone == AtlasMaps[va].ZoneName[1]) then
 					debug("Instance/entrance pair found. Doing nothing.")
 					return
 				end
 			end
 		elseif (zoneID and addon.assocs.EntToInstMatches[zoneID]) then
-			for ka, va in pairs(addon.assocs.EntToInstMatches[zoneID]) do
+			for _, va in pairs(addon.assocs.EntToInstMatches[zoneID]) do
 				if (currentZone == AtlasMaps[va].ZoneName[1]) then
 					debug("Instance/entrance pair found. Doing nothing.")
 					return
