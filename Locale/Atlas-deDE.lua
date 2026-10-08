@@ -23,8 +23,8 @@
 
 --]]
 
-local AceLocale = LibStub:GetLibrary("AceLocale-3.0");
-local L = AceLocale:NewLocale("Atlas", "deDE", false);
+local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
+local L = AceLocale:NewLocale("Atlas", "deDE", false)
 -- Localize file must set above to false
 
 -- Deutsche Lokalisierung (German, deDE)
@@ -222,6 +222,7 @@ L["ATLAS_REOPEN_LOOT_AGAIN"] = "Bitte öffne das Beutefenster zum Neuladen erneu
 
 --L["Scale and Transparency"] = "Scale and Transparency"
 
+L["Click to open the corresponding World Map"] = "Klicken, um die entsprechende Weltkarte zu öffnen"
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************

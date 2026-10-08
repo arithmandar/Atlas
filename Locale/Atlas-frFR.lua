@@ -23,23 +23,23 @@
 
 --]]
 
-local AceLocale = LibStub:GetLibrary("AceLocale-3.0");
-local L = AceLocale:NewLocale("Atlas", "frFR", false);
+local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
+local L = AceLocale:NewLocale("Atlas", "frFR", false)
 -- Localize file must set above to false, for example:
---    local AL = AceLocale:NewLocale("Atlas", "deDE", false);
+--    local AL = AceLocale:NewLocale("Atlas", "deDE", false)
 -- Sur un travail de Wysiwyg, Khiria, TrAsHeR entre 2007 et 2017. Many thanks to all contributors !
 -- Atlas French Localization.
 if ( GetLocale() ==		"frFR" ) then
 	-- Define the leading strings to be ignored while sorting
 	-- Ex: The Stockade
-	AtlasSortIgnore = {"le (.+)", "la (.+)", "les (.+)"};
+	AtlasSortIgnore = {"le (.+)", "la (.+)", "les (.+)"}
 
 	-- Syntax: ["real_zone_name"] = "localized map zone name"
 	AtlasZoneSubstitutions = {
-		["Ahn'Qiraj"] = "Temple d'Ahn'Qiraj";
-		["The Temple of Atal'Hakkar"] = "Le temple d'Atal'Hakkar";
-	--	["Throne of Tides"] = "The Abyssal Maw: Throne of the Tides";
-	};
+		["Ahn'Qiraj"] = "Temple d'Ahn'Qiraj",
+		["The Temple of Atal'Hakkar"] = "Le temple d'Atal'Hakkar",
+	--	["Throne of Tides"] = "The Abyssal Maw: Throne of the Tides",
+	}
 end
 
 
@@ -238,6 +238,7 @@ L["ATLAS_REOPEN_LOOT_AGAIN"] = "Veuillez rouvrir la fenêtre de butin pour recha
 
 --L["Scale and Transparency"] = "Scale and Transparency"
 
+L["Click to open the corresponding World Map"] = "Cliquez pour ouvrir la carte du monde correspondante"
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************

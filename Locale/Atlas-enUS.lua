@@ -23,22 +23,22 @@
 
 --]]
 
-local AceLocale = LibStub:GetLibrary("AceLocale-3.0");
-local L = AceLocale:NewLocale("Atlas", "enUS", true, true);
+local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
+local L = AceLocale:NewLocale("Atlas", "enUS", true, true)
 -- Localize file must set above to false, for example:
---    local AL = AceLocale:NewLocale("Atlas", "deDE", false);
+--    local AL = AceLocale:NewLocale("Atlas", "deDE", false)
 
 -- Atlas English Localization
 --if ( GetLocale() ==	"enUS" ) then
 	-- Define the leading strings to be ignored while sorting
 	-- Ex: The Stockade
-	AtlasSortIgnore = {"the (.+)", "The (.+)"};
+	AtlasSortIgnore = {"the (.+)", "The (.+)"}
 
 	-- Syntax: ["real_zone_name"] = "localized map zone name"
 	AtlasZoneSubstitutions = {
-		["Ahn'Qiraj"] = "Temple of Ahn'Qiraj";
-		["The Temple of Atal'Hakkar"] = "Sunken Temple";
-	--	["Throne of Tides"] = "The Abyssal Maw: Throne of the Tides";
+		["Ahn'Qiraj"] = "Temple of Ahn'Qiraj",
+		["The Temple of Atal'Hakkar"] = "Sunken Temple",
+	--	["Throne of Tides"] = "The Abyssal Maw: Throne of the Tides",
 	}
 --end
 
@@ -118,6 +118,8 @@ Left-click and drag to move this button.]=]
 
 L["ATLAS_OPTIONS_CATDD"] = "Sort Instance Maps by:"
 L["ATLAS_DDL_CONTINENT"] = "Continent"	-- Sort Instance Maps by: Continent
+
+-- Continent
 L["ATLAS_DDL_CONTINENT_EASTERN"] = "Eastern Kingdoms Instances"
 L["ATLAS_DDL_CONTINENT_KALIMDOR"] = "Kalimdor Instances"
 L["ATLAS_DDL_CONTINENT_OUTLAND"] = "Outland Instances"
@@ -131,6 +133,10 @@ L["ATLAS_DDL_CONTINENT_BROKENISLES2"] = "Broken Isles Raids"
 L["ATLAS_DDL_CONTINENT_KULTIRAS"] = "Kul Tiras Instances"
 L["ATLAS_DDL_CONTINENT_ZANDALAR"] = "Zandalar Instances"
 L["ATLAS_DDL_CONTINENT_NAZJATAR"] = "Nazjatar Instances"
+L["ATLAS_DDL_CONTINENT_DRAGONISLES"] = "Dragon Isles Instances"
+L["ATLAS_DDL_CONTINENT_KHAZALGAR"] = "Khaz Algar Instances"
+
+-- Level
 L["ATLAS_DDL_LEVEL"] = "Level"		-- Sort Instance Maps by: Level
 -- BCC / prior to new level range
 L["ATLAS_DDL_LEVEL_10TO20"] = "Instances Level 10-20"
@@ -163,6 +169,8 @@ L["ATLAS_DDL_PARTYSIZE"] = "Party Size"	-- Sort Instance Maps by: Party Size
 L["ATLAS_DDL_PARTYSIZE_5"] = "Instances for 5 Players"
 L["ATLAS_DDL_PARTYSIZE_10"] = "Instances for 10 Players"
 L["ATLAS_DDL_PARTYSIZE_20TO40"] = "Instances for 20-40 Players"
+
+-- Expansion
 L["ATLAS_DDL_EXPANSION"] = "Expansion"	-- Sort Instance Maps by: Expansion
 L["ATLAS_DDL_EXPANSION_OLD"] = "Old World Instances"
 L["ATLAS_DDL_EXPANSION_BC"] = "Burning Crusade Instances"
@@ -175,6 +183,10 @@ L["ATLAS_DDL_EXPANSION_LEGION1"] = "Legion Dungeons"
 L["ATLAS_DDL_EXPANSION_LEGION2"] = "Legion Raids"
 L["ATLAS_DDL_EXPANSION_BFA"] = "Battle for Azeroth Instances"
 L["ATLAS_DDL_EXPANSION_SHADOWLANDS"] = "Shadowlands Instances"
+L["ATLAS_DDL_EXPANSION_DRAGONFLIGHT"] = "Dragonflight Instances"
+L["ATLAS_DDL_EXPANSION_THEWARWITHIN"] = "The War Within Instances"
+L["ATLAS_DDL_EXPANSION_MIDNIGHT"] = "Midnight Instances"
+
 L["ATLAS_DDL_TYPE"] = "Type"			-- -- Sort Instance Maps by: Map Type
 L["ATLAS_DDL_TYPE_INSTANCE"] = "Instances"
 L["ATLAS_DDL_TYPE_ENTRANCE"] = "Entrances"
@@ -243,7 +255,7 @@ L["ATLAS_REOPEN_LOOT_AGAIN"] = "Please reopen the loot window to reload."
 
 L["Scale and Transparency"] = "Scale and Transparency"
 
-L["Click to open relative World Map"] = "Click to open relative World Map"
+L["Click to open the corresponding World Map"] = "Click to open the corresponding World Map"
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings

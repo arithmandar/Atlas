@@ -54,7 +54,7 @@ local GetLFGDungeonInfo = _G.GetLFGDungeonInfo
 local GetAverageItemLevel = _G.GetAverageItemLevel
 
 local C_Map = _G.C_Map
-local GetMapInfo = C_Map.GetMapInfo
+local GetMapInfo, GetMapArtLayers = C_Map.GetMapInfo, C_Map.GetMapArtLayers
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -679,7 +679,7 @@ local function process_Deprecated()
 	end
 	if #OldList > 0 then
 		local textList = ""
-		for k, v in pairs(OldList) do
+		for _, v in pairs(OldList) do
 			textList = textList.."\n"..v..", "..GetAddOnMetadata(v, "Version")
 			--DisableAddOn(v)
 		end
@@ -1340,7 +1340,7 @@ function Atlas_MapRefresh(mapID)
 	end
 
 	-- Check if WorldMap ID is available, also check if map exists,if so, show the map button
-	if (base.WorldMapID and GetMapInfo(base.WorldMapID)) then
+	if (base.WorldMapID and GetMapInfo(base.WorldMapID) and GetMapArtLayers(base.WorldMapID)) then
 		AtlasFrame.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameLarge.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameSmall.AdventureJournalMap.mapID = base.WorldMapID

@@ -43,7 +43,7 @@ local EJ_GetCreatureInfo = _G.EJ_GetCreatureInfo
 local EJ_GetInstanceInfo = _G.EJ_GetInstanceInfo
 local GetSectionInfo = C_EncounterJournal.GetSectionInfo
 local C_Map = _G.C_Map
-local GetMapInfo = C_Map.GetMapInfo
+local GetMapInfo, GetMapArtLayers = C_Map.GetMapInfo, C_Map.GetMapArtLayers
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -267,7 +267,7 @@ function addon:AdventureJournal_MapButton_OnClick(frame)
 	local dungeonLevel = frame.dungeonLevel
 	local uiMapID = frame.mapID
 
-	if (uiMapID and GetMapInfo(uiMapID)) then
+	if (uiMapID and GetMapInfo(uiMapID) and GetMapArtLayers(uiMapID)) then
 		if (ATLAS_HAS_EJ) then
 			WorldMapFrame.fromJournal = true
 		--	if (dungeonLevel) then

@@ -23,20 +23,20 @@
 
 --]]
 
-local AceLocale = LibStub:GetLibrary("AceLocale-3.0");
-local L = AceLocale:NewLocale("Atlas", "zhTW", false);
+local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
+local L = AceLocale:NewLocale("Atlas", "zhTW", false)
 
 if ( GetLocale() == "zhTW" ) then
 	-- Define the leading strings to be ignored while sorting
 	-- Ex: The Stockade
-	AtlasSortIgnore = {};
+	AtlasSortIgnore = {}
 
 	-- Syntax: ["real_zone_name"] = "localized map zone name"
 	AtlasZoneSubstitutions = {
-		["安其拉"] = "安其拉：安其拉神廟";
-		["卡拉贊"] = "卡拉贊 - 1.開始";
-		["悲傷沼澤"] = "沉沒的神廟";
-	};
+		["安其拉"] = "安其拉：安其拉神廟",
+		["卡拉贊"] = "卡拉贊 - 1.開始",
+		["悲傷沼澤"] = "沉沒的神廟",
+	}
 end
 
 
@@ -238,6 +238,8 @@ L["ATLAS_TOGGLE_LOOT"] = "右鍵點擊以開啟首領戰利品視窗。"
 L["ATLAS_REOPEN_LOOT_AGAIN"] = "請重新開啟首領戰利品視窗以重新載入物品資訊。"
 
 L["Scale and Transparency"] = "大小與透明度"
+
+L["Click to open the corresponding World Map"] = "點擊開啟對應的世界地圖"
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings

@@ -38,6 +38,7 @@ local _, private = ...
 local LibStub = _G.LibStub
 -- UIDropDownMenu
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 
 local Templates = {}
 private.Templates = Templates
@@ -222,7 +223,7 @@ function Templates.CreateAdventureJournalMapButton(name, parent)
 	f:SetScript("OnClick", function(self) Atlas:AdventureJournal_MapButton_OnClick(self) end)
 	f:SetScript("OnEnter", function(self)
 		GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
-		GameTooltip:SetText(L["Click to open relative World Map"], 0.5, 0.5, 1, nil, false)
+		GameTooltip:SetText(L["Click to open the corresponding World Map"], 0.5, 0.5, 1, nil, false)
 	end)
 	f:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	return f
