@@ -222,7 +222,7 @@ function Templates.CreateAdventureJournalMapButton(name, parent)
 	f:SetScript("OnClick", function(self) Atlas:AdventureJournal_MapButton_OnClick(self) end)
 	f:SetScript("OnEnter", function(self)
 		GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
-		GameTooltip:SetText(ATLAS_OPEN_WOWMAP_WINDOW, 0.5, 0.5, 1, nil, false)
+		GameTooltip:SetText(L["Click to open relative World Map"], 0.5, 0.5, 1, nil, false)
 	end)
 	f:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	return f

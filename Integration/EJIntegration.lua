@@ -42,6 +42,8 @@ local EJ_GetEncounterInfo = _G.EJ_GetEncounterInfo
 local EJ_GetCreatureInfo = _G.EJ_GetCreatureInfo
 local EJ_GetInstanceInfo = _G.EJ_GetInstanceInfo
 local GetSectionInfo = C_EncounterJournal.GetSectionInfo
+local C_Map = _G.C_Map
+local GetMapInfo = C_Map.GetMapInfo
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -262,25 +264,18 @@ function addon:AdventureJournal_EncounterButton_OnClick(instanceID, encounterID,
 end
 
 function addon:AdventureJournal_MapButton_OnClick(frame)
-	if (ATLAS_HAS_EJ) then 
-	
-		local uiMapID = frame.mapID
-		local dungeonLevel = frame.dungeonLevel
+	local dungeonLevel = frame.dungeonLevel
+	local uiMapID = frame.mapID
 
-		--HideUIPanel(AtlasFrame)
-		--local disabled = not (C_AdventureJournal and C_AdventureJournal.CanBeShown())
-		--if (disabled) then 
-		--	WorldMapFrame.fromJournal = false
-		--else
+	if (uiMapID and GetMapInfo(uiMapID)) then
+		if (ATLAS_HAS_EJ) then
 			WorldMapFrame.fromJournal = true
-		--end
-		ShowUIPanel(WorldMapFrame)
-		if (uiMapID) then
-			WorldMapFrame:SetMapID(uiMapID)
+		--	if (dungeonLevel) then
+		--		SetDungeonMapLevel(dungeonLevel)
+		--	end	
 		end
-	--	if (dungeonLevel) then
-	--		SetDungeonMapLevel(dungeonLevel)
-	--	end
+		ShowUIPanel(WorldMapFrame)
+		WorldMapFrame:SetMapID(uiMapID)
 	end
 end
 

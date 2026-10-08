@@ -53,6 +53,9 @@ local UnitLevel = _G.UnitLevel
 local GetLFGDungeonInfo = _G.GetLFGDungeonInfo
 local GetAverageItemLevel = _G.GetAverageItemLevel
 
+local C_Map = _G.C_Map
+local GetMapInfo = C_Map.GetMapInfo
+
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -1336,17 +1339,14 @@ function Atlas_MapRefresh(mapID)
 		Atlas_SetEJBackground()
 	end
 
-	-- Check if WorldMap ID is available, if so, show the map button
-	if (base.WorldMapID) then
+	-- Check if WorldMap ID is available, also check if map exists,if so, show the map button
+	if (base.WorldMapID and GetMapInfo(base.WorldMapID)) then
 		AtlasFrame.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameLarge.AdventureJournalMap.mapID = base.WorldMapID
 		AtlasFrameSmall.AdventureJournalMap.mapID = base.WorldMapID
-		-- Mists Classic already support EJ features, so we can have boss button added here
-		if (ATLAS_HAS_EJ)  then
-			AtlasFrameAdventureJournalMapButton:Show()
-			AtlasFrameLargeAdventureJournalMapButton:Show()
-			AtlasFrameSmallAdventureJournalMapButton:Show()
-		end
+		AtlasFrameAdventureJournalMapButton:Show()
+		AtlasFrameLargeAdventureJournalMapButton:Show()
+		AtlasFrameSmallAdventureJournalMapButton:Show()
 	else
 		AtlasFrameAdventureJournalMapButton:Hide()
 		AtlasFrameLargeAdventureJournalMapButton:Hide()
