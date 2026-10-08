@@ -23,8 +23,8 @@
 
 --]]
 
-local AceLocale = LibStub:GetLibrary("AceLocale-3.0");
-local L = AceLocale:NewLocale("Atlas", "koKR", false);
+local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
+local L = AceLocale:NewLocale("Atlas", "koKR", false)
 
 -- Atlas Spanish Localization
 if ( GetLocale() == "koKR" ) then
@@ -36,10 +36,10 @@ AtlasSortIgnore = {
 
 -- Syntax: ["real_zone_name"] = "localized map zone name"
 AtlasZoneSubstitutions = {
---	["Ahn'Qiraj"] = "Templo de Ahn'Qiraj";
---	["The Temple of Atal'Hakkar"] = "El Templo de Atal'Hakkar";
---	["Throne of Tides"] = "Fauce Abisal: Trono de las Mareas";
-};
+--	["Ahn'Qiraj"] = "Templo de Ahn'Qiraj",
+--	["The Temple of Atal'Hakkar"] = "El Templo de Atal'Hakkar",
+--	["Throne of Tides"] = "Fauce Abisal: Trono de las Mareas",
+}
 end
 
 
@@ -234,6 +234,7 @@ L["ATLAS_TOGGLE_LOOT"] = "전리품 패널을 켜고 끄려면 우클릭하세�
 
 --L["Scale and Transparency"] = "Scale and Transparency"
 
+L["Click to open the corresponding World Map"] = "클릭하면 해당 세계 지도가 열립니다"
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************

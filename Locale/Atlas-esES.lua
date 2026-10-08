@@ -23,8 +23,8 @@
 
 --]]
 
-local AceLocale = LibStub:GetLibrary("AceLocale-3.0");
-local L = AceLocale:NewLocale("Atlas", "esES", false);
+local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
+local L = AceLocale:NewLocale("Atlas", "esES", false)
 
 -- Atlas Spanish Localization
 -- Traducido por --> maqjav|Marosth de Tyrande<--
@@ -35,7 +35,7 @@ local L = AceLocale:NewLocale("Atlas", "esES", false);
 if ( GetLocale() == "esES" ) then
 -- Define the leading strings to be ignored while sorting
 -- Ex: The Stockade
-AtlasSortIgnore = {"the (.+)"};
+AtlasSortIgnore = {"the (.+)"}
 
 -- Syntax: ["real_zone_name"] = "localized map zone name"
 AtlasZoneSubstitutions = {
@@ -235,6 +235,7 @@ L["ATLAS_REOPEN_LOOT_AGAIN"] = "Por favor, vuelve a abrir la ventana de botín p
 
 L["Scale and Transparency"] = "Escala y transparencia"
 
+L["Click to open the corresponding World Map"] = "Haz clic para abrir el mapa del mundo correspondiente"
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************

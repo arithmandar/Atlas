@@ -23,10 +23,10 @@
 
 --]]
 
-local AceLocale = LibStub:GetLibrary("AceLocale-3.0");
-local L = AceLocale:NewLocale("Atlas", "itIT", false);
+local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
+local L = AceLocale:NewLocale("Atlas", "itIT", false)
 
--- Atlas Spanish Localization
+-- Atlas Italian Localization
 if ( GetLocale() == "itIT" ) then
 -- Define the leading strings to be ignored while sorting
 -- Ex: The Stockade
@@ -36,10 +36,10 @@ AtlasSortIgnore = {
 
 -- Syntax: ["real_zone_name"] = "localized map zone name"
 AtlasZoneSubstitutions = {
---	["Ahn'Qiraj"] = "Templo de Ahn'Qiraj";
---	["The Temple of Atal'Hakkar"] = "El Templo de Atal'Hakkar";
---	["Throne of Tides"] = "Fauce Abisal: Trono de las Mareas";
-};
+--	["Ahn'Qiraj"] = "Tempio di Ahn'Qiraj",
+--	["The Temple of Atal'Hakkar"] = "Il Tempio di Atal'Hakkar",
+--	["Throne of Tides"] = "Fauce Abisal: Trono delle Maree",
+}
 end
 
 

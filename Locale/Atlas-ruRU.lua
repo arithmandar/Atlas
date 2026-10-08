@@ -23,8 +23,8 @@
 
 --]]
 
-local AceLocale = LibStub:GetLibrary("AceLocale-3.0");
-local L = AceLocale:NewLocale("Atlas", "ruRU", false);
+local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
+local L = AceLocale:NewLocale("Atlas", "ruRU", false)
 
 -- Atlas Russian Localization
 -- Compiled by Eugene Filatov, bigoblin, StingerSoft
@@ -35,14 +35,14 @@ local L = AceLocale:NewLocale("Atlas", "ruRU", false);
 if ( GetLocale() == "ruRU" ) then
 -- Define the leading strings to be ignored while sorting
 -- Ex: The Stockade
-AtlasSortIgnore = {"(.+)"};
+AtlasSortIgnore = {"(.+)"}
 
 -- Syntax: ["real_zone_name"] = "localized map zone name"
 AtlasZoneSubstitutions = {
-	["Ahn'Qiraj"] = "Ан'Кираж";
-	["The Temple of Atal'Hakkar"] = "Храм Атал'Хаккара";
---	["Throne of Tides"] = "Бездонная пучина: Трон Приливов";
-};
+	["Ahn'Qiraj"] = "Ан'Кираж",
+	["The Temple of Atal'Hakkar"] = "Храм Атал'Хаккара",
+--	["Throne of Tides"] = "Бездонная пучина: Трон Приливов",
+}
 end
 
 
@@ -245,6 +245,7 @@ L["ATLAS_REOPEN_LOOT_AGAIN"] = "Пожалуйста, откройте зано�
 
 L["Scale and Transparency"] = "Масштаб и прозрачность"
 
+L["Click to open the corresponding World Map"] = "Нажмите, чтобы открыть соответствующую карту мира"
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************

@@ -23,8 +23,8 @@
 
 --]]
 
-local AceLocale = LibStub:GetLibrary("AceLocale-3.0");
-local L = AceLocale:NewLocale("Atlas", "ptBR", false);
+local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
+local L = AceLocale:NewLocale("Atlas", "ptBR", false)
 -- Localize file must set above to false, for example:
 --    local AL = AceLocale:NewLocale("Atlas", "deDE", false);
 
@@ -32,14 +32,14 @@ local L = AceLocale:NewLocale("Atlas", "ptBR", false);
 if ( GetLocale() == "ptBR" ) then
 -- Define the leading strings to be ignored while sorting
 -- Ex: The Stockade
---AtlasSortIgnore = {"the (.+)"};
+--AtlasSortIgnore = {"the (.+)"}
 
 -- Syntax: ["real_zone_name"] = "localized map zone name"
 AtlasZoneSubstitutions = {
---	["Ahn'Qiraj"] = "Temple of Ahn'Qiraj";
---	["The Temple of Atal'Hakkar"] = "Sunken Temple";
---	["Throne of Tides"] = "The Abyssal Maw: Throne of the Tides";
-};
+--	["Ahn'Qiraj"] = "Temple of Ahn'Qiraj",
+--	["The Temple of Atal'Hakkar"] = "Sunken Temple",
+--	["Throne of Tides"] = "The Abyssal Maw: Throne of the Tides",
+}
 end
 
 
@@ -207,6 +207,7 @@ L["ATLAS_REOPEN_LOOT_AGAIN"] = "Por favor, reabra a janela de saque para recarre
 
 L["Scale and Transparency"] = "Escala e Transparência"
 
+L["Click to open the corresponding World Map"] = "Clique para abrir o mapa-múndi correspondente"
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************

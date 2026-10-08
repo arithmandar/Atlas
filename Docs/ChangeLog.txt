@@ -14,6 +14,14 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.53.05 (Oct. 09, 2026)
+------------------------
+- Anniversary TBC detection fixed (now correctly identifies Classic Anniversary TBC)
+- WorldMap button requires additional check - added check for GetMapArtLayers to ensure map layers are available
+- Revised map categories' display naming convention, now only shows continent names or expansion names when selected
+- Stored more icon textures locally to prevent from different game clients from loading them incorrectly
+- Fixed issue when hovering over map button and the toolip's trsnaltion can not be retrieved
+
 v1.53.04 (Oct. 08, 2026)
 ------------------------
 - WorldMap button now doesn't need to rely on whether the game client has Journal Encounter available or not.

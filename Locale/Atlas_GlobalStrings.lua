@@ -30,8 +30,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Atlas")
 local format = string.format
 local C_AddOns = _G.C_AddOns
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
+local BZ = Atlas_GetLocaleLibBabble("LibBabble-SubZone-3.0")
 
-local Client = private.Client
 
 -- Expansion Icons
 local icon_E0 = "Interface\\AddOns\\Atlas\\Images\\Icons\\expansionicon_classic" -- Classic
@@ -40,8 +40,12 @@ local icon_E2 = "Interface\\AddOns\\Atlas\\Images\\Icons\\expansionicon_wrathoft
 local icon_E3 = "Interface\\AddOns\\Atlas\\Images\\Icons\\expansionicon_cataclysm" -- Cata
 local icon_E4 = "Interface\\AddOns\\Atlas\\Images\\Icons\\expansionicon_mistsofpandaria" -- MoP
 local icon_E5 = "Interface\\AddOns\\Atlas\\Images\\Icons\\expansionicon_draenor" -- Draenor
-local icon_E6 = "Interface\\AddOns\\Atlas\\Images\\Icons\\Achievements_Zone_BrokenShore" -- Legion
-local icon_E7 = "Interface\\ICONS\\ability_racial_cityofgold" -- BfA
+local icon_E6 = "Interface\\AddOns\\Atlas\\Images\\Icons\\achievement_zone_brokenshore" -- Legion
+local icon_E7 = "Interface\\AddOns\\Atlas\\Images\\Icons\\ability_racial_cityofgold" -- BfA
+local icon_E8 = "Interface\\AddOns\\Atlas\\Images\\Icons\\inv_misc_token_boost_shadowlands" -- Shadowlands
+local icon_E9 = "Interface\\AddOns\\Atlas\\Images\\Icons\\inv_misc_token_boost_dragonflight" -- Dragonflight
+local icon_E10 = "Interface\\AddOns\\Atlas\\Images\\Icons\\inv_blacksmithing_815_khazgorianhammer" -- The War Within
+local icon_E11 = "Interface\\AddOns\\Atlas\\Images\\Icons\\inv12_twilight_blade_cultist_insignia" -- Midnight
 
 -- Continent Icons, we use the icons from related achievements because they have the continent representations
 local icon_EasternKingdom 	= "Interface\\AddOns\\Atlas\\Images\\Icons\\Achievement_Zone_EasternKingdoms_01" -- EasternKingdom
@@ -51,10 +55,14 @@ local icon_Northrend 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\Achievement_Z
 local icon_Deepholm 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\Achievement_Zone_DeepHolm" -- Deepholm
 local icon_Pandaria 		= "Interface\\ICONS\\INV_Pet_Achievement_Pandaria" -- Pandaria
 local icon_Draenor 			= "Interface\\AddOns\\Atlas\\Images\\Icons\\Achievement_Zone_Draenor_01" -- Draenor
-local icon_BrokenIsles 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\Achievements_Zone_BrokenShore" -- BrokenIsles
-local icon_KulTiras 		= "Interface\\ICONS\\spell_arcane_portalkultiras" -- Kul Tiras
-local icon_Zandalar 		= "Interface\\ICONS\\spell_arcane_portalzandalar" -- Zandalar
---local icon_Nazjatar = "Interface\\ICONS\\spell_arcane_portalzandalar" -- Nazjatar
+local icon_BrokenIsles 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\achievement_zone_brokenshore" -- BrokenIsles
+local icon_KulTiras 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\spell_arcane_portalkultiras" -- Kul Tiras
+local icon_Zandalar 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\spell_arcane_portalzandalar" -- Zandalar
+--local icon_Nazjatar = "Interface\\AddOns\\Atlas\\Images\\Icons\\spell_arcane_portalzandalar" -- Nazjatar
+--local icon_Shadowlands 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\" -- Shadowlands
+local icon_DragonIsles      = "Interface\\AddOns\\Atlas\\Images\\Icons\\inv_protodragonicemount" -- Dragon Isles
+local icon_KhazAlgar        = "Interface\\AddOns\\Atlas\\Images\\Icons\\achievement_zone_hallowfall" -- Khaz'Algar
+-- inv_achievement_zone_meta meta
 
 --[[
 ************************************************************************************************
@@ -124,34 +132,28 @@ ATLAS_LDB_HINT				= L["ATLAS_LDB_HINT"]
 ATLAS_MINIMAPLDB_HINT		= L["ATLAS_MINIMAPLDB_HINT"]
 
 ATLAS_OPTIONS_CATDD		= L["ATLAS_OPTIONS_CATDD"] -- Sort Instance Maps by
+-------------------------------------------------------------------------
 -- Continent
+-------------------------------------------------------------------------
 ATLAS_DDL_CONTINENT		= L["ATLAS_DDL_CONTINENT"]
-if (Client.isClassicEra or Client.isTBCClassic) then 
-	ATLAS_DDL_CONTINENT_EASTERN		= L["ATLAS_DDL_CONTINENT_EASTERN"]
-	ATLAS_DDL_CONTINENT_KALIMDOR	= L["ATLAS_DDL_CONTINENT_KALIMDOR"]
-	ATLAS_DDL_CONTINENT_OUTLAND		= L["ATLAS_DDL_CONTINENT_OUTLAND"]
-	ATLAS_DDL_CONTINENT_NORTHREND	= L["ATLAS_DDL_CONTINENT_NORTHREND"]
-	ATLAS_DDL_CONTINENT_DEEPHOLM	= L["ATLAS_DDL_CONTINENT_DEEPHOLM"]
-	ATLAS_DDL_CONTINENT_PANDARIA	= L["ATLAS_DDL_CONTINENT_PANDARIA"]
-	ATLAS_DDL_CONTINENT_DRAENOR		= L["ATLAS_DDL_CONTINENT_DRAENOR"]
-	ATLAS_DDL_CONTINENT_BROKENISLES	= L["ATLAS_DDL_CONTINENT_BROKENISLES"]
-	ATLAS_DDL_CONTINENT_BROKENISLES1	= L["ATLAS_DDL_CONTINENT_BROKENISLES1"]
-	ATLAS_DDL_CONTINENT_BROKENISLES2	= L["ATLAS_DDL_CONTINENT_BROKENISLES2"]
-else
-	ATLAS_DDL_CONTINENT_EASTERN		= format("|T%s:0:0|t %s", icon_EasternKingdom, L["ATLAS_DDL_CONTINENT_EASTERN"])
-	ATLAS_DDL_CONTINENT_KALIMDOR	= format("|T%s:0:0|t %s", icon_Kalimdor, L["ATLAS_DDL_CONTINENT_KALIMDOR"])
-	ATLAS_DDL_CONTINENT_OUTLAND		= format("|T%s:0:0|t %s", icon_Outland, L["ATLAS_DDL_CONTINENT_OUTLAND"])
-	ATLAS_DDL_CONTINENT_NORTHREND	= format("|T%s:0:0|t %s", icon_Northrend, L["ATLAS_DDL_CONTINENT_NORTHREND"])
-	ATLAS_DDL_CONTINENT_DEEPHOLM	= format("|T%s:0:0|t %s", icon_Deepholm, L["ATLAS_DDL_CONTINENT_DEEPHOLM"])
-	ATLAS_DDL_CONTINENT_PANDARIA	= format("|T%s:0:0|t %s", icon_Pandaria, L["ATLAS_DDL_CONTINENT_PANDARIA"])
-	ATLAS_DDL_CONTINENT_DRAENOR		= format("|T%s:0:0|t %s", icon_Draenor, L["ATLAS_DDL_CONTINENT_DRAENOR"])
-	ATLAS_DDL_CONTINENT_BROKENISLES	= format("|T%s:0:0|t %s", icon_BrokenIsles, L["ATLAS_DDL_CONTINENT_BROKENISLES"])
-	ATLAS_DDL_CONTINENT_BROKENISLES1	= format("|T%s:0:0|t %s", icon_BrokenIsles, L["ATLAS_DDL_CONTINENT_BROKENISLES1"])
-	ATLAS_DDL_CONTINENT_BROKENISLES2	= format("|T%s:0:0|t %s", icon_BrokenIsles, L["ATLAS_DDL_CONTINENT_BROKENISLES2"])
-	ATLAS_DDL_CONTINENT_KULTIRAS	= format("|T%s:0:0|t %s", icon_KulTiras, L["ATLAS_DDL_CONTINENT_KULTIRAS"])
-	ATLAS_DDL_CONTINENT_ZANDALAR	= format("|T%s:0:0|t %s", icon_Zandalar, L["ATLAS_DDL_CONTINENT_ZANDALAR"])
-	ATLAS_DDL_CONTINENT_NAZJATAR	= L["ATLAS_DDL_CONTINENT_NAZJATAR"]
-end
+
+ATLAS_DDL_CONTINENT_EASTERN			= format("|T%s:0:0|t %s", icon_EasternKingdom, BZ["Eastern Kingdoms"])
+ATLAS_DDL_CONTINENT_KALIMDOR		= format("|T%s:0:0|t %s", icon_Kalimdor, BZ["Kalimdor"])
+ATLAS_DDL_CONTINENT_OUTLAND			= format("|T%s:0:0|t %s", icon_Outland, BZ["Outland"])
+ATLAS_DDL_CONTINENT_NORTHREND		= format("|T%s:0:0|t %s", icon_Northrend, BZ["Northrend"])
+ATLAS_DDL_CONTINENT_DEEPHOLM		= format("|T%s:0:0|t %s", icon_Deepholm, BZ["Deepholm"])
+ATLAS_DDL_CONTINENT_PANDARIA		= format("|T%s:0:0|t %s", icon_Pandaria, BZ["Pandaria"])
+ATLAS_DDL_CONTINENT_DRAENOR			= format("|T%s:0:0|t %s", icon_Draenor, BZ["Draenor"])
+ATLAS_DDL_CONTINENT_BROKENISLES		= format("|T%s:0:0|t %s", icon_BrokenIsles, BZ["Broken Isles"])
+ATLAS_DDL_CONTINENT_BROKENISLES1	= format("|T%s:0:0|t %s", icon_BrokenIsles, BZ["Broken Isles"])
+ATLAS_DDL_CONTINENT_BROKENISLES2	= format("|T%s:0:0|t %s", icon_BrokenIsles, BZ["Broken Isles"])
+ATLAS_DDL_CONTINENT_KULTIRAS		= format("|T%s:0:0|t %s", icon_KulTiras, BZ["Kul Tiras"])
+ATLAS_DDL_CONTINENT_ZANDALAR		= format("|T%s:0:0|t %s", icon_Zandalar, BZ["Zandalar"])
+ATLAS_DDL_CONTINENT_NAZJATAR		= BZ["Nazjatar"]
+ATLAS_DDL_CONTINENT_DRAGONISLES     = format("|T%s:0:0|t %s", icon_DragonIsles, BZ["Dragon Isles"])
+ATLAS_DDL_CONTINENT_KHAZALGAR       = format("|T%s:0:0|t %s", icon_KhazAlgar, BZ["Khaz Algar"])
+
+-------------------------------------------------------------------------
 -- Level
 ATLAS_DDL_LEVEL			= L["ATLAS_DDL_LEVEL"]
 -- BCC / prior to new level range
@@ -182,34 +184,28 @@ ATLAS_DDL_LEVEL_45TO60		 = L["ATLAS_DDL_LEVEL_45TO60"]
 ATLAS_DDL_LEVEL_50TO60		 = L["ATLAS_DDL_LEVEL_50TO60"]
 ATLAS_DDL_LEVEL_60PLUS		 = L["ATLAS_DDL_LEVEL_60PLUS"]
 
-ATLAS_DDL_PARTYSIZE		= L["ATLAS_DDL_PARTYSIZE"]
+ATLAS_DDL_PARTYSIZE			= L["ATLAS_DDL_PARTYSIZE"]
 ATLAS_DDL_PARTYSIZE_5		= L["ATLAS_DDL_PARTYSIZE_5"]
 ATLAS_DDL_PARTYSIZE_10		= L["ATLAS_DDL_PARTYSIZE_10"]
 ATLAS_DDL_PARTYSIZE_20TO40	= L["ATLAS_DDL_PARTYSIZE_20TO40"]
-ATLAS_DDL_EXPANSION		= L["ATLAS_DDL_EXPANSION"]
--- Expansion
-if (WoWClassicEra or WoWClassicTBC) then 
-	ATLAS_DDL_EXPANSION_OLD		= L["ATLAS_DDL_EXPANSION_OLD"]
-	ATLAS_DDL_EXPANSION_BC		= L["ATLAS_DDL_EXPANSION_BC"]
-	ATLAS_DDL_EXPANSION_WOTLK	= L["ATLAS_DDL_EXPANSION_WOTLK"]
-	ATLAS_DDL_EXPANSION_CATA	= L["ATLAS_DDL_EXPANSION_CATA"]
-	ATLAS_DDL_EXPANSION_MOP		= L["ATLAS_DDL_EXPANSION_MOP"]
-	ATLAS_DDL_EXPANSION_WOD		= L["ATLAS_DDL_EXPANSION_WOD"]
-	ATLAS_DDL_EXPANSION_LEGION	= L["ATLAS_DDL_EXPANSION_LEGION"]
-	ATLAS_DDL_EXPANSION_LEGION1	= L["ATLAS_DDL_EXPANSION_LEGION1"]
-	ATLAS_DDL_EXPANSION_LEGION2	= L["ATLAS_DDL_EXPANSION_LEGION2"]
-else
-	ATLAS_DDL_EXPANSION_OLD		= format("|T%s:0:0|t %s", icon_E0, L["ATLAS_DDL_EXPANSION_OLD"])
-	ATLAS_DDL_EXPANSION_BC		= format("|T%s:0:0|t %s", icon_E1, L["ATLAS_DDL_EXPANSION_BC"])
-	ATLAS_DDL_EXPANSION_WOTLK	= format("|T%s:0:0|t %s", icon_E2, L["ATLAS_DDL_EXPANSION_WOTLK"])
-	ATLAS_DDL_EXPANSION_CATA	= format("|T%s:0:0|t %s", icon_E3, L["ATLAS_DDL_EXPANSION_CATA"])
-	ATLAS_DDL_EXPANSION_MOP		= format("|T%s:0:0|t %s", icon_E4, L["ATLAS_DDL_EXPANSION_MOP"])
-	ATLAS_DDL_EXPANSION_WOD		= format("|T%s:0:0|t %s", icon_E5, L["ATLAS_DDL_EXPANSION_WOD"])
-	ATLAS_DDL_EXPANSION_LEGION	= format("|T%s:0:0|t %s", icon_E6, L["ATLAS_DDL_EXPANSION_LEGION"])
-	ATLAS_DDL_EXPANSION_LEGION1	= format("|T%s:0:0|t %s", icon_E6, L["ATLAS_DDL_EXPANSION_LEGION1"])
-	ATLAS_DDL_EXPANSION_LEGION2	= format("|T%s:0:0|t %s", icon_E6, L["ATLAS_DDL_EXPANSION_LEGION2"])
-	ATLAS_DDL_EXPANSION_BFA		= format("|T%s:0:0|t %s", icon_E7, L["ATLAS_DDL_EXPANSION_BFA"])
-end
+ATLAS_DDL_EXPANSION			= L["ATLAS_DDL_EXPANSION"]
+
+ATLAS_DDL_EXPANSION_OLD				= format("|T%s:0:0|t %s", icon_E0, EXPANSION_NAME0)
+ATLAS_DDL_EXPANSION_BC				= format("|T%s:0:0|t %s", icon_E1, EXPANSION_NAME1)
+ATLAS_DDL_EXPANSION_WOTLK			= format("|T%s:0:0|t %s", icon_E2, EXPANSION_NAME2)
+ATLAS_DDL_EXPANSION_CATA			= format("|T%s:0:0|t %s", icon_E3, EXPANSION_NAME3)
+ATLAS_DDL_EXPANSION_MOP				= format("|T%s:0:0|t %s", icon_E4, EXPANSION_NAME4)
+ATLAS_DDL_EXPANSION_WOD				= format("|T%s:0:0|t %s", icon_E5, EXPANSION_NAME5)
+ATLAS_DDL_EXPANSION_LEGION			= format("|T%s:0:0|t %s", icon_E6, EXPANSION_NAME6)
+ATLAS_DDL_EXPANSION_LEGION1			= format("|T%s:0:0|t %s", icon_E6, EXPANSION_NAME6)
+ATLAS_DDL_EXPANSION_LEGION2			= format("|T%s:0:0|t %s", icon_E6, EXPANSION_NAME6)
+ATLAS_DDL_EXPANSION_BFA				= format("|T%s:0:0|t %s", icon_E7, EXPANSION_NAME7)
+ATLAS_DDL_EXPANSION_SHADOWLANDS		= format("|T%s:0:0|t %s", icon_E8, EXPANSION_NAME8)
+ATLAS_DDL_EXPANSION_DRAGONFLIGHT	= format("|T%s:0:0|t %s", icon_E9, EXPANSION_NAME9)
+ATLAS_DDL_EXPANSION_THEWARWITHIN	= format("|T%s:0:0|t %s", icon_E10, EXPANSION_NAME10 and EXPANSION_NAME10 or "")
+ATLAS_DDL_EXPANSION_MIDNIGHT		= format("|T%s:0:0|t %s", icon_E11, EXPANSION_NAME11 and EXPANSION_NAME11 or "")
+
+
 ATLAS_DDL_TYPE				= L["ATLAS_DDL_TYPE"]
 ATLAS_DDL_TYPE_INSTANCE		= L["ATLAS_DDL_TYPE_INSTANCE"]
 ATLAS_DDL_TYPE_ENTRANCE		= L["ATLAS_DDL_TYPE_ENTRANCE"]

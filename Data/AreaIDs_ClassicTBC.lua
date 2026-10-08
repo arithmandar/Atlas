@@ -4,7 +4,7 @@
 local _, private = ...
 
 local Client = private.Client
-if not Client.isAnniversaryTBC then return end
+if not Client.isTBCClassic then return end
 
 local MapData = {}
 
