@@ -45,7 +45,6 @@ local projectID = WOW_PROJECT_ID
 local function IsProject(id)
     return id ~= nil and projectID == id
 end
-
 local Client = {
     projectID = projectID,
 

@@ -243,6 +243,8 @@ L["ATLAS_REOPEN_LOOT_AGAIN"] = "Please reopen the loot window to reload."
 
 L["Scale and Transparency"] = "Scale and Transparency"
 
+L["Click to open relative World Map"] = "Click to open relative World Map"
+
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************
