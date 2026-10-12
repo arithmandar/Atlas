@@ -94,7 +94,7 @@ local LibStub = _G.LibStub
 ---@field GetGearItemLevelDiffColor fun(self: AtlasAddon, minGearLevel: number): table
 ---@field GetItemTitlebyID fun(self: AtlasAddon, title: string?, id: number): string?
 ---@field GetQuestLevelRange fun(self: AtlasAddon): number
----@field GetQuestTitlebyID fun(self: AtlasAddon, id: number, title: string?): string?
+---@field GetQuestTitlebyID fun(self: AtlasAddon, title: string?, id: number): string?
 ---@field IsRaidInfo fun(self: AtlasAddon, raidID: number): boolean
 ---@field MapAddNPCButton fun(self: AtlasAddon)
 ---@field MapAddNPCButtonLarge fun(self: AtlasAddon)
@@ -726,8 +726,7 @@ function addon:MapAddNPCButton()
 
 				local tip_title
 				for _, v in pairs(AtlasMaps[zoneID]) do
-					if(type(v[2]) == "number") then
-					--if (type(v) == "table" and type(v[2]) == "number") then
+					if (type(v) == "table" and type(v[2]) == "number") then
 						if (v[2] == info_id) then
 							tip_title = v[1]
 							if (v[3] and v[3] == "item") then

@@ -48,7 +48,10 @@ function addon:GetQuestLevelRange()
 	end
 end
 
-function addon:GetQuestTitlebyID(id, title)
+function addon:GetQuestTitlebyID(title, id)
+	if not id then
+		return title
+		end
 	local questTitle = GetTitleForQuestID(id)
 	if not questTitle then
 		return title
