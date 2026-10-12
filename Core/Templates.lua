@@ -24,24 +24,33 @@
 --]]
 
 -- ----------------------------------------------------------------------------
--- Localized Lua globals.
+-- Template handling functions for Atlas addon
 -- ----------------------------------------------------------------------------
--- Functions
+
 local _G = getfenv(0)
 
--- Libraries
--- ----------------------------------------------------------------------------
--- AddOn namespace.
--- ----------------------------------------------------------------------------
 local _, private = ...
 
 local LibStub = _G.LibStub
+---@type AtlasAddon
+local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 -- UIDropDownMenu
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 
+local options = setmetatable({}, {
+	__index = function(_, k) return addon.db.profile.options[k] end,
+	__newindex = function(_, k, v) addon.db.profile.options[k] = v end,
+})
+local dropdowns = setmetatable({}, {
+	__index = function(_, k) return addon.db.profile.options.dropdowns[k] end,
+	__newindex = function(_, k, v) addon.db.profile.options.dropdowns[k] = v end,
+})
+
 local Templates = {}
 private.Templates = Templates
+
+
 
 -- //////////////////////////////////////////
 -- AtlasFrameDropDownTypeTemplate
@@ -75,6 +84,84 @@ end
 
 -- //////////////////////////////////////////
 -- AtlasEntryTemplate
+local function AtlasEntry_OnUpdate(self)
+	if (ATLAS_HAS_EJ) then
+		if( AtlasEJLootFrame:IsShown() ) then
+			return
+		end
+	end
+	if (self:IsMouseOver()) then
+		if (IsControlKeyDown() and options.frames.controlClick) then
+			if (not GameTooltip:IsShown()) then
+				local str = _G[self:GetName().."_Text"]:GetText()
+				if (str) then
+					GameTooltip:SetOwner(self, "ANCHOR_CURSOR")
+					GameTooltip:SetBackdropBorderColor(0, 0, 0, 0)
+					GameTooltip.NineSlice:SetCenterColor(0, 0, 0, 1)
+					local colorCheck = string.sub(str, 1, 4)
+					if (colorCheck == "|cff") then
+						local color = string.sub(str, 1, 10)
+						local stripped = strtrim(string.sub(str, 11))
+						GameTooltip:SetText(color..stripped, 1, 1, 1, 1)
+					else
+						GameTooltip:SetText(str, 1, 1, 1, 1)
+					end
+				end
+			end
+		else
+			if (self.tooltiptitle) then
+				GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
+				GameTooltip.NineSlice:SetCenterColor(0, 0, 0, 1 * options.frames.alpha)
+				GameTooltip:SetText(self.tooltiptitle, 1, 1, 1, 1)
+				if (self.tooltiptext) then 
+					GameTooltip:AddLine(self.tooltiptext, nil, nil, nil, 1) 
+				end
+				if (self.overviewDescription) then
+					GameTooltip:AddLine("\n"..OVERVIEW, 1, 1, 1, 1)
+					GameTooltip:AddLine(self.overviewDescription, nil, nil, nil, 1)
+					if (self.roleOverview) then
+						GameTooltip:AddLine("\n"..self.roleOverview, nil, nil, nil, 1)
+					end
+				end
+				if (self.encounterID and ATLAS_HAS_EJ) then
+					--local disabled = not C_AdventureJournal.CanBeShown()
+					--if (not disabled) then
+						GameTooltip:AddLine(ATLAS_OPEN_ADVENTURE, 0.5, 0.5, 1, true)
+					--end
+					if (addon:CheckAddonStatus("AtlasLoot")) then 
+						GameTooltip:AddLine(ATLAS_ROPEN_ATLASLOOT_WINDOW, 0.5, 0.5, 1, true)
+					end
+				end
+				GameTooltip:SetScale(options.frames.boss_description_scale * options.frames.scale)
+				GameTooltip:Show()
+			end			
+		end
+	end
+end
+
+local function AtlasEntry_OnClick(self, button)
+	if (IsShiftKeyDown() and self.link) then
+		if (IsModifiedClick("CHATLINK") and ChatEdit_GetActiveWindow()) then
+			ChatEdit_InsertLink(self.link)
+		end
+	elseif (button == "RightButton") then
+		addon:AtlasLootButton_OnClick(self)
+	else
+		if (ATLAS_HAS_EJ and self.instanceID and self.encounterID) then
+			addon:AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID)
+		elseif (ATLAS_HAS_ACHIEVEMENTS and self.achievementID) then
+			addon:OpenAchievement(self.achievementID)
+		end
+	end
+end
+
+local function AtlasEntry_OnLeave()
+	GameTooltip:Hide()
+	GameTooltip:SetScale(ATLAS_GAMETOOLTIP_ORIGINAL_SCALE)
+end
+
+
+
 function Templates.CreateEntry(name, parent)
 	local f = _G[name]
 	if f then
@@ -158,7 +245,7 @@ function Templates.CreateLockButton(name, parent)
 		GameTooltip:SetText(ATLAS_OPTIONS_LOCK_TIP, nil, nil, nil, nil, 1)
 	end)
 	f:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	f:SetScript("OnClick", function() Atlas:ToggleLock() end)
+	f:SetScript("OnClick", function() addon:ToggleLock() end)
 	return f
 end
 
@@ -167,8 +254,27 @@ function Templates.CreateOptionsButton(name, parent)
 	f:SetSize(80, 20)
 	f:SetText(ATLAS_OPTIONS_BUTTON)
 	f:SetPoint("RIGHT", _G[parent:GetName().."LockButton"], "LEFT", 6, 1)
-	f:SetScript("OnClick", function() Atlas:OpenOptions() end)
+	f:SetScript("OnClick", function() addon:OpenOptions() end)
 	return f
+end
+
+local function PrevNextMap_OnClick(self)
+	local mapID = self.mapID
+	if not mapID then return; end
+
+	for k, v in pairs(ATLAS_DROPDOWNS) do
+		for k2, v2 in pairs(v) do
+			if (v2 == mapID) then
+				dropdowns.module = k
+				dropdowns.zone = k2
+
+				AtlasFrameDropDownType_OnShow()
+				AtlasFrameDropDown_OnShow()
+				addon:RefreshMap()
+				return
+			end
+		end
+	end
 end
 
 local function CreatePrevNextMapButtonBase(name, parent)
@@ -178,7 +284,7 @@ local function CreatePrevNextMapButtonBase(name, parent)
 	f:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight", "ADD")
 	f:SetScript("OnClick", function(self)
 		PlaySound(856)
-		Atlas:PrevNextMap_OnClick(self)
+		PrevNextMap_OnClick(self)
 	end)
 	return f
 end
@@ -220,7 +326,7 @@ function Templates.CreateAdventureJournalMapButton(name, parent)
 	f:SetNormalTexture("Interface\\AddOns\\Atlas\\Images\\UI-WorldMap-Icon")
 	f:SetPushedTexture("Interface\\AddOns\\Atlas\\Images\\UI-WorldMap-Icon")
 	SetCenteredHighlight(f)
-	f:SetScript("OnClick", function(self) Atlas:AdventureJournal_MapButton_OnClick(self) end)
+	f:SetScript("OnClick", function(self) addon:AdventureJournal_MapButton_OnClick(self) end)
 	f:SetScript("OnEnter", function(self)
 		GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
 		GameTooltip:SetText(L["Click to open the corresponding World Map"], 0.5, 0.5, 1, nil, false)
@@ -238,8 +344,8 @@ function Templates.CreateAdventureJournalButton(name, parent)
 	f:SetNormalTexture("Interface\\AddOns\\Atlas\\Images\\UI-EJ-PortraitIcon")
 	f:SetPushedTexture("Interface\\AddOns\\Atlas\\Images\\UI-EJ-PortraitIcon")
 	SetCenteredHighlight(f)
-	f:SetScript("OnEnter", function(self) Atlas:AdventureJournalButton_OnEnter(self) end)
-	f:SetScript("OnClick", function(self) Atlas:AdventureJournalButton_OnClick(self) end)
+	f:SetScript("OnEnter", function(self) addon:AdventureJournalButton_OnEnter(self) end)
+	f:SetScript("OnClick", function(self) addon:AdventureJournalButton_OnClick(self) end)
 	f:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	return f
 end
@@ -257,7 +363,7 @@ function Templates.CreateAtlasLootButton(name, parent)
 		GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
 		GameTooltip:SetText(ATLAS_OPEN_ATLASLOOT_WINDOW.."\n"..ATLAS_CLOSE_ATLASLOOT_WINDOW, 0.5, 0.5, 1, nil, false)
 	end)
-	f:SetScript("OnClick", function(self, button) Atlas:AtlasLootButton_OnClick(self, button) end)
+	f:SetScript("OnClick", function(self, button) addon:AtlasLootButton_OnClick(self, button) end)
 	f:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	return f
 end
@@ -270,7 +376,7 @@ function Templates.CreateSizeUpButton(name, parent)
 	f:SetNormalTexture("Interface\\Buttons\\UI-Panel-BiggerButton-Up")
 	f:SetPushedTexture("Interface\\Buttons\\UI-Panel-BiggerButton-Down")
 	f:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight", "ADD")
-	f:SetScript("OnClick", function() Atlas:ToggleWindowSize() end)
+	f:SetScript("OnClick", function() addon:ToggleWindowSize() end)
 	return f
 end
 
@@ -281,7 +387,7 @@ function Templates.CreateSizeDownButton(name, parent)
 	f:SetNormalTexture("Interface\\Buttons\\UI-Panel-SmallerButton-Up")
 	f:SetPushedTexture("Interface\\Buttons\\UI-Panel-SmallerButton-Down")
 	f:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight", "ADD")
-	f:SetScript("OnClick", function() Atlas:ToggleWindowSize() end)
+	f:SetScript("OnClick", function() addon:ToggleWindowSize() end)
 	return f
 end
 
@@ -292,7 +398,7 @@ function Templates.CreateCollapseButton(name, parent)
 	f:SetNormalTexture("Interface\\AddOns\\Atlas\\Images\\UI-Panel-CollapseButton-Up")
 	f:SetPushedTexture("Interface\\AddOns\\Atlas\\Images\\UI-Panel-CollapseButton-Up")
 	f:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight", "ADD")
-	f:SetScript("OnClick", function() Atlas:ToggleLegendPanel() end)
+	f:SetScript("OnClick", function() addon:ToggleLegendPanel() end)
 	f:SetScript("OnEnter", function(self)
 		GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
 		GameTooltip:SetText(ATLAS_COLLAPSE_BUTTON, nil, nil, nil, nil, 1)
@@ -308,7 +414,7 @@ function Templates.CreateExpandButton(name, parent)
 	f:SetNormalTexture("Interface\\AddOns\\Atlas\\Images\\UI-Panel-ExpandButton-Up")
 	f:SetPushedTexture("Interface\\AddOns\\Atlas\\Images\\UI-Panel-ExpandButton-Up")
 	f:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight", "ADD")
-	f:SetScript("OnClick", function() Atlas:ToggleLegendPanel() end)
+	f:SetScript("OnClick", function() addon:ToggleLegendPanel() end)
 	f:SetScript("OnEnter", function(self)
 		GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
 		GameTooltip:SetText(ATLAS_EXPAND_BUTTON, nil, nil, nil, nil, 1)
@@ -408,7 +514,7 @@ function Templates.CreateBossButton(name, parent)
 	f:GetHighlightTexture():SetTexCoord(0.68945313, 0.81054688, 0.33300781, 0.39257813)
 
 	f:RegisterForClicks("LeftButtonDown", "RightButtonDown")
-	f:SetScript("OnClick", function(self, button) Atlas:BossButton_OnClick(self, button) end)
+	f:SetScript("OnClick", function(self, button) addon:BossButton_OnClick(self, button) end)
 
 	return f
 end

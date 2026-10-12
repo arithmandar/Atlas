@@ -24,21 +24,20 @@
 --]]
 
 -- ----------------------------------------------------------------------------
--- Localized Lua globals.
+-- Core functionality for the Atlas addon
 -- ----------------------------------------------------------------------------
--- Functions
+
 local _G = getfenv(0)
 local pairs, select, type, unpack, next = pairs, select, type, unpack, next
 local string, table, math, tonumber = string, table, math, tonumber
--- Libraries
+
 local strfind, strsub, format, gsub, strlower, strgmatch = string.find, string.sub, string.format, string.gsub, string.lower, string.gmatch
 local strlen, strtrim = string.len, string.trim
 local floor = math.floor
 local tinsert, tsort = table.insert, table.sort
 
 local C_AddOns = _G.C_AddOns
-local GetAddOnInfo, GetAddOnMetadata, GetAddOnEnableState, IsAddOnLoaded = 
-	C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnMetadata, C_AddOns.GetAddOnEnableState, C_AddOns.IsAddOnLoaded
+local GetAddOnInfo, GetAddOnEnableState = C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnEnableState
 local C_Item = _G.C_Item
 local GetItemInfo = C_Item.GetItemInfo
 local C_EncounterJournal = _G.C_EncounterJournal
@@ -56,9 +55,6 @@ local GetAverageItemLevel = _G.GetAverageItemLevel
 local C_Map = _G.C_Map
 local GetMapInfo, GetMapArtLayers = C_Map.GetMapInfo, C_Map.GetMapArtLayers
 
--- ----------------------------------------------------------------------------
--- AddOn namespace.
--- ----------------------------------------------------------------------------
 local FOLDER_NAME, private = ...
 
 local LibStub = _G.LibStub
@@ -76,56 +72,65 @@ local LibStub = _G.LibStub
 ---@field Notes string
 ---@field WorldMap table
 ---@field AchievementButtonUpdate fun(self: AtlasAddon, button: table, achievementID: number)
----@field AdventureJournal_EncounterButton_OnClick fun(self: AtlasAddon, instanceID: number, encounterID: number, keepAtlas: boolean?)
----@field AdventureJournal_MapButton_OnClick fun(self: AtlasAddon, frame: table)
----@field BossButton_OnClick fun(self: AtlasAddon, frame: table, button: string?)
 ---@field AdventureJournalButton_OnClick fun(self: AtlasAddon, frame: table)
 ---@field AdventureJournalButton_OnEnter fun(self: AtlasAddon, frame: table)
+---@field AdventureJournal_EncounterButton_OnClick fun(self: AtlasAddon, instanceID: number, encounterID: number, keepAtlas: boolean?)
+---@field AdventureJournal_MapButton_OnClick fun(self: AtlasAddon, frame: table)
 ---@field AtlasLootButton_OnClick fun(self: AtlasAddon, frame: table, button: string?)
+---@field Auto_Select fun(self: AtlasAddon)
+---@field BossButton_OnClick fun(self: AtlasAddon, frame: table, button: string?)
 ---@field CheckAddonStatus fun(self: AtlasAddon, addonName: string): boolean
 ---@field DungeonMinGearLevelToolTip fun(self: AtlasAddon, frame: table)
 ---@field EnableAtlasLootButton fun(self: AtlasAddon, base: table, zoneID: string)
 ---@field EncounterJournal_Binding fun(self: AtlasAddon)
 ---@field EncounterJournal_IsHeaderTypeOverview fun(self: AtlasAddon, headerType: any): boolean
 ---@field FormatColor fun(self: AtlasAddon, colorArray: table): string?
----@field GetCreatureName fun(self: AtlasAddon, creatureName: string?, id: number?): string?
+---@field FormatDungeonLevelRange fun(self: AtlasAddon, minLevel: number, maxLevel: number): string
 ---@field GetBossName fun(self: AtlasAddon, bossName: string?, encounterID: number?, creatureIndex: number?, moduleName: string?): string?
+---@field GetCreatureName fun(self: AtlasAddon, creatureName: string?, id: number?): string?
+---@field GetDungeonData fun(self: AtlasAddon, dungeonID: number, fallbackMinRec: number, fallbackMaxRec: number): table
 ---@field GetDungeonDifficultyColor fun(self: AtlasAddon, minimumLevel: number): table
----@field isModuleOrPluginLoaded fun(self: AtlasAddon)
+---@field GetGearItemLevelDiffColor fun(self: AtlasAddon, minGearLevel: number): table
+---@field GetItemTitlebyID fun(self: AtlasAddon, title: string?, id: number): string?
+---@field GetQuestLevelRange fun(self: AtlasAddon): number
+---@field GetQuestTitlebyID fun(self: AtlasAddon, id: number, title: string?): string?
+---@field IsRaidInfo fun(self: AtlasAddon, raidID: number): boolean
 ---@field MapAddNPCButton fun(self: AtlasAddon)
 ---@field MapAddNPCButtonLarge fun(self: AtlasAddon)
----@field OnInitialize fun(self: AtlasAddon)
 ---@field OnEnable fun(self: AtlasAddon)
+---@field OnInitialize fun(self: AtlasAddon)
+---@field OnItemInfoReceived fun(self: AtlasAddon, itemID: number)
 ---@field OpenAchievement fun(self: AtlasAddon, achievementID: number)
 ---@field OpenOptions fun(self: AtlasAddon)
 ---@field PopulateDropdowns fun(self: AtlasAddon)
 ---@field PrevNextMap_OnClick fun(self: AtlasAddon, frame: table)
----@field RegisterPlugin fun(self: AtlasAddon, name: string, myCategory: string, myData: table, myNPCData: table?)
----@field RegisterModuleOptions fun(self: AtlasAddon, name: string, optionTable: any, displayName: string?)
 ---@field Refresh fun(self: AtlasAddon)
----@field SearchAndRefresh fun(self: AtlasAddon, text: string)
+---@field RefreshMap fun(self: AtlasAddon, mapID: string|number?)
+---@field RefreshPendingCreatureNames fun(self: AtlasAddon)
+---@field RefreshPendingItemTitles fun(self: AtlasAddon)
+---@field RegisterChatCommand fun(self: AtlasAddon, command: string, handler: function)
+---@field RegisterModule fun(self: AtlasAddon, moduleKey: string)
+---@field RegisterModuleOptions fun(self: AtlasAddon, name: string, optionTable: any, displayName: string?)
+---@field RegisterPlugin fun(self: AtlasAddon, name: string, myCategory: string, myData: table, myNPCData: table?)
+---@field ScrollBar_Update fun(self: AtlasAddon)
+---@field SearchText fun(self: AtlasAddon, text: string)
 ---@field SetupOptions fun(self: AtlasAddon)
 ---@field StartMoving fun(self: AtlasAddon, frame: table)
----@field WorldMapButtonSelectMap fun(self: AtlasAddon)
 ---@field Toggle fun(self: AtlasAddon)
 ---@field ToggleLegendPanel fun(self: AtlasAddon)
 ---@field ToggleLock fun(self: AtlasAddon)
 ---@field ToggleWindowSize fun(self: AtlasAddon)
 ---@field UpdateAlpha fun(self: AtlasAddon)
 ---@field UpdateLock fun(self: AtlasAddon)
+---@field UpdateMapContent fun(self: AtlasAddon, zoneID: string|number, base: table)
 ---@field UpdateScale fun(self: AtlasAddon)
----@field RegisterChatCommand fun(self: AtlasAddon, command: string, handler: function)
+---@field WorldMapButtonSelectMap fun(self: AtlasAddon)
+local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 
----@class AtlasDataModule
----@field db table
----@type AtlasAddon
-local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceConsole-3.0")
 addon.constants = private.constants
 addon.Client = private.Client
 addon.Templates = private.Templates
 addon.Fonts = private.Fonts
---addon.dropdowns. = private.dropdowns
-addon.constants.addon_name = private.addon_name
 addon.Name = FOLDER_NAME
 local _, locName, notes = GetAddOnInfo(addon.Name)
 addon.LocName = locName
@@ -139,33 +144,6 @@ local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 
 local profile
 
-StaticPopupDialogs["ATLAS_OLD_MODULES"] = {
-	text = "%s",
-	button1 = OKAY,
-	preferredWidth = 550,
-	whileDead = false,
-	hideOnEscape = true,
-}
-
-StaticPopupDialogs["ATLAS_MISSING_MODULES"] = {
-	text = "%s",
-	button1 = CLOSE,
-	button2 = L["ATLAS_OPEN_ADDON_LIST"],
-	OnButton2 = AddonList_Show,
-	preferredWidth = 500,
-	whileDead = false,
-	hideOnEscape = true,
-}
-
-StaticPopupDialogs["ATLAS_NO_MODULE_OR_PLUGIN"] = {
-	text = "%s",
-	button1 = CLOSE,
-	button2 = L["ATLAS_OPEN_ADDON_LIST"],
-	OnButton2 = AddonList_Show,
-	preferredWidth = 400,
-	whileDead = false,
-	hideOnEscape = true,
-}
 
 -- Minimap button with LibDBIcon-1.0
 local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("Atlas", {
@@ -176,22 +154,11 @@ local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("Atlas", {
 
 local minimapButton = LibStub("LibDBIcon-1.0")
 
---[[
-function addon:Toggle()
-	self.db.profile.minimap.hide = not self.db.profile.minimap.hide
-	if self.db.profile.minimap.hide then
-		minimapButton:Hide("Atlas")
-		--AtlasOptions.AtlasButtonShown = false
-	else
-		minimapButton:Show("Atlas")
-		--AtlasOptions.AtlasButtonShown = true
-	end
-end
-]]
 function Atlas_ButtonToggle2()
 	profile.minimap.hide = not profile.minimap.hide
 	Atlas_ButtonToggle()
 end
+
 function Atlas_ButtonToggle()
 	if profile.minimap.hide then
 		minimapButton:Hide("Atlas")
@@ -206,44 +173,12 @@ local function debug(info)
 	end
 end
 
-local function round(num, idp)
-	local mult = 10 ^ (idp or 0)
-	return floor(num * mult + 0.5) / mult
-end
-
--- get creature's name from server
-local cache_tooltip = _G["cacheToolTip"] or CreateFrame("GameTooltip", "cacheToolTip", UIParent, "GameTooltipTemplate")
-local creature_cache
-local function getCreatureNamebyID(id)
-	if not id then return end
-
-	cache_tooltip:SetOwner(UIParent, "ANCHOR_NONE")
-	cache_tooltip:SetHyperlink(("unit:Creature-0-0-0-0-%d"):format(id))
-	creature_cache = _G["cacheToolTipTextLeft1"]:GetText()
-end
-
-function addon:GetCreatureName(creatureName, id)
-	if (not creatureName) and (not id) then return end
-	
-	getCreatureNamebyID(id)
-	creatureName = creature_cache or creatureName
-	creature_cache = nil
-
-	return creatureName
-end
-
 -- Below to temporarily create a table to store the core map's data
 -- in order to identify the dropdown's zoneID is belonging to the
 -- core Atlas or plugins
 local Atlas_CoreMapsKey = {}
 local Atlas_CoreMapsKey_Index = 0
 local registeredModules = {}
---[[ -- now being handled within Atlas:RegisterModule()
-for kc, vc in pairs(AtlasMaps) do
-	Atlas_CoreMapsKey[Atlas_CoreMapsKey_Index] = kc
-	Atlas_CoreMapsKey_Index = Atlas_CoreMapsKey_Index + 1
-end
-]]
 
 function addon:RegisterPlugin(name, myCategory, myData, myNPCData)
 	ATLAS_PLUGINS[name] = {}
@@ -270,13 +205,20 @@ function addon:RegisterPlugin(name, myCategory, myData, myNPCData)
 	end
 	
 	addon:PopulateDropdowns()
-	Atlas_Refresh()
+	addon:RefreshMap()
 end
 
-local function registerModule(moduleKey)
-	if registeredModules[moduleKey] then return end
+function addon:RegisterModule(moduleKey)
+	if registeredModules[moduleKey] then
+		return
+	end
+
 	local module = addon:GetModule(moduleKey)
-	if not module or not module.db then return end
+	if not module or not module.db then
+		return
+	end
+
+	local dropdowns = addon.dropdowns
 	-- register module map tables
 	if (module.db.AtlasMaps) then
 		for k, v in pairs(module.db.AtlasMaps) do
@@ -294,13 +236,13 @@ local function registerModule(moduleKey)
 	-- register module maps' dropdowns order
 	if (module.db.DropDownLayouts_Order) then
 		for k_cat,v_cat in pairs(module.db.DropDownLayouts_Order) do
-			if (not addon.dropdowns.DropDownLayouts_Order[k_cat]) then
-				addon.dropdowns.DropDownLayouts_Order[k_cat] = v_cat
+			if (not dropdowns.DropDownLayouts_Order[k_cat]) then
+				dropdowns.DropDownLayouts_Order[k_cat] = v_cat
 			else
 				for i=1, #module.db.DropDownLayouts_Order[k_cat] do
 					local v = module.db.DropDownLayouts_Order[k_cat][i]
-					if (not tContains(addon.dropdowns.DropDownLayouts_Order[k_cat], v)) then
-						tinsert(addon.dropdowns.DropDownLayouts_Order[k_cat], v)
+					if (not tContains(dropdowns.DropDownLayouts_Order[k_cat], v)) then
+						tinsert(dropdowns.DropDownLayouts_Order[k_cat], v)
 					end
 				end
 			end
@@ -309,17 +251,17 @@ local function registerModule(moduleKey)
 	-- register module maps' dropdowns menus
 	if (module.db.DropDownLayouts) then
 		for k_cat, v_cat in pairs(module.db.DropDownLayouts) do
-			if (not addon.dropdowns.DropDownLayouts[k_cat]) then
-				addon.dropdowns.DropDownLayouts[k_cat] = v_cat
+			if (not dropdowns.DropDownLayouts[k_cat]) then
+				dropdowns.DropDownLayouts[k_cat] = v_cat
 			else
 				for k_scat, v_scat in pairs(module.db.DropDownLayouts[k_cat]) do
-					if (not addon.dropdowns.DropDownLayouts[k_cat][k_scat]) then
-						addon.dropdowns.DropDownLayouts[k_cat][k_scat] = v_scat
+					if (not dropdowns.DropDownLayouts[k_cat][k_scat]) then
+						dropdowns.DropDownLayouts[k_cat][k_scat] = v_scat
 					else
 						for i=1, #module.db.DropDownLayouts[k_cat][k_scat] do
 							local v = module.db.DropDownLayouts[k_cat][k_scat][i]
-							if (not tContains(addon.dropdowns.DropDownLayouts[k_cat][k_scat], v)) then
-								tinsert(addon.dropdowns.DropDownLayouts[k_cat][k_scat], v)
+							if (not tContains(dropdowns.DropDownLayouts[k_cat][k_scat], v)) then
+								tinsert(dropdowns.DropDownLayouts[k_cat][k_scat], v)
 							end
 						end
 					end
@@ -328,7 +270,7 @@ local function registerModule(moduleKey)
 		end
 	end
 	-- register module maps' associations
-	for k_table, v_table in pairs(addon.assocs) do
+	for k_table in pairs(addon.assocs) do
 		if (module.db[k_table]) then
 			for ka, va in pairs(module.db[k_table]) do
 				if (addon.assocs[k_table][ka]) then
@@ -348,8 +290,10 @@ local function registerModule(moduleKey)
 	end
 	ATLAS_MODULE_MENUS = ATLAS_MODULE_MENUS + 1
 	registeredModules[moduleKey] = true
+	addon:RefreshPendingItemTitles()
+	addon:RefreshPendingCreatureNames()
 	addon:PopulateDropdowns()
-	Atlas_Refresh()
+	addon:RefreshMap()
 end
 
 local function bossButtonCleanUp(button)
@@ -457,39 +401,6 @@ local function bossButtonUpdate(button, encounterID, instanceID, b_iconImage, mo
 	end
 end
 
-local function searchText(text)
-	local zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
-	local mapdata = AtlasMaps
-	local base = mapdata[zoneID]
-
-	local data = nil
-
-	if (ATLAS_SEARCH_METHOD == nil) then
-		data = ATLAS_DATA
-	else
-		data = ATLAS_SEARCH_METHOD(ATLAS_DATA, text)
-	end
-
-	-- Populate the scroll frame entries list, the update func will do the rest
-	local i = 1
-	while ( data[i] ~= nil ) do
-		ATLAS_SCROLL_LIST[i] = data[i][1]
-		if (data[i][2] ~= nil) then
-			ATLAS_SCROLL_ID[i] = { data[i][2], base.JournalInstanceID or 0, data[i][3] or "", data[i][4] or ""}
-		else
-			ATLAS_SCROLL_ID[i] = { 0, 0, "", "" }
-		end
-		i = i + 1
-	end
-
-	ATLAS_CUR_LINES = i - 1
-end
-
-function addon:SearchAndRefresh(text)
-	searchText(text)
-	Atlas_ScrollBar_Update()
-end
-
 local function parse_entry_strings(typeStr, id, preStr, index, lineplusoffset)
 	if (typeStr == "item") then
 		local itemID = id
@@ -499,7 +410,7 @@ local function parse_entry_strings(typeStr, id, preStr, index, lineplusoffset)
 	end
 end
 
-function Atlas_ScrollBar_Update()
+function addon:ScrollBar_Update()
 	local zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module] and ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone] or ATLAS_DROPDOWNS[1][1]
 	local mapdata = AtlasMaps
 	local base = mapdata[zoneID]
@@ -644,104 +555,21 @@ function addon:PopulateDropdowns()
 	end
 end
 
-local function process_Deprecated()
-	local Deprecated_List = addon.constants.deprecatedList
-
-	-- Check for outdated modules, build a list of them, then disable them and tell the player
-	local OldList = {}
-	for k, v in pairs(Deprecated_List) do
-		if ( addon:CheckAddonStatus(GetAddOnInfo(v[1])) ) then
-			local outdated = false
-			local compatibleVerNum
-			local currVerStr, currVerNum
-			currVerStr = GetAddOnMetadata(v[1], "Version")
-			if (v[3] and (strsub(currVerStr, 1, 1) == "r")) then
-				compatibleVerNum = tonumber(string.sub(v[3], 2))
-				currVerNum = tonumber(string.sub(currVerStr, 2))
-				if (currVerNum < compatibleVerNum) then
-					outdated = true
-				end
-			elseif (v[2] and (strsub(currVerStr, 1, 1) ~= "r") and currVerStr < v[2]) then
-				outdated = true
-			end
---@do-not-package@
-			-- ignore those with working copy which set the version to @project-version@
-			-- this will only work if user is also checking out Atlas's SVN as the working copy
-			-- this will not work once get package by CurseForge
-			if (currVerStr == "@project-version@") then
-				outdated = false
-			end
---@end-do-not-package@
-			if (outdated) then
-				tinsert(OldList, v[1])
-			end
+local function isModuleOrPluginLoaded()
+	if (ATLAS_MODULE_MENUS == 0 and ATLAS_PLUGIN_MENUS == 0) then
+		StaticPopup_Show("ATLAS_NO_MODULE_OR_PLUGIN", L["ATLAS_NO_MODULE_OR_PLUGIN"])
+		
+		LDB.OnTooltipShow = function(tooltip)
+			if not tooltip or not tooltip.AddLine then return end
+			tooltip:AddLine("|cffffffff"..L["ATLAS_TITLE"])
+			tooltip:AddLine(L["ATLAS_NO_MODULE_OR_PLUGIN"])
 		end
 	end
-	if #OldList > 0 then
-		local textList = ""
-		for _, v in pairs(OldList) do
-			textList = textList.."\n"..v..", "..GetAddOnMetadata(v, "Version")
-			--DisableAddOn(v)
-		end
-
-		StaticPopup_Show("ATLAS_OLD_MODULES", L["ATLAS_DEP_MSG1"].."\n"..L["ATLAS_DEP_MSG3"].."\n|cff6666ff"..textList.."|r\n\n"..L["ATLAS_DEP_MSG4"])
-	end
-end
-
--- Called when the Atlas frame is first loaded
--- We CANNOT assume that data in other files is available yet!
-function Atlas_OnLoad(self)
-	process_Deprecated()
-
-	-- Register the Atlas frame for the following events
-	self:RegisterEvent("PLAYER_LOGIN")
-	self:RegisterEvent("ADDON_LOADED")
-
-	-- Allows Atlas to be closed with the Escape key
-	tinsert(UISpecialFrames, "AtlasFrame")
-	tinsert(UISpecialFrames, "AtlasFrameLarge")
-	tinsert(UISpecialFrames, "AtlasFrameSmall")
-	
-	-- Dragging involves some special registration
-	self:RegisterForDrag("LeftButton")
-end
-
--- Main Atlas event handler
-function Atlas_OnEvent(self, event, ...)
-	local arg1 = ...
-	if (event == "ADDON_LOADED") then
-		for k in pairs(addon.modules) do
-			registerModule(k)
-		end
-	end
-	if (event=="ADDON_LOADED" and (arg1=="Atlas" or arg1=="Blizzard_EncounterJournal")) then
-		--Blizzard_EncounterJournal
-		if (IsAddOnLoaded("Blizzard_EncounterJournal") and IsAddOnLoaded("Atlas")) then
-			-- Added Atlas button to Encounter Journal
-			--addon:EncounterJournal_Binding()
-		end
-	end
-
---	if (event == "ADDON_LOADED" and arg1 == "Atlas") then
---		addon:Init()
---	end
-	
-end
-
---Called whenever the Atlas frame is displayed
-function Atlas_OnShow()
-	--if (AtlasOptions.AtlasAutoSelect) then
-	if (profile.options.autoSelect) then
-		Atlas_AutoSelect()
-	end
-	-- Sneakiness
-	AtlasFrameDropDownType_OnShow()
-	AtlasFrameDropDown_OnShow()
 end
 
 -- Simple function to toggle the visibility of the Atlas frame
 function Atlas_Toggle()
-	addon:isModuleOrPluginLoaded()
+	isModuleOrPluginLoaded()
 	if (ATLAS_MODULE_MENUS == 0 and ATLAS_PLUGIN_MENUS == 0) then return end
 	if (ATLAS_SMALLFRAME_SELECTED) then
 		if (AtlasFrameSmall:IsVisible()) then
@@ -803,15 +631,6 @@ function addon:FormatColor(color_array)
 	return colortag
 end
 
-local function Atlas_GetQuestLevelRange()
-	-- classic forever is using the same function as retail for quest level range
-	if (ATLAS_USES_MAINLINE_API) then
-		return _G.UnitQuestTrivialLevelRange('player')
-	else
-		return _G.GetQuestGreenRange()
-	end
-end
-
 -- Calculate the dungeon difficulty based on the dungeon's level and player's level
 -- Codes adopted from FastQuest_Classic
 function addon:GetDungeonDifficultyColor(minRecLevel)
@@ -820,7 +639,7 @@ function addon:GetDungeonDifficultyColor(minRecLevel)
 		return color
 	end
 	
-	local greenLevel = Atlas_GetQuestLevelRange()
+	local greenLevel = addon:GetQuestLevelRange()
 	local lDiff = minRecLevel - UnitLevel("player")
 	if (lDiff >= 0) then
 		for i= 1.00, 0.10, -0.10 do
@@ -838,34 +657,6 @@ function addon:GetDungeonDifficultyColor(minRecLevel)
 		--color = {r = 0.75, g = 0.75, b = 0.75}
 		color = {r = 1.00, g = 1.00, b = 1.00}
 	end
-	return color
-end
-
-local function getGearItemLevelDiffColor(minGearLevel)
-	local color = {r = 1.00, g = 1.00, b = 1.00}
-	if (minGearLevel == nil) then return color end
-	local lDiff = minGearLevel
-	lDiff = tonumber(lDiff)
-	if (GetAverageItemLevel) then 
-		lDiff = minGearLevel - GetAverageItemLevel()
-	end
-	
-	if (lDiff >= 0) then
-		for i= 1.00, 0.10, -0.10 do
-			color = {r = 1.00, g = i, b = 0.00}
-			if ( (i/0.10)==round(((100-lDiff)/10),0) ) then return color; end
-		end
-	elseif (-lDiff < 100) then
-		for i= 0.90, 0.10, -0.10 do
-			color = {r = i, g = 1.00, b = 0.00}
-			if ((9-i/0.10)==round(((-1*lDiff)/10),0) ) then return color; end
-		end
-	elseif (-lDiff == 100) then
-		color = {r = 0.50, g = 1.00, b = 0.50}
-	else
-		color = {r = 1.00, g = 1.00, b = 1.00}
-	end
-	
 	return color
 end
 
@@ -934,7 +725,8 @@ function addon:MapAddNPCButton()
 
 				local tip_title
 				for _, v in pairs(AtlasMaps[zoneID]) do
-					if (type(v[2]) == "number") then
+					if(type(v[2]) == "number") then
+					--if (type(v) == "table" and type(v[2]) == "number") then
 						if (v[2] == info_id) then
 							tip_title = v[1]
 							if (v[3] and v[3] == "item") then
@@ -1058,7 +850,7 @@ function addon:MapAddNPCButtonLarge()
 
 				local tip_title
 				for k, v in pairs(AtlasMaps[zoneID]) do
-					if (v[2] == info_id) then
+					if (type(v) == "table" and v[2] == info_id) then
 						tip_title = v[1]
 						local _, endpos = strfind(tip_title, ") ")
 						if (endpos) then
@@ -1198,18 +990,8 @@ local function getPlayerText(maxPlayers, maxPlayersH, maxPlayersM, icontext_inst
 	return playerText..table.concat(parts, L["Slash"])
 end
 
-
-function Atlas_MapRefresh(mapID)
-	local zoneID = mapID or ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
-	if (not zoneID) then
-		return
-	end
-	local data = AtlasMaps
-	local base = data[zoneID]
-	if (not base) then
-		return
-	end
-
+-- Updates the map frame content (dungeon info, texts, buttons) for an already resolved map
+function addon:UpdateMapContent(zoneID, base)
 	local dungeonID = base.DungeonID
 	local dungeonHeroicID = base.DungeonHeroicID
 	local dungeonMythicID = base.DungeonMythicID
@@ -1300,7 +1082,7 @@ function Atlas_MapRefresh(mapID)
 	for _, entry in ipairs(dungeonInfos) do
 		local gearLevel = entry.data and entry.data.minGearLevel
 		if (gearLevel and gearLevel ~= 0) then
-			local itemDiff = getGearItemLevelDiffColor(gearLevel)
+			local itemDiff = addon:GetGearItemLevelDiffColor(gearLevel)
 			gearParts[#gearParts + 1] = addon:FormatColor(itemDiff)..gearLevel..entry.icon
 		end
 	end
@@ -1310,7 +1092,7 @@ function Atlas_MapRefresh(mapID)
 		if (base.MinGearLevel) then
 			local itemDiff, gearcolortag
 
-			itemDiff = getGearItemLevelDiffColor(base.MinGearLevel)
+			itemDiff = addon:GetGearItemLevelDiffColor(base.MinGearLevel)
 			gearcolortag = addon:FormatColor(itemDiff)
 			tMGL = L["ATLAS_STRING_MINGEARLEVEL"]..L["Colon"]..gearcolortag..base.MinGearLevel
 		end
@@ -1370,7 +1152,7 @@ function Atlas_MapRefresh(mapID)
 	
 	-- Searching for the map path from Atlas or from plugins
 	local AtlasMapPath
-	for k, v in pairs(Atlas_CoreMapsKey) do
+	for _, v in pairs(Atlas_CoreMapsKey) do
 		-- If selected map is Atlas' core map
 		if (zoneID == v) then
 			if (base.Module) then
@@ -1451,7 +1233,7 @@ end
 -- Refreshes the Atlas frame, usually because a new map needs to be displayed
 -- The zoneID variable represents the internal name used for each map, ex: "BlackfathomDeeps"
 -- Also responsible for updating all the text when a map is changed
-function Atlas_Refresh(mapID)
+function addon:RefreshMap(mapID)
 	if (ATLAS_MODULE_MENUS == 0 and ATLAS_PLUGIN_MENUS == 0) then return end
 	local zoneID
 	local cat = profile.options.dropdowns.module
@@ -1487,7 +1269,7 @@ function Atlas_Refresh(mapID)
 			AtlasEJLootFrame:Hide()
 		end
 	end
-	Atlas_MapRefresh(zoneID)
+	addon:UpdateMapContent(zoneID, base)
 	
 	ATLAS_DATA = base
 	ATLAS_SEARCH_METHOD = data.Search
@@ -1506,7 +1288,7 @@ function Atlas_Refresh(mapID)
 	end
 
 	-- Populate the scroll frame entries list, the update func will do the rest
-	searchText("")
+	addon:SearchText("")
 	AtlasSearchEditBox:SetText("")
 	AtlasSearchEditBox:ClearFocus()
 
@@ -1523,7 +1305,7 @@ function Atlas_Refresh(mapID)
 		end
 	end
 
-	Atlas_ScrollBar_Update()
+	addon:ScrollBar_Update()
 
 	-- Deal with the switch to entrance/instance button here
 	-- Only display if appropriate
@@ -1596,7 +1378,11 @@ function Atlas_Refresh(mapID)
 		AtlasFrame.PrevMap:Hide()
 		AtlasFrameSmall.PrevMap:Hide()
 	end
-	
+end
+
+-- Kept for existing callers and external addons
+function Atlas_Refresh(mapID)
+	return addon:RefreshMap(mapID)
 end
 
 -- Modifies the value of GetRealZoneText to account for some naming conventions
@@ -1613,6 +1399,11 @@ end
 -- If a match is found display that map right away
 -- update for Outland zones contributed by Drahcir
 -- 3/23/08 now takes SubZones into account as well
+
+function addon:Auto_Select()
+	Atlas_AutoSelect()
+end
+
 function Atlas_AutoSelect()
 	local currentZone = getFixedZoneText()
 	local currentSubZone = GetSubZoneText()
@@ -1664,7 +1455,7 @@ function Atlas_AutoSelect()
 				if (selected_map == v_DropDownZone) then
 					profile.options.dropdowns.module = k_DropDownType
 					profile.options.dropdowns.zone = k_DropDownZone
-					Atlas_Refresh()
+					addon:RefreshMap()
 					zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
 					debug("Map selected! Type: "..k_DropDownType..", Zone: "..k_DropDownZone..", "..zoneID)
 					return
@@ -1689,7 +1480,7 @@ function Atlas_AutoSelect()
 					if (targetZone == v_DropDownZone) then
 						profile.options.dropdowns.module = k_DropDownType
 						profile.options.dropdowns.zone = k_DropDownZone
-						Atlas_Refresh()
+						addon:RefreshMap()
 						zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
 						debug("Map changed to the associated map: "..zoneID)
 						return
@@ -1721,7 +1512,7 @@ function Atlas_AutoSelect()
 				) then
 					profile.options.dropdowns.module = k_DropDownType
 					profile.options.dropdowns.zone = k_DropDownZone
-					Atlas_Refresh()
+					addon:RefreshMap()
 					debug("Found a match. Map has been changed.")
 					return
 				end
@@ -1732,8 +1523,6 @@ function Atlas_AutoSelect()
 end
 
 function addon:DungeonMinGearLevelToolTip(self)
-	--is this not support in classic??
-	--if (isClassicEra or isAnniversaryTBC) then return end
 	local currGearLevel = GetAverageItemLevel()
 	local str = format(ITEM_LEVEL, currGearLevel)
 
@@ -1827,18 +1616,6 @@ local function check_Modules()
 	end
 end
 
-function addon:isModuleOrPluginLoaded()
-	if (ATLAS_MODULE_MENUS == 0 and ATLAS_PLUGIN_MENUS == 0) then
-		StaticPopup_Show("ATLAS_NO_MODULE_OR_PLUGIN", L["ATLAS_NO_MODULE_OR_PLUGIN"])
-		
-		LDB.OnTooltipShow = function(tooltip)
-			if not tooltip or not tooltip.AddLine then return end
-			tooltip:AddLine("|cffffffff"..L["ATLAS_TITLE"])
-			tooltip:AddLine(L["ATLAS_NO_MODULE_OR_PLUGIN"])
-		end
-	end
-end
-
 -- Initializes everything relating to saved variables and data in other lua files
 -- This should be called ONLY when we're sure our variables are in memory
 local function initialization() 
@@ -1858,7 +1635,7 @@ local function initialization()
 	end
 	
 	-- Now that saved variables have been loaded, update everything accordingly
-	Atlas_Refresh()
+	addon:RefreshMap()
 	addon:UpdateLock()
 	addon:UpdateAlpha()
 	addon:UpdateScale()
@@ -1889,6 +1666,7 @@ local function initialization()
 end
 
 -- ///////////////////////////////////////////////////////
+-- Called when the addon is first loaded, initializes saved variables and sets up the Atlas frame
 function addon:OnInitialize()
 	self.db = AceDB:New("AtlasDB", addon.constants.defaults, true)
 	
@@ -1906,18 +1684,20 @@ function addon:OnInitialize()
 	self:SetupOptions()
 end
 
+-- Called when the addon is enabled, registers all modules
 function addon:OnEnable()
-	for k, v in pairs(self.modules) do
-		registerModule(k)
+	for k in pairs(self.modules) do
+		addon:RegisterModule(k)
 	end
 end
 
+-- Refresh the Atlas frame and related UI elements based on the current profile settings
 function addon:Refresh()
 	profile = self.db.profile
 
 	ATLAS_MAX_MENUITEMS = profile.options.dropdowns.maxItems or ATLAS_MAX_MENUITEMS
 	addon:PopulateDropdowns()
-	Atlas_Refresh()
+	addon:RefreshMap()
 	AtlasFrameDropDownType_OnShow()
 	AtlasFrameDropDown_OnShow()
 	addon:UpdateLock()

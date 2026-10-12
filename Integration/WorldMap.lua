@@ -29,12 +29,11 @@
 -- ----------------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
-local pairs, tonumber = _G.pairs, _G.tonumber
+local pairs = _G.pairs
 -- Libraries
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon("Atlas")
 ---@cast addon AtlasAddon
@@ -65,7 +64,7 @@ function addon:WorldMapButtonSelectMap()
 					profile.options.dropdowns.module = type_k
 					profile.options.dropdowns.zone = zone_k
 				end
-				Atlas_Refresh()
+				addon:RefreshMap()
 				return
 			end
 		end

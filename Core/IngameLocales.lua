@@ -22,6 +22,9 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 --]]
+-- ----------------------------------------------------------------------------
+-- In-game locale handling functions for Atlas addon
+-- ----------------------------------------------------------------------------
 
 local setmetatable, rawget = setmetatable, rawget
 local _G = getfenv(0)

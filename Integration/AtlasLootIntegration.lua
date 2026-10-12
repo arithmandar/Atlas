@@ -29,50 +29,34 @@
 -- Functions
 local _G = getfenv(0)
 local pairs = _G.pairs
-local select = _G.select
 local type = _G.type
 local tonumber = _G.tonumber
 -- Libraries
--- Determine WoW client family
-local _, _, _, interfaceVersion = GetBuildInfo()
-local projectID = WOW_PROJECT_ID
-
-local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
-local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
-local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
-local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
-local PROJECT_FOREVER = WOW_PROJECT_CAMELOT
-
-local isRetail = projectID == PROJECT_MAINLINE
-local isClassicEra = projectID == PROJECT_CLASSIC
-local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
-local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
-local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
-local isProgressionClassic = isCataclysmClassic or isMistsClassic
-local isClassicForever = projectID == PROJECT_FOREVER
-local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic or isClassicForever
-
+local C_AddOns = _G.C_AddOns
+local GetAddOnEnableState = C_AddOns.GetAddOnEnableState
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 local LibStub = _G.LibStub
+---@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
-local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
+
+local Client = private.Client
 
 -- Atlas to AtlasLoot's module mapping
 local modules = {}
-if isClassicEra then
+
+if Client.isClassicEra then
 	modules = {
 		Atlas_ClassicWoW			= "AtlasLoot_Classic",
 	}
-elseif isAnniversaryTBC then
+elseif Client.isTBCClassic then
 	modules = {
 		Atlas_ClassicWoW			= "AtlasLoot_Classic",
 		Atlas_BurningCrusade		= "AtlasLoot_BurningCrusade",
 	}
-elseif isProgressionClassic then
+elseif Client.isProgressionClassic then
 	modules = {
 		Atlas_ClassicWoW			= "AtlasLoot_Classic",
 		Atlas_BurningCrusade		= "AtlasLoot_BurningCrusade",
@@ -80,11 +64,11 @@ elseif isProgressionClassic then
 		Atlas_Cataclysm				= "AtlasLoot_Cataclysm",
 		Atlas_MistsofPandaria		= "AtlasLoot_MistsofPandaria",
 	}
-elseif isClassicForever then
+elseif Client.isForever then
 	modules = {
 		Atlas_ClassicWoW			= "AtlasLoot_Classic",
 	}
-elseif isRetail then
+elseif Client.isRetail then
 	modules = {
 		Atlas_ClassicWoW			= "AtlasLoot_Classic",
 		Atlas_BurningCrusade		= "AtlasLoot_BurningCrusade",

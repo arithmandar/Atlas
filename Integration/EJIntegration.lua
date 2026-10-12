@@ -294,7 +294,7 @@ function addon:EncounterJournal_Binding()
 				if (AtlasMaps[zone_v].JournalInstanceID and tonumber(AtlasMaps[zone_v].JournalInstanceID) == instanceID) then
 					Atlas.db.profile.options.dropdowns.module = type_k
 					Atlas.db.profile.options.dropdowns.zone = zone_k
-					Atlas_Refresh()
+					addon:RefreshMap()
 					return
 				end
 			end

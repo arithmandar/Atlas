@@ -41,7 +41,6 @@
 ## X-Category: Map & Minimap
 ## X-Credits: Dan Gilbert, Lothaer, Dynaletik, dubcat
 ## X-Date: @project-date-iso@
-## X-Email: atlas.addon at gmail dot com
 ## X-License: GPLv2
 ## X-Localizations: enUS, deDE, esES, esMX, frFR, ruRU, zhTW, zhCN, ptBR, koKR
 ## X-Website: https://www.curseforge.com/wow/addons/atlas
@@ -53,12 +52,18 @@ Data\AreaIDs.xml
 Libs\Libs.xml
 Locale\Locales.xml
 
+# Core & Modules
+Core\Addon.lua
+Modules\StaticPopup.lua
 Core\FontsTemplates.lua
 Core\Templates.lua
 Core\IngameLocales.lua
 
-# Core
 Core\Atlas.lua
+Modules\Quest.lua
+Modules\Item.lua
+Modules\Creature.lua
+Modules\Achievements.lua
 Core\AtlasFrame.lua
 Core\UI.lua
 Core\Config.lua
@@ -71,5 +76,4 @@ Integration\EJIntegration.lua
 Integration\EJLoot.xml
 Integration\WorldMap.xml
 Integration\WorldMap.lua
-Integration\Achievements.lua
 Integration\AtlasLootIntegration.lua

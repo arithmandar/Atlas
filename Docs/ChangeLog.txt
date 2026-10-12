@@ -14,6 +14,16 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.53.06 (Oct. xx, 2026)
+------------------------
+- Added Quest and Item modules to get quest/item information from server
+- Cache quest and item information locally to improve performance
+- Move creature name retrieval logic to Module/Creature.lua and enhance it to fetch names directly from the server
+- Fixed static popup dialogs for opening the AddOn list
+- Fixed issue in AtlasLootIntegration
+- Added color tags as a global variables so that map module can use them consistently
+- Restored EJLoot feature
+
 v1.53.05 (Oct. 09, 2026)
 ------------------------
 - Anniversary TBC detection fixed (now correctly identifies Classic Anniversary TBC)

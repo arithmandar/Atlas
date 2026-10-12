@@ -24,26 +24,25 @@
 --]]
 
 -- ----------------------------------------------------------------------------
--- Localized Lua globals.
+-- Achievement handling functions for Atlas addon
 -- ----------------------------------------------------------------------------
--- Functions
+
 local _G = getfenv(0)
--- Libraries
+
 local bit, string = _G.bit, _G.string
 local format = string.format
 
 local C_AddOns = _G.C_AddOns
 local IsAddOnLoaded, LoadAddOn = C_AddOns.IsAddOnLoaded, C_AddOns.LoadAddOn
 local GetAchievementInfo, GetAchievementNumCriteria, GetAchievementCriteriaInfo, GetAchievementLink = _G.GetAchievementInfo, _G.GetAchievementNumCriteria, _G.GetAchievementCriteriaInfo, _G.GetAchievementLink
-local AchievementFrame_SelectAchievement = _G.AchievementFrame_SelectAchievement
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 local LibStub = _G.LibStub
+---@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
-local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 
 function addon:AchievementButtonUpdate(button, achievementID)
 	-- WOLTKC starts to introduce achievement system, so we are only skipping this for Classic Era and TBC
@@ -93,7 +92,7 @@ function addon:AchievementButtonUpdate(button, achievementID)
 				name = format("      |T%d:0:0|t |CFF808080%s", icon, name)
 			end
 			button.Text:SetText(name)
-			button.tooltiptext = tooltiptext--.."\n|CFF8080FF"..L["ATLAS_OPEN_ACHIEVEMENT"].."|R"
+			button.tooltiptext = tooltiptext
 		else
 			-- do nothing
 		end

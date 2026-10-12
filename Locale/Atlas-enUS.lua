@@ -256,6 +256,8 @@ L["ATLAS_REOPEN_LOOT_AGAIN"] = "Please reopen the loot window to reload."
 L["Scale and Transparency"] = "Scale and Transparency"
 
 L["Click to open the corresponding World Map"] = "Click to open the corresponding World Map"
+L["Cannot open the AddOns window during combat."] = "Cannot open the AddOns window during combat."
+L["AddonList frame is not available."] = "AddonList frame is not available."
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
