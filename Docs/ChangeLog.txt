@@ -14,7 +14,7 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.53.06 (Oct. xx, 2026)
+v1.53.06 (Oct. 12, 2026)
 ------------------------
 - Added Quest and Item modules to get quest/item information from server
 - Cache quest and item information locally to improve performance
