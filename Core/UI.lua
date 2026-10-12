@@ -27,18 +27,26 @@
 -- are created here, in Lua, instead of being declared in an XML <Ui> file.
 
 -- ----------------------------------------------------------------------------
--- Localized Lua globals.
+-- UI handling functions for Atlas addon
 -- ----------------------------------------------------------------------------
--- Functions
+
 local _G = getfenv(0)
 local CreateFrame = _G.CreateFrame
+local C_AddOns = _G.C_AddOns
+local GetAddOnMetadata, GetAddOnInfo = C_AddOns.GetAddOnMetadata, C_AddOns.GetAddOnInfo
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 
--- ----------------------------------------------------------------------------
--- AddOn namespace.
--- ----------------------------------------------------------------------------
 local _, private = ...
 
 local LibStub = _G.LibStub
+---@type AtlasAddon
+local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
+
+local options = setmetatable({}, {
+	__index = function(_, k) return addon.db.profile.options[k] end,
+	__newindex = function(_, k, v) addon.db.profile.options[k] = v end,
+})
 -- UIDropDownMenu
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 
@@ -57,6 +65,65 @@ local function CreateArt(parent, file, w, h, point, x, y)
 	return tex
 end
 
+-- Begin moving the Atlas frame if it's unlocked
+local function startMoving(self)
+	if (not options.frames.lock) then
+		self:StartMoving()
+	end
+end
+
+StaticPopupDialogs["ATLAS_OLD_MODULES"] = {
+	text = "%s",
+	button1 = OKAY,
+	preferredWidth = 550,
+	whileDead = false,
+	hideOnEscape = true,
+}
+
+local function process_Deprecated()
+	local Deprecated_List = addon.constants.deprecatedList
+
+	-- Check for outdated modules, build a list of them, then disable them and tell the player
+	local OldList = {}
+	for _, v in pairs(Deprecated_List) do
+		if ( addon:CheckAddonStatus(GetAddOnInfo(v[1])) ) then
+			local outdated = false
+			local compatibleVerNum
+			local currVerStr, currVerNum
+			currVerStr = GetAddOnMetadata(v[1], "Version")
+			if (v[3] and (strsub(currVerStr, 1, 1) == "r")) then
+				compatibleVerNum = tonumber(string.sub(v[3], 2))
+				currVerNum = tonumber(string.sub(currVerStr, 2))
+				if (currVerNum < compatibleVerNum) then
+					outdated = true
+				end
+			elseif (v[2] and (strsub(currVerStr, 1, 1) ~= "r") and currVerStr < v[2]) then
+				outdated = true
+			end
+--@do-not-package@
+			-- ignore those with working copy which set the version to @project-version@
+			-- this will only work if user is also checking out Atlas's SVN as the working copy
+			-- this will not work once get package by CurseForge
+			if (currVerStr == "@project-version@") then
+				outdated = false
+			end
+--@end-do-not-package@
+			if (outdated) then
+				tinsert(OldList, v[1])
+			end
+		end
+	end
+	if #OldList > 0 then
+		local textList = ""
+		for _, v in pairs(OldList) do
+			textList = textList.."\n"..v..", "..GetAddOnMetadata(v, "Version")
+			--DisableAddOn(v)
+		end
+
+		StaticPopup_Show("ATLAS_OLD_MODULES", L["ATLAS_DEP_MSG1"].."\n"..L["ATLAS_DEP_MSG3"].."\n|cff6666ff"..textList.."|r\n\n"..L["ATLAS_DEP_MSG4"])
+	end
+end
+
 -- ----------------------------------------------------------------------------
 -- AtlasFrame
 -- ----------------------------------------------------------------------------
@@ -64,11 +131,33 @@ local function AtlasFrame_OnLoad(self)
 	private.Templates.CreateFrameDropDownType(self:GetName().."DropDownType", self)
 	private.Templates.CreateFrameDropDown(self:GetName().."DropDown", self)
 	LibDD:Create_UIDropDownMenu("AtlasSwitchDD", self)
-	Atlas_OnLoad(self)
+--	Atlas_OnLoad(self)
+	process_Deprecated()
+
+	-- Register the Atlas frame for the following events
+	for _, event in ipairs(addon.constants.events) do
+		self:RegisterEvent(event)
+	end
+
+	-- Allows Atlas to be closed with the Escape key
+	tinsert(UISpecialFrames, "AtlasFrame")
+	tinsert(UISpecialFrames, "AtlasFrameLarge")
+	tinsert(UISpecialFrames, "AtlasFrameSmall")
+	
+	-- Dragging involves some special registration
+	self:RegisterForDrag("LeftButton")
+
 end
 
 local function AtlasFrame_OnShow(self)
-	Atlas_OnShow()
+	-- The db is created in OnInitialize, after this file loads, so read it at call time
+	if (options.autoSelect) then
+		addon:Auto_Select()
+	end
+	-- Sneakiness
+	AtlasFrameDropDownType_OnShow()
+	AtlasFrameDropDown_OnShow()
+
 	PlaySound(844)
 	ATLAS_SMALLFRAME_SELECTED = false
 end
@@ -80,7 +169,7 @@ end
 
 local function AtlasFrame_OnDragStart(self, button)
 	if (button == "LeftButton") then
-		Atlas:StartMoving(self)
+		startMoving(self)
 	end
 end
 
@@ -91,11 +180,67 @@ end
 local function AtlasFrame_OnMouseUp(self, button)
 	self:StopMovingOrSizing()
 	if (button == "RightButton") then
-		if (Atlas.db.profile.options.frames.rightClick) then
+		if (options.frames.rightClick) then
 			Atlas_Toggle()
 			ToggleFrame(WorldMapFrame)
 		end
 	end
+end
+
+local function Atlas_OnEvent(self, event, ...)
+	local arg1 = ...
+	if (event == "ADDON_LOADED") then
+		for k in pairs(addon.modules) do
+			addon:RegisterModule(k)
+		end
+	elseif (event == "GET_ITEM_INFO_RECEIVED") then
+		addon:OnItemInfoReceived(...)
+	end
+	if (event=="ADDON_LOADED" and (arg1=="Atlas" or arg1=="Blizzard_EncounterJournal")) then
+		--Blizzard_EncounterJournal
+		if (IsAddOnLoaded("Blizzard_EncounterJournal") and IsAddOnLoaded("Atlas")) then
+			-- Added Atlas button to Encounter Journal
+			--addon:EncounterJournal_Binding()
+		end
+	end
+
+--	if (event == "ADDON_LOADED" and arg1 == "Atlas") then
+--		addon:Init()
+--	end
+	
+end
+
+function addon:SearchText(text)
+	local zoneID = ATLAS_DROPDOWNS[options.dropdowns.module][options.dropdowns.zone]
+	local mapdata = AtlasMaps
+	local base = mapdata[zoneID]
+
+	local data = nil
+
+	if (ATLAS_SEARCH_METHOD == nil) then
+		data = ATLAS_DATA
+	else
+		data = ATLAS_SEARCH_METHOD(ATLAS_DATA, text)
+	end
+
+	-- Populate the scroll frame entries list, the update func will do the rest
+	local i = 1
+	while ( data[i] ~= nil ) do
+		ATLAS_SCROLL_LIST[i] = data[i][1]
+		if (data[i][2] ~= nil) then
+			ATLAS_SCROLL_ID[i] = { data[i][2], base.JournalInstanceID or 0, data[i][3] or "", data[i][4] or ""}
+		else
+			ATLAS_SCROLL_ID[i] = { 0, 0, "", "" }
+		end
+		i = i + 1
+	end
+
+	ATLAS_CUR_LINES = i - 1
+end
+
+local function searchAndRefresh(text)
+	addon:SearchText(text)
+	addon:ScrollBar_Update()
 end
 
 function UI.CreateAtlasFrame()
@@ -123,7 +268,7 @@ function UI.CreateAtlasFrame()
 	searchEditBox:SetAutoFocus(false)
 	searchEditBox:SetTextInsets(0, 8, 0, 0)
 	searchEditBox:SetScript("OnEnterPressed", function(self)
-		Atlas:SearchAndRefresh(self:GetText())
+		searchAndRefresh(self:GetText())
 		self:ClearFocus()
 	end)
 
@@ -139,7 +284,7 @@ function UI.CreateAtlasFrame()
 	searchButton:SetPoint("LEFT", searchEditBox, "RIGHT", 1, 0)
 	searchButton:SetText(ATLAS_STRING_SEARCH)
 	searchButton:SetScript("OnClick", function()
-		Atlas:SearchAndRefresh(searchEditBox:GetText())
+		searchAndRefresh(searchEditBox:GetText())
 		searchEditBox:ClearFocus()
 	end)
 
@@ -149,7 +294,7 @@ function UI.CreateAtlasFrame()
 	searchClearButton:SetText(ATLAS_STRING_CLEAR)
 	searchClearButton:SetScript("OnClick", function()
 		searchEditBox:SetText("")
-		Atlas:SearchAndRefresh(searchEditBox:GetText())
+		searchAndRefresh(searchEditBox:GetText())
 		searchEditBox:ClearFocus()
 	end)
 
@@ -157,10 +302,12 @@ function UI.CreateAtlasFrame()
 	scrollBar:SetSize(460, 392)
 	scrollBar:SetPoint("TOPLEFT", 530, -201)
 	scrollBar:SetScript("OnVerticalScroll", function(self, offset)
-		FauxScrollFrame_OnVerticalScroll(self, offset, 15, Atlas_ScrollBar_Update)
+		FauxScrollFrame_OnVerticalScroll(self, offset, 15, function()
+			addon:ScrollBar_Update()
+		end)
 	end)
 	scrollBar:SetScript("OnShow", function()
-		Atlas_ScrollBar_Update()
+		addon:ScrollBar_Update()
 	end)
 
 	local searchContainer = CreateFrame("Frame", "AtlasSearchContainer", f)
@@ -192,7 +339,7 @@ function UI.CreateAtlasFrame()
 	local minGearLevelHeader = private.Templates.CreateSubHeaderText("AtlasText_MinGearLevel", f)
 	minGearLevelHeader:SetPoint("TOPLEFT", playerLimitHeader, "TOPLEFT", 0, -15)
 	minGearLevelHeader:SetScript("OnEnter", function(self)
-		Atlas:DungeonMinGearLevelToolTip(self)
+		addon:DungeonMinGearLevelToolTip(self)
 	end)
 
 	f.ZoneName = private.Templates.CreateMapZoneName("AtlasFrameMapZoneName", f)
@@ -257,7 +404,7 @@ end
 
 local function AtlasFrameLarge_OnMouseDown(self, button)
 	if (button == "LeftButton") then
-		Atlas:StartMoving(self)
+		startMoving(self)
 	end
 end
 
@@ -268,7 +415,7 @@ end
 local function AtlasFrameLarge_OnMouseUp(self, button)
 	self:StopMovingOrSizing()
 	if (button == "RightButton") then
-		if (Atlas.db.profile.options.frames.rightClick) then
+		if (options.frames.rightClick) then
 			if (AtlasFrameLarge:IsVisible()) then
 				AtlasFrameLarge:Hide()
 			else
@@ -409,7 +556,7 @@ end
 
 local function AtlasFrameSmall_OnMouseDown(self, button)
 	if (button == "LeftButton") then
-		Atlas:StartMoving(self)
+		startMoving(self)
 	end
 end
 
@@ -420,7 +567,7 @@ end
 local function AtlasFrameSmall_OnMouseUp(self, button)
 	self:StopMovingOrSizing()
 	if (button == "RightButton") then
-		if (Atlas.db.profile.options.frames.rightClick) then
+		if (options.frames.rightClick) then
 			if (AtlasFrameLarge:IsVisible()) then
 				AtlasFrameLarge:Hide()
 			else

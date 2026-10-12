@@ -22,25 +22,19 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 --]]
-
--- AtlasFrame's related handling to be managed here
-
 -- ----------------------------------------------------------------------------
--- Localized Lua globals.
+-- Atlas frame handling functions for Atlas addon
 -- ----------------------------------------------------------------------------
--- Functions
+
 local _G = getfenv(0)
 local pairs, wipe = _G.pairs, _G.wipe
--- Libraries
-local string = _G.string
+
 local table = _G.table
 local tsort = table.sort
 
--- ----------------------------------------------------------------------------
--- AddOn namespace
--- ----------------------------------------------------------------------------
 local _, private = ...
 local LibStub = _G.LibStub
+---@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 -- UIDropDownMenu
@@ -61,7 +55,7 @@ local dropdowns = setmetatable({}, {
 function addon:ToggleLock()
 	options.frames.lock = not options.frames.lock
 	addon:UpdateLock()
-	Atlas_Refresh()
+	addon:RefreshMap()
 end
 
 -- Updates the appearance of the lock button based on the status of AtlasLocked
@@ -85,13 +79,6 @@ function addon:UpdateLock()
 	end
 end
 
--- Begin moving the Atlas frame if it's unlocked
-function addon:StartMoving(self)
-	if (not options.frames.lock) then
-		self:StartMoving()
-	end
-end
-
 -- Sets the transparency of the Atlas frame based on AtlasAlpha
 function addon:UpdateAlpha()
 	local alpha = options.frames.alpha
@@ -108,25 +95,7 @@ function addon:UpdateScale()
 	AtlasFrameSmall:SetScale(scale)
 end
 
-function addon:PrevNextMap_OnClick(self)
-	local mapID = self.mapID
-	if not mapID then return; end
-
-	for k, v in pairs(ATLAS_DROPDOWNS) do
-		for k2, v2 in pairs(v) do
-			if (v2 == mapID) then
-				dropdowns.module = k
-				dropdowns.zone = k2
-
-				AtlasFrameDropDownType_OnShow()
-				AtlasFrameDropDown_OnShow()
-				Atlas_Refresh()
-				return
-			end
-		end
-	end
-end
-
+-- Toggles the size of the Atlas window between large and small frames
 function addon:ToggleWindowSize()
 	if ( AtlasFrameLarge:IsVisible() ) then
 		if (ATLAS_SMALLFRAME_SELECTED) then
@@ -147,6 +116,7 @@ function addon:ToggleWindowSize()
 	end
 end
 
+-- Toggles the legend panel between the small and large Atlas frames
 function addon:ToggleLegendPanel()
 	if ( AtlasFrameSmall:IsVisible() ) then
 		ATLAS_SMALLFRAME_SELECTED = false
@@ -157,82 +127,6 @@ function addon:ToggleLegendPanel()
 		AtlasFrame:Hide()
 		AtlasFrameSmall:Show()
 	end
-end
-
-function AtlasEntry_OnUpdate(self)
-	if (ATLAS_HAS_EJ) then
-		if( AtlasEJLootFrame:IsShown() ) then
-			return
-		end
-	end
-	if (self:IsMouseOver()) then
-		if (IsControlKeyDown() and options.frames.controlClick) then
-			if (not GameTooltip:IsShown()) then
-				local str = _G[self:GetName().."_Text"]:GetText()
-				if (str) then
-					GameTooltip:SetOwner(self, "ANCHOR_CURSOR")
-					GameTooltip:SetBackdropBorderColor(0, 0, 0, 0)
-					GameTooltip.NineSlice:SetCenterColor(0, 0, 0, 1)
-					local colorCheck = string.sub(str, 1, 4)
-					if (colorCheck == "|cff") then
-						local color = string.sub(str, 1, 10)
-						local stripped = strtrim(string.sub(str, 11))
-						GameTooltip:SetText(color..stripped, 1, 1, 1, 1)
-					else
-						GameTooltip:SetText(str, 1, 1, 1, 1)
-					end
-				end
-			end
-		else
-			if (self.tooltiptitle) then
-				GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
-				GameTooltip.NineSlice:SetCenterColor(0, 0, 0, 1 * options.frames.alpha)
-				GameTooltip:SetText(self.tooltiptitle, 1, 1, 1, 1)
-				if (self.tooltiptext) then 
-					GameTooltip:AddLine(self.tooltiptext, nil, nil, nil, 1) 
-				end
-				if (self.overviewDescription) then
-					GameTooltip:AddLine("\n"..OVERVIEW, 1, 1, 1, 1)
-					GameTooltip:AddLine(self.overviewDescription, nil, nil, nil, 1)
-					if (self.roleOverview) then
-						GameTooltip:AddLine("\n"..self.roleOverview, nil, nil, nil, 1)
-					end
-				end
-				if (self.encounterID and ATLAS_HAS_EJ) then
-					--local disabled = not C_AdventureJournal.CanBeShown()
-					--if (not disabled) then
-						GameTooltip:AddLine(ATLAS_OPEN_ADVENTURE, 0.5, 0.5, 1, true)
-					--end
-					if (addon:CheckAddonStatus("AtlasLoot")) then 
-						GameTooltip:AddLine(ATLAS_ROPEN_ATLASLOOT_WINDOW, 0.5, 0.5, 1, true)
-					end
-				end
-				GameTooltip:SetScale(options.frames.boss_description_scale * options.frames.scale)
-				GameTooltip:Show()
-			end			
-		end
-	end
-end
-
-function AtlasEntry_OnClick(self, button)
-	if (IsShiftKeyDown() and self.link) then
-		if (IsModifiedClick("CHATLINK") and ChatEdit_GetActiveWindow()) then
-			ChatEdit_InsertLink(self.link)
-		end
-	elseif (button == "RightButton") then
-		addon:AtlasLootButton_OnClick(self)
-	else
-		if (ATLAS_HAS_EJ and self.instanceID and self.encounterID) then
-			addon:AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID)
-		elseif (ATLAS_HAS_ACHIEVEMENTS and self.achievementID) then
-			addon:OpenAchievement(self.achievementID)
-		end
-	end
-end
-
-function AtlasEntry_OnLeave()
-	GameTooltip:Hide()
-	GameTooltip:SetScale(ATLAS_GAMETOOLTIP_ORIGINAL_SCALE)
 end
 
 
@@ -317,7 +211,7 @@ function AtlasFrameDropDownType_OnClick(self)
 		dropdowns.zone = 1
 	end
 	AtlasFrameDropDown_OnShow()
-	Atlas_Refresh()
+	addon:RefreshMap()
 end
 
 function addon:GetDungeonData(id, fallbackMinRec, fallbackMaxRec)
@@ -457,7 +351,7 @@ function AtlasFrameDropDown_OnClick(self)
 
 	dropdowns.zone = mapID
 	dropdowns[ATLAS_DROPDOWN_TYPES[moduleID].text] = mapID
-	Atlas_Refresh()
+	addon:RefreshMap()
 end
 
 -- When the switch button is clicked, we can basically assume that there's a match
@@ -497,7 +391,7 @@ function AtlasSwitchDD_Set(index)
 
 				AtlasFrameDropDownType_OnShow()
 				AtlasFrameDropDown_OnShow()
-				Atlas_Refresh()
+				addon:RefreshMap()
 				return
 			end
 		end

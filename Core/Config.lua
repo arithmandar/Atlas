@@ -24,14 +24,12 @@
 --]]
 
 -- ----------------------------------------------------------------------------
--- Localized Lua globals.
+-- Configuration handling functions for Atlas addon
 -- ----------------------------------------------------------------------------
--- Functions
+
 local _G = getfenv(0)
 local pairs = _G.pairs
--- ----------------------------------------------------------------------------
--- AddOn namespace.
--- ----------------------------------------------------------------------------
+
 local _, private = ...
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
@@ -120,7 +118,7 @@ local function getOptions()
 									end,
 									set = function(info, value)
 										addon.db.profile.options.frames.showAcronyms = value
-										Atlas_Refresh()
+										addon:RefreshMap()
 									end,
 								},
 								frames_controlClick = {
@@ -134,7 +132,7 @@ local function getOptions()
 									end,
 									set = function(info, value)
 										addon.db.profile.options.frames.controlClick = value
-										Atlas_Refresh()
+										addon:RefreshMap()
 									end,
 								},
 								frames_showBossPotrait = {
@@ -147,7 +145,7 @@ local function getOptions()
 									end,
 									set = function(info, value)
 										addon.db.profile.options.frames.showBossPotrait = value
-										Atlas_Refresh()
+										addon:RefreshMap()
 									end,
 								},
 								dropdowns_color = {
@@ -161,7 +159,7 @@ local function getOptions()
 									end,
 									set = function(info, value)
 										addon.db.profile.options.dropdowns.color = value
-										Atlas_Refresh()
+										addon:RefreshMap()
 										AtlasFrameDropDown_OnShow()
 									end,
 								},
@@ -304,7 +302,7 @@ local function getOptions()
 									set = function(info, value)
 										addon.db.profile.options.frames.clamp = value
 										AtlasFrame:SetClampedToScreen(addon.db.profile.options.frames.clamp)
-										Atlas_Refresh()
+										addon:RefreshMap()
 									end,
 								},
 								frames_lock = {
@@ -333,7 +331,7 @@ local function getOptions()
 										addon.db.profile.options.dropdowns.zone = 1
 
 										addon:PopulateDropdowns()
-										Atlas_Refresh()
+										addon:RefreshMap()
 										AtlasFrameDropDownType_OnShow()
 										AtlasFrameDropDown_OnShow()
 									end,

@@ -61,9 +61,9 @@ Client.isAnyClassic = Client.isClassicEra or Client.isTBCClassic or Client.isPro
 Client.isKnownProject = Client.isRetail or Client.isAnyClassic or Client.isForever
 private.Client = Client
 
-local constants = { }
+local constants = {}
 private.constants = constants
-
+constants.addon_name = private.addon_name
 
 -- Initialization
 ATLAS_VERSION = GetAddOnMetadata(private.addon_name, "Version")
@@ -110,6 +110,42 @@ ATLAS_USES_MAINLINE_API = false
 if Client.isRetail or Client.isForever then
 	ATLAS_USES_MAINLINE_API = true
 end
+
+-- colors
+constants.colors = {
+	labels = {
+		BLUE = "|cff6666ff", -- usually for informational text like entrance, connection
+		CYAN = "|cff00ffff",
+		GREN = "|cff66cc33", -- NPCs
+		GREY = "|cff999999",
+		LBLU = "|cff33cccc",
+		_RED = "|cffcc3333",
+		ORNG = "|cffcc9933", -- usually used for reputation related
+		PINK = "|ccfcc33cc",
+		PURP = "|cff9900ff", -- taxi / transportation nodes
+		WHIT = "|cffffffff", -- encounters
+		YLOW = "|cffcccc33",
+		ALAN = "|cff7babe0", -- Alliance's taxi node
+		HRDE = "|cffda6955", -- Horde's taxi node
+		NUTL = "|cfffee570", -- Nutral taxi node
+		INDENT = "      ",
+        BULLET = " - ",
+	},
+	classes = {
+		["HUNTER"] 	= "|cffabd473",
+		["WARLOCK"] 	= "|cff8788ee",
+		["PRIEST"] 	= "|cffffffff",
+		["PALADIN"] 	= "|cfff58cba",
+		["MAGE"] 	= "|cff3fc7eb",
+		["ROGUE"] 	= "|cfffff569",
+		["DRUID"] 	= "|cffff7d0a",
+		["SHAMAN"] 	= "|cff0070de",
+		["WARRIOR"] 	= "|cffc79c6e",
+		["DEATHKNIGHT"]	= "|cffc41f3b",
+		["MONK"] 	= "|cff00ff96",
+		["DEMONHUNTER"]	= "|cffa330c9",
+	},
+}
 
 -- Lock button texture
 constants.LockButtonTex = {
@@ -368,3 +404,8 @@ constants.deprecatedList = {
 	--{ "AtlasWorld", 		"3.3.5.25" }, 	-- updated July 14, 2010 -- comment out because this plugin is no longer maintained
 }
 
+constants.events = {
+	"PLAYER_LOGIN",
+	"ADDON_LOADED",
+	"GET_ITEM_INFO_RECEIVED",
+}

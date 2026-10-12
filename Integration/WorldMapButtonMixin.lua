@@ -29,14 +29,12 @@
 -- ----------------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
-local pairs, tonumber = _G.pairs, _G.tonumber
 -- Libraries
 local GameTooltip = _G.GameTooltip
-local GetBuildInfo = _G.GetBuildInfo
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon("Atlas")
 ---@cast addon AtlasAddon
@@ -53,7 +51,7 @@ end
 
 function AtlasWorldMapButtonMixin:OnEnter()
 	GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT")
-	GameTooltip:SetText(ATLAS_CLICK_TO_OPEN, nil, nil, nil, nil, 1)
+	GameTooltip:SetText(ATLAS_CLICK_TO_OPEN, nil, nil, nil, nil, true)
 end
 
 function AtlasWorldMapButtonMixin:OnLeave()

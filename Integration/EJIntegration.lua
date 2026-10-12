@@ -50,9 +50,15 @@ local GetMapInfo, GetMapArtLayers = C_Map.GetMapInfo, C_Map.GetMapArtLayers
 -- ----------------------------------------------------------------------------
 local _, private = ...
 local LibStub = _G.LibStub
+---@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0")
+
+local dropdowns = setmetatable({}, {
+	__index = function(_, k) return addon.db.profile.options.dropdowns[k] end,
+	__newindex = function(_, k, v) addon.db.profile.options.dropdowns[k] = v end,
+})
 
 -- Adopted from EncounterJournal
 local EJ_HTYPE_OVERVIEW = 3
@@ -214,8 +220,6 @@ function addon:BossButton_OnClick(self, button)
 
 	-- Right click to open boss loot
 	if (button == "RightButton") then
-		-- 2026/10/02 - disable for official release until we resolve the issue
---@do-not-package@
 		if (AtlasFrameSmall:IsVisible()) then
 			addon:ToggleLegendPanel()
 		end
@@ -227,7 +231,6 @@ function addon:BossButton_OnClick(self, button)
 			EJ_ContentTab_SelectAppropriateInstanceTab(self.instanceID)
 			Atlas_EncounterJournal_DisplayLoot(self.instanceID, self.encounterID)
 		end
---@end-do-not-package@
 	elseif (button == "LeftButton") then
 		addon:AdventureJournal_EncounterButton_OnClick(self.instanceID, self.encounterID)
 	end
@@ -292,9 +295,9 @@ function addon:EncounterJournal_Binding()
 		for type_k, type_v in pairs(ATLAS_DROPDOWNS) do
 			for zone_k, zone_v in pairs(type_v) do
 				if (AtlasMaps[zone_v].JournalInstanceID and tonumber(AtlasMaps[zone_v].JournalInstanceID) == instanceID) then
-					Atlas.db.profile.options.dropdowns.module = type_k
-					Atlas.db.profile.options.dropdowns.zone = zone_k
-					Atlas_Refresh()
+					dropdowns.module = type_k
+					dropdowns.zone = zone_k
+					addon:RefreshMap()
 					return
 				end
 			end
