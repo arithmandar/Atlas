@@ -29,7 +29,6 @@
 local _G = getfenv(0)
 local pairs, wipe = _G.pairs, _G.wipe
 
-local string = _G.string
 local table = _G.table
 local tsort = table.sort
 

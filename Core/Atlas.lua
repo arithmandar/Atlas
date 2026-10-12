@@ -90,6 +90,7 @@ local LibStub = _G.LibStub
 ---@field GetCreatureName fun(self: AtlasAddon, creatureName: string?, id: number?): string?
 ---@field GetDungeonData fun(self: AtlasAddon, dungeonID: number, fallbackMinRec: number, fallbackMaxRec: number): table
 ---@field GetDungeonDifficultyColor fun(self: AtlasAddon, minimumLevel: number): table
+---@field GetEJSectionTitle fun(self: AtlasAddon, bossName: string?, sectionID: number?, moduleName: string?): string?
 ---@field GetGearItemLevelDiffColor fun(self: AtlasAddon, minGearLevel: number): table
 ---@field GetItemTitlebyID fun(self: AtlasAddon, title: string?, id: number): string?
 ---@field GetQuestLevelRange fun(self: AtlasAddon): number
