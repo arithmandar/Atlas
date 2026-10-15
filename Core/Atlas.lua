@@ -33,7 +33,6 @@ local string, table, math, tonumber = string, table, math, tonumber
 
 local strfind, strsub, format, gsub, strlower, strgmatch = string.find, string.sub, string.format, string.gsub, string.lower, string.gmatch
 local strlen, strtrim = string.len, string.trim
-local floor = math.floor
 local tinsert, tsort = table.insert, table.sort
 
 local C_AddOns = _G.C_AddOns
@@ -58,6 +57,10 @@ local GetMapInfo, GetMapArtLayers = C_Map.GetMapInfo, C_Map.GetMapArtLayers
 local FOLDER_NAME, private = ...
 
 local LibStub = _G.LibStub
+
+---@class AtlasDataModule : AceModule
+---@field db table
+
 ---@class AtlasAddon : AceAddon
 ---@field db table
 ---@field constants table
@@ -87,6 +90,7 @@ local LibStub = _G.LibStub
 ---@field FormatColor fun(self: AtlasAddon, colorArray: table): string?
 ---@field FormatDungeonLevelRange fun(self: AtlasAddon, minLevel: number, maxLevel: number): string
 ---@field GetBossName fun(self: AtlasAddon, bossName: string?, encounterID: number?, creatureIndex: number?, moduleName: string?): string?
+---@field GetClassName fun(self: AtlasAddon, class: string): string?
 ---@field GetCreatureName fun(self: AtlasAddon, creatureName: string?, id: number?): string?
 ---@field GetDungeonData fun(self: AtlasAddon, dungeonID: number, fallbackMinRec: number, fallbackMaxRec: number): table
 ---@field GetDungeonDifficultyColor fun(self: AtlasAddon, minimumLevel: number): table
@@ -1600,7 +1604,7 @@ local function check_Modules()
 	-- Check for outdated modules, build a list of them, then disable them and tell the player
 	local List = {}
 	for _, module in pairs(Module_List) do
-		local loadable = select(4, GetAddOnInfo(module))
+		local _, _, _, loadable = GetAddOnInfo(module)
 		local enabled = GetAddOnEnableState(module, UnitName("player"))
 		if ( (enabled == 0) or (not loadable) ) then
 			tinsert(List, module)
@@ -1713,3 +1717,20 @@ function addon:Refresh()
 		addon.WorldMap.Button:Hide()
 	end
 end
+
+function addon:GetClassName(class)
+	if (not LOCALIZED_CLASS_NAMES_MALE[class]) then
+		return nil
+	end
+	if (UnitSex("player") == "3") then
+		return LOCALIZED_CLASS_NAMES_FEMALE[class]
+	else
+		return LOCALIZED_CLASS_NAMES_MALE[class]
+	end
+end
+
+-- fallback function for getting class name
+function Atlas_GetClassName(class)
+	return addon:GetClassName(class)
+end
+
