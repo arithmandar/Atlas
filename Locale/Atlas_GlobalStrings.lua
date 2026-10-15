@@ -24,7 +24,6 @@
 --]]
 
 local _G = getfenv(0)
-local _, private = ...
 local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale("Atlas")
 local format = string.format
@@ -59,9 +58,10 @@ local icon_BrokenIsles 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\achievement
 local icon_KulTiras 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\spell_arcane_portalkultiras" -- Kul Tiras
 local icon_Zandalar 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\spell_arcane_portalzandalar" -- Zandalar
 --local icon_Nazjatar = "Interface\\AddOns\\Atlas\\Images\\Icons\\spell_arcane_portalzandalar" -- Nazjatar
---local icon_Shadowlands 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\" -- Shadowlands
+local icon_Shadowlands 		= "Interface\\AddOns\\Atlas\\Images\\Icons\\inv_misc_token_boost_shadowlands" -- Shadowlands
 local icon_DragonIsles      = "Interface\\AddOns\\Atlas\\Images\\Icons\\inv_protodragonicemount" -- Dragon Isles
 local icon_KhazAlgar        = "Interface\\AddOns\\Atlas\\Images\\Icons\\achievement_zone_hallowfall" -- Khaz'Algar
+local icon_QuelThalas 		= "Interface\\ICONS\\inv_12_mage_teleport"                    -- Quel'Thalas
 -- inv_achievement_zone_meta meta
 
 --[[
@@ -74,7 +74,7 @@ Global Atlas Strings
 --]]
 ATLAS_TITLE			= L["ATLAS_TITLE"]
 
-ATLAS_VERSION_TEXT		= "v"..GetAddOnMetadata("Atlas", "Version");
+ATLAS_VERSION_TEXT		= "v"..ATLAS_VERSION
 
 BINDING_HEADER_ATLAS_TITLE	= L["BINDING_HEADER_ATLAS_TITLE"]
 BINDING_NAME_ATLAS_TOGGLE	= L["BINDING_NAME_ATLAS_TOGGLE"]
@@ -150,8 +150,10 @@ ATLAS_DDL_CONTINENT_BROKENISLES2	= format("|T%s:0:0|t %s", icon_BrokenIsles, BZ[
 ATLAS_DDL_CONTINENT_KULTIRAS		= format("|T%s:0:0|t %s", icon_KulTiras, BZ["Kul Tiras"])
 ATLAS_DDL_CONTINENT_ZANDALAR		= format("|T%s:0:0|t %s", icon_Zandalar, BZ["Zandalar"])
 ATLAS_DDL_CONTINENT_NAZJATAR		= BZ["Nazjatar"]
+ATLAS_DDL_CONTINENT_SHADOWLANDS		= format("|T%s:0:0|t %s", icon_Shadowlands, BZ["Shadowlands"])
 ATLAS_DDL_CONTINENT_DRAGONISLES     = format("|T%s:0:0|t %s", icon_DragonIsles, BZ["Dragon Isles"])
 ATLAS_DDL_CONTINENT_KHAZALGAR       = format("|T%s:0:0|t %s", icon_KhazAlgar, BZ["Khaz Algar"])
+ATLAS_DDL_CONTINENT_QUELTHALAS 		= format("|T%s:0:0|t %s", icon_QuelThalas, BZ["Quel'Thalas"])
 
 -------------------------------------------------------------------------
 -- Level
@@ -183,6 +185,7 @@ ATLAS_DDL_LEVEL_45TO50		 = L["ATLAS_DDL_LEVEL_45TO50"]
 ATLAS_DDL_LEVEL_45TO60		 = L["ATLAS_DDL_LEVEL_45TO60"]
 ATLAS_DDL_LEVEL_50TO60		 = L["ATLAS_DDL_LEVEL_50TO60"]
 ATLAS_DDL_LEVEL_60PLUS		 = L["ATLAS_DDL_LEVEL_60PLUS"]
+ATLAS_DDL_LEVEL_80TO90     = L["ATLAS_DDL_LEVEL_80TO90"]
 
 ATLAS_DDL_PARTYSIZE			= L["ATLAS_DDL_PARTYSIZE"]
 ATLAS_DDL_PARTYSIZE_5		= L["ATLAS_DDL_PARTYSIZE_5"]

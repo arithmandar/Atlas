@@ -25,9 +25,13 @@
 -- ----------------------------------------------------------------------------
 -- In-game locale handling functions for Atlas addon
 -- ----------------------------------------------------------------------------
+local _, private = ...
 
 local setmetatable, rawget = setmetatable, rawget
 local _G = getfenv(0)
+---@type AtlasAddon
+local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+
 local C_Item = _G.C_Item
 local GetItemInfo = C_Item.GetItemInfo
 
@@ -49,16 +53,5 @@ do
 	setmetatable(Atlas_IngameLocales, {__index = function(tab, key)
 		return rawget(tab, key) or key end
 	})
-end
-
-function Atlas_GetClassName(class)
-	if (not LOCALIZED_CLASS_NAMES_MALE[class]) then
-		return nil;
-	end
-	if (UnitSex("player") == "3") then
-		return LOCALIZED_CLASS_NAMES_FEMALE[class];
-	else
-		return LOCALIZED_CLASS_NAMES_MALE[class];
-	end
 end
 

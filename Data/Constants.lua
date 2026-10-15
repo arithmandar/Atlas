@@ -39,7 +39,6 @@ local _, private = ...
 private.addon_name = "Atlas"
 
 -- Determine WoW client family
--- Determine WoW client family
 local projectID = WOW_PROJECT_ID
 
 local function IsProject(id)
@@ -363,6 +362,10 @@ constants.moduleList = {
 	"Atlas_WarlordsofDraenor",
 	"Atlas_Legion",
 	"Atlas_BattleforAzeroth",
+	"Atlas_Shadowlands",
+	"Atlas_Dragonflight",
+	"Atlas_TheWarWithin",
+	"Atlas_Midnight",
 	"Atlas_Battlegrounds",
 	"Atlas_DungeonLocs",
 	"Atlas_OutdoorRaids",
@@ -380,6 +383,10 @@ constants.deprecatedList = {
 	-- For example, name it as 2.09 instead of 2.9
 	-- Most recent (working) versions of known modules at time of release
 	-- Atlas Modules
+	{ "Atlas_Midnight",				"1.50.00", "r1" },
+	{ "Atlas_TheWarWithin",			"1.50.00", "r1" },
+	{ "Atlas_Dragonflight", 		"1.50.00", "r1" },
+	{ "Atlas_Shadowlands", 			"1.50.00", "r30" },
 	{ "Atlas_BattleforAzeroth", 	"1.50.00", "r30" },
 	{ "Atlas_Legion",	 			"1.50.00", "r169" },
 	{ "Atlas_WarlordsofDraenor", 	"1.50.00", "r69" },
