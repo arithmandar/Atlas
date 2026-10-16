@@ -32,6 +32,7 @@ local _, private = ...
 local C_QuestLog = _G.C_QuestLog
 local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
 local GetTitleForQuestID = C_QuestLog.GetTitleForQuestID
+local GetQuestInfo = C_QuestLog.GetQuestInfo
 local GetQuestDifficultyLevel = C_QuestLog.GetQuestDifficultyLevel
 
 local LibStub = _G.LibStub
@@ -51,8 +52,13 @@ end
 function addon:GetQuestTitlebyID(title, id)
 	if not id then
 		return title
-		end
-	local questTitle = GetTitleForQuestID(id)
+	end
+	local questTitle
+	if ATLAS_USES_MAINLINE_API then
+		questTitle = GetTitleForQuestID(id) 
+	else 
+		questTitle = GetQuestInfo(id)
+	end
 	if not questTitle then
 		return title
 	end
