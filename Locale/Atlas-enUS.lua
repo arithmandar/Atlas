@@ -83,6 +83,9 @@ L["ATLAS_OPTIONS_RCLICK_TIP"] = "Enable the Right-Click in Atlas window to switc
 L["ATLAS_OPTIONS_RESETPOS"] = "Reset Position"
 L["ATLAS_OPTIONS_ACRONYMS"] = "Display Acronyms"
 L["ATLAS_OPTIONS_ACRONYMS_TIP"] = "Display the instance's acronym in the map details."
+L["ATLAS_OPTIONS_FRAME"] = "Atlas Frame"
+L["ATLAS_OPTIONS_FRAME_SMALL"] = "Small Atlas Frame"
+L["ATLAS_OPTIONS_FRAME_LARGE"] = "Large Atlas Frame"
 L["ATLAS_OPTIONS_SCALE"] = "Atlas Frame Scale"
 L["ATLAS_OPTIONS_BOSS_DESC"] = "Show boss description when available"
 L["ATLAS_OPTIONS_BOSS_POTRAIT"] = "Show boss potrait when available"
@@ -259,6 +262,10 @@ L["Click to open the corresponding World Map"] = "Click to open the correspondin
 L["Cannot open the AddOns window during combat."] = "Cannot open the AddOns window during combat."
 L["AddonList frame is not available."] = "AddonList frame is not available."
 
+L["About"] = "About"
+L["Addon Info"] = "Addon Info"
+L["CREDITS"] = "Credits"
+L["CREDIT_DESC"] = "Special thanks for the following contributors including our formal authors, translators, artists, and all other supporters."
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************
