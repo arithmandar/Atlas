@@ -598,7 +598,9 @@ end
 function Atlas_Toggle()
 	isModuleOrPluginLoaded()
 	if (ATLAS_MODULE_MENUS == 0 and ATLAS_PLUGIN_MENUS == 0) then return end
-	if (ATLAS_SMALLFRAME_SELECTED) then
+	if (AtlasFrameLarge:IsVisible()) then
+		HideUIPanel(AtlasFrameLarge)
+	elseif (ATLAS_SMALLFRAME_SELECTED) then
 		if (AtlasFrameSmall:IsVisible()) then
 			HideUIPanel(AtlasFrameSmall)
 		else
@@ -1390,9 +1392,13 @@ function addon:RefreshMap(mapID)
 
 		AtlasFrameSmall.NextMap:Show()
 		AtlasFrameSmall.NextMap.mapID = base.NextMap
+
+		AtlasFrameLarge.NextMap:Show()
+		AtlasFrameLarge.NextMap.mapID = base.NextMap
 	else
 		AtlasFrame.NextMap:Hide()
 		AtlasFrameSmall.NextMap:Hide()
+		AtlasFrameLarge.NextMap:Hide()
 	end
 	if (base.PrevMap) then
 		AtlasFrame.PrevMap:Show()
@@ -1400,9 +1406,13 @@ function addon:RefreshMap(mapID)
 
 		AtlasFrameSmall.PrevMap:Show()
 		AtlasFrameSmall.PrevMap.mapID = base.PrevMap
+
+		AtlasFrameLarge.PrevMap:Show()
+		AtlasFrameLarge.PrevMap.mapID = base.PrevMap
 	else
 		AtlasFrame.PrevMap:Hide()
 		AtlasFrameSmall.PrevMap:Hide()
+		AtlasFrameLarge.PrevMap:Hide()
 	end
 end
 

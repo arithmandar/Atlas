@@ -57,8 +57,7 @@ local Client = private.Client
 -- AtlasFrameDropDownTypeTemplate
 function Templates.CreateFrameDropDownType(name, parent)
 	local f = _G[name] or LibDD:Create_UIDropDownMenu(name, parent)
-	
-	--f:SetPoint("TOPLEFT", parent, 60, -50)
+
 	f:SetPoint("TOPLEFT", parent, 65, -44)
 	f:SetWidth(ATLAS_DROPDOWN_WIDTH)
 	f:SetPropagateMouseMotion(true)
@@ -100,7 +99,7 @@ local function AtlasEntry_OnUpdate(self)
 				local str = _G[self:GetName().."_Text"]:GetText()
 				if (str) then
 					GameTooltip:SetOwner(self, "ANCHOR_CURSOR")
-					GameTooltip:SetBackdropBorderColor(0, 0, 0, 0)
+					--GameTooltip:SetBackdropBorderColor(0, 0, 0, 0)
 					GameTooltip.NineSlice:SetCenterColor(0, 0, 0, 1)
 					local colorCheck = string.sub(str, 1, 4)
 					if (colorCheck == "|cff") then
@@ -293,18 +292,19 @@ local function CreatePrevNextMapButtonBase(name, parent)
 	return f
 end
 
-function Templates.CreateNextMapButton(name, parent)
+-- x/y are optional offsets from the parent's TOPLEFT; defaults suit the 631px tall frames.
+function Templates.CreateNextMapButton(name, parent, x, y)
 	local f = CreatePrevNextMapButtonBase(name, parent)
-	f:SetPoint("TOPLEFT", parent, 502, -599)
+	f:SetPoint("TOPLEFT", parent, x or 502, y or -599)
 	f:SetNormalTexture("Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up")
 	f:SetPushedTexture("Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down")
 	f:SetDisabledTexture("Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled")
 	return f
 end
 
-function Templates.CreatePrevMapButton(name, parent)
+function Templates.CreatePrevMapButton(name, parent, x, y)
 	local f = CreatePrevNextMapButtonBase(name, parent)
-	f:SetPoint("TOPLEFT", parent, 13, -599)
+	f:SetPoint("TOPLEFT", parent, x or 13, y or -599)
 	f:SetNormalTexture("Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up")
 	f:SetPushedTexture("Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down")
 	f:SetDisabledTexture("Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled")
