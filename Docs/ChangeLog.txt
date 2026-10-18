@@ -14,15 +14,6 @@ Known Issues:
 = Change Log =
 ==============
 
-v1.54.xx (Oct. xx, 2026)
-------------------------
-- Code merge with nanderson11's revision:
-  - Configs enhancement:
-    - Added small Atlas frame scale and transparency options.
-  - LDB button's left-/right-click behavior now handles when we define LDB button
-  - Added BOSS_KILL and defeated overlay handling for boss buttons in the Adventure Journal
-    (nanderson11 added on his 3.8.0 at July 9, 2025)
-
 v1.54.03 (Oct. 18, 2026)
 ------------------------
 - Bug Fixes:

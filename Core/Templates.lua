@@ -439,6 +439,26 @@ function Templates.CreateMapZoneName(name, parent)
 	return f
 end
 
+function Templates.CreateLFGButton(name, parent)
+	local f = CreateFrame("Button", name, parent)
+	f:SetSize(32, 32)
+	f:Hide()
+	f:SetPoint("TOPRIGHT", parent, "TOPRIGHT", -25, -39)
+
+	local tex = f:CreateTexture(name.."Texture", "ARTWORK")
+	tex:SetAllPoints()
+	tex:SetTexture("Interface\\LFGFrame\\LFG-Eye")
+	tex:SetTexCoord(0, 0.125, 0, 0.25)
+
+	f:SetNormalTexture("Interface\\Buttons\\UI-SquareButton-Up")
+	f:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight", "ADD")
+	f:SetScript("OnEnter", function(self) addon:SearchLFG_Enter(self) end)
+	f:SetScript("OnLeave", function() GameTooltip:Hide() end)
+	f:SetScript("OnClick", function() addon:SearchLFG() end)
+	return f
+end
+
+
 -- //////////////////////////////////////////
 -- AtlasMapButtonTemplate and its children (NPC / boss map pin buttons)
 local function ApplyMapButtonMixin(f)

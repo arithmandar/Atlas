@@ -54,12 +54,11 @@ local GetAverageItemLevel = _G.GetAverageItemLevel
 local C_Map = _G.C_Map
 local GetMapInfo, GetMapArtLayers = C_Map.GetMapInfo, C_Map.GetMapArtLayers
 
+local C_Seasons = _G.C_Seasons
+
 local FOLDER_NAME, private = ...
 
 local LibStub = _G.LibStub
-
----@class AtlasDataModule : AceModule
----@field db table
 
 ---@class AtlasAddon : AceAddon
 ---@field db table
@@ -100,6 +99,8 @@ local LibStub = _G.LibStub
 ---@field GetQuestLevelRange fun(self: AtlasAddon): number
 ---@field GetQuestTitlebyID fun(self: AtlasAddon, title: string?, id: number): string?
 ---@field IsRaidInfo fun(self: AtlasAddon, raidID: number): boolean
+---@field SearchLFG fun(self: AtlasAddon)
+---@field SearchLFG_Enter fun(self: AtlasAddon)
 ---@field MapAddNPCButton fun(self: AtlasAddon)
 ---@field MapAddNPCButtonLarge fun(self: AtlasAddon)
 ---@field OnEnable fun(self: AtlasAddon)
@@ -240,6 +241,8 @@ function addon:RegisterModule(moduleKey)
 		return
 	end
 
+---@class AtlasDataModule : AceModule
+---@field db table
 	local module = addon:GetModule(moduleKey)
 	if not module or not module.db then
 		return
@@ -1256,6 +1259,21 @@ function addon:UpdateMapContent(zoneID, base)
 		for i=1, 12 do
 			_G["AtlasMapLarge"..i]:SetTexture(AtlasMapPath..zoneID.."\\"..base.LargeMap..i)
 		end
+	end
+
+	-- LFG Button
+	local lfgButton = _G["AtlasFrameLFGButton"]
+	if (addon.Client.isClassicEra and C_LFGList.IsPremadeGroupFinderEnabled() and (base.ActivityID or base.ActivityIDSoD)) then
+		
+		lfgButton:Show();
+
+		if (C_Seasons.GetActiveSeason() == 2 and base.ActivityIDSoD) then
+			lfgButton.ActivityID = base.ActivityIDSoD;
+		elseif (base.ActivityID) then
+			lfgButton.ActivityID = base.ActivityID;
+		end
+	else
+		lfgButton:Hide();
 	end
 
 	-- The boss description to be added here
