@@ -423,6 +423,12 @@ local function bossButtonUpdate(button, encounterID, instanceID, b_iconImage, mo
 				if ( iconImage ) then
 					SetPortraitTextureFromCreatureDisplayID(button.bgImage, displayInfo)
 				end
+				if button.DefeatedOverlay then
+					local complete = C_EncounterJournal.IsEncounterComplete(encounterID);
+					button.DefeatedOpacity:SetShown(complete);
+					button.DefeatedOverlay:SetShown(complete);
+					button.bgImage:SetDesaturation(complete and 0.7 or 0);
+				end
 			end
 		end
 	end
