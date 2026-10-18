@@ -14,6 +14,17 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.54.02 (Oct. 18, 2026)
+------------------------
+- Bug Fixes:
+  - Fixed issue with Next/Prev map buttons not showing or hiding correctly in the large Atlas frame
+  - Fixed Next/Prev map buttons, AdventureJournal button, and WorldMap button's position in large Atlas frame
+  - Fixed Atlas_Toggle didn't correctly handle the visibility of the large Atlas frame
+  - Fixed when instance maps were defined into two categories in the map data, then the 1st
+    category got wipe out. This is simply due to wrong global string's definition.
+    Only affects Legion expansion maps.
+  - Fixed issue that when Ctrl key was pressed and mouse hovered over an entry, the tooltip would not show correctly.
+
 v1.54.01 (Oct. 16, 2026)
 ------------------------
 - Fixed issue with quest title retrieval in Classic Era using the new API

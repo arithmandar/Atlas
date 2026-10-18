@@ -92,7 +92,7 @@ local LibStub = _G.LibStub
 ---@field GetBossName fun(self: AtlasAddon, bossName: string?, encounterID: number?, creatureIndex: number?, moduleName: string?): string?
 ---@field GetClassName fun(self: AtlasAddon, class: string): string?
 ---@field GetCreatureName fun(self: AtlasAddon, creatureName: string?, id: number?): string?
----@field GetDungeonData fun(self: AtlasAddon, dungeonID: number, fallbackMinRec: number, fallbackMaxRec: number): table
+---@field GetDungeonData fun(self: AtlasAddon, dungeonID: number, fallbackMinRec: number?, fallbackMaxRec: number?): table
 ---@field GetDungeonDifficultyColor fun(self: AtlasAddon, minimumLevel: number): table
 ---@field GetEJSectionTitle fun(self: AtlasAddon, bossName: string?, sectionID: number?, moduleName: string?): string?
 ---@field GetGearItemLevelDiffColor fun(self: AtlasAddon, minGearLevel: number): table
@@ -125,6 +125,7 @@ local LibStub = _G.LibStub
 ---@field ToggleLegendPanel fun(self: AtlasAddon)
 ---@field ToggleLock fun(self: AtlasAddon)
 ---@field ToggleWindowSize fun(self: AtlasAddon)
+---@field ToggleWorldMapButton fun(self: AtlasAddon)
 ---@field UpdateAlpha fun(self: AtlasAddon)
 ---@field UpdateLock fun(self: AtlasAddon)
 ---@field UpdateMapContent fun(self: AtlasAddon, zoneID: string|number, base: table)
@@ -543,7 +544,7 @@ function addon:PopulateDropdowns()
 	end
 	
 	if (ATLAS_PLUGIN_DATA) then
-		for ka, va in pairs(ATLAS_PLUGIN_DATA) do
+		for _, va in pairs(ATLAS_PLUGIN_DATA) do
 
 			ATLAS_DROPDOWNS[i] = {}
 
@@ -576,7 +577,9 @@ end
 function Atlas_Toggle()
 	isModuleOrPluginLoaded()
 	if (ATLAS_MODULE_MENUS == 0 and ATLAS_PLUGIN_MENUS == 0) then return end
-	if (ATLAS_SMALLFRAME_SELECTED) then
+	if (AtlasFrameLarge:IsVisible()) then
+		HideUIPanel(AtlasFrameLarge)
+	elseif (ATLAS_SMALLFRAME_SELECTED) then
 		if (AtlasFrameSmall:IsVisible()) then
 			HideUIPanel(AtlasFrameSmall)
 		else
@@ -1368,9 +1371,13 @@ function addon:RefreshMap(mapID)
 
 		AtlasFrameSmall.NextMap:Show()
 		AtlasFrameSmall.NextMap.mapID = base.NextMap
+
+		AtlasFrameLarge.NextMap:Show()
+		AtlasFrameLarge.NextMap.mapID = base.NextMap
 	else
 		AtlasFrame.NextMap:Hide()
 		AtlasFrameSmall.NextMap:Hide()
+		AtlasFrameLarge.NextMap:Hide()
 	end
 	if (base.PrevMap) then
 		AtlasFrame.PrevMap:Show()
@@ -1378,9 +1385,13 @@ function addon:RefreshMap(mapID)
 
 		AtlasFrameSmall.PrevMap:Show()
 		AtlasFrameSmall.PrevMap.mapID = base.PrevMap
+
+		AtlasFrameLarge.PrevMap:Show()
+		AtlasFrameLarge.PrevMap.mapID = base.PrevMap
 	else
 		AtlasFrame.PrevMap:Hide()
 		AtlasFrameSmall.PrevMap:Hide()
+		AtlasFrameLarge.PrevMap:Hide()
 	end
 end
 
@@ -1662,11 +1673,7 @@ local function initialization()
 	end
 	
 	check_Modules()
-	if (profile.options.worldMapButton) then
-		addon.WorldMap.Button:Show()
-	else
-		addon.WorldMap.Button:Hide()
-	end
+	addon:ToggleWorldMapButton()
 end
 
 -- ///////////////////////////////////////////////////////

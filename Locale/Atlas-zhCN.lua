@@ -114,6 +114,8 @@ L["ATLAS_MINIMAPLDB_HINT"] = "单击打开 Atlas。\n右击打开 Atlas 选项�
 
 L["ATLAS_OPTIONS_CATDD"] = "副本地图排序方式："
 L["ATLAS_DDL_CONTINENT"] = "所属大陆"
+
+-- Continent
 L["ATLAS_DDL_CONTINENT_EASTERN"] = "东部王国副本"
 L["ATLAS_DDL_CONTINENT_KALIMDOR"] = "卡利姆多副本"
 L["ATLAS_DDL_CONTINENT_OUTLAND"] = "外域副本"
@@ -127,6 +129,10 @@ L["ATLAS_DDL_CONTINENT_BROKENISLES2"] = "破碎群岛团队"
 L["ATLAS_DDL_CONTINENT_KULTIRAS"] = "库尔提拉斯副本"
 L["ATLAS_DDL_CONTINENT_ZANDALAR"] = "赞达拉副本"
 L["ATLAS_DDL_CONTINENT_NAZJATAR"] = "纳沙塔尔副本"
+--L["ATLAS_DDL_CONTINENT_DRAGONISLES"] = "Dragon Isles Instances"
+--L["ATLAS_DDL_CONTINENT_KHAZALGAR"] = "Khaz Algar Instances"
+
+-- Level
 L["ATLAS_DDL_LEVEL"] = "等级"
 -- BCC / prior to new level range
 L["ATLAS_DDL_LEVEL_10TO20"] = "10-20 级副本"
@@ -159,6 +165,8 @@ L["ATLAS_DDL_PARTYSIZE"] = "副本规模"
 L["ATLAS_DDL_PARTYSIZE_5"] = "5人副本"
 L["ATLAS_DDL_PARTYSIZE_10"] = "10人副本"
 L["ATLAS_DDL_PARTYSIZE_20TO40"] = "20-40 人副本 1/2"
+
+-- Expansion
 L["ATLAS_DDL_EXPANSION"] = "资料片"	-- Sort Instance Maps by: Expansion
 L["ATLAS_DDL_EXPANSION_OLD"] = "《经典旧世》副本"
 L["ATLAS_DDL_EXPANSION_BC"] = "《燃烧的远征》副本"
@@ -171,6 +179,10 @@ L["ATLAS_DDL_EXPANSION_LEGION1"] = "军团再临地下城"
 L["ATLAS_DDL_EXPANSION_LEGION2"] = "军团再临团队"
 L["ATLAS_DDL_EXPANSION_BFA"] = "《争霸艾泽拉斯》副本"
 L["ATLAS_DDL_EXPANSION_SHADOWLANDS"] = "《暗影国度》副本"
+--L["ATLAS_DDL_EXPANSION_DRAGONFLIGHT"] = "Dragonflight Instances"
+--L["ATLAS_DDL_EXPANSION_THEWARWITHIN"] = "The War Within Instances"
+--L["ATLAS_DDL_EXPANSION_MIDNIGHT"] = "Midnight Instances"
+
 L["ATLAS_DDL_TYPE"] = "类型"
 L["ATLAS_DDL_TYPE_INSTANCE"] = "副本"
 L["ATLAS_DDL_TYPE_ENTRANCE"] = "入口"
@@ -209,7 +221,11 @@ L["ATLAS_TOGGLE_LOOT"] = "右键点击显示或隐藏掉落面板。"
 L["ATLAS_REOPEN_LOOT_AGAIN"] = "请重新打开掉落窗口以重新加载。"
 
 L["Scale and Transparency"] = "缩放与透明度"
+
 L["Click to open the corresponding World Map"] = "点击打开对应的世界地图"
+L["Cannot open the AddOns window during combat."] = "战斗中无法打开插件列表窗口。"
+L["AddonList frame is not available."] = "插件列表窗口当前不可用。"
+
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************
@@ -326,10 +342,10 @@ L["MapC"] = " [3]"
 L["MapD"] = " [4]"
 L["MapE"] = " [5]"
 L["MapF"] = " [6]"
-L["MapG"] = " [G]"
-L["MapH"] = " [H]"
-L["MapI"] = " [I]"
-L["MapJ"] = " [J]"
+L["MapG"] = " [7]"
+L["MapH"] = " [8]"
+L["MapI"] = " [9]"
+L["MapJ"] = " [10]"
 
 --************************************************
 -- Instance Entrance Maps
@@ -354,5 +370,5 @@ L["Arazmodu <The Scale of Sands>"] = "阿拉兹姆多 <流沙之鳞>"
 L["Andormu <Keepers of Time>"] = "安多姆 <时光守护者>"
 L["Nozari <Keepers of Time>"] = "诺萨莉 <时光守护者>"
 L["Anachronos <Keepers of Time>"] = "阿纳克洛斯 <时光守护者>"
-
 end
+
