@@ -21,7 +21,7 @@
 ## Notes-zhCN: Atlas 地图模块和插件的核心插件
 ## Title-zhTW: Atlas 地圖集
 ## Notes-zhTW: Atlas 地圖模組和插件的核心插件
-## Author: arith
+## Author: arith, nanderson11
 ## Version: @project-version@
 ## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibBabble-Boss-3.0, LibBabble-SubZone-3.0, LibBabble-Faction-3.0, LibDBIcon-1.0, LibUIDropDownMenu
 ## AddonCompartmentFunc: Atlas_Toggle
@@ -39,7 +39,7 @@
 ## Category-zhCN: 地图
 ## Category-zhTW: 地圖
 ## X-Category: Map & Minimap
-## X-Credits: Dan Gilbert, Lothaer, Dynaletik, dubcat
+## X-Credits: Dan Gilbert, Lothaer, Dynaletik, dubcat, Niflheim, Daviesh, Resike, ananhaid, diablohudream, dokcharlie, netaras, eugene.filatov, gonnym, maqjav, mr.kevin.fischer, nihlolino, peter.retzer, s8095324, StingerSoft, yeachan1
 ## X-Date: @project-date-iso@
 ## X-License: GPLv2
 ## X-Localizations: enUS, deDE, esES, esMX, frFR, ruRU, zhTW, zhCN, ptBR, koKR

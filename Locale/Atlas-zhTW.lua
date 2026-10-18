@@ -100,11 +100,11 @@ L["ATLAS_OPTIONS_HEADER_ADDONCONFIG"] = "插件設定"
 L["ATLAS_OPTIONS_MAXMENUITEMS"] = "選單最大值"
 L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"] = "設定下拉選單最大可顯示的地圖數量，超過後才分割至下一個地圖類別。"
 L["ATLAS_NO_MODULE_OR_PLUGIN"] = [=[|cffff66ff錯誤：|r
-Atlas 無法偵測到任何的地圖
-模組或插件被安裝且啟用。
-提醒您，Atlas 本身只是個地圖
-瀏覽器，您將必須至少安裝一個
-地圖模組或插件以瀏覽地圖。]=]
+Atlas 無法偵測到任何的地圖模組或插件
+被安裝且啟用。
+提醒您，Atlas 本身只是個地圖瀏覽器，
+您將必須至少安裝一個地圖模組或插件
+以瀏覽地圖。]=]
 
 L["ATLAS_BUTTON_CLOSE"] = "關閉"
 L["ATLAS_LDB_HINT"] = [=[左鍵開啟 Atlas。
@@ -115,7 +115,9 @@ L["ATLAS_MINIMAPLDB_HINT"] = [=[左鍵開啟 Atlas。
 左鍵並拖曳以移動圖示按鈕位置。]=]
 
 L["ATLAS_OPTIONS_CATDD"] = "副本地圖分類方式:"
-L["ATLAS_DDL_CONTINENT"] = "依不同大陸分類"
+L["ATLAS_DDL_CONTINENT"] = "依不同大陸分類"	-- Sort Instance Maps by: Continent
+
+-- Continent
 L["ATLAS_DDL_CONTINENT_EASTERN"] = "東部王國副本"
 L["ATLAS_DDL_CONTINENT_KALIMDOR"] = "卡林多副本"
 L["ATLAS_DDL_CONTINENT_OUTLAND"] = "外域副本"
@@ -129,7 +131,11 @@ L["ATLAS_DDL_CONTINENT_BROKENISLES2"] = "破碎群島團隊副本"
 L["ATLAS_DDL_CONTINENT_KULTIRAS"] = "庫爾提拉斯副本"
 L["ATLAS_DDL_CONTINENT_ZANDALAR"] = "贊達拉副本"
 L["ATLAS_DDL_CONTINENT_NAZJATAR"] = "納沙塔爾副本"
-L["ATLAS_DDL_LEVEL"] = "依等級分類"
+L["ATLAS_DDL_CONTINENT_DRAGONISLES"] = "巨龍群島副本"
+L["ATLAS_DDL_CONTINENT_KHAZALGAR"] = "卡茲阿爾加副本"
+
+-- Level
+L["ATLAS_DDL_LEVEL"] = "依等級分類"		-- Sort Instance Maps by: Level
 -- BCC / prior to new level range
 L["ATLAS_DDL_LEVEL_10TO20"] = "副本等級介於 10-20"
 L["ATLAS_DDL_LEVEL_20TO40"] = "副本等級介於 20-40"
@@ -157,11 +163,13 @@ L["ATLAS_DDL_LEVEL_45TO50"] = "副本等級介於 45-50"
 L["ATLAS_DDL_LEVEL_45TO60"] = "副本等級介於 45-60"
 L["ATLAS_DDL_LEVEL_50TO60"] = "副本等級介於 50-60"
 L["ATLAS_DDL_LEVEL_60PLUS"] = "副本等級大於 60"
-L["ATLAS_DDL_PARTYSIZE"] = "依隊伍人數分類"
+L["ATLAS_DDL_PARTYSIZE"] = "依隊伍人數分類"	-- Sort Instance Maps by: Party Size
 L["ATLAS_DDL_PARTYSIZE_5"] = "5 人地城"
 L["ATLAS_DDL_PARTYSIZE_10"] = "10 人團隊副本"
 L["ATLAS_DDL_PARTYSIZE_20TO40"] = "20-40 人團隊副本"
-L["ATLAS_DDL_EXPANSION"] = "依資料片分類"
+
+-- Expansion
+L["ATLAS_DDL_EXPANSION"] = "依資料片分類"	-- Sort Instance Maps by: Expansion
 L["ATLAS_DDL_EXPANSION_OLD"] = "舊世界副本"
 L["ATLAS_DDL_EXPANSION_BC"] = "燃燒的遠征副本"
 L["ATLAS_DDL_EXPANSION_WOTLK"] = "巫妖王之怒副本"
@@ -173,7 +181,11 @@ L["ATLAS_DDL_EXPANSION_LEGION1"] = "軍臨天下地城"
 L["ATLAS_DDL_EXPANSION_LEGION2"] = "軍臨天下團隊副本"
 L["ATLAS_DDL_EXPANSION_BFA"] = "決戰艾澤拉斯副本"
 L["ATLAS_DDL_EXPANSION_SHADOWLANDS"] = "暗影之境副本"
-L["ATLAS_DDL_TYPE"] = "依地圖類型分類"
+L["ATLAS_DDL_EXPANSION_DRAGONFLIGHT"] = "巨龍崛起副本"
+L["ATLAS_DDL_EXPANSION_THEWARWITHIN"] = "地心之戰副本"
+L["ATLAS_DDL_EXPANSION_MIDNIGHT"] = "至暗之夜副本"
+
+L["ATLAS_DDL_TYPE"] = "依地圖類型分類" -- Sort Instance Maps by: Map Type
 L["ATLAS_DDL_TYPE_INSTANCE"] = "副本"
 L["ATLAS_DDL_TYPE_ENTRANCE"] = "副本入口"
 
@@ -240,12 +252,14 @@ L["ATLAS_REOPEN_LOOT_AGAIN"] = "請重新開啟首領戰利品視窗以重新載
 L["Scale and Transparency"] = "大小與透明度"
 
 L["Click to open the corresponding World Map"] = "點擊開啟對應的世界地圖"
+L["Cannot open the AddOns window during combat."] = "戰鬥中無法開啟插件視窗。"
+L["AddonList frame is not available."] = "插件列表視窗目前無法使用。"
 
 --************************************************
 -- Zone Names, Acronyms, and Common Strings
 --************************************************
 
-	--Common strings
+--Common strings
 L["East"] = "東"
 L["North"] = "北"
 L["South"] = "南"
@@ -268,7 +282,7 @@ L["Heroic_Symbol"] = "（英雄）"
 L["Mythic_Symbol"] = "（傳奇）"
 --Misc strings
 	--Symbols
-	L["Colon"] = "："
+	L["Colon"] = "：" -- The colon symbol to be used in string, ex: "Zone: Firelands
 	L["Semicolon"] = "；"
 	L["L-Parenthesis"] = "（"
 	L["R-Parenthesis"] = "）"

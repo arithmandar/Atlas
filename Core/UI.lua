@@ -482,8 +482,9 @@ function UI.CreateAtlasFrameLarge()
 	private.Templates.CreateOptionsButton("AtlasFrameLargeOptionsButton", f)
 	private.Templates.CreateSizeDownButton("AtlasFrameLargeSizeDownButton", f)
 
-	f.NextMap = private.Templates.CreateNextMapButton("AtlasFrameLargeNextMapButton", f)
-	f.PrevMap = private.Templates.CreatePrevMapButton("AtlasFrameLargePrevMapButton", f)
+	-- Same distance from the bottom/right edges as in the 534x631 small frame (790-32, 1023-32).
+	f.NextMap = private.Templates.CreateNextMapButton("AtlasFrameLargeNextMapButton", f, 991, -758)
+	f.PrevMap = private.Templates.CreatePrevMapButton("AtlasFrameLargePrevMapButton", f, 13, -758)
 	f.AdventureJournalMap = private.Templates.CreateAdventureJournalMapButton("AtlasFrameLargeAdventureJournalMapButton", f)
 	f.AdventureJournal = private.Templates.CreateAdventureJournalButton("AtlasFrameLargeAdventureJournalButton", f)
 	f.AtlasLoot = private.Templates.CreateAtlasLootButton("AtlasFrameLargeAtlasLootButton", f)
