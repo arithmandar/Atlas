@@ -23,6 +23,12 @@ v1.54.xx (Oct. xx, 2026)
   - Added BOSS_KILL and defeated overlay handling for boss buttons in the Adventure Journal
     (nanderson11 added on his 3.8.0 at July 9, 2025)
 
+v1.54.03 (Oct. 18, 2026)
+------------------------
+- Bug Fixes:
+  - ToggleWorldMapButton function was missed to be added to the addon.
+  - Dropdown menu's colon was updated to use the new "Colon" global string.
+
 v1.54.02 (Oct. 18, 2026)
 ------------------------
 - Bug Fixes:
