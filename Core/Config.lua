@@ -32,8 +32,8 @@ local pairs = _G.pairs
 
 local _, private = ...
 local LibStub = _G.LibStub
+---@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
----@cast addon AtlasAddon
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 
 local AceConfigReg = LibStub("AceConfigRegistry-3.0")

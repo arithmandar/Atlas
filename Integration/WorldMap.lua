@@ -75,3 +75,10 @@ do
 	createButton()
 end
 
+function addon:ToggleWorldMapButton()
+	if (addon.db.profile.options.worldMapButton) then
+		addon.WorldMap.Button:Show()
+	else
+		addon.WorldMap.Button:Hide()
+	end
+end
