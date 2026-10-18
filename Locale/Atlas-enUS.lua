@@ -190,7 +190,7 @@ L["ATLAS_DDL_EXPANSION_DRAGONFLIGHT"] = "Dragonflight Instances"
 L["ATLAS_DDL_EXPANSION_THEWARWITHIN"] = "The War Within Instances"
 L["ATLAS_DDL_EXPANSION_MIDNIGHT"] = "Midnight Instances"
 
-L["ATLAS_DDL_TYPE"] = "Type"			-- -- Sort Instance Maps by: Map Type
+L["ATLAS_DDL_TYPE"] = "Type" -- Sort Instance Maps by: Map Type
 L["ATLAS_DDL_TYPE_INSTANCE"] = "Instances"
 L["ATLAS_DDL_TYPE_ENTRANCE"] = "Entrances"
 
@@ -415,3 +415,4 @@ L["Andormu <Keepers of Time>"] = "Andormu <Keepers of Time>"
 L["Nozari <Keepers of Time>"] = "Nozari <Keepers of Time>"
 L["Anachronos <Keepers of Time>"] = "Anachronos <Keepers of Time>"
 end
+
