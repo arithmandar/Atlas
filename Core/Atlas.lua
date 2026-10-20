@@ -731,6 +731,13 @@ function addon:MapAddNPCButton()
 					buttonS = private.Templates.CreateMapNPCButton("AtlasMapNPCButtonS"..buttonindexS, AtlasFrameSmall)
 				end
 
+				local text = _G[button:GetName().."_Text"]
+				if (text) then
+					text:SetText("")
+				end
+				button.TaxiImage:SetTexture(nil)
+				button.bgImage:SetTexture(nil)
+
 				local tip_title
 				for _, v in pairs(AtlasMaps[zoneID]) do
 					if (type(v) == "table" and type(v[2]) == "number") then
@@ -753,6 +760,26 @@ function addon:MapAddNPCButton()
 						end
 					end
 				end
+
+				if (info_colortag) then
+					if (info_colortag == "White" or
+						info_colortag == "Yellow" or
+						info_colortag == "Red" or
+						info_colortag == "Orange" or
+						info_colortag == "Green" or
+						info_colortag == "Purple" or
+						info_colortag == "Blue") then
+						if (not text) then
+							text = button:CreateFontString(button:GetName().."_Text", "OVERLAY", "AtlasSystemFont_Large_Outline_Thick")
+						end
+						text:SetPoint("CENTER", button, "CENTER", 0, 0)
+						text:SetText(info_mark)
+						text:SetTextColor(unpack(ATLAS_FONT_COLORS[info_colortag]))
+						button:SetWidth(20)
+						button:SetHeight(20)
+					end
+				end
+
 				button:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18, -info_y - 82 )
 				button:SetID(info_id)
 				button:Show()
