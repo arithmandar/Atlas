@@ -14,6 +14,17 @@ Known Issues:
 = Change Log =
 ==============
 
+v1.54.04 (Oct. 20, 2026)
+------------------------
+- Enhancement: 
+  - Create mapNPCButtonClearMarker() and mapNPCButtonSetMarker() to centralize map's labeling adding, not just for large frame, but also
+  for both normal and small Atlas frames
+  - Map module which would like to use dynamap labeling should set DynamicMarkers = true in map data
+  - DynamicMarkers will enable the map to display markers for NPCs dynamically based on the map data
+  - The map will automatically update the markers when the map is refreshed or when relevant events occur
+  - Added faction color to Constants' ATLAS_FONT_COLORS array
+  - Fixed error in defined PINK's color code
+
 v1.54.03 (Oct. 18, 2026)
 ------------------------
 - Bug Fixes:
