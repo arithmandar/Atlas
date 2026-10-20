@@ -856,14 +856,16 @@ function addon:MapAddNPCButtonLarge()
 				--button.LetterImage:SetTexture(nil)
 
 				local tip_title
-				for k, v in pairs(AtlasMaps[zoneID]) do
-					if (type(v) == "table" and v[2] == info_id) then
-						tip_title = v[1]
-						local _, endpos = strfind(tip_title, ") ")
-						if (endpos) then
-							button.tooltiptitle = strsub(tip_title, endpos+1)
+				for _, v in pairs(AtlasMaps[zoneID]) do
+					if (type(v) == "table" and type(v[2]) == "number") then
+						if (v[2] == info_id) then
+							tip_title = v[1]
+							local _, endpos = strfind(tip_title, ") ")
+							if (endpos) then
+								button.tooltiptitle = strsub(tip_title, endpos+1)
+							end
+							break
 						end
-						break
 					end
 				end
 
