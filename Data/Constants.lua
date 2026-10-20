@@ -308,6 +308,9 @@ ATLAS_FONT_COLORS = {
 	["Orange"] 	= {1.00, 0.82, 0.00},
 	["Purple"]	= {0.73, 0.40, 1.00},
 	["Blue"]	= {0.40, 0.40, 1.00},
+	["Alliance"] = {0.48, 0.67, 0.88}, -- |cff7babe0
+	["Horde"]    = {0.85, 0.41, 0.33}, -- |cffda6955
+	["Neutral"]  = {1.00, 0.90, 0.44}, -- |cfffee570
 }
 
 ATLAS_TAXI_TCOORDS = {
