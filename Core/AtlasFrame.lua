@@ -83,17 +83,34 @@ end
 function addon:UpdateAlpha()
 	local alpha = options.frames.alpha
 	AtlasFrame:SetAlpha(alpha)
-	AtlasFrameLarge:SetAlpha(alpha)
+end
+
+function addon:UpdateSmallAlpha()
+	local alpha = addon.db.profile.options.frames.smallAlpha
 	AtlasFrameSmall:SetAlpha(alpha)
+end
+
+function addon:UpdateLargeAlpha()
+	local alpha = addon.db.profile.options.frames.largeAlpha
+	AtlasFrameLarge:SetAlpha(alpha)
 end
 
 -- Sets the scale of the Atlas frame based on AtlasScale
 function addon:UpdateScale()
 	local scale = options.frames.scale
 	AtlasFrame:SetScale(scale)
-	AtlasFrameLarge:SetScale(scale)
+end
+
+function addon:UpdateSmallScale()
+	local scale = addon.db.profile.options.frames.smallScale
 	AtlasFrameSmall:SetScale(scale)
 end
+
+function addon:UpdateLargeScale()
+	local scale = addon.db.profile.options.frames.largeScale
+	AtlasFrameLarge:SetScale(scale)
+end
+
 
 -- Toggles the size of the Atlas window between large and small frames
 function addon:ToggleWindowSize()

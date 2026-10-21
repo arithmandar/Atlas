@@ -36,7 +36,7 @@ local strlen, strtrim = string.len, string.trim
 local tinsert, tsort = table.insert, table.sort
 
 local C_AddOns = _G.C_AddOns
-local GetAddOnInfo, GetAddOnEnableState = C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnEnableState
+local GetAddOnInfo, GetAddOnEnableState, GetAddOnMetadata = C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnEnableState, C_AddOns.GetAddOnMetadata
 local C_Item = _G.C_Item
 local GetItemInfo = C_Item.GetItemInfo
 local C_EncounterJournal = _G.C_EncounterJournal
@@ -53,6 +53,8 @@ local GetAverageItemLevel = _G.GetAverageItemLevel
 
 local C_Map = _G.C_Map
 local GetMapInfo, GetMapArtLayers = C_Map.GetMapInfo, C_Map.GetMapArtLayers
+
+local C_Seasons = _G.C_Seasons
 
 local FOLDER_NAME, private = ...
 
@@ -100,6 +102,8 @@ local LibStub = _G.LibStub
 ---@field GetQuestLevelRange fun(self: AtlasAddon): number
 ---@field GetQuestTitlebyID fun(self: AtlasAddon, title: string?, id: number): string?
 ---@field IsRaidInfo fun(self: AtlasAddon, raidID: number): boolean
+---@field SearchLFG fun(self: AtlasAddon)
+---@field SearchLFG_Enter fun(self: AtlasAddon)
 ---@field MapAddNPCButton fun(self: AtlasAddon)
 ---@field MapAddNPCButtonLarge fun(self: AtlasAddon)
 ---@field OnEnable fun(self: AtlasAddon)
@@ -127,9 +131,13 @@ local LibStub = _G.LibStub
 ---@field ToggleWindowSize fun(self: AtlasAddon)
 ---@field ToggleWorldMapButton fun(self: AtlasAddon)
 ---@field UpdateAlpha fun(self: AtlasAddon)
+---@field UpdateSmallAlpha fun(self: AtlasAddon)
+---@field UpdateLargeAlpha fun(self: AtlasAddon)
 ---@field UpdateLock fun(self: AtlasAddon)
 ---@field UpdateMapContent fun(self: AtlasAddon, zoneID: string|number, base: table)
 ---@field UpdateScale fun(self: AtlasAddon)
+---@field UpdateSmallScale fun(self: AtlasAddon)
+---@field UpdateLargeScale fun(self: AtlasAddon)
 ---@field WorldMapButtonSelectMap fun(self: AtlasAddon)
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 
@@ -141,6 +149,11 @@ addon.Name = FOLDER_NAME
 local _, locName, notes = GetAddOnInfo(addon.Name)
 addon.LocName = locName
 addon.Notes = notes
+-- ToC Metadata
+addon.Version 		= GetAddOnMetadata(addon.Name, "Version")
+addon.UpdateDate 	= GetAddOnMetadata(addon.Name, "X-Date")
+addon.Author 		= GetAddOnMetadata(addon.Name, "Author")
+addon.Credits 		= GetAddOnMetadata(addon.Name, "X-Credits")
 _G.Atlas = addon
 
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
@@ -156,6 +169,18 @@ local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("Atlas", {
 	type = "launcher",
 	text = L["ATLAS_TITLE"],
 	icon = "Interface\\WorldMap\\WorldMap-Icon",
+	OnClick = function(_, button)
+		if button == "LeftButton" then
+			Atlas_Toggle()
+		elseif button == "RightButton" then
+			addon:OpenOptions()
+		end
+	end,
+	OnTooltipShow = function(tooltip)
+		if not tooltip or not tooltip.AddLine then return end
+		tooltip:AddLine("|cffffffff"..ATLAS_TITLE)
+		tooltip:AddLine(ATLAS_LDB_HINT)
+	end
 })
 
 local minimapButton = LibStub("LibDBIcon-1.0")
@@ -219,6 +244,7 @@ function addon:RegisterModule(moduleKey)
 		return
 	end
 
+---@class AtlasDataModule : AceModule
 	local module = addon:GetModule(moduleKey)
 	if not module or not module.db then
 		return
@@ -401,6 +427,12 @@ local function bossButtonUpdate(button, encounterID, instanceID, b_iconImage, mo
 				button.uiModelSceneID = uiModelSceneID
 				if ( iconImage ) then
 					SetPortraitTextureFromCreatureDisplayID(button.bgImage, displayInfo)
+				end
+				if button.DefeatedOverlay then
+					local complete = C_EncounterJournal.IsEncounterComplete(encounterID);
+					button.DefeatedOpacity:SetShown(complete);
+					button.DefeatedOverlay:SetShown(complete);
+					button.bgImage:SetDesaturation(complete and 0.7 or 0);
 				end
 			end
 		end
@@ -1227,6 +1259,21 @@ function addon:UpdateMapContent(zoneID, base)
 		end
 	end
 
+	-- LFG Button
+	local lfgButton = _G["AtlasFrameLFGButton"]
+	if (addon.Client.isClassicEra and C_LFGList.IsPremadeGroupFinderEnabled() and (base.ActivityID or base.ActivityIDSoD)) then
+		
+		lfgButton:Show();
+
+		if (C_Seasons.GetActiveSeason() == 2 and base.ActivityIDSoD) then
+			lfgButton.ActivityID = base.ActivityIDSoD;
+		elseif (base.ActivityID) then
+			lfgButton.ActivityID = base.ActivityID;
+		end
+	else
+		lfgButton:Hide();
+	end
+
 	-- The boss description to be added here
 	addon:MapAddNPCButton()
 	addon:MapAddNPCButtonLarge()
@@ -1650,23 +1697,13 @@ local function initialization()
 	addon:UpdateLock()
 	addon:UpdateAlpha()
 	addon:UpdateScale()
+	addon:UpdateSmallAlpha()
+	addon:UpdateLargeAlpha()
+	addon:UpdateSmallScale()
+	addon:UpdateLargeScale()
 	AtlasFrame:SetClampedToScreen(profile.options.frames.clamp)
 	AtlasFrameLarge:SetClampedToScreen(profile.options.frames.clamp)
 	AtlasFrameSmall:SetClampedToScreen(profile.options.frames.clamp)
-	
-	-- Make an LDB object
-	LDB.OnClick = function(self, button)
-		if button == "LeftButton" then
-			Atlas_Toggle()
-		elseif button == "RightButton" then
-			addon:OpenOptions()
-		end
-	end
-	LDB.OnTooltipShow = function(tooltip)
-		if not tooltip or not tooltip.AddLine then return end
-		tooltip:AddLine("|cffffffff"..ATLAS_TITLE)
-		tooltip:AddLine(ATLAS_LDB_HINT)
-	end
 	
 	check_Modules()
 	addon:ToggleWorldMapButton()
@@ -1709,7 +1746,11 @@ function addon:Refresh()
 	AtlasFrameDropDown_OnShow()
 	addon:UpdateLock()
 	addon:UpdateAlpha()
+	addon:UpdateSmallAlpha()
+	addon:UpdateLargeAlpha()
 	addon:UpdateScale()
+	addon:UpdateSmallScale()
+	addon:UpdateLargeScale()
 	AtlasFrame:SetClampedToScreen(profile.options.frames.clamp)
 	AtlasFrameLarge:SetClampedToScreen(profile.options.frames.clamp)
 	AtlasFrameSmall:SetClampedToScreen(profile.options.frames.clamp)
@@ -1737,3 +1778,35 @@ function Atlas_GetClassName(class)
 	return addon:GetClassName(class)
 end
 
+function addon:BOSS_KILL(_, encounterID)
+	if not ATLAS_HAS_EJ then
+		return
+	end
+
+	local zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
+	local t = AtlasMaps_NPC_DB[zoneID]
+	local i = 1
+	if (t) then
+		while (t[i]) do
+			local button = _G["AtlasMapBossButton"..i]
+			if button and button.DefeatedOpacity then
+				local complete = C_EncounterJournal.IsEncounterComplete(button.encounterID);
+				button.DefeatedOpacity:SetShown(complete);
+				button.DefeatedOverlay:SetShown(complete);
+				button.bgImage:SetDesaturation(complete and 0.7 or 0);
+			end
+
+			button = _G["AtlasMapBossButtonS"..i]
+			if button and button.DefeatedOpacity then
+				local complete = C_EncounterJournal.IsEncounterComplete(button.encounterID);
+				button.DefeatedOpacity:SetShown(complete);
+				button.DefeatedOverlay:SetShown(complete);
+				button.bgImage:SetDesaturation(complete and 0.7 or 0);
+			end
+
+			i = i + 1
+		end
+	end
+
+	-- TODO: replace boss image in list with an X when defeated
+end

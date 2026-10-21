@@ -130,8 +130,9 @@ available files before installing.
 - [Warlords of Draenor](https://www.curseforge.com/wow/addons/atlas-worldofdraenor)
 - [Legion](https://www.curseforge.com/wow/addons/atlas-legion)
 - [Battle for Azeroth](https://www.curseforge.com/wow/addons/atlas-battle-for-azeroth)
+- [Atlas Shadowlands](https://www.curseforge.com/wow/addons/atlas-shadowlands)
 
-The Kalimdor & Eastern Kingdoms module was previously named "Atlas Classic
+The **Kalimdor & Eastern Kingdoms** module was previously named "Atlas Classic
 WoW." Its name refers to the map content, not exclusively to the WoW Classic
 client. Choose a release compatible with the client you play.
 
@@ -158,8 +159,7 @@ maintainers.
 
 ## Support and Contributions
 
-Please report bugs or suggestions through the project's issue tracker or
-CurseForge comments.
+Please report bugs, enhancement suggestions or question via [GitHub Issue](https://github.com/arithmandar/Atlas/issues) page, or CurseForge comments.
 
 For bug reports, include:
 
@@ -171,18 +171,15 @@ For bug reports, include:
 - Steps to reproduce the issue.
 - Relevant screenshots or error messages.
 
-Translations, map corrections, documentation improvements, and code
-contributions are welcome.
+Translations, map corrections, documentation improvements, and code contributions are welcome.
 
-When reporting a map correction, include the map name and marker or legend
-entry, together with the expected location or information.
+When reporting a map correction, include the map name and marker or legend entry, together with the expected location or information.
 
 ## Credits
 
 Atlas was originally created by Daniel Gilbert.
 
-Thanks to the artists, map creators, developers, translators, and players who
-have contributed to Atlas throughout its history.
+Thanks to the artists, map creators, developers, translators, and players who have contributed to Atlas throughout its history.
 
 Contributors and former team members include:
 
@@ -194,6 +191,10 @@ Contributors and former team members include:
 Special thanks to the translators who have contributed their time and to
 players who have reported issues, supplied reference information, and helped
 improve the maps.
+
+Special thanks to **nanderson11** who picked-up Atlas' maintenance in 2024 till 2006 while 
+Arith was absent. nanderson11 had implemented many bug fixings, enhancements, filling 
+the missing parts in Atlas Shadowlands, and also added Dragonflight, TWW and Midnight contents. 
 
 ## Localization
 
