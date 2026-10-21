@@ -60,6 +60,9 @@ local FOLDER_NAME, private = ...
 
 local LibStub = _G.LibStub
 
+---@class AtlasDataModule : AceModule
+---@field db table
+
 ---@class AtlasAddon : AceAddon
 ---@field db table
 ---@field constants table
@@ -698,6 +701,67 @@ function addon:GetDungeonDifficultyColor(minRecLevel)
 	return color
 end
 
+-- Map marker helpers shared by the normal, small and large map NPC buttons.
+-- A marker is the dynamic text or icon drawn on top of an NPC button, selected
+-- by the colour tag in the 7th field of an AtlasMaps_NPC_DB entry.
+local DEFAULT_MARKER_FONT = "AtlasSystemFont_Large_Outline_Thick"
+
+local function mapNPCButtonClearMarker(button)
+	local text = _G[button:GetName().."_Text"]
+	if (text) then
+		text:SetText("")
+	end
+	button.TaxiImage:SetTexture(nil)
+	button.bgImage:SetTexture(nil)
+end
+
+-- Draws the marker on the button. Returns true when a text marker was drawn.
+local function mapNPCButtonSetMarker(button, info_mark, info_colortag, fontObject)
+	mapNPCButtonClearMarker(button)
+	if (not info_colortag) then
+		return false
+	end
+
+	if (info_colortag == "Dungeon" or info_colortag == "Raid") then
+		button.bgImage:SetTexture("Interface\\MINIMAP\\"..info_colortag)
+	elseif (info_colortag == "Battlegrounds") then
+		button.bgImage:SetTexture("Interface\\MINIMAP\\Tracking\\BattleMaster")
+	elseif (info_colortag == "PvP") then
+		button.bgImage:SetAtlas("worldquest-icon-pvp-ffa", true)
+	elseif (info_colortag == "FlightMaster") then
+		button.TaxiImage:SetTexture("Interface\\MINIMAP\\Tracking\\FlightMaster")
+		button.TaxiImage:SetTexCoord(0, 1, 0, 1)
+	elseif (ATLAS_TAXI_TCOORDS[info_colortag]) then
+		button.TaxiImage:SetTexture("Interface\\AddOns\\Atlas\\Images\\POIICONS")
+		button.TaxiImage:SetTexCoord(unpack(ATLAS_TAXI_TCOORDS[info_colortag]))
+	else
+		local r, g, b
+		if (ATLAS_FONT_COLORS[info_colortag]) then
+			r, g, b = unpack(ATLAS_FONT_COLORS[info_colortag])
+		elseif (RAID_CLASS_COLORS and RAID_CLASS_COLORS[info_colortag]) then
+			local color = RAID_CLASS_COLORS[info_colortag]
+			r, g, b = color.r, color.g, color.b
+		else
+			-- Unknown tag, draw nothing
+			return false
+		end
+
+		local text = _G[button:GetName().."_Text"]
+		if (not text) then
+			text = button:CreateFontString(button:GetName().."_Text", "OVERLAY", fontObject or DEFAULT_MARKER_FONT)
+		elseif (fontObject) then
+			text:SetFontObject(fontObject)
+		end
+		text:ClearAllPoints()
+		text:SetPoint("CENTER", button, "CENTER", 0, 0)
+		text:SetText(tostring(info_mark or ""))
+		text:SetTextColor(r, g, b)
+		return true
+	end
+
+	return false
+end
+
 -- Add boss / NPC button here so that we can add GameTooltip
 function addon:MapAddNPCButton()
 	local zoneID = ATLAS_DROPDOWNS[profile.options.dropdowns.module][profile.options.dropdowns.zone]
@@ -710,6 +774,10 @@ function addon:MapAddNPCButton()
 	local bossindexS = 1
 	local buttonindexS = 1
 	local bossbutton, button, bossbuttonS, buttonS
+	-- Maps opt in to dynamic text / icon markers with DynamicMarkers = true,
+	-- so maps whose numbers are already drawn into the image are not drawn twice.
+	local dynamicMarkers = base and base.DynamicMarkers
+	local markerFont = base and base.DynamicMarkerFont
 
 	if (t) then
 		while (t[i]) do
@@ -783,6 +851,11 @@ function addon:MapAddNPCButton()
 						end
 					end
 				end
+
+				-- Always call this so a recycled button does not keep the marker of a previous map
+				mapNPCButtonSetMarker(button, info_mark, dynamicMarkers and info_colortag or nil, markerFont)
+				mapNPCButtonSetMarker(buttonS, info_mark, dynamicMarkers and info_colortag or nil, markerFont)
+
 				button:SetPoint("TOPLEFT", "AtlasFrame", "TOPLEFT", info_x + 18, -info_y - 82 )
 				button:SetID(info_id)
 				button:Show()
@@ -794,13 +867,6 @@ function addon:MapAddNPCButton()
 				buttonindexS = buttonindexS + 1
 			end
 
-			-- Disable the set text unless one day we want the text to be added dynamatically
-			-- Or, enable it for debugging purpose
---[[
-			local f_text = button:CreateFontString(button:GetName().."_Text", "OVERLAY", "NumberFont_Outline_Huge")
-			f_text:SetPoint("CENTER", button, "CENTER", 0, 0)
-			f_text:SetText(info_mark)
-]]
 			i = i + 1
 		end
 		-- We started the counting from 1, plus 1 in each loop, need to adjust by removing 1 after the loop is ended
@@ -825,7 +891,7 @@ function addon:MapAddNPCButton()
 	
 	button = _G["AtlasMapNPCButton"..buttonindex]
 	while button do
-		button.bgImage:SetTexture(nil)
+		mapNPCButtonClearMarker(button)
 		button:Hide()
 		buttonindex = buttonindex + 1
 		button = _G["AtlasMapNPCButton"..buttonindex]
@@ -833,7 +899,7 @@ function addon:MapAddNPCButton()
 
 	buttonS = _G["AtlasMapNPCButtonS"..buttonindexS]
 	while buttonS do
-		buttonS.bgImage:SetTexture(nil)
+		mapNPCButtonClearMarker(buttonS)
 		buttonS:Hide()
 		buttonindexS = buttonindexS + 1
 		buttonS = _G["AtlasMapNPCButtonS"..buttonindexS]
@@ -877,90 +943,23 @@ function addon:MapAddNPCButtonLarge()
 				if (not button) then
 					button = private.Templates.CreateMapNPCButton("AtlasMapNPCButtonL"..buttonindex, AtlasFrameLarge)
 				end
-				local text = _G[button:GetName().."_Text"]
-				if (text) then
-					text:SetText("")
-				end
-				button.TaxiImage:SetTexture(nil)
-				button.bgImage:SetTexture(nil)
-				--button.LetterImage:SetTexture(nil)
-
 				local tip_title
-				for k, v in pairs(AtlasMaps[zoneID]) do
-					if (type(v) == "table" and v[2] == info_id) then
-						tip_title = v[1]
-						local _, endpos = strfind(tip_title, ") ")
-						if (endpos) then
-							button.tooltiptitle = strsub(tip_title, endpos+1)
+				for _, v in pairs(AtlasMaps[zoneID]) do
+					if (type(v) == "table" and type(v[2]) == "number") then
+						if (v[2] == info_id) then
+							tip_title = v[1]
+							local _, endpos = strfind(tip_title, ") ")
+							if (endpos) then
+								button.tooltiptitle = strsub(tip_title, endpos+1)
+							end
+							break
 						end
-						break
 					end
 				end
 
-				if (info_colortag) then
---[[
-					-- Arith: 2016.08.15 - I decided to use fontstring instead of pre-made character image. But codes can be left here for future reference until I don't need it anymore.
-					if (info_colortag == "Blue" or info_colortag == "Purple") then
-						local texcoord
-						texcoord = "Atlas_Letter_"..info_colortag.."_"..info_mark
-						button.LetterImage:SetTexture("Interface\\AddOns\\Atlas\\Images\\Atlas_Marks_Letters1")
-						button.LetterImage:SetTexCoord(unpack(ATLAS_LETTER_MARKS_TCOORDS[texcoord]))
-						button:SetWidth(20)
-						button:SetHeight(20)
-]]
-					if (info_colortag == "Dungeon" or info_colortag == "Raid") then
-						button.bgImage:SetTexture("Interface\\MINIMAP\\"..info_colortag)
-					elseif (info_colortag == "Battlegrounds") then
-						button.bgImage:SetTexture("Interface\\MINIMAP\\Tracking\\BattleMaster")
-					elseif (info_colortag == "PvP") then
-						button.bgImage:SetAtlas("worldquest-icon-pvp-ffa", true)
-					elseif (info_colortag == "FlightMaster") then
-						button.TaxiImage:SetTexture("Interface\\MINIMAP\\Tracking\\FlightMaster")
-						button.TaxiImage:SetTexCoord(0, 1, 0, 1)
-					elseif (info_colortag == "TaxiAlliance" or info_colortag == "TaxiHorde" or info_colortag == "TaxiNeutral" ) then
-						button.TaxiImage:SetTexture("Interface\\AddOns\\Atlas\\Images\\POIICONS")
-						button.TaxiImage:SetTexCoord(unpack(ATLAS_TAXI_TCOORDS[info_colortag]))
-					elseif (info_colortag == "White" or 
-						info_colortag == "Yellow" or 
-						info_colortag == "Red" or 
-						info_colortag == "Orange" or 
-						info_colortag == "Green" or 
-						info_colortag == "Purple" or
-						info_colortag == "Blue") then
-						if (not text) then
-							text = button:CreateFontString(button:GetName().."_Text", "OVERLAY", "AtlasSystemFont_Large_Outline_Thick")
-						end
-						text:SetPoint("CENTER", button, "CENTER", 0, 0)
-						text:SetText(info_mark)
-						text:SetTextColor(unpack(ATLAS_FONT_COLORS[info_colortag]))
-						button:SetWidth(20)
-						button:SetHeight(20)
-					elseif (info_colortag == "HUNTER" or
-						info_colortag == "WARLOCK" or
-						info_colortag == "PRIEST" or
-						info_colortag == "PALADIN" or
-						info_colortag == "MAGE" or
-						info_colortag == "ROGUE" or
-						info_colortag == "DRUID" or
-						info_colortag == "SHAMAN" or
-						info_colortag == "WARRIOR" or
-						info_colortag == "DEATHKNIGHT" or
-						info_colortag == "MONK" or
-						info_colortag == "DEMONHUNTER") then
-						if (not text) then
-							text = button:CreateFontString(button:GetName().."_Text", "OVERLAY", "AtlasSystemFont_Large_Outline_Thick")
-						end
-						local color = RAID_CLASS_COLORS[info_colortag]
-						text:SetPoint("CENTER", button, "CENTER", 0, 0)
-						text:SetText(info_mark)
-						text:SetTextColor(color.r, color.g, color.b)
-						button:SetWidth(20)
-						button:SetHeight(20)
-
-					else
-						-- Do Nothing
-					end
-					
+				if (mapNPCButtonSetMarker(button, info_mark, info_colortag)) then
+					button:SetWidth(20)
+					button:SetHeight(20)
 				end
 				button:SetPoint("TOPLEFT", "AtlasFrameLarge", "TOPLEFT", info_x + 18, -info_y - 82 )
 				button:SetID(info_id)

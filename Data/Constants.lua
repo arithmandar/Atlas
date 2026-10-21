@@ -117,10 +117,11 @@ constants.colors = {
 		CYAN = "|cff00ffff",
 		GREN = "|cff66cc33", -- NPCs
 		GREY = "|cff999999",
+		LGRE = "|cffc0b8a8", -- for zone name
 		LBLU = "|cff33cccc",
 		_RED = "|cffcc3333",
 		ORNG = "|cffcc9933", -- usually used for reputation related
-		PINK = "|ccfcc33cc",
+		PINK = "|cffcc33cc",
 		PURP = "|cff9900ff", -- taxi / transportation nodes
 		WHIT = "|cffffffff", -- encounters
 		YLOW = "|cffcccc33",
@@ -308,6 +309,9 @@ ATLAS_FONT_COLORS = {
 	["Orange"] 	= {1.00, 0.82, 0.00},
 	["Purple"]	= {0.73, 0.40, 1.00},
 	["Blue"]	= {0.40, 0.40, 1.00},
+	["Alliance"] = {0.48, 0.67, 0.88}, -- |cff7babe0
+	["Horde"]    = {0.85, 0.41, 0.33}, -- |cffda6955
+	["Neutral"]  = {1.00, 0.90, 0.44}, -- |cfffee570
 }
 
 ATLAS_TAXI_TCOORDS = {
