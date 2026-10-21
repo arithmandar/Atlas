@@ -34,45 +34,102 @@ local LibStub = _G.LibStub
 ---@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 
+-- Midnight secret values: inside instances, unit names returned to addon code
+-- are secret. Addon code may hold them but must not compare, index or cache them.
+local issecretvalue = _G.issecretvalue
+local canaccesstable = _G.canaccesstable
+
+local function isSecret(value)
+    return issecretvalue ~= nil and issecretvalue(value) == true
+end
+
+local function isAccessibleTable(value)
+    if type(value) ~= "table" then
+        return false
+    end
+    return canaccesstable == nil or canaccesstable(value) == true
+end
+
+-- Set when a lookup returned a secret; lookups are skipped until the next loading screen
+local secretsActive = false
+
+-- Plain (non-secret, non-empty, known) name or nil
+local function plainName(name)
+    if isSecret(name) then
+        return nil, true
+    end
+    if type(name) ~= "string" then
+        return nil, false
+    end
+    if name == "" or name == UNKNOWN then
+        return nil, false
+    end
+    return name, false
+end
+
 -- get creature's name from server
-local cache_tooltip = CreateFrame(
-    "GameTooltip",
-    "AtlasCreatureNameTooltip",
-    UIParent,
-    "GameTooltipTemplate"
-)
+local cache_tooltip
+
+-- Returns name, secret. type() is safe on secret values, comparisons are not.
+local function getCreatureNameFromTooltipInfo(link)
+    local data = C_TooltipInfo.GetHyperlink(link)
+    if type(data) ~= "table" then
+        return nil, false
+    end
+    if not isAccessibleTable(data) or not isAccessibleTable(data.lines) then
+        return nil, true
+    end
+    local line = data.lines[1]
+    if type(line) ~= "table" then
+        return nil, false
+    end
+    if not isAccessibleTable(line) then
+        return nil, true
+    end
+    return plainName(line.leftText)
+end
+
+-- Older clients without C_TooltipInfo
+local function getCreatureNameFromTooltip(link)
+    if not cache_tooltip then
+        cache_tooltip = CreateFrame("GameTooltip", "AtlasCreatureNameTooltip", UIParent, "GameTooltipTemplate")
+    end
+    cache_tooltip:SetOwner(UIParent, "ANCHOR_NONE")
+    cache_tooltip:ClearLines()
+    cache_tooltip:SetHyperlink(link)
+
+    local name
+    if cache_tooltip:NumLines() > 0 then
+        local firstLine = _G["AtlasCreatureNameTooltipTextLeft1"]
+        name = firstLine and firstLine:GetText()
+    end
+    cache_tooltip:Hide()
+    return plainName(name)
+end
 
 local function getCreatureNamebyID(id)
     id = tonumber(id)
 
-    if not id or id <= 0 or id % 1 ~= 0 then
+    if not id or id <= 0 or id % 1 ~= 0 or secretsActive then
         return nil
     end
-
-    cache_tooltip:SetOwner(UIParent, "ANCHOR_NONE")
-    cache_tooltip:ClearLines()
 
     -- Use the complete Creature GUID shape, including the spawn UID.
     local link = ("unit:Creature-0-0-0-0-%d-0000000000"):format(id)
-    cache_tooltip:SetHyperlink(link)
 
-    local creatureName
-
-    if cache_tooltip:NumLines() > 0 then
-        local firstLine = _G["AtlasCreatureNameTooltipTextLeft1"]
-        creatureName = firstLine and firstLine:GetText()
+    local name, secret
+    if C_TooltipInfo and C_TooltipInfo.GetHyperlink then
+        name, secret = getCreatureNameFromTooltipInfo(link)
+    end
+    -- Clients without C_TooltipInfo, or where it does not handle unit links
+    if not name and not secret then
+        name, secret = getCreatureNameFromTooltip(link)
     end
 
-    cache_tooltip:Hide()
-
-    if not creatureName
-        or creatureName == ""
-        or creatureName == UNKNOWN
-    then
-        return nil
+    if secret then
+        secretsActive = true
     end
-
-    return creatureName
+    return name
 end
 
 local pendingCreatureNames = {}
@@ -198,5 +255,15 @@ function addon:RefreshPendingCreatureNames()
     retryCount = 0
     scheduleRetry()
 end
+
+-- Names become readable again after leaving the instance, so retry after each loading screen
+local eventFrame = CreateFrame("Frame")
+eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+eventFrame:SetScript("OnEvent", function()
+    secretsActive = false
+    if next(pendingCreatureNames) then
+        addon:RefreshPendingCreatureNames()
+    end
+end)
 
 

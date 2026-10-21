@@ -245,7 +245,6 @@ function addon:RegisterModule(moduleKey)
 	end
 
 ---@class AtlasDataModule : AceModule
----@field db table
 	local module = addon:GetModule(moduleKey)
 	if not module or not module.db then
 		return
