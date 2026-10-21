@@ -50,15 +50,18 @@ local dropdowns = setmetatable({}, {
 local Templates = {}
 private.Templates = Templates
 
+local Client = private.Client
 
 
 -- //////////////////////////////////////////
 -- AtlasFrameDropDownTypeTemplate
 function Templates.CreateFrameDropDownType(name, parent)
 	local f = _G[name] or LibDD:Create_UIDropDownMenu(name, parent)
-	
-	f:SetPoint("TOPLEFT", parent, 60, -50)
-	
+
+	f:SetPoint("TOPLEFT", parent, 65, -44)
+	f:SetWidth(ATLAS_DROPDOWN_WIDTH)
+	f:SetPropagateMouseMotion(true)
+
 	f.Label = f:CreateFontString(name.."Label", "BACKGROUND", "GameFontNormalSmall")
 	f.Label:SetText(ATLAS_STRING_SELECT_CAT)
 	f.Label:SetPoint("BOTTOMLEFT", f, "TOPLEFT", 21, 0)
@@ -436,6 +439,26 @@ function Templates.CreateMapZoneName(name, parent)
 	return f
 end
 
+function Templates.CreateLFGButton(name, parent)
+	local f = CreateFrame("Button", name, parent)
+	f:SetSize(32, 32)
+	f:Hide()
+	f:SetPoint("TOPRIGHT", parent, "TOPRIGHT", -25, -39)
+
+	local tex = f:CreateTexture(name.."Texture", "ARTWORK")
+	tex:SetAllPoints()
+	tex:SetTexture("Interface\\LFGFrame\\LFG-Eye")
+	tex:SetTexCoord(0, 0.125, 0, 0.25)
+
+	f:SetNormalTexture("Interface\\Buttons\\UI-SquareButton-Up")
+	f:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight", "ADD")
+	f:SetScript("OnEnter", function(self) addon:SearchLFG_Enter(self) end)
+	f:SetScript("OnLeave", function() GameTooltip:Hide() end)
+	f:SetScript("OnClick", function() addon:SearchLFG() end)
+	return f
+end
+
+
 -- //////////////////////////////////////////
 -- AtlasMapButtonTemplate and its children (NPC / boss map pin buttons)
 local function ApplyMapButtonMixin(f)
@@ -504,6 +527,33 @@ function Templates.CreateBossButton(name, parent)
 	bgImage:SetSize(36, 36)
 	bgImage:SetPoint("CENTER", 0, 0)
 	f.bgImage = bgImage
+
+	-- Should we include ClassicMoP as well?
+	-- If so, then we should use ATLAS_HAS_EJ
+	if Client.isRetail then 
+		local DefeatedOpacity = f:CreateTexture(name.."DefeatedOpacity", "OVERLAY")
+		DefeatedOpacity:SetPoint("TOPLEFT", bgImage, "TOPLEFT", -1, 1)
+		DefeatedOpacity:SetPoint("BOTTOMRIGHT", bgImage, "BOTTOMRIGHT", 1, -1)
+		DefeatedOpacity:SetColorTexture(0, 0, 0, 0.4)
+		DefeatedOpacity:Hide()
+		f.DefeatedOpacity = DefeatedOpacity
+
+		local opacityMask = f:CreateMaskTexture(nil, "OVERLAY")
+		opacityMask:SetTexture("Interface\\CharacterFrame\\TempPortraitAlphaMask", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+		opacityMask:SetPoint("TOPLEFT", DefeatedOpacity, "TOPLEFT")
+		opacityMask:SetPoint("BOTTOMRIGHT", DefeatedOpacity, "BOTTOMRIGHT")
+		DefeatedOpacity:AddMaskTexture(opacityMask)
+		f.OpacityCircleMask = opacityMask
+
+		local DefeatedOverlay = CreateFrame("Frame", nil, f)
+		DefeatedOverlay:SetAllPoints(true)
+		f.DefeatedOverlay = DefeatedOverlay
+
+		local DefeatedCross = DefeatedOverlay:CreateTexture(nil, "OVERLAY")
+		DefeatedCross:SetAtlas("Map-MarkedDefeated", true)
+		DefeatedCross:SetPoint("BOTTOMRIGHT", 4, -4)
+		DefeatedOverlay.DefeatedCross = DefeatedCross
+	end
 
 	f:SetNormalTexture("Interface\\EncounterJournal\\UI-EncounterJournalTextures")
 	f:GetNormalTexture():SetTexCoord(0.84960938, 0.97070313, 0.42871094, 0.48828125)

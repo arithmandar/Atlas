@@ -262,6 +262,9 @@ function UI.CreateAtlasFrame()
 
 	private.Templates.CreateOptionsButton("AtlasFrameOptionsButton", f)
 
+	local lfgButton = private.Templates.CreateLFGButton("AtlasFrameLFGButton", f)
+	f.LFGButton = lfgButton
+
 	local searchEditBox = CreateFrame("EditBox", "AtlasSearchEditBox", f, "InputBoxTemplate")
 	searchEditBox:SetSize(150, 32)
 	searchEditBox:SetPoint("BOTTOMRIGHT", -210, 0)

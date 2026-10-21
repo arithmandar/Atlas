@@ -68,7 +68,7 @@ function addon:GetQuestTitlebyID(title, id)
 	local color = addon:GetDungeonDifficultyColor(difficulty)
 	local colorTag = addon:FormatColor(color)
 	if isCompleted then
-		questTitle = colors.labels.GREY..questTitle
+		questTitle = colors.labels.GREY.."["..difficulty.."] "..questTitle
 	else
 		questTitle = colorTag.."["..difficulty.."] "..questTitle
 	end

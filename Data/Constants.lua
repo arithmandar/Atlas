@@ -333,6 +333,10 @@ constants.defaults = {
 			frames = {
 				alpha = 1.0,			-- AtlasAlpha
 				scale = 1.0,			-- AtlasScale
+				smallAlpha = 1.0,			-- AtlasSmallAlpha
+				smallScale = 1.0,			-- AtlasSmallScale
+				largeAlpha = 1.0,			-- AtlasLargeAlpha
+				largeScale = 1.0,			-- AtlasLargeScale
 				boss_description_scale = 0.9,	-- AtlasBossDescScale
 				showBossDesc = true,		-- AtlasBossDesc
 				showBossPotrait = true,
@@ -416,6 +420,7 @@ constants.deprecatedList = {
 }
 
 constants.events = {
+	"BOSS_KILL",
 	"PLAYER_LOGIN",
 	"ADDON_LOADED",
 	"GET_ITEM_INFO_RECEIVED",

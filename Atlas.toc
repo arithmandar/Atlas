@@ -64,6 +64,7 @@ Modules\Quest.lua
 Modules\Item.lua
 Modules\Creature.lua
 Modules\Achievements.lua
+Modules\LFG.lua
 Core\AtlasFrame.lua
 Core\UI.lua
 Core\Config.lua
