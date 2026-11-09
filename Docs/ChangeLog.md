@@ -10,7 +10,7 @@
 
 ## Change Log
 
-### v1.54.05 (Oct. xx, 2006)
+### v1.54.05 (Nov. 09, 2026)
 
 #### Bug fixing: 
 
@@ -28,6 +28,10 @@
 - LDB button's left-/right-click behavior now handles when we define LDB button
 - Added BOSS_KILL and defeated overlay handling for boss buttons
 - LFGButton
+
+#### Others
+
+- Updated LibBabble-SubZone-3.0 to the latest version from GitHub
 
 ### v1.54.04 (Oct. 20, 2026)
 
