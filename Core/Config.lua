@@ -31,9 +31,10 @@ local _G = getfenv(0)
 local pairs = _G.pairs
 
 local _, private = ...
+---@cast private AtlasNamespace
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 
 local AceConfigReg = LibStub("AceConfigRegistry-3.0")
@@ -575,6 +576,9 @@ end
 --		optionsTable	: the sub-table to insert
 --		displayName	: the name to display in the config interface for this set of options
 -- Output: None.
+---@param name string
+---@param optionTbl table|fun(): table
+---@param displayName string?
 function addon:RegisterModuleOptions(name, optionTbl, displayName)
 	moduleOptions[name] = optionTbl
 	self.optionsFrames[name] = AceConfigDialog:AddToBlizOptions(addon.LocName, displayName, addon.LocName, name)

@@ -35,6 +35,7 @@ local GameTooltip = _G.GameTooltip
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon("Atlas")
 ---@cast addon AtlasAddon
@@ -67,5 +68,4 @@ end
 function AtlasWorldMapButtonMixin:Refresh()
 	
 end
-
 

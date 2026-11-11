@@ -36,6 +36,7 @@ local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 private.addon_name = "Atlas"
 
 -- Determine WoW client family

@@ -29,10 +29,11 @@
 
 local _G = getfenv(0)
 local _, private = ...
+---@cast private AtlasNamespace
 
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 
 -- Midnight secret values: inside instances, unit names returned to addon code
 -- are secret. Addon code may hold them but must not compare, index or cache them.
@@ -54,6 +55,9 @@ end
 local secretsActive = false
 
 -- Plain (non-secret, non-empty, known) name or nil
+---@param name any
+---@return string? name
+---@return boolean secret
 local function plainName(name)
     if isSecret(name) then
         return nil, true
@@ -71,6 +75,9 @@ end
 local cache_tooltip
 
 -- Returns name, secret. type() is safe on secret values, comparisons are not.
+---@param link string
+---@return string? name
+---@return boolean secret
 local function getCreatureNameFromTooltipInfo(link)
     local data = C_TooltipInfo.GetHyperlink(link)
     if type(data) ~= "table" then
@@ -90,6 +97,9 @@ local function getCreatureNameFromTooltipInfo(link)
 end
 
 -- Older clients without C_TooltipInfo
+---@param link string
+---@return string? name
+---@return boolean secret
 local function getCreatureNameFromTooltip(link)
     if not cache_tooltip then
         cache_tooltip = CreateFrame("GameTooltip", "AtlasCreatureNameTooltip", UIParent, "GameTooltipTemplate")
@@ -107,6 +117,8 @@ local function getCreatureNameFromTooltip(link)
     return plainName(name)
 end
 
+---@param id number|string?
+---@return string?
 local function getCreatureNamebyID(id)
     id = tonumber(id)
 
@@ -138,6 +150,7 @@ local retryCount = 0
 local MAX_RETRIES = 5
 
 -- addon.db does not exist while map data files are loading, hence the nil return.
+---@return table<number, string>?
 local function getCreatureNameCache()
     local db = addon.db
     if not db or not db.global then
@@ -153,6 +166,8 @@ local function getCreatureNameCache()
     return creatureNames[locale]
 end
 
+---@param id number
+---@return string?
 local function resolveCreatureName(id)
     local cache = getCreatureNameCache()
     local name = getCreatureNamebyID(id)
@@ -166,6 +181,8 @@ local function resolveCreatureName(id)
 end
 
 -- Replaces the fallback text inside the already built map rows
+---@param id number
+---@return boolean
 local function updatePendingCreatureName(id)
     local fallbacks = pendingCreatureNames[id]
     if not fallbacks then
@@ -198,6 +215,8 @@ local function updatePendingCreatureName(id)
     return updated
 end
 
+---@return boolean updated
+---@return boolean remaining
 local function updatePendingCreatureNames()
     local updated = false
     local remaining = false
@@ -230,6 +249,9 @@ local function scheduleRetry()
     end)
 end
 
+---@param creatureName string?
+---@param id number|string?
+---@return string?
 function addon:GetCreatureName(creatureName, id)
     id = tonumber(id)
     if not id then
@@ -265,5 +287,3 @@ eventFrame:SetScript("OnEvent", function()
         addon:RefreshPendingCreatureNames()
     end
 end)
-
-

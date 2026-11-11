@@ -49,9 +49,10 @@ local GetMapInfo, GetMapArtLayers = C_Map.GetMapInfo, C_Map.GetMapArtLayers
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 local BB = Atlas_GetLocaleLibBabble("LibBabble-Boss-3.0")
 
@@ -68,6 +69,10 @@ function addon:EncounterJournal_IsHeaderTypeOverview(headerType)
 end
 
 -- Falls back to the Babble-Boss / Atlas locale tables to translate a boss name.
+---@param bossname string?
+---@param LL table<string, string>?
+---@param checkBBFirst boolean
+---@return string?
 local function TranslateBossNameFallback(bossname, LL, checkBBFirst)
 	if (not bossname) then return bossname end
 
@@ -94,6 +99,11 @@ end
 -- Syntax 2: Atlas_GetBossName(bossname, encounterID);
 -- Syntax 2: Atlas_GetBossName(bossname, encounterID, creatureIndex);
 -- ------------------------------------------------------------
+---@param bossname string?
+---@param encounterID number?
+---@param creatureIndex number?
+---@param moduleName string?
+---@return string?
 function addon:GetBossName(bossname, encounterID, creatureIndex, moduleName)
 	local LL
 	if (moduleName) then LL = LibStub("AceLocale-3.0"):GetLocale("Atlas_"..moduleName) end
@@ -124,11 +134,19 @@ function addon:GetBossName(bossname, encounterID, creatureIndex, moduleName)
 	return bossname
 end
 
+---@param bossname string?
+---@param encounterID number?
+---@param creatureIndex number?
+---@return string?
 function Atlas_GetBossName(bossname, encounterID, creatureIndex)
 	return addon:GetBossName(bossname, encounterID, creatureIndex)
 end
 
 -- To get encounter's participant names, they appears as part of section title
+---@param bossname string?
+---@param sectionID number?
+---@param moduleName string?
+---@return string?
 function addon:GetEJSectionTitle(bossname, sectionID, moduleName)
 	if (ATLAS_HAS_EJ) then
 		if not bossname or not sectionID then
@@ -144,6 +162,9 @@ function addon:GetEJSectionTitle(bossname, sectionID, moduleName)
 end
 
 
+---@param bossname string?
+---@param sectionID number?
+---@return string?
 function Atlas_GetEJSectionTitle(bossname, sectionID)
 	return addon:GetEJSectionTitle(bossname, sectionID)
 end
@@ -362,4 +383,3 @@ function addon:EncounterJournal_Binding()
 end
 
 -- End of Encounter Journal's button bidding
-

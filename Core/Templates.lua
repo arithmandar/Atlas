@@ -30,10 +30,11 @@
 local _G = getfenv(0)
 
 local _, private = ...
+---@cast private AtlasNamespace
 
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 -- UIDropDownMenu
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)

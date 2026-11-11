@@ -3,11 +3,14 @@
 -- ----------------------------------------------------------------------------
 local _G = getfenv(0)
 local _, private = ...
+---@cast private AtlasNamespace
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 
 
+---@param categoryID number
+---@param activityID number
 local function startLFGSearch(categoryID, activityID)
 	-- Open LFG to the group browser
 	ShowLFGParentFrame(2);
@@ -48,4 +51,3 @@ function addon:SearchLFG_Enter(button)
 		GameTooltip:SetText(L["Find group for this instance"]);
 	end
 end
-

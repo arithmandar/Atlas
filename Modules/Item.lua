@@ -29,6 +29,7 @@
 
 local _G = getfenv(0)
 local _, private = ...
+---@cast private AtlasNamespace
 local pairs, ipairs, type = _G.pairs, _G.ipairs, _G.type
 local strsub = _G.string.sub
 local C_Item  = _G.C_Item
@@ -36,13 +37,14 @@ local GetItemInfo = C_Item.GetItemInfo
 local RequestLoadItemDataByID = C_Item.RequestLoadItemDataByID
 
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 
 local pendingItemTitles = {}
 
 -- Item names saved per game locale, so they are available from the next session on.
 -- addon.db does not exist while map data files are loading, hence the nil return.
+---@return table<number, string>?
 local function getItemNameCache()
 	local db = addon.db
 	if (not db or not db.global) then
@@ -58,6 +60,8 @@ local function getItemNameCache()
 	return itemNames[locale]
 end
 
+---@param itemID number
+---@return string?
 local function resolveItemName(itemID)
 	local cache = getItemNameCache()
 	local itemName = GetItemInfo(itemID)
@@ -70,6 +74,9 @@ local function resolveItemName(itemID)
 	return cache and cache[itemID] or nil
 end
 
+---@param title string?
+---@param id number?
+---@return string?
 function addon:GetItemTitlebyID(title, id)
 	if (not id) then
 		return title
@@ -92,6 +99,8 @@ function addon:GetItemTitlebyID(title, id)
 	return title
 end
 
+---@param itemID number
+---@return boolean
 local function updatePendingItemTitle(itemID)
 	local fallbacks = pendingItemTitles[itemID]
 	if (not fallbacks) then
@@ -147,6 +156,8 @@ local function round(num, idp)
 end
 
 
+---@param minGearLevel number?
+---@return AtlasColor
 function addon:GetGearItemLevelDiffColor(minGearLevel)
 	local color = {r = 1.00, g = 1.00, b = 1.00}
 	if (minGearLevel == nil) then return color end

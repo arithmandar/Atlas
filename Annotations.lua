@@ -1,0 +1,129 @@
+---@meta
+
+---@class AtlasNamespace
+---@field addon_name string
+---@field Client AtlasClient
+---@field MapData AtlasAreaMapData
+---@field constants table
+---@field Fonts table
+---@field Templates table
+---@field UI table
+
+---@class AtlasClient
+---@field projectID number
+---@field isRetail boolean
+---@field isClassicEra boolean
+---@field isTBCClassic boolean
+---@field isCataclysmClassic boolean
+---@field isMistsClassic boolean
+---@field isForever boolean
+---@field isProgressionClassic boolean
+---@field isAnyClassic boolean
+---@field isKnownProject boolean
+
+---@class AtlasAreaMapData
+---@field AreaToID table<string, number>
+
+---@class AtlasDungeonData
+---@field typeID number?
+---@field subtypeID number?
+---@field minLevel number?
+---@field maxLevel number?
+---@field minRecLevel number?
+---@field maxRecLevel number?
+---@field maxPlayers number?
+---@field minGearLevel number?
+
+---@class AtlasColor
+---@field r number
+---@field g number
+---@field b number
+
+---@class AtlasDataModuleDB
+---@field AtlasMaps table?
+---@field AtlasMaps_NPC_DB table?
+---@field DropDownLayouts_Order table?
+---@field DropDownLayouts table?
+
+---@class AtlasDataModule : AceModule
+---@field db AtlasDataModuleDB?
+
+---@class AtlasAddon : AceAddon
+---@field db table
+---@field constants table
+---@field Client AtlasClient
+---@field Templates table
+---@field Fonts table
+---@field dropdowns table
+---@field assocs table
+---@field optionsFrames table
+---@field Name string
+---@field LocName string
+---@field Notes string
+---@field Version string?
+---@field UpdateDate string?
+---@field Author string?
+---@field Credits string?
+---@field WorldMap table
+---@field BOSS_KILL fun(self: AtlasAddon, event: string, encounterID: number)
+---@field AchievementButtonUpdate fun(self: AtlasAddon, button: table, achievementID: number)
+---@field AdventureJournalButton_OnClick fun(self: AtlasAddon, frame: table)
+---@field AdventureJournalButton_OnEnter fun(self: AtlasAddon, frame: table)
+---@field AdventureJournal_EncounterButton_OnClick fun(self: AtlasAddon, instanceID: number, encounterID: number, keepAtlas: boolean?)
+---@field AdventureJournal_MapButton_OnClick fun(self: AtlasAddon, frame: table)
+---@field AtlasLootButton_OnClick fun(self: AtlasAddon, frame: table, button: string?)
+---@field Auto_Select fun(self: AtlasAddon)
+---@field BossButton_OnClick fun(self: AtlasAddon, frame: table, button: string?)
+---@field CheckAddonStatus fun(self: AtlasAddon, addonName: string): boolean
+---@field DungeonMinGearLevelToolTip fun(self: AtlasAddon, frame: table)
+---@field EnableAtlasLootButton fun(self: AtlasAddon, base: table, zoneID: string|number)
+---@field EncounterJournal_Binding fun(self: AtlasAddon)
+---@field EncounterJournal_IsHeaderTypeOverview fun(self: AtlasAddon, headerType: any): boolean
+---@field FormatColor fun(self: AtlasAddon, colorArray: AtlasColor?): string?
+---@field FormatDungeonLevelRange fun(self: AtlasAddon, minLevel: number?, maxLevel: number?, icon: string): string?
+---@field GetBossName fun(self: AtlasAddon, bossName: string?, encounterID: number?, creatureIndex: number?, moduleName: string?): string?
+---@field GetClassName fun(self: AtlasAddon, class: string): string?
+---@field GetCreatureName fun(self: AtlasAddon, creatureName: string?, id: (number|string)?): string?
+---@field GetDungeonData fun(self: AtlasAddon, dungeonID: number?, fallbackMinRec: number?, fallbackMaxRec: number?): AtlasDungeonData?
+---@field GetDungeonDifficultyColor fun(self: AtlasAddon, minimumLevel: number?): AtlasColor
+---@field GetEJSectionTitle fun(self: AtlasAddon, bossName: string?, sectionID: number?, moduleName: string?): string?
+---@field GetGearItemLevelDiffColor fun(self: AtlasAddon, minGearLevel: number?): AtlasColor
+---@field GetItemTitlebyID fun(self: AtlasAddon, title: string?, id: number?): string?
+---@field GetQuestLevelRange fun(self: AtlasAddon): number
+---@field GetQuestTitlebyID fun(self: AtlasAddon, title: string?, id: number?): string?
+---@field IsRaidInfo fun(self: AtlasAddon, info: AtlasDungeonData?): boolean?
+---@field SearchLFG fun(self: AtlasAddon)
+---@field SearchLFG_Enter fun(self: AtlasAddon, button: table)
+---@field MapAddNPCButton fun(self: AtlasAddon)
+---@field MapAddNPCButtonLarge fun(self: AtlasAddon)
+---@field OnEnable fun(self: AtlasAddon)
+---@field OnInitialize fun(self: AtlasAddon)
+---@field OnItemInfoReceived fun(self: AtlasAddon, itemID: number)
+---@field OpenAchievement fun(self: AtlasAddon, achievementID: number?)
+---@field OpenOptions fun(self: AtlasAddon)
+---@field PopulateDropdowns fun(self: AtlasAddon)
+---@field Refresh fun(self: AtlasAddon)
+---@field RefreshMap fun(self: AtlasAddon, mapID: (string|number)?)
+---@field RefreshPendingCreatureNames fun(self: AtlasAddon)
+---@field RefreshPendingItemTitles fun(self: AtlasAddon)
+---@field RegisterChatCommand fun(self: AtlasAddon, command: string, handler: function)
+---@field RegisterModule fun(self: AtlasAddon, moduleKey: string)
+---@field RegisterModuleOptions fun(self: AtlasAddon, name: string, optionTable: (table|fun(): table), displayName: string?)
+---@field RegisterPlugin fun(self: AtlasAddon, name: string, myCategory: string, myData: table, myNPCData: table?)
+---@field ScrollBar_Update fun(self: AtlasAddon)
+---@field SearchText fun(self: AtlasAddon, text: string)
+---@field SetupOptions fun(self: AtlasAddon)
+---@field Toggle fun(self: AtlasAddon)
+---@field ToggleLegendPanel fun(self: AtlasAddon)
+---@field ToggleLock fun(self: AtlasAddon)
+---@field ToggleWindowSize fun(self: AtlasAddon)
+---@field ToggleWorldMapButton fun(self: AtlasAddon)
+---@field UpdateAlpha fun(self: AtlasAddon)
+---@field UpdateSmallAlpha fun(self: AtlasAddon)
+---@field UpdateLargeAlpha fun(self: AtlasAddon)
+---@field UpdateLock fun(self: AtlasAddon)
+---@field UpdateMapContent fun(self: AtlasAddon, zoneID: string|number, base: table)
+---@field UpdateScale fun(self: AtlasAddon)
+---@field UpdateSmallScale fun(self: AtlasAddon)
+---@field UpdateLargeScale fun(self: AtlasAddon)
+---@field WorldMapButtonSelectMap fun(self: AtlasAddon)

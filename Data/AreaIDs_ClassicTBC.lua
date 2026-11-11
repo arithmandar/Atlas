@@ -2,6 +2,7 @@
 -- AreaID for the Anniversary Classic TBC version of World of Warcraft.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 
 local Client = private.Client
 if not Client.isTBCClassic then return end

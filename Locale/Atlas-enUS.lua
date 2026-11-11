@@ -112,6 +112,47 @@ Note that Atlas itself is a map browser,
 you will have to at least install one 
 map module or plugin to browse the maps.]=]
 
+L["ATLAS_NO_MODULE_OR_PLUGIN_NEW"] = [=[|cffffd200Atlas needs a map pack|r
+
+Atlas is a map browser and does not include maps. No enabled map packs or plugins were detected.
+
+For maps of Kalimdor and the Eastern Kingdoms, install this separate addon:
+|cff66ccffAtlas Kalimdor & Eastern Kingdoms|r
+
+Map pack names describe their map content, not the WoW client they support. Choose a download for your WoW version.
+
+If you already installed a map pack, make sure both Atlas and the map pack are enabled in your character's AddOns list.]=]
+
+L["ATLAS_MAP_PACK_GUIDE"] = "Map Pack Guide"
+
+L["ATLAS_MAP_PACK_GUIDE_TEXT"] = [=[|cffffd2001. Choose a map pack|r
+
+Atlas is a map browser and does not include maps. Install at least one map pack or compatible plugin to browse maps.
+
+Visit the Atlas Map Packs and Plugins page using the address below. It provides links to the available packages, installation instructions, and troubleshooting tips.
+
+For maps of Kalimdor and the Eastern Kingdoms, choose:
+|cff66ccffAtlas Kalimdor & Eastern Kingdoms|r
+This map pack was formerly named Atlas Classic WoW.
+
+|cffffd2002. Choose the download for your WoW version|r
+
+Map pack names describe their map content, not the WoW client they support. Check each project's available files and choose a download compatible with your client and game version.
+
+You only need to install the packages for the maps you want to use.
+
+|cffffd2003. Enable Atlas and the map pack|r
+
+After installing, restart WoW if it is running. In your character's AddOns list, make sure both Atlas and the map pack are enabled.
+
+|cffffd200Still no maps?|r
+
+See the troubleshooting section on the Atlas Map Packs and Plugins page. If you report a problem, include your WoW version, Atlas version, the names and versions of your installed map packs, and any Lua errors.]=]
+
+L["ATLAS_MAP_PACK_GUIDE_URL_LABEL"] = "Map pack downloads and installation guide:"
+
+L["ATLAS_MAP_PACK_GUIDE_COPY_HINT"] = "Click the address to select it, then copy and paste it into your browser."
+
 L["ATLAS_BUTTON_CLOSE"] = "Close"
 L["ATLAS_LDB_HINT"] = [=[Left-Click to open Atlas.
 Right-Click for Atlas options.]=]

@@ -10,6 +10,13 @@
 
 ## Change Log
 
+### v1.54.06 (Nov. 11, 2026)
+
+- Added Lua Language Server annotations across Atlas for shared types and function parameters, return values, and bindings
+- Added `Annotations.lua` with shared editor-only type definitions; it is not loaded by the game
+- Added handling for opening the AddOns list through static popup dialogs
+- Added additional guideline for Atlas map packs
+
 ### v1.54.05 (Nov. 09, 2026)
 
 #### Bug fixing: 

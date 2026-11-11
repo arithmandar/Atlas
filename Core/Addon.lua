@@ -28,5 +28,6 @@
 -- Creates the AceAddon object early so every later file can fetch it with
 -- LibStub("AceAddon-3.0"):GetAddon(private.addon_name).
 local _, private = ...
+---@cast private AtlasNamespace
 
 LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceConsole-3.0")
