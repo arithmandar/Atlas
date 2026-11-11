@@ -63,6 +63,7 @@ Core\Atlas.lua
 Modules\Quest.lua
 Modules\Item.lua
 Modules\Creature.lua
+Modules\Factions.lua
 Modules\Achievements.lua
 Modules\LFG.lua
 Core\AtlasFrame.lua

@@ -49,3 +49,4 @@ externals:
 ignore:
     - Images/PSD
     - Annotations.lua
+    - tests

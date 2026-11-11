@@ -8,6 +8,7 @@ local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 ---@cast addon AtlasAddon
 
+local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 
 ---@param categoryID number
 ---@param activityID number
