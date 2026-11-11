@@ -175,6 +175,18 @@ Translations, map corrections, documentation improvements, and code contribution
 
 When reporting a map correction, include the map name and marker or legend entry, together with the expected location or information.
 
+### Lua annotations
+
+Atlas uses [Lua Language Server](https://luals.github.io/) annotations with the
+[WoW API extension](https://github.com/Ketho/vscode-wow-api). Shared Atlas
+types are defined in [`Annotations.lua`](Annotations.lua); parameter, return,
+and binding annotations belong next to the code they describe. Update the
+shared types when changing the addon namespace or a shared data structure.
+
+`Annotations.lua` contains only editor annotations. It is not listed in the
+addon TOC or loaded by the game. The extension supplies WoW API definitions;
+diagnostics may also depend on the installed client/API and external libraries.
+
 ## Credits
 
 Atlas was originally created by Daniel Gilbert.

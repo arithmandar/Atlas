@@ -33,9 +33,10 @@ local table = _G.table
 local tsort = table.sort
 
 local _, private = ...
+---@cast private AtlasNamespace
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 -- UIDropDownMenu
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
@@ -231,6 +232,10 @@ function AtlasFrameDropDownType_OnClick(self)
 	addon:RefreshMap()
 end
 
+---@param id number?
+---@param fallbackMinRec number?
+---@param fallbackMaxRec number?
+---@return AtlasDungeonData?
 function addon:GetDungeonData(id, fallbackMinRec, fallbackMaxRec)
     if (not id or not GetLFGDungeonInfo) then return nil end
     local _, typeID, subtypeID, minLevel, maxLevel, _, minRec, maxRec, _, _, _, _, maxPlayers, _, _, _, _, _, _, minGear = GetLFGDungeonInfo(id)
@@ -259,10 +264,16 @@ local ICON_MYTHIC  = addon.constants.dungeonIcon.mythic
 local ICON_DUNGEON = addon.constants.dungeonIcon.dungeon
 local ICON_RAID    = addon.constants.dungeonIcon.raid
 
+---@param d AtlasDungeonData?
+---@return boolean?
 function addon:IsRaidInfo(d)
 	return d and (d.typeID == 2 or (d.typeID == 1 and d.subtypeID == 3))
 end
 
+---@param minLevel number?
+---@param maxLevel number?
+---@param icon string
+---@return string?
 function addon:FormatDungeonLevelRange(minLevel, maxLevel, icon)
 	if (minLevel == nil) then return nil end
 

@@ -35,9 +35,12 @@ local GetAreaInfo = C_Map.GetAreaInfo
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 
 local MapData = private.MapData
 
+---@param zoneName string?
+---@return string?
 local function getAreaInfo(zoneName)
 	if not zoneName then return end
 	local data = MapData.AreaToID
@@ -54,6 +57,8 @@ Atlas_GetLocaleLibBabble(typ)
 Get english translations for non translated things. (Combines located and english table)
 Only useable with LibBabble
 ]]
+---@param typ string
+---@return table<string, string>
 function Atlas_GetLocaleLibBabble(typ)
 
 	local rettab = {}

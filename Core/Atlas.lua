@@ -57,89 +57,12 @@ local GetMapInfo, GetMapArtLayers = C_Map.GetMapInfo, C_Map.GetMapArtLayers
 local C_Seasons = _G.C_Seasons
 
 local FOLDER_NAME, private = ...
+---@cast private AtlasNamespace
 
 local LibStub = _G.LibStub
 
----@class AtlasDataModule : AceModule
----@field db table
-
----@class AtlasAddon : AceAddon
----@field db table
----@field constants table
----@field Client table
----@field Templates table
----@field Fonts table
----@field dropdowns table
----@field assocs table
----@field optionsFrames table
----@field Name string
----@field LocName string
----@field Notes string
----@field WorldMap table
----@field AchievementButtonUpdate fun(self: AtlasAddon, button: table, achievementID: number)
----@field AdventureJournalButton_OnClick fun(self: AtlasAddon, frame: table)
----@field AdventureJournalButton_OnEnter fun(self: AtlasAddon, frame: table)
----@field AdventureJournal_EncounterButton_OnClick fun(self: AtlasAddon, instanceID: number, encounterID: number, keepAtlas: boolean?)
----@field AdventureJournal_MapButton_OnClick fun(self: AtlasAddon, frame: table)
----@field AtlasLootButton_OnClick fun(self: AtlasAddon, frame: table, button: string?)
----@field Auto_Select fun(self: AtlasAddon)
----@field BossButton_OnClick fun(self: AtlasAddon, frame: table, button: string?)
----@field CheckAddonStatus fun(self: AtlasAddon, addonName: string): boolean
----@field DungeonMinGearLevelToolTip fun(self: AtlasAddon, frame: table)
----@field EnableAtlasLootButton fun(self: AtlasAddon, base: table, zoneID: string)
----@field EncounterJournal_Binding fun(self: AtlasAddon)
----@field EncounterJournal_IsHeaderTypeOverview fun(self: AtlasAddon, headerType: any): boolean
----@field FormatColor fun(self: AtlasAddon, colorArray: table): string?
----@field FormatDungeonLevelRange fun(self: AtlasAddon, minLevel: number, maxLevel: number): string
----@field GetBossName fun(self: AtlasAddon, bossName: string?, encounterID: number?, creatureIndex: number?, moduleName: string?): string?
----@field GetClassName fun(self: AtlasAddon, class: string): string?
----@field GetCreatureName fun(self: AtlasAddon, creatureName: string?, id: number?): string?
----@field GetDungeonData fun(self: AtlasAddon, dungeonID: number, fallbackMinRec: number?, fallbackMaxRec: number?): table
----@field GetDungeonDifficultyColor fun(self: AtlasAddon, minimumLevel: number): table
----@field GetEJSectionTitle fun(self: AtlasAddon, bossName: string?, sectionID: number?, moduleName: string?): string?
----@field GetGearItemLevelDiffColor fun(self: AtlasAddon, minGearLevel: number): table
----@field GetItemTitlebyID fun(self: AtlasAddon, title: string?, id: number): string?
----@field GetQuestLevelRange fun(self: AtlasAddon): number
----@field GetQuestTitlebyID fun(self: AtlasAddon, title: string?, id: number): string?
----@field IsRaidInfo fun(self: AtlasAddon, raidID: number): boolean
----@field SearchLFG fun(self: AtlasAddon)
----@field SearchLFG_Enter fun(self: AtlasAddon)
----@field MapAddNPCButton fun(self: AtlasAddon)
----@field MapAddNPCButtonLarge fun(self: AtlasAddon)
----@field OnEnable fun(self: AtlasAddon)
----@field OnInitialize fun(self: AtlasAddon)
----@field OnItemInfoReceived fun(self: AtlasAddon, itemID: number)
----@field OpenAchievement fun(self: AtlasAddon, achievementID: number)
----@field OpenOptions fun(self: AtlasAddon)
----@field PopulateDropdowns fun(self: AtlasAddon)
----@field PrevNextMap_OnClick fun(self: AtlasAddon, frame: table)
----@field Refresh fun(self: AtlasAddon)
----@field RefreshMap fun(self: AtlasAddon, mapID: string|number?)
----@field RefreshPendingCreatureNames fun(self: AtlasAddon)
----@field RefreshPendingItemTitles fun(self: AtlasAddon)
----@field RegisterChatCommand fun(self: AtlasAddon, command: string, handler: function)
----@field RegisterModule fun(self: AtlasAddon, moduleKey: string)
----@field RegisterModuleOptions fun(self: AtlasAddon, name: string, optionTable: any, displayName: string?)
----@field RegisterPlugin fun(self: AtlasAddon, name: string, myCategory: string, myData: table, myNPCData: table?)
----@field ScrollBar_Update fun(self: AtlasAddon)
----@field SearchText fun(self: AtlasAddon, text: string)
----@field SetupOptions fun(self: AtlasAddon)
----@field StartMoving fun(self: AtlasAddon, frame: table)
----@field Toggle fun(self: AtlasAddon)
----@field ToggleLegendPanel fun(self: AtlasAddon)
----@field ToggleLock fun(self: AtlasAddon)
----@field ToggleWindowSize fun(self: AtlasAddon)
----@field ToggleWorldMapButton fun(self: AtlasAddon)
----@field UpdateAlpha fun(self: AtlasAddon)
----@field UpdateSmallAlpha fun(self: AtlasAddon)
----@field UpdateLargeAlpha fun(self: AtlasAddon)
----@field UpdateLock fun(self: AtlasAddon)
----@field UpdateMapContent fun(self: AtlasAddon, zoneID: string|number, base: table)
----@field UpdateScale fun(self: AtlasAddon)
----@field UpdateSmallScale fun(self: AtlasAddon)
----@field UpdateLargeScale fun(self: AtlasAddon)
----@field WorldMapButtonSelectMap fun(self: AtlasAddon)
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 
 addon.constants = private.constants
 addon.Client = private.Client
@@ -211,6 +134,10 @@ local Atlas_CoreMapsKey = {}
 local Atlas_CoreMapsKey_Index = 0
 local registeredModules = {}
 
+---@param name string
+---@param myCategory string
+---@param myData table
+---@param myNPCData table?
 function addon:RegisterPlugin(name, myCategory, myData, myNPCData)
 	ATLAS_PLUGINS[name] = {}
 	local i = #Atlas_MapTypes + 1
@@ -239,13 +166,14 @@ function addon:RegisterPlugin(name, myCategory, myData, myNPCData)
 	addon:RefreshMap()
 end
 
+---@param moduleKey string
 function addon:RegisterModule(moduleKey)
 	if registeredModules[moduleKey] then
 		return
 	end
 
----@class AtlasDataModule : AceModule
 	local module = addon:GetModule(moduleKey)
+	---@cast module AtlasDataModule?
 	if not module or not module.db then
 		return
 	end
@@ -496,6 +424,9 @@ function addon:ScrollBar_Update()
 	end
 end
 
+---@param data table
+---@param text string
+---@return table
 local function simpleSearch(data, text)
 	if (strtrim(text or "") == "") then
 		return data
@@ -595,12 +526,12 @@ end
 
 local function isModuleOrPluginLoaded()
 	if (ATLAS_MODULE_MENUS == 0 and ATLAS_PLUGIN_MENUS == 0) then
-		StaticPopup_Show("ATLAS_NO_MODULE_OR_PLUGIN", L["ATLAS_NO_MODULE_OR_PLUGIN"])
+		StaticPopup_Show("ATLAS_NO_MODULE_OR_PLUGIN_NEW", L["ATLAS_NO_MODULE_OR_PLUGIN_NEW"])
 		
 		LDB.OnTooltipShow = function(tooltip)
 			if not tooltip or not tooltip.AddLine then return end
 			tooltip:AddLine("|cffffffff"..L["ATLAS_TITLE"])
-			tooltip:AddLine(L["ATLAS_NO_MODULE_OR_PLUGIN"])
+			tooltip:AddLine(L["ATLAS_NO_MODULE_OR_PLUGIN_NEW"])
 		end
 	end
 end
@@ -663,6 +594,8 @@ local function checkInstanceHasGearLevel()
 	return iLFGhasGearInfo
 end
 
+---@param color_array AtlasColor?
+---@return string?
 function addon:FormatColor(color_array)
 	if (not color_array or type(color_array) ~= "table") then return; end
 	if (not (color_array.r and color_array.g and color_array.b)) then return; end
@@ -673,6 +606,8 @@ end
 
 -- Calculate the dungeon difficulty based on the dungeon's level and player's level
 -- Codes adopted from FastQuest_Classic
+---@param minRecLevel number?
+---@return AtlasColor
 function addon:GetDungeonDifficultyColor(minRecLevel)
 	local color = {r = 1.00, g = 1.00, b = 1.00}
 	if (not minRecLevel) then 
@@ -1054,6 +989,7 @@ function addon:UpdateMapContent(zoneID, base)
 			local info = entry.data
 			local minValue = info and info[minField]
 			if (minValue ~= nil) then
+				---@cast info -nil
 				parts[#parts + 1] = addon:FormatDungeonLevelRange(minValue, maxField and info[maxField], entry.icon)
 			end
 		end
@@ -1283,6 +1219,7 @@ end
 -- Refreshes the Atlas frame, usually because a new map needs to be displayed
 -- The zoneID variable represents the internal name used for each map, ex: "BlackfathomDeeps"
 -- Also responsible for updating all the text when a map is changed
+---@param mapID string|number?
 function addon:RefreshMap(mapID)
 	if (ATLAS_MODULE_MENUS == 0 and ATLAS_PLUGIN_MENUS == 0) then return end
 	local zoneID
@@ -1439,6 +1376,7 @@ function addon:RefreshMap(mapID)
 end
 
 -- Kept for existing callers and external addons
+---@param mapID string|number?
 function Atlas_Refresh(mapID)
 	return addon:RefreshMap(mapID)
 end
@@ -1670,7 +1608,7 @@ local function check_Modules()
 			textList = textList.."\n"..str
 		end
 
-		StaticPopup_Show("ATLAS_MISSING_MODULES", L["ATLAS_MISSING_MODULE"].."\n|cff6666ff"..textList.."|r\n")
+		StaticPopup_Show("ATLAS_MISSING_MODULE", L["ATLAS_MISSING_MODULE"].."\n|cff6666ff"..textList.."|r\n")
 	end
 end
 
@@ -1774,6 +1712,8 @@ function addon:GetClassName(class)
 end
 
 -- fallback function for getting class name
+---@param class string
+---@return string?
 function Atlas_GetClassName(class)
 	return addon:GetClassName(class)
 end

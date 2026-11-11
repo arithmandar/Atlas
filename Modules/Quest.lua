@@ -29,6 +29,7 @@
 
 local _G = getfenv(0)
 local _, private = ...
+---@cast private AtlasNamespace
 local C_QuestLog = _G.C_QuestLog
 local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
 local GetTitleForQuestID = C_QuestLog.GetTitleForQuestID
@@ -36,11 +37,12 @@ local GetQuestInfo = C_QuestLog.GetQuestInfo
 local GetQuestDifficultyLevel = C_QuestLog.GetQuestDifficultyLevel
 
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 
 local colors = private.constants.colors
 
+---@return number
 function addon:GetQuestLevelRange()
 	if (ATLAS_USES_MAINLINE_API) then
 		return _G.UnitQuestTrivialLevelRange('player')
@@ -49,6 +51,9 @@ function addon:GetQuestLevelRange()
 	end
 end
 
+---@param title string?
+---@param id number?
+---@return string?
 function addon:GetQuestTitlebyID(title, id)
 	if not id then
 		return title
@@ -74,4 +79,3 @@ function addon:GetQuestTitlebyID(title, id)
 	end
 	return questTitle
 end
-

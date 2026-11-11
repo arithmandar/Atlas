@@ -2,6 +2,7 @@
 -- AreaID for Classic Era version of World of Warcraft
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 
 local Client = private.Client
 if not Client.isClassicEra then return end

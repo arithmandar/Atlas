@@ -26,11 +26,12 @@
 -- In-game locale handling functions for Atlas addon
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 
 local setmetatable, rawget = setmetatable, rawget
 local _G = getfenv(0)
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 
 local C_Item = _G.C_Item
 local GetItemInfo = C_Item.GetItemInfo
@@ -54,4 +55,3 @@ do
 		return rawget(tab, key) or key end
 	})
 end
-

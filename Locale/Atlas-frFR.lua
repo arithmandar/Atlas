@@ -104,6 +104,45 @@ L["ATLAS_OPTIONS_MAXMENUITEMS"] = "Nombre maximum d’éléments du menu"
 L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"] = "Configurez le nombre maximum d’éléments du menu déroulant à afficher avant de passer à une autre catégorie de menu"
 L["ATLAS_NO_MODULE_OR_PLUGIN"] = "|cffff66ffErreur :|r Atlas ne peut détecter aucun module ou plugin de carte installé et activé. Notez qu’Atlas lui-même est un navigateur de cartes ; vous devez installer au moins un module ou plugin de carte pour pouvoir consulter les cartes."
 
+L["ATLAS_NO_MODULE_OR_PLUGIN_NEW"] = [=[|cffffd200Atlas nécessite un pack de cartes|r
+
+Atlas est un outil de consultation de cartes et ne contient aucune carte. Aucun pack de cartes ni plugin activé n'a été détecté.
+
+Pour consulter les cartes de Kalimdor et des royaumes de l'Est, installez cet addon séparément :
+|cff66ccffAtlas Kalimdor & Eastern Kingdoms|r
+
+Les noms des packs de cartes décrivent les cartes qu'ils contiennent, et non le client WoW qu'ils prennent en charge. Choisissez le fichier correspondant à votre version de WoW.
+
+Si vous avez déjà installé un pack de cartes, vérifiez qu'Atlas et le pack de cartes sont tous deux activés dans la liste des addons de votre personnage.]=]
+
+L["ATLAS_MAP_PACK_GUIDE_TEXT"] = [=[|cffffd2001. Choisissez un pack de cartes|r
+
+Atlas est un outil de consultation de cartes et ne contient aucune carte. Installez au moins un pack de cartes ou un plugin compatible pour pouvoir consulter des cartes.
+
+Ouvrez la page « Atlas Map Packs and Plugins » à l'aide de l'adresse ci-dessous. Vous y trouverez les liens de téléchargement des packs disponibles, les instructions d'installation et des conseils de dépannage.
+
+Pour consulter les cartes de Kalimdor et des royaumes de l'Est, choisissez :
+|cff66ccffAtlas Kalimdor & Eastern Kingdoms|r
+Ce pack de cartes s'appelait auparavant Atlas Classic WoW.
+
+|cffffd2002. Choisissez le téléchargement adapté à votre version de WoW|r
+
+Les noms des packs de cartes décrivent les cartes qu'ils contiennent, et non le client WoW qu'ils prennent en charge. Consultez les fichiers disponibles sur la page de chaque projet et choisissez un téléchargement compatible avec votre client et votre version du jeu.
+
+Installez uniquement les packs contenant les cartes que vous souhaitez utiliser.
+
+|cffffd2003. Activez Atlas et le pack de cartes|r
+
+Si WoW est en cours d'exécution pendant l'installation, redémarrez le jeu une fois celle-ci terminée. Dans la liste des addons de votre personnage, vérifiez qu'Atlas et le pack de cartes sont tous deux activés.
+
+|cffffd200Toujours aucune carte ?|r
+
+Consultez la section de dépannage de la page « Atlas Map Packs and Plugins ». Si vous signalez un problème, indiquez votre version de WoW, votre version d'Atlas, les noms et versions des packs de cartes installés, ainsi que les éventuels messages d'erreur Lua.]=]
+
+L["ATLAS_MAP_PACK_GUIDE_URL_LABEL"] = "Téléchargements des packs de cartes et guide d'installation :"
+
+L["ATLAS_MAP_PACK_GUIDE_COPY_HINT"] = "Cliquez sur l'adresse pour la sélectionner, puis copiez-la et collez-la dans votre navigateur."
+
 L["ATLAS_BUTTON_CLOSE"] = "Fermer"
 L["ATLAS_LDB_HINT"] = [=[Clic-Gauche pour ouvrir Atlas.
 Clic-Droit pour les options d'Atlas.]=]

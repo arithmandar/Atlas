@@ -2,6 +2,7 @@
 -- AreaID for the mainline version of World of Warcraft.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 
 local Client = private.Client
 if not Client.isRetail then return end

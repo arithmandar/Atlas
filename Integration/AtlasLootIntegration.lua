@@ -38,9 +38,10 @@ local GetAddOnEnableState = C_AddOns.GetAddOnEnableState
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 
 local Client = private.Client
 

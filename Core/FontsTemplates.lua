@@ -30,6 +30,7 @@
 local _G = getfenv(0)
 
 local _, private = ...
+---@cast private AtlasNamespace
 
 local Fonts = {}
 

@@ -114,6 +114,45 @@ Beachte, dass Atlas selbst ein Kartenbrowser ist.
 Du musst mindestens ein Kartenmodul oder ein 
 Plugin installieren, um die Karten durchsuchen zu können.]=]
 
+L["ATLAS_NO_MODULE_OR_PLUGIN_NEW"] = [=[|cffffd200Atlas benötigt ein Kartenpaket|r
+
+Atlas ist ein Kartenbrowser und enthält selbst keine Karten. Es wurden keine aktivierten Kartenpakete oder Plugins erkannt.
+
+Für Karten von Kalimdor und den Östlichen Königreichen installiere dieses separate Addon:
+|cff66ccffAtlas Kalimdor & Eastern Kingdoms|r
+
+Die Namen der Kartenpakete beschreiben die enthaltenen Karten, nicht den unterstützten WoW-Client. Wähle beim Herunterladen die passende Datei für deine WoW-Version.
+
+Wenn du bereits ein Kartenpaket installiert hast, stelle sicher, dass sowohl Atlas als auch das Kartenpaket in der Addon-Liste deines Charakters aktiviert sind.]=]
+
+L["ATLAS_MAP_PACK_GUIDE_TEXT"] = [=[|cffffd2001. Wähle ein Kartenpaket|r
+
+Atlas ist ein Kartenbrowser und enthält selbst keine Karten. Installiere mindestens ein Kartenpaket oder ein kompatibles Plugin, um Karten anzuzeigen.
+
+Öffne die Seite „Atlas Map Packs and Plugins“ über die unten angegebene Adresse. Dort findest du Downloadlinks zu den verfügbaren Paketen, Installationsanweisungen und Tipps zur Fehlerbehebung.
+
+Für Karten von Kalimdor und den Östlichen Königreichen wähle:
+|cff66ccffAtlas Kalimdor & Eastern Kingdoms|r
+Dieses Kartenpaket hieß früher Atlas Classic WoW.
+
+|cffffd2002. Wähle den Download für deine WoW-Version|r
+
+Die Namen der Kartenpakete beschreiben die enthaltenen Karten, nicht den unterstützten WoW-Client. Prüfe die verfügbaren Dateien des jeweiligen Projekts und wähle einen Download, der mit deinem Client und deiner Spielversion kompatibel ist.
+
+Du musst nur die Pakete installieren, deren Karten du verwenden möchtest.
+
+|cffffd2003. Aktiviere Atlas und das Kartenpaket|r
+
+Falls WoW während der Installation läuft, starte das Spiel anschließend neu. Stelle in der Addon-Liste deines Charakters sicher, dass sowohl Atlas als auch das Kartenpaket aktiviert sind.
+
+|cffffd200Noch immer keine Karten?|r
+
+Lies den Abschnitt zur Fehlerbehebung auf der Seite „Atlas Map Packs and Plugins“. Gib bei einer Problemmeldung deine WoW-Version, die Atlas-Version, die Namen und Versionen der installierten Kartenpakete sowie etwaige Lua-Fehlermeldungen an.]=]
+
+L["ATLAS_MAP_PACK_GUIDE_URL_LABEL"] = "Downloads und Installationsanleitung für Kartenpakete:"
+
+L["ATLAS_MAP_PACK_GUIDE_COPY_HINT"] = "Klicke auf die Adresse, um sie zu markieren. Kopiere sie anschließend und füge sie in deinen Browser ein."
+
 L["ATLAS_BUTTON_CLOSE"] = "Schließen"
 L["ATLAS_LDB_HINT"] = "Linke Maustaste drücken, um Atlas zu öffnen.\nRechte Maustaste drücken, um die Atlas Optionen anzuzeigen."
 L["ATLAS_MINIMAPLDB_HINT"] = "Linke Maustaste drücken, um Atlas zu öffnen.\nRechte Maustaste drücken, um die Atlas Optionen anzuzeigen.\nLinke Maustaste gedrückt halten, um diesen Schalter zu verschieben."

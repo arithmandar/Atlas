@@ -46,6 +46,7 @@ local format = string.format
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 
 local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)

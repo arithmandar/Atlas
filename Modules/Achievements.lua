@@ -40,9 +40,10 @@ local GetAchievementInfo, GetAchievementNumCriteria, GetAchievementCriteriaInfo,
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 
 function addon:AchievementButtonUpdate(button, achievementID)
 	-- WOLTKC starts to introduce achievement system, so we are only skipping this for Classic Era and TBC

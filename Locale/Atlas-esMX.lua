@@ -106,6 +106,45 @@ L["ATLAS_OPTIONS_MAXMENUITEMS"] = "Número máximo de elementos de menú"
 L["ATLAS_OPTIONS_MAXMENUITEMS_TIP"] = "Configurar el número máximo de elementos del menú desplegable que se mostrarán antes de dividir a otra categoría de menú."
 L["ATLAS_NO_MODULE_OR_PLUGIN"] = "|cffff66ffError:|r Atlas no ha detectado ningún módulo de mapa o plugin instalado y habilitado. Ten en cuenta que Atlas es un explorador de mapas, debes instalar al menos un módulo de mapas o un plugin para explorar los mapas."
 
+L["ATLAS_NO_MODULE_OR_PLUGIN_NEW"] = [=[|cffffd200Atlas necesita un paquete de mapas|r
+
+Atlas es un visor de mapas y no incluye mapas. No se detectó ningún paquete de mapas ni complemento de Atlas activado.
+
+Para consultar mapas de Kalimdor y los Reinos del Este, instala este addon por separado:
+|cff66ccffAtlas Kalimdor & Eastern Kingdoms|r
+
+Los nombres de los paquetes de mapas describen los mapas que contienen, no el cliente de WoW con el que son compatibles. Elige el archivo adecuado para tu versión de WoW.
+
+Si ya instalaste un paquete de mapas, verifica que tanto Atlas como el paquete estén activados en la lista de addons de tu personaje.]=]
+
+L["ATLAS_MAP_PACK_GUIDE_TEXT"] = [=[|cffffd2001. Elige un paquete de mapas|r
+
+Atlas es un visor de mapas y no incluye mapas. Instala al menos un paquete de mapas o un complemento compatible para poder consultar mapas.
+
+Visita la página «Atlas Map Packs and Plugins» mediante la dirección que aparece abajo. Allí encontrarás enlaces de descarga de los paquetes disponibles, instrucciones de instalación y consejos para solucionar problemas.
+
+Para consultar mapas de Kalimdor y los Reinos del Este, elige:
+|cff66ccffAtlas Kalimdor & Eastern Kingdoms|r
+Este paquete de mapas antes se llamaba Atlas Classic WoW.
+
+|cffffd2002. Elige la descarga adecuada para tu versión de WoW|r
+
+Los nombres de los paquetes de mapas describen los mapas que contienen, no el cliente de WoW con el que son compatibles. Revisa los archivos disponibles de cada proyecto y elige una descarga compatible con tu cliente y tu versión del juego.
+
+Solo necesitas instalar los paquetes que contengan los mapas que quieras utilizar.
+
+|cffffd2003. Activa Atlas y el paquete de mapas|r
+
+Si WoW está en ejecución durante la instalación, reinicia el juego al terminar. En la lista de addons de tu personaje, verifica que tanto Atlas como el paquete de mapas estén activados.
+
+|cffffd200¿Aún no aparecen los mapas?|r
+
+Consulta la sección de solución de problemas de la página «Atlas Map Packs and Plugins». Si reportas un problema, incluye tu versión de WoW, la versión de Atlas, los nombres y versiones de los paquetes de mapas instalados y cualquier mensaje de error de Lua.]=]
+
+L["ATLAS_MAP_PACK_GUIDE_URL_LABEL"] = "Descargas de paquetes de mapas y guía de instalación:"
+
+L["ATLAS_MAP_PACK_GUIDE_COPY_HINT"] = "Haz clic en la dirección para seleccionarla y luego cópiala y pégala en tu navegador."
+
 L["ATLAS_BUTTON_CLOSE"] = "Cerrar"
 L["ATLAS_LDB_HINT"] = [=[Click izquierdo para abrir Atlas.
 Click central para opciones.

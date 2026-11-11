@@ -2,6 +2,7 @@
 -- AreaID for Forever version of World of Warcraft.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 
 local Client = private.Client
 

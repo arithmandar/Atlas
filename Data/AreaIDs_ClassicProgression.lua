@@ -2,6 +2,7 @@
 -- AreaID for the Progression Classic version of World of Warcraft.
 -- ----------------------------------------------------------------------------
 local _, private = ...
+---@cast private AtlasNamespace
 
 local Client = private.Client
 if not Client.isProgressionClassic then return end

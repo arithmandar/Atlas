@@ -37,10 +37,11 @@ local GetAddOnMetadata, GetAddOnInfo = C_AddOns.GetAddOnMetadata, C_AddOns.GetAd
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 
 local _, private = ...
+---@cast private AtlasNamespace
 
 local LibStub = _G.LibStub
----@type AtlasAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
+---@cast addon AtlasAddon
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 
 local options = setmetatable({}, {
@@ -648,4 +649,3 @@ end
 UI.CreateAtlasFrame()
 UI.CreateAtlasFrameLarge()
 UI.CreateAtlasFrameSmall()
-

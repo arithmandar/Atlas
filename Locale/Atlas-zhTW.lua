@@ -106,6 +106,47 @@ Atlas 無法偵測到任何的地圖模組或插件
 您將必須至少安裝一個地圖模組或插件
 以瀏覽地圖。]=]
 
+L["ATLAS_NO_MODULE_OR_PLUGIN_NEW"] = [=[|cffffd200Atlas 需要地圖包|r
+
+Atlas 是地圖瀏覽器，本身不包含地圖。目前未偵測到任何已啟用的地圖包或插件。
+
+若要瀏覽卡林多與東部王國的地圖，請另外安裝以下插件：
+|cff66ccffAtlas Kalimdor & Eastern Kingdoms|r
+
+地圖包名稱描述的是收錄的地圖內容，而非支援的 WoW 遊戲版本。下載時，請選擇適合你目前 WoW 版本的檔案。
+
+如果你已安裝地圖包，請確認 Atlas 和地圖包都已在目前角色的插件列表中啟用。]=]
+
+L["ATLAS_MAP_PACK_GUIDE"] = "地圖包安裝指引"
+
+L["ATLAS_MAP_PACK_GUIDE_TEXT"] = [=[|cffffd2001. 選擇地圖包|r
+
+Atlas 是地圖瀏覽器，本身不包含地圖。請另外安裝至少一個地圖包或相容插件，才能瀏覽地圖。
+
+請使用下方網址前往 Atlas 地圖包與插件指引頁面，查看可用套件的下載連結、安裝步驟與疑難排解說明。
+
+若要瀏覽卡林多與東部王國的地圖，請選擇：
+|cff66ccffAtlas Kalimdor & Eastern Kingdoms|r
+此地圖包原名為 Atlas Classic WoW。
+
+|cffffd2002. 選擇適合你目前 WoW 版本的下載檔案|r
+
+地圖包名稱描述的是收錄的地圖內容，而非支援的 WoW 遊戲版本。請查看各專案提供的檔案，選擇適合你目前遊戲客戶端與版本的下載檔案。
+
+你只需要安裝包含所需地圖的套件，不必全部安裝。
+
+|cffffd2003. 啟用 Atlas 與地圖包|r
+
+安裝完成後，如果 WoW 正在執行，請重新啟動遊戲。在目前角色的插件列表中，確認 Atlas 和地圖包都已啟用。
+
+|cffffd200仍然看不到地圖？|r
+
+請查看 Atlas 地圖包與插件指引頁面的疑難排解章節。回報問題時，請提供 WoW 版本、Atlas 版本、已安裝地圖包的名稱與版本，以及任何 Lua 錯誤訊息。]=]
+
+L["ATLAS_MAP_PACK_GUIDE_URL_LABEL"] = "地圖包下載連結與安裝指引："
+
+L["ATLAS_MAP_PACK_GUIDE_COPY_HINT"] = "點選網址即可選取，再複製並貼到瀏覽器。"
+
 L["ATLAS_BUTTON_CLOSE"] = "關閉"
 L["ATLAS_LDB_HINT"] = [=[左鍵開啟 Atlas。
 中鍵開啟 Atlas 選項。
