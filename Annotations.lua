@@ -87,6 +87,7 @@
 ---@field GetDungeonData fun(self: AtlasAddon, dungeonID: number?, fallbackMinRec: number?, fallbackMaxRec: number?): AtlasDungeonData?
 ---@field GetDungeonDifficultyColor fun(self: AtlasAddon, minimumLevel: number?): AtlasColor
 ---@field GetEJSectionTitle fun(self: AtlasAddon, bossName: string?, sectionID: number?, moduleName: string?): string?
+---@field GetFactionName fun(self: AtlasAddon, factionName: string?, factionID: number?): string?
 ---@field GetGearItemLevelDiffColor fun(self: AtlasAddon, minGearLevel: number?): AtlasColor
 ---@field GetItemTitlebyID fun(self: AtlasAddon, title: string?, id: number?): string?
 ---@field GetQuestLevelRange fun(self: AtlasAddon): number

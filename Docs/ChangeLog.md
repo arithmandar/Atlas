@@ -10,6 +10,11 @@
 
 ## Change Log
 
+### v1.54.07 (Nov. 12, 2026)
+
+- Added Factions module to retire the LibBabble-Faction-3.0 dependency. Will still keep it for backward compatibility until next major release
+- Fixed LFG related issue in Classic Era
+
 ### v1.54.06 (Nov. 11, 2026)
 
 - Added Lua Language Server annotations across Atlas for shared types and function parameters, return values, and bindings
